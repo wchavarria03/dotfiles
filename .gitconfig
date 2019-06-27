@@ -1,0 +1,18 @@
+[user]
+    name = Walter Chavarria
+    email = wchavarria03@gmail.com
+    signingkey = 3F8DE25A13D8CBAE
+[color]
+    ui = auto
+[alias]
+    co = checkout
+    st = status
+    ci = commit
+    br = branch
+    pl = pull --rebase
+[branch]
+    autosetuprebase = always
+[commit]
+    gpgsign = true
+[core]
+    editor = vim
