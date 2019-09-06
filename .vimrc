@@ -44,7 +44,7 @@ set list listchars=tab:>- " show extra space characters
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,node_modules/*,*.png,*.jpg,*.mmdb,*.dat,*.sql
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,node_modules/**,*.png,*.jpg,*.mmdb,*.dat,*.sql
 
 " Searching
 set incsearch           " search as characters are entered
@@ -86,6 +86,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Split Panels Vertical and Horizontal
+nnoremap <C-\> <C-w>v
+nnoremap <C-_> <C-w>s
+
 " highlight trailing spaces in annoying red
 highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
@@ -119,7 +123,7 @@ let g:ale_sign_warning = '⚠️'
 nnoremap <C-g> :NERDTreeToggle<cr>
 nnoremap <C-f> :NERDTreeFind<cr>
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
-                   \ '\.so$', '\.egg$', '^\.git$', '\.cmi', '\.cmo' ]
+                   \ '\.so$', '\.egg$', '^\.git$', '\.cmi', '\.cmo', 'node_modules/**' ]
 let NERDTreeShowHidden=1
 let NERDTreeShowFiles=1
 
@@ -147,6 +151,7 @@ function! StatusLine(current)
         \ . '%=' . (a:current ? '%#Crystalline# %{&paste?"PASTE ":""}%{&spell?"SPELL ":""}' . crystalline#mode_color() : '')
         \ . ' %{&ft}[%{&enc}][%{&ffs}] %l/%L %c%V %P '
 endfunction
+
 let g:crystalline_statusline_fn = 'StatusLine'
 let g:crystalline_theme = 'onedark'
 set laststatus=2

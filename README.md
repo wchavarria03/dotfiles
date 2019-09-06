@@ -10,6 +10,11 @@ Create a symblink from your dotfiles folder to your home config folder
 ```
 ln -s <path_to_this_folder>/.powerlevelrc <path_to_home_folder>/.powerlevelrc
 ```
+## tmux
+Create a symblink from your dotfiles folder to your home config folder
+```
+ln -s <path_to_this_folder>/tmux.conf <path_to_home_folder>/.tmux.conf
+```
 
 ## vimrc
 Create a symblink from your dotfiles folder to your home config folder
