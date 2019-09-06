@@ -34,6 +34,7 @@ set number              " display line number
 set relativenumber      " display relative number
 set cursorline          " highlight current line
 set wildmenu            " visual autocomplete for command menu
+set swapfile
 set directory=~/.vim/swap       " Directory to use for the swap file
 set splitbelow
 set splitright
@@ -123,9 +124,11 @@ let g:ale_sign_warning = '⚠️'
 nnoremap <C-g> :NERDTreeToggle<cr>
 nnoremap <C-f> :NERDTreeFind<cr>
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
-                   \ '\.so$', '\.egg$', '^\.git$', '\.cmi', '\.cmo', 'node_modules/**' ]
+                   \ '\.so$', '\.egg$', '^\.git$', '\.cmi', '\.cmo' ]
 let NERDTreeShowHidden=1
 let NERDTreeShowFiles=1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeDirArrows = 1
 
 """""""""""""""
 """""""""""""""" FZF
