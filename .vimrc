@@ -45,7 +45,7 @@ set list listchars=tab:>- " show extra space characters
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,node_modules/**,*.png,*.jpg,*.mmdb,*.dat,*.sql
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,*/node_modules/**,*.png,*.jpg,*.mmdb,*.dat,*.sql,*/coverage/**,*/build/**,build,build/,build/**
 
 " Searching
 set incsearch           " search as characters are entered
@@ -116,9 +116,16 @@ let g:jsx_ext_required = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_set_highlights = 0
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
+let g:ale_set_signs = 1
+let g:ale_sign_priority = 40
 """"""""""""""""" Ale End
+
+""""""""""""""""" GitGutter
+set signcolumn=yes
+highlight GitGutterAdd    guifg=#009900 guibg=#1A1A1A ctermfg=2 ctermbg=NONE
+highlight GitGutterChange guifg=#bbbb00 guibg=#1A1A1A ctermfg=3 ctermbg=NONE
+highlight GitGutterDelete guifg=#ff2222 guibg=#1A1A1A ctermfg=1 ctermbg=NONE
+""""""""""""""""" GitGutter End
 
 """""""""""""""" NERDTree
 nnoremap <C-g> :NERDTreeToggle<cr>
