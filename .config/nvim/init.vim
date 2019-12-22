@@ -2,7 +2,9 @@ call plug#begin('~/.vim/plugged')
 " Javascript/ React
 Plug 'isRuslan/vim-es6'
 Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
+
+" Syntax
+Plug 'sheerun/vim-polyglot'
 
 " Ruby
 Plug 'tpope/vim-endwise'      " Wisely add 'end' in ruby, endfunction/endif/mor
@@ -24,45 +26,31 @@ Plug 'rbong/vim-crystalline'
 Plug 'tomasiser/vim-code-dark'
 Plug 'w0rp/ale'
 
-filetype plugin indent on  " required!
 call plug#end()
 
 colorscheme codedark
 
-set nocompatible        " be iMproved
 set number              " display line number
 set relativenumber      " display relative number
 set cursorline          " highlight current line
-set wildmenu            " visual autocomplete for command menu
 set swapfile
-set directory=~/.vim/swap       " Directory to use for the swap file
 set splitbelow
 set splitright
 set clipboard=unnamed   " set the clipboard as shared between mac and vim
 set path+=**
-set backspace=indent,eol,start   " let backspace key to delete over lines, indent on insert mode
-set list listchars=tab:>- " show extra space characters
 
 " Tab completion
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,*/node_modules/**,*.png,*.jpg,*.mmdb,*.dat,*.sql,*/coverage/**,*/build/**,build,build/,build/**
 
 " Searching
-set incsearch           " search as characters are entered
-set hlsearch            " highlight matches
 set smartcase
 set showmatch
 set ignorecase
 
-" encoding is utf 8
-set encoding=utf-8
-set fileencoding=utf-8
-
 " Formatting, indentation and tabbing
 set expandtab           " use spaces instead of tabs
-set autoindent          " autoindent based on line above, works most of the time
 set smartindent         " smarter indent for C-like languages
-set smarttab            " Make <tab> and <backspace> smarter
 set shiftwidth=2        " when reading, tabs are 2 spaces
 set softtabstop=2       " in insert mode, tabs are 2 spaces
 set tabstop=2           " number of visual spaces per TAB
@@ -155,7 +143,7 @@ let g:vim_jsx_pretty_colorful_config = 1 " default 0
 """""""""""""""
 
 """"""""""""""" Ack
-nnoremap <Leader>a :Ack! --ignore-dir={coverage,build,dist,node_modules,test,tests}<Space>
+nnoremap <Leader>a :Ack!<Space> --ignore-dir={coverage,build,dist,node_modules,test,tests}
 nnoremap <Leader>aa :Ack!<Space>
 """""""""""""""
 
@@ -171,5 +159,4 @@ endfunction
 
 let g:crystalline_statusline_fn = 'StatusLine'
 let g:crystalline_theme = 'onedark'
-set laststatus=2
 """""""""""""""
