@@ -1,7 +1,7 @@
 # dotfiles
 
 Index
-- [Font](https://github.com/wchavarria03/dotfiles#OhMyZsh-Prompt)
+- [Font](https://github.com/wchavarria03/dotfiles#Font)
 - [Terminal ANSI Colors and Config](https://github.com/wchavarria03/dotfiles#Terminal-ANSI-Colors-and-Config)
 - [OhMyZsh Prompt](https://github.com/wchavarria03/dotfiles#OhMyZsh-Prompt)
 - [ZSH Config](https://github.com/wchavarria03/dotfiles#zsh-Config)
