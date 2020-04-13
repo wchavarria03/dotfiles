@@ -1,6 +1,8 @@
 # dotfiles
 
 Index
+- [Font](https://github.com/wchavarria03/dotfiles#OhMyZsh-Prompt)
+- [Terminal ANSI Colors and Config](https://github.com/wchavarria03/dotfiles#Terminal-ANSI-Colors-and-Config)
 - [OhMyZsh Prompt](https://github.com/wchavarria03/dotfiles#OhMyZsh-Prompt)
 - [ZSH Config](https://github.com/wchavarria03/dotfiles#zsh-Config)
 - [tmux Config](https://github.com/wchavarria03/dotfiles#tmux-Config)
@@ -12,18 +14,18 @@ I am using Fira Code Font https://github.com/tonsky/FiraCode
 
 ## Terminal ANSI Colors and Config
 - Font Fira Code SemiBold 11pt.
-- Background Color: #282D35
-- Cursor Color: #FBFCFC
+- Background Color: #282D35 ![#f03c15](https://placehold.it/15/282D35/000000?text=+)
+- Cursor Color: #FBFCFC ![#f03c15](https://placehold.it/15/282D35/000000?text=+)
 
-- Font Color: #9CA3B2
-- Black 0: #3E4352
-- Red 1: #FF5458
-- Green 2: #84A86C
-- Yellow 3: #E4BD48
-- Blue 4: #5D9EE7
-- Magenta 5: #C991E1
-- Cyan 6: #A969BE
-- White 7: #CBD09B
+- Font Color: #9CA3B2 ![#9CA3B2](https://placehold.it/15/9CA3B2/000000?text=+)
+- Black 0: #3E4352 ![#3E4352](https://placehold.it/15/3E4352/000000?text=+)
+- Red 1: #FF5458 ![#FF5458](https://placehold.it/15/FF5458/000000?text=+)
+- Green 2: #84A86C ![#84A86C](https://placehold.it/15/84A86C/000000?text=+)
+- Yellow 3: #E4BD48 ![#E4BD48](https://placehold.it/15/E4BD48/000000?text=+)
+- Blue 4: #5D9EE7 ![#5D9EE7](https://placehold.it/15/5D9EE7/000000?text=+)
+- Magenta 5: #C991E1 ![#C991E1](https://placehold.it/15/C991E1/000000?text=+)
+- Cyan 6: #A969BE ![#A969BE](https://placehold.it/15/A969BE/000000?text=+)
+- White 7: #CBD09B ![#CBD09B](https://placehold.it/15/CBD09B/000000?text=+)
 
 NOTE: Bright colors are the same because I am not using them yet
 
