@@ -10,7 +10,7 @@ ln -s <path_to_common_repo>/common.zsh-theme <path_to_home_folder>/.oh-my-zsh/cu
 ```
 Terminal now looks like
 
-[IMAGE]
+![Common Prompt Terminal](https://github.com/wchavarria03/dotfiles/blob/master/images/CommonPrompt.png)
 
 NOTES:
 - I would like to change the files color when running `ls` command but It might require some extra work
