@@ -1,40 +1,45 @@
 [user]
-    name = Walter Chavarria
-    email = wchavarria03@gmail.com
-    signingkey = 3F8DE25A13D8CBAE
+  name = Walter Chavarria
+  email = wchavarria03@gmail.com
+  signingkey = 3F8DE25A13D8CBAE
 [color]
-    ui = auto
+  ui = auto
 [color "branch"]
-    current = yellow reverse
-    local   = yellow
-    remote  = green
+  current = yellow reverse
+  local   = yellow
+  remote  = green
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old  = red bold
-    new  = green bold
+  meta = yellow bold
+  frag = magenta bold
+  old  = red bold
+  new  = green bold
 [color "status"]
-    untracked = cyan
+  untracked = cyan
+	added = green
+	changed = yellow
+	branch = magenta normal bold
 [alias]
-    co = checkout
-    st = status
-    ci = commit
-    br = branch
-    pl = pull --rebase
-    df = diff
-    dc = diff --cached
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    lol = log --graph --decorate --pretty=oneline --abbrev-commit
-    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-    ls = ls-files
-    ign = ls-files -o -i --exclude-standard #ignored by git
+  co = checkout
+  st = status
+  ci = commit
+  br = branch
+  pl = pull --rebase
+  df = diff
+  dc = diff --cached
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  ls = ls-files
+  ign = ls-files -o -i --exclude-standard #ignored by git
 [branch]
-    autosetuprebase = always
+  autosetuprebase = always
 [commit]
-    gpgsign = true
+  gpgsign = true
 [core]
-    editor = vim
+  editor = nvim
 [push]
-    default = simple
+  default = simple
 [pull]
-    rebase = true
+  rebase = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/

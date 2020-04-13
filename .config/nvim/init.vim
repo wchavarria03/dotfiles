@@ -121,7 +121,7 @@ highlight GitGutterDelete guifg=#ff2222 guibg=#1A1A1A ctermfg=1 ctermbg=NONE
 nnoremap <C-g> :NERDTreeToggle<cr>
 nnoremap <C-f> :NERDTreeFind<cr>
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
-                   \ '\.so$', '\.egg$', '^\.git$', '\.cmi', '\.cmo' ]
+                   \ '\.so$', '\.egg$', '^\.git$', '\.cmi', '\.cmo', 'node_modules/' ]
 let NERDTreeShowHidden=1
 let NERDTreeShowFiles=1
 let NERDTreeAutoDeleteBuffer = 1
@@ -143,7 +143,7 @@ let g:vim_jsx_pretty_colorful_config = 1 " default 0
 """""""""""""""
 
 """"""""""""""" Ack
-nnoremap <Leader>a :Ack!<Space> --ignore-dir={coverage,build,dist,node_modules,test,tests}
+nnoremap <Leader>a :Ack! --ignore-dir={coverage,build,dist,node_modules,test,tests,spec,mysql}
 nnoremap <Leader>aa :Ack!<Space>
 """""""""""""""
 
