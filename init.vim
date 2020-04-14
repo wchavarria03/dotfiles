@@ -1,45 +1,33 @@
-call plug#begin('~/.vim/plugged')
-" javascript/ react
-plug 'sheerun/vim-polyglot'
 
-" ruby
-plug 'tpope/vim-endwise'      " wisely add 'end' in ruby, endfunction/endif/mor
-plug 'vim-ruby/vim-ruby'
-plug 'ngmy/vim-rubocop'
-" plug 'tpope/vim-rails'
+call plug#begin('~/.config/nvim/plugged')
+" Javascript/ React
+Plug 'sheerun/vim-polyglot'
 
-" git
-plug 'tpope/vim-fugitive'     " git wrapper
-plug 'airblade/vim-gitgutter'
+" Ruby
+Plug 'tpope/vim-endwise'      " Wisely add 'end' in ruby, endfunction/endif/mor
+Plug 'vim-ruby/vim-ruby'
+" plug 'ngmy/vim-rubocop'
+" Plug 'tpope/vim-rails'
 
-" navigation
-plug 'scrooloose/nerdtree'
-plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-plug 'junegunn/fzf.vim'
-plug 'mileszs/ack.vim'
+" Git
+Plug 'tpope/vim-fugitive'     " Git wrapper
+Plug 'airblade/vim-gitgutter'
 
-" misc
-" plug 'rbong/vim-crystalline'
-plug 'tomasiser/vim-code-dark'
+" Navigation
+Plug 'scrooloose/nerdtree'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
+
+" Misc
+Plug 'tomasiser/vim-code-dark'
 " plug 'joshdick/onedark.vim'
+Plug 'w0rp/ale'
 
-plug 'w0rp/ale'
-
+filetype plugin indent on  " required!
 call plug#end()
 
-" colorscheme smyck
-
-set t_co=256
-set t_ut=
-let g:codedark_term256=1
 colorscheme codedark
-let g:airline_theme = 'codedark'
-
-" colorscheme darkplus
-" colorscheme lucario
-" colorscheme onedark
-
-" set runtimepath^=~/.vim/bundle/smyck-color-scheme/smyck.vim
 
 set number              " display line number
 set relativenumber      " display relative number
@@ -50,72 +38,72 @@ set splitright
 set clipboard=unnamed   " set the clipboard as shared between mac and vim
 set path+=**
 
-" tab completion
+" Tab completion
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,*/node_modules/**,*.png,*.jpg,*.mmdb,*.dat,*.sql,*/coverage/**,*/build/**,build,build/,build/**
 
-" searching
+" Searching
 set smartcase
 set showmatch
 set ignorecase
 
-" formatting, indentation and tabbing
+" Formatting, indentation and tabbing
 set expandtab           " use spaces instead of tabs
-set smartindent         " smarter indent for c-like languages
+set smartindent         " smarter indent for C-like languages
 set shiftwidth=2        " when reading, tabs are 2 spaces
 set softtabstop=2       " in insert mode, tabs are 2 spaces
-set tabstop=2           " number of visual spaces per tab
+set tabstop=2           " number of visual spaces per TAB
 set formatoptions-=t formatoptions+=croql
 
-" folding
+" folding TODO CHECK IF REQUIRED
 set foldmethod=indent   "syntax highlighting items specify folds
 set foldcolumn=1        "defines 1 col at window left, to indicate folding
 set foldlevelstart=99   "start file with all folds opened
 
-" misc
-set updatecount=100     " write swap file to disk every 100 chars
+" Misc
+set updatecount=100     " Write swap file to disk every 100 chars
 set autoread            " reload files changed outside vim
 set scrolloff=3         " keep the cursor visible within 3 lines when scrolling
 
-" mapping/key bindings
+" MAPPING/KEY BINDINGS
 let mapleader = " "
 
-" disabling arrow keys in normal mode
-nnoremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
+" Disabling arrow keys in normal mode
+nnoremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
 
-" tab change
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
+" Tab Change
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-" split panels vertical and horizontal
-nnoremap <c-\> <c-w>v
-nnoremap <c-_> <c-w>s
+" Split Panels Vertical and Horizontal
+nnoremap <C-\> <C-w>v
+nnoremap <C-_> <C-w>s
 
 " highlight trailing spaces in annoying red
-highlight extrawhitespace ctermbg=1 guibg=red
-match extrawhitespace /\s\+$/
-autocmd bufwinenter * match extrawhitespace /\s\+$/
-autocmd insertenter * match extrawhitespace /\s\+\%#\@<!$/
-autocmd insertleave * match extrawhitespace /\s\+$/
-autocmd bufwinleave * call clearmatches()
+highlight ExtraWhitespace ctermbg=1 guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
-" rubocop
+" Rubocop
 let g:vimrubocop_config = './plugged/vim-rubocop/plugin/rubocop.vim'
 
-" netrw
+" Netrw
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 2                                   " open new files in horiontal way
+let g:netrw_browse_split = 2                       " open new files in horiontal way
 
 """"""""""""""""""" vim polyglot
 let g:vim_jsx_pretty_colorful_config = 1
-"""""""""""""""""" vim javascript end
+"""""""""""""""""" vim polyglot end
 
-""""""""""""""""" ale
+""""""""""""""""" Ale
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 let g:ale_set_highlights = 0
@@ -123,58 +111,57 @@ let g:ale_set_signs = 1
 let g:ale_sign_priority = 40
 nmap <silent> <leader><c-k> <plug>(ale_previous_wrap)
 nmap <silent> <leader><c-j> <plug>(ale_next_wrap)
+""""""""""""""""" Ale End
 
-""""""""""""""""" ale end
-
-""""""""""""""""" gitgutter
+""""""""""""""""" GitGutter
 set signcolumn=yes
-highlight gitgutteradd    guifg=#009900 guibg=#1a1a1a ctermfg=2 ctermbg=none
-highlight gitgutterchange guifg=#bbbb00 guibg=#1a1a1a ctermfg=3 ctermbg=none
-highlight gitgutterdelete guifg=#ff2222 guibg=#1a1a1a ctermfg=1 ctermbg=none
-""""""""""""""""" gitgutter end
+highlight GitGutterAdd    guifg=#009900 guibg=#1A1A1A ctermfg=2 ctermbg=NONE
+highlight GitGutterChange guifg=#bbbb00 guibg=#1A1A1A ctermfg=3 ctermbg=NONE
+highlight GitGutterDelete guifg=#ff2222 guibg=#1A1A1A ctermfg=1 ctermbg=NONE
+""""""""""""""""" GitGutter End
 
-"""""""""""""""" nerdtree
-nnoremap <c-g> :nerdtreetoggle<cr>
-nnoremap <c-f> :nerdtreefind<cr>
-let nerdtreeignore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
-                   \ '\.so$', '\.egg$', '^\.git$', '\.cmi', '\.cmo' ]
+"""""""""""""""" NERDTree
+nnoremap <C-g> :NERDTreeToggle<cr>
+nnoremap <C-f> :NERDTreeFind<cr>
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$', '\.o$',
+                    \ '\.so$', '\.egg$', '^\.git$', '\.cmi', '\.cmo' ]
 let g:nerdtreewinpos = "right"
-let nerdtreeshowhidden=1
-let nerdtreeshowfiles=1
-let nerdtreeautodeletebuffer = 1
-let nerdtreedirarrows = 1
+let NERDTreeShowHidden=1
+let NERDTreeShowFiles=1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeDirArrows = 1
 """""""""""""""
 
-"""""""""""""""" fzf
-nnoremap <c-p> :files<cr>
+"""""""""""""""" FZF
+nnoremap <C-p> :Files<Cr>
 """""""""""""""
 
 """"""""""""""" vim-fugitive
-map <silent> <leader>gd :gdiff<cr>
-map <silent> <leader>gb :gblame<cr>
-map <silent> <leader>gg :gbrowse<cr>
+map <silent> <Leader>gd :Gdiff<CR>
+map <silent> <Leader>gb :Gblame<CR>
+map <silent> <Leader>gg :Gbrowse<CR>
 """""""""""""""
 
-""""""""""""""" ack
-nnoremap <leader>a :ack!<space> --ignore-dir={coverage,build,dist,node_modules,test,tests,spec,mysql}
-nnoremap <leader>aa :ack!<space>
+""""""""""""""" Ack
+nnoremap <Leader>a :Ack! --ignore-dir={coverage,build,dist,node_modules,test,tests}<Space>
+nnoremap <Leader>aa :Ack!<Space>
 """""""""""""""
 
 """""""""""""""
 " status line custom
 """""""""""""""
-let g:currentmode={
+let g:currentMode={
     \ 'n'      : 'n ',
     \ 'no'     : 'n·operator pending ',
     \ 'v'      : 'v ',
-    \ 'v'      : 'v·line ',
-    \ "\<c-v>" : 'v·block ',
-    \'s'      : 'select ',
-    \ 's'      : 's·line ',
+    \ 'V'      : 'v·line ',
+    \ "\<C-v>" : 'v·block ',
+    \ 's'      : 'select ',
+    \ 'S'      : 's·line ',
     \ '\<c-s>' : 's·block ',
     \ 'i'      : 'i ',
-    \ 'r'      : 'r ',
-    \ 'rv'     : 'v·replace ',
+    \ 'R'      : 'r ',
+    \ 'Rv'     : 'v·replace ',
     \ 'c'      : 'command ',
     \ 'cv'     : 'vim ex ',
     \ 'ce'     : 'ex ',
@@ -184,44 +171,44 @@ let g:currentmode={
     \ '!'      : 'shell ',
     \ 't'      : 'terminal '
     \}
+
 " automatically change the statusline color depending on mode
-function! changestatuslinecolor(new_mode)
+function! ChangeStatuslineColor(new_mode)
   let l:mode = a:new_mode
-  if (l:mode =~# '\v(v|v)' || g:currentmode[l:mode] ==# 'v·block' || get(g:currentmode, l:mode, '') ==# 't') || l:mode ==# "\<c-v>"
+  if (l:mode =~# '\v(v|V)' || g:currentMode[l:mode] ==# 'v·block' || get(g:currentMode, l:mode, '') ==# 't') || l:mode ==# "\<C-v>"
     exe 'hi! statusline guifg=black guibg=#5d9ee7 ctermfg=black ctermbg=blue'
-    return 'visual'
+    return 'Visual'
   elseif (l:mode ==# 'i')
     exe 'hi! statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=magenta'
-    return 'insert'
+    return 'Insert'
   else
     exe 'hi! statusline guifg=black guibg=#cbd09b ctermfg=black ctermbg=white'
-    return 'normal'
+    return 'Normal'
   endif
 endfunction
 
-function! setcursorlinenrcolorvisual()
+function! SetCursorlineNrcolorVisual()
     set updatetime=10
-
-    call changestatuslinecolor('v')
+    call ChangeStatuslineColor('v')
 endfunction
 
-vnoremap <silent> <expr> <sid>setcursorlinenrcolorvisual setcursorlinenrcolorvisual()
-nnoremap <silent> <script> v v<sid>setcursorlinenrcolorvisual
-nnoremap <silent> <script> v v<sid>setcursorlinenrcolorvisual
-nnoremap <silent> <script> <c-v> <c-v><sid>setcursorlinenrcolorvisual
+vnoremap <silent> <expr> <sid>SetCursorlineNrcolorVisual SetCursorlineNrcolorVisual()
+" nnoremap <silent> <script> v v<SID>SetCursorlineNrcolorVisual
+" nnoremap <silent> <script> V V<SID>SetCursorlineNrcolorVisual
+" nnoremap <silent> <script> <C-v> <C-v><SID>SetCursorlineNrcolorVisual
 
 augroup cursorlinenrcolorswap
-  autocmd insertenter * call changestatuslinecolor('i')
-  autocmd insertleave * call changestatuslinecolor('n')
-  autocmd cursorhold * call changestatuslinecolor('n')
+  autocmd insertenter * call ChangeStatuslineColor('i')
+  autocmd insertleave * call ChangeStatuslineColor('n')
+  autocmd cursorhold * call ChangeStatuslineColor('n')
 augroup end
 
 " default with normal color when initial rendering
 exe 'hi! statusline guifg=black guibg=#cbd09b ctermfg=black ctermbg=white'
 
-function! makestatusline(...) abort
+function! MakeStatusLine() abort
   let line = ''
-  let line ..= ' %{changestatuslinecolor(mode())}     '
+  let line ..= ' %{ChangeStatuslineColor(mode())}     '
   let line ..= '%<'             " truncate point.
   let line ..= '%m'             " modified flag.
   let line ..= '%r'             " readonly flag.
@@ -233,4 +220,4 @@ function! makestatusline(...) abort
   return line
 endfunction
 
-set laststatus=2 statusline=%!makestatusline()
+set laststatus=2 statusline=%!MakeStatusLine()
