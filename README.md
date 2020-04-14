@@ -61,7 +61,7 @@ ln -s <path_to_this_folder>/tmux.conf <path_to_home_folder>/.tmux.conf
 ## nvim Config
 Create a symblink from your dotfiles folder to your home config folder
 ```
-ln -s <path_to_this_folder>/.vimrc <path_to_home_folder>/.vim/vimrc
+ln -s <path_to_this_folder>/init.vim <path_to_home_folder>/.config/nvim/init.vim
 ```
 
 ## gitconfig
