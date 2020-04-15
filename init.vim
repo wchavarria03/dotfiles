@@ -187,20 +187,29 @@ function! ChangeStatuslineColor(new_mode)
   endif
 endfunction
 
-function! SetCursorlineNrcolorVisual()
-    set updatetime=10
+function! SetStatusLineColorVisual()
+    set updatetime=0
     call ChangeStatuslineColor('v')
+    return ''
 endfunction
 
-vnoremap <silent> <expr> <sid>SetCursorlineNrcolorVisual SetCursorlineNrcolorVisual()
-" nnoremap <silent> <script> v v<SID>SetCursorlineNrcolorVisual
-" nnoremap <silent> <script> V V<SID>SetCursorlineNrcolorVisual
-" nnoremap <silent> <script> <C-v> <C-v><SID>SetCursorlineNrcolorVisual
+function! ResetCursorLineNrColor()
+    set updatetime=4000
+    call ChangeStatuslineColor('n')
+    return ''
+endfunction
+
+vnoremap <silent> <expr> <SID>SetStatusLineColorVisual SetStatusLineColorVisual()
+vnoremap <silent> <expr> <SID>ResetCursorLineNrColor ResetCursorLineNrColor()
+nnoremap <silent> <script> v v<SID>SetStatusLineColorVisual<right><left>
+nnoremap <silent> <script> V V<SID>SetStatusLineColorVisual<right><left>
+nnoremap <silent> <script> <C-v> <C-v><SID>SetStatusLineColorVisual<right><left>
 
 augroup cursorlinenrcolorswap
-  autocmd insertenter * call ChangeStatuslineColor('i')
-  autocmd insertleave * call ChangeStatuslineColor('n')
-  autocmd cursorhold * call ChangeStatuslineColor('n')
+   autocmd InsertEnter * call ChangeStatuslineColor('i')
+   autocmd InsertChange * call ChangeStatuslineColor('i')
+   autocmd InsertLeave * call ResetCursorLineNrColor()
+   autocmd CursorHold * call ResetCursorLineNrColor()
 augroup end
 
 " default with normal color when initial rendering
