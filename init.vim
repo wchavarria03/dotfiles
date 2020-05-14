@@ -1,4 +1,3 @@
-
 call plug#begin('~/.config/nvim/plugged')
 " Javascript/ React
 Plug 'sheerun/vim-polyglot'
@@ -17,12 +16,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
+Plug 'jremmen/vim-ripgrep'
 
 " Misc
 Plug 'tomasiser/vim-code-dark'
-" plug 'joshdick/onedark.vim'
 Plug 'w0rp/ale'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 filetype plugin indent on  " required!
 call plug#end()
@@ -58,7 +57,9 @@ set formatoptions-=t formatoptions+=croql
 " folding TODO CHECK IF REQUIRED
 set foldmethod=indent   "syntax highlighting items specify folds
 set foldcolumn=1        "defines 1 col at window left, to indicate folding
-set foldlevelstart=99   "start file with all folds opened
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
 
 " Misc
 set updatecount=100     " Write swap file to disk every 100 chars
@@ -133,7 +134,9 @@ let NERDTreeDirArrows = 1
 """""""""""""""
 
 """""""""""""""" FZF
+let g:fzf_preview_window = 'right:40%'
 nnoremap <C-p> :Files<Cr>
+" nnoremap <C-p> :Files<Cr>
 """""""""""""""
 
 """"""""""""""" vim-fugitive
@@ -142,9 +145,19 @@ map <silent> <Leader>gb :Gblame<CR>
 map <silent> <Leader>gg :Gbrowse<CR>
 """""""""""""""
 
+""""""""""""""" Markdown Preview
+let g:mkdp_auto_close = 1
+"""""""""""""""
+
 """"""""""""""" Ack
-nnoremap <Leader>a :Ack! --ignore-dir={coverage,build,dist,node_modules,test,tests}<Space>
-nnoremap <Leader>aa :Ack!<Space>
+" nnoremap <Leader>a :Ack! --ignore-dir={coverage,build,dist,node_modules,test,tests}<Space>
+" nnoremap <Leader>aa :Ack!<Space>
+"""""""""""""""
+
+""""""""""""""" RipGrep
+
+nnoremap <Leader>a :Rg --vimgrep -g '!coverage/**' -g '!tests/**' -g '!*.test.js' -g '!spec/**'
+nnoremap <Leader>aa :Rg
 """""""""""""""
 
 """""""""""""""
@@ -182,7 +195,7 @@ function! ChangeStatuslineColor(new_mode)
     exe 'hi! statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=magenta'
     return 'Insert'
   else
-    exe 'hi! statusline guifg=black guibg=#cbd09b ctermfg=black ctermbg=white'
+    exe 'hi! statusline guifg=black guibg=#cbd09b ctermfg=black ctermbg=lightgreen'
     return 'Normal'
   endif
 endfunction
@@ -213,7 +226,8 @@ augroup cursorlinenrcolorswap
 augroup end
 
 " default with normal color when initial rendering
-exe 'hi! statusline guifg=black guibg=#cbd09b ctermfg=black ctermbg=white'
+exe 'hi! statusline guifg=black guibg=#cbd09b ctermfg=black ctermbg=lightgreen'
+exe 'hi! statuslineNC guifg=black guibg=#fff ctermfg=black ctermbg=white'
 
 function! MakeStatusLine() abort
   let line = ''
@@ -221,9 +235,11 @@ function! MakeStatusLine() abort
   let line ..= '%<'             " truncate point.
   let line ..= '%m'             " modified flag.
   let line ..= '%r'             " readonly flag.
-  let line ..= '%t'            " short file name
+  let line ..= '%f'             " short file name
   let line ..= '%='             " separation point.
-  let line ..= ' %3l/%ll:%-2c'
+  let line ..= ' %3l/'           " current line
+  let line ..= '%L'   " total lines
+  let line ..= ' %cc'        " column number
   let line ..= ' %3p%%'         " percentage through file in lines.
 
   return line

@@ -37,6 +37,7 @@
   gpgsign = true
 [core]
   editor = nvim
+	excludesfile = /Users/wchavarria/.gitignore_global
 [push]
   default = simple
 [pull]
