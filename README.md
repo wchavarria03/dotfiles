@@ -15,7 +15,8 @@ I am using Fira Code Font https://github.com/tonsky/FiraCode
 ## Terminal ANSI Colors and Config
 - Font Fira Code SemiBold 11pt.
 - Background Color: #282D35 ![#f03c15](https://placehold.it/15/282D35/000000?text=+)
-- Cursor Color: #FBFCFC ![#f03c15](https://placehold.it/15/282D35/000000?text=+)
+- Cursor Color: #FBFCFC ![#f03c15](https://placehold.it/15/FBFCFC/000000?text=+)
+- Cursor Text: #282D35 ![#f03c15](https://placehold.it/15/282D35/000000?text=+)
 
 - Font Color: #9CA3B2 ![#9CA3B2](https://placehold.it/15/9CA3B2/000000?text=+)
 - Black 0: #3E4352 ![#3E4352](https://placehold.it/15/3E4352/000000?text=+)
@@ -37,8 +38,20 @@ But I wanted a previous state of it so I fork the repo and add the small change 
 
 Running the following command would link the common repo to the 'oh-my-zsh' path
 ```
-ln -s <path_to_common_repo>/common.zsh-theme <path_to_home_folder>/.oh-my-zsh/custo/themes/common.zsh-theme
+ln -s <path_to_common_repo>/common.zsh-theme <path_to_home_folder>/.oh-my-zsh/custom/themes/common.zsh-theme
 ```
+You would require to add powerlink oh-my-zsh theme or remove the line loading the script on the config if you dont want it.
+
+```
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+Running the following command would link the powerlevelrc to the the on on this repo
+
+````
+ln -s <path_to_common_repo>/.p10k.zsh <path_to_home_folder>/.p10k.zsh
+````
+
 Terminal now looks like:
 
 ![Common Prompt Terminal](https://github.com/wchavarria03/dotfiles/blob/master/images/CommonPrompt.png)
@@ -70,8 +83,14 @@ Create a symblink from your dotfiles folder to your home config folder
 ln -s <path_to_this_folder>/.gitconfig <path_to_home_folder>/.gitconfig
 ```
 
+Gitconfig requires to replace the gpgp signing key
+```
+[user]
+  signingkey = <GPG Sign Key>
+```
+
 Create a symblink from your dotfiles folder to your home config folder
 ```
-ln -s ~/Code/dotfiles/.gitignore_global ~/.gitignore_global
+ln -s <path_to_this_folder>/.gitignore_global <path_to_home_folder>/.gitignore_global
 ```
 

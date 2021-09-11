@@ -1,7 +1,7 @@
 [user]
   name = Walter Chavarria
   email = wchavarria03@gmail.com
-  signingkey = 3F8DE25A13D8CBAE
+  signingkey = <GPG Sign Key>
 [color]
   ui = auto
 [color "branch"]
