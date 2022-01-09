@@ -1,85 +1,98 @@
 call plug#begin('~/.config/nvim/plugged')
+
+ Plug 'glepnir/lspsaga.nvim'
+ Plug 'neovim/nvim-lspconfig'
+
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+
 " Javascript/ React
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 " Ruby
-Plug 'tpope/vim-endwise'      " Wisely add 'end' in ruby, endfunction/endif/mor
-Plug 'vim-ruby/vim-ruby'
+" Plug 'tpope/vim-endwise'      " Wisely add 'end' in ruby, endfunction/endif/mor
+" Plug 'vim-ruby/vim-ruby'
 " plug 'ngmy/vim-rubocop'
 " Plug 'tpope/vim-rails'
 
 " Git
-Plug 'tpope/vim-fugitive'     " Git wrapper
-Plug 'airblade/vim-gitgutter'
+" Plug 'tpope/vim-fugitive'     " Git wrapper
+" Plug 'airblade/vim-gitgutter'
 
 " Navigation
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'jremmen/vim-ripgrep'
+" Plug 'scrooloose/nerdtree'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+" Plug 'junegunn/fzf.vim'
+" Plug 'jremmen/vim-ripgrep'
 
 " Misc
 Plug 'tomasiser/vim-code-dark'
-Plug 'w0rp/ale'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+" Plug 'w0rp/ale'
+" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 filetype plugin indent on  " required!
 call plug#end()
 
 colorscheme codedark
 
-set number              " display line number
-set relativenumber      " display relative number
-set cursorline          " highlight current line
-set swapfile
-set splitbelow
-set splitright
-set clipboard=unnamed   " set the clipboard as shared between mac and vim
+" LAU --- set number              " display line number
+" LAU --- set relativenumber      " display relative number
+" LAU --- set cursorline          " highlight current line
+" LAU --- set swapfile
+" LAU --- set splitbelow
+" LAU --- set splitright
+" LUA --- set clipboard=unnamed   " set the clipboard as shared between mac and vim
 set path+=**
 
+""""""""""""""""" LUA
+" lua require('init')
+
+""""""""""""""""" LUA END
+
+
 " Tab completion
-set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,*/node_modules/**,*.png,*.jpg,*.mmdb,*.dat,*.sql,*/coverage/**,*/build/**,build,build/,build/**
+" LAU ---set wildmode=list:longest,list:full
+" LAU --- set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,*/node_modules/**,*.png,*.jpg,*.mmdb,*.dat,*.sql,*/coverage/**,*/build/**,build,build/,build/**
 
 " Searching
-set smartcase
-set showmatch
-set ignorecase
+" LUA --- set smartcase
+" LAU --- set showmatch
+" LAU --- set ignorecase
 
 " Formatting, indentation and tabbing
-set expandtab           " use spaces instead of tabs
-set smartindent         " smarter indent for C-like languages
-set shiftwidth=2        " when reading, tabs are 2 spaces
-set softtabstop=2       " in insert mode, tabs are 2 spaces
-set tabstop=2           " number of visual spaces per TAB
-set formatoptions-=t formatoptions+=croql
+" LUA --- set expandtab           " use spaces instead of tabs
+" LUA --- set smartindent         " smarter indent for C-like languages
+" LUA --- set shiftwidth=2        " when reading, tabs are 2 spaces
+" LAU --- set softtabstop=2       " in insert mode, tabs are 2 spaces
+" LUA --- set tabstop=2           " number of visual spaces per TAB
+" LAU --- set formatoptions-=t formatoptions+=croql
 
 " folding TODO CHECK IF REQUIRED
-set foldmethod=indent   "syntax highlighting items specify folds
-set foldcolumn=1        "defines 1 col at window left, to indicate folding
-set foldnestmax=10
-set nofoldenable
-set foldlevel=2
+" LAU --- set foldmethod=indent   "syntax highlighting items specify folds
+" LAU --- set foldcolumn=1        "defines 1 col at window left, to indicate folding
+" LAU --- set foldnestmax=10
+" LAU --- set nofoldenable
+" LAU --- set foldlevel=2
 
 " Misc
-set updatecount=100     " Write swap file to disk every 100 chars
-set autoread            " reload files changed outside vim
-set scrolloff=3         " keep the cursor visible within 3 lines when scrolling
+" LAU --- set updatecount=100     " Write swap file to disk every 100 chars
+" LAU --- set autoread            " reload files changed outside vim
+" LAU --- set scrolloff=3         " keep the cursor visible within 3 lines when scrolling
 
 " MAPPING/KEY BINDINGS
-let mapleader = " "
+" LAU --- let mapleader = " "
 
 " Disabling arrow keys in normal mode
-nnoremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+" LAU --- nnoremap <Up> <NOP>
+" LAU --- noremap <Down> <NOP>
+" LAU --- noremap <Left> <NOP>
+" LAU --- noremap <Right> <NOP>
 
 " Tab Change
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+" LAU --- nnoremap <C-h> <C-w>h
+" LAU --- nnoremap <C-j> <C-w>j
+" LAU --- nnoremap <C-k> <C-w>k
+" LAU --- nnoremap <C-l> <C-w>l
 
 " Split Panels Vertical and Horizontal
 nnoremap <C-\> <C-w>v

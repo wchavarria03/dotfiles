@@ -1,0 +1,6 @@
+Contents	myhelp/doc/nvim-tree.txt	/*Contents*
+myhelp	myhelp/doc/myhelp.txt	/*myhelp*
+myhelp-normal	myhelp/doc/myhelp.txt	/*myhelp-normal*
+myhelp.txt	myhelp/doc/myhelp.txt	/*myhelp.txt*
+nvim-tree.txt	myhelp/doc/nvim-tree.txt	/*nvim-tree.txt*
+quickref	myhelp/doc/nvim-tree.txt	/*quickref*

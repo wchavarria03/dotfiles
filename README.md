@@ -1,6 +1,7 @@
-# dotfiles
+# Dev Setup
 
 Index
+- [Initial Dev Setup](https://github.com/wchavarria03/dotfiles#Initial-development-setup)
 - [Font](https://github.com/wchavarria03/dotfiles#Font)
 - [Terminal ANSI Colors and Config](https://github.com/wchavarria03/dotfiles#Terminal-ANSI-Colors-and-Config)
 - [OhMyZsh Prompt](https://github.com/wchavarria03/dotfiles#OhMyZsh-Prompt)
@@ -8,6 +9,12 @@ Index
 - [tmux Config](https://github.com/wchavarria03/dotfiles#tmux-Config)
 - [nvim Config](https://github.com/wchavarria03/dotfiles#nvim-Config)
 - [gitconfig](https://github.com/wchavarria03/dotfiles#gitconfig)
+
+## Initial development setup
+Run `mac_development_setup.sh` script on the root of this repo by doing
+```
+sh mac_development_setup.sh
+````
 
 ## Font
 I am using Fira Code Font https://github.com/tonsky/FiraCode
@@ -34,25 +41,9 @@ NOTE: Bright colors are the same because I am not using them yet
 
 ## OhMyZsh Prompt
 I am using the minimal prompt from Jack Harris https://github.com/jackharrisonsherlock/common
-But I wanted a previous state of it so I fork the repo and add the small change I want https://github.com/wchavarria03/common
+But I wanted a previous state of it so I fork the repo and add the small change I want
 
-Running the following command would link the common repo to the 'oh-my-zsh' path
-```
-ln -s <path_to_common_repo>/common.zsh-theme <path_to_home_folder>/.oh-my-zsh/custom/themes/common.zsh-theme
-```
-You would require to add powerlink oh-my-zsh theme or remove the line loading the script on the config if you dont want it.
-
-```
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
-
-Running the following command would link the powerlevelrc to the the on on this repo
-
-````
-ln -s <path_to_common_repo>/.p10k.zsh <path_to_home_folder>/.p10k.zsh
-````
-
-Terminal now looks like:
+Terminal should look like:
 
 ![Common Prompt Terminal](https://github.com/wchavarria03/dotfiles/blob/master/images/CommonPrompt.png)
 
@@ -60,37 +51,8 @@ NOTES:
 - I would like to change the files color when running `ls` command but It might require some extra work
 - To make the branch color magenta when doing `git status` I had to make a change on the .gitconfig and add the config to use the magenta ANSI color
 
-## zsh Config
-```
-ln -s <path_to_this_folder>/.zshrc <path_to_home_folder>/.zshrc
-```
-
-## tmux Config
-Create a symblink from your dotfiles folder to your home config folder
-```
-ln -s <path_to_this_folder>/tmux.conf <path_to_home_folder>/.tmux.conf
-```
-
-## nvim Config
-Create a symblink from your dotfiles folder to your home config folder
-```
-ln -s <path_to_this_folder>/init.vim <path_to_home_folder>/.config/nvim/init.vim
-```
-
-## gitconfig
-Create a symblink from your dotfiles folder to your home config folder
-```
-ln -s <path_to_this_folder>/.gitconfig <path_to_home_folder>/.gitconfig
-```
-
 Gitconfig requires to replace the gpgp signing key
 ```
 [user]
   signingkey = <GPG Sign Key>
 ```
-
-Create a symblink from your dotfiles folder to your home config folder
-```
-ln -s <path_to_this_folder>/.gitignore_global <path_to_home_folder>/.gitignore_global
-```
-
