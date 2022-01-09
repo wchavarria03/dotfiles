@@ -17,93 +17,94 @@
 # - https://news.ycombinator.com/item?id=8402079
 # - http://notes.jerzygangi.com/the-best-pgp-tutorial-for-mac-os-x-ever/
 
-echo "Starting MAC Setup..."
+COLOR_REST=$(tput sgr0)
+COLOR_GREEN=$(tput setaf 2)
 
-echo "Creating folders structure..."
+echo "${COLOR_GREEN}*------------------------  Starting MAC Setup...                            --------------------*${COLOR_REST}"
+
+echo "${COLOR_GREEN}*------------------------    Creating folders structure...                  ------------------------*${COLOR_REST}"
 [[ ! -d ~/code ]] && mkdir ~/code
 [[ ! -d ~/Documents/screenshots ]] && mkdir ~/Documents/screenshots
 [[ ! -d ~/.config ]] && mkdir ~/.config
-[[ ! -d ~/.config/nvim ]] && mkdir ~/.config/nvim"
+[[ ! -d ~/.config/nvim ]] && mkdir ~/.config/nvim
 
 # Check for Homebrew, install if we don't have it
 if test ! $(which brew); then
-    echo "Installing homebrew..."
+    echo "${COLOR_GREEN}*------------------------    Installing homebrew...                         ------------------------*${COLOR_REST}"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo "${COLOR_GREEN}*------------------------    Homebrew already installed...                  ------------------------*${COLOR_REST}"
+fi
+ 
+echo "${COLOR_GREEN}*------------------------    Updating homebrew...                           ------------------------*${COLOR_REST}"
+brew update
+ 
+echo "${COLOR_GREEN}*------------------------    Upgrading homebrew...                          ------------------------*${COLOR_REST}"
+brew upgrade
+ 
+if  brew info bash &>/dev/null; then
+  echo "${COLOR_GREEN}*------------------------    Brew Bash package already installed            ------------------------*${COLOR_REST}"
+else
+  echo "${COLOR_GREEN}*------------------------    Installing Brew Bash package...                ------------------------*${COLOR_REST}"
+  brew install bash
 fi
 
-# Update homebrew recipes
-
-echo "Updating homebrew..."
-brew update
-
-echo "Upgrading homebrew..."
-brew upgrade
-
-# Install GNU core utilities (those that come with OS X are outdated)
-#brew tap homebrew/dupes
-#brew install coreutils
-#brew install gnu-sed --with-default-names
-#brew install gnu-tar --with-default-names
-#brew install gnu-indent --with-default-names
-#brew install gnu-which --with-default-names
-#brew install gnu-grep --with-default-names
-
-## Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
-#brew install findutils
-
-# Install Bash 4
-brew install bash
-
 PACKAGES=(
-#    ack
-    bash-completition
-    docker-completition
-    fzf
-    gimp
-    git
-    hub
-    npm
-    python
-    python3
-    pypy
-#    the_silver_searcher
-    ripgrep
-    tree
-    nvim
-    nvm
-    zsh
-    zsh-completition
-#    wget
+#  ack
+  bash-completion
+  docker-completion
+  fzf
+  git
+  hub
+  npm
+#  python
+  python3
+# the_silver_searcher
+  ripgrep
+  tree
+  nvim
+  nvm
+  zsh
+  zsh-completion
+#  wget
+# APPS
+  brave-browser
+  firefox
+  gimp
+  google-chrome
+  gnupg
+  iterm2
+  notion
+  postman
+  sequel-pro
+  slack
+  spectacle
+  1password
 )
+ 
+echo "${COLOR_GREEN}*------------------------                                                   ------------------------*${COLOR_REST}"
+echo "${COLOR_GREEN}*------------------------    Brew packages...                               ------------------------*${COLOR_REST}"
 
-echo "Installing packages..."
-brew install ${PACKAGES[@]}
+for i in "${PACKAGES[@]}"
+do
+  if  brew info $i &>/dev/null; then
+    echo "${COLOR_GREEN}*------------------------      ${i} package already installed          ------------------------*${COLOR_REST}"
+  else
+    echo "${COLOR_GREEN}*------------------------     Installing ${i} package..          ------------------------*${COLOR_REST}"
+    brew install $i
+  fi
+done
 
-echo "Cleaning up..."
+echo "${COLOR_GREEN}*------------------------                                                   ------------------------*${COLOR_REST}"
+
+
+echo "${COLOR_GREEN}*------------------------   Installing Brew cask docker...------------------------*${COLOR_REST}"
+brew install --cask docker
+
+echo "${COLOR_GREEN}*------------------------    Cleaning up Brew...------------------------*${COLOR_REST}"
 brew cleanup
 
-echo "Installing cask..."
-brew install caskroom/cask/brew-cask
-
-CASKS=(
-    brave-browser
-    docker
-    firefox
-    google-chrome
-    gpgtools
-    iterm2
-    notion
-    postman
-    sequel-pro
-    slack
-    spectacle
-    1password
-)
-
-echo "Installing cask apps..."
-brew cask install ${CASKS[@]}
-
-echo "Installing fonts..."
+echo "${COLOR_GREEN}*------------------------     Installing brew cask fonts...------------------------*${COLOR_REST}"
 brew tap homebrew/cask-fonts
 
 FONTS=(
@@ -111,16 +112,73 @@ FONTS=(
 )
 brew install ${FONTS[@]}
 
-echo "Installing global npm packages..."
-npm install marked -g
+echo "${COLOR_GREEN}*------------------------     Repos                                 --------------------*${COLOR_REST}"
+if [ ! -d ~/code/dotfiles/ ]
+then
+    echo "${COLOR_GREEN}*------------------------       Cloning dotfiles repo...--------------------*${COLOR_REST}"
+    cd ~/code
+    git clone https://github.com/wchavarria03/dotfiles
+else
+    echo "${COLOR_GREEN}*------------------------       Updating dotfiles repo...--------------------*${COLOR_REST}"
+    cd ~/code/dotfiles
+    git pull
+fi
 
-echo "Configuring OSX..."
+if [ ! -d ~/code/common/ ]
+then
+    echo "${COLOR_GREEN}*------------------------       Cloning common repo...--------------------*${COLOR_REST}"
+    cd ~/code
+    git clone https://github.com/wchavarria03/common
+else
+    echo "${COLOR_GREEN}*------------------------       Updating common repo...--------------------*${COLOR_REST}"
+    cd ~/code/common
+    git pull
+    cd ~/code/dotfiles
+fi
+
+if [ ! -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k ]
+then
+    echo "${COLOR_GREEN}*------------------------       Cloning Powerlevel10k repo...--------------------*${COLOR_REST}"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+else
+    echo "${COLOR_GREEN}*------------------------       Updating Powerlevel10k repo...--------------------*${COLOR_REST}"
+    cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    git pull
+    cd ~/code/dotfiles
+fi
+
+echo "${COLOR_GREEN}*------------------------     Common repo symlink--------------------*${COLOR_REST}"
+ln -s ~/code/common/common.zsh-theme ~/.oh-my-zsh/custom/themes/common.zsh-theme
+
+echo "${COLOR_GREEN}*------------------------     Configuring powerline repo--------------------*${COLOR_REST}"
+ln -s ~/code/dotfiles/.p10k.zsh ~/.p10k.zsh
+
+echo "${COLOR_GREEN}*------------------------     ZSHR symlink--------------------*${COLOR_REST}"
+ln -s ~/code/dotfiles/.zshrc ~/.zshrc
+
+echo "${COLOR_GREEN}*------------------------     Gitconfig symlink--------------------*${COLOR_REST}"
+ln -s ~/code/dotfiles/.gitconfig ~/.gitconfig
+
+echo ${COLOR_GREEN}"*------------------------     Gitconfig symlink--------------------*${COLOR_REST}"
+ln -s ~/code/dotfiles/.gitignore_global ~/.gitignore_global
+
+echo ${COLOR_GREEN}"*------------------------     Configuring Lua..--------------------*${COLOR_REST}"
+echo ${COLOR_GREEN}"*------------------------       Init.lua symlink--------------------*${COLOR_REST}"
+ln -s ~/code/dotfiles/lua/init.lua ~/.config/nvim/init.lua
+
+echo "${COLOR_GREEN}*------------------------       Doc folder symlink--------------------*${COLOR_REST}"
+ln -s ~/code/dotfiles/lua/doc ~/.config/nvim/doc
+
+echo "${COLOR_GREEN}*------------------------       Lua folder symlink--------------------*${COLOR_REST}"
+ln -s ~/code/dotfiles/lua/lua ~/.config/nvim/lua
+
+echo "$(color_green)*------------------------     Configuring OSX...--------------------*${COLOR_REST}"
 
 # Set fast key repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain KeyRepeat -int 2
 
 # Repeat keys
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false.
+defaults write -g ApplePressAndHoldEnabled -bool true
 
 # Screenshots folder
 defaults write com.apple.screencapture location /Documents/screenshots/
@@ -143,57 +201,25 @@ defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool YES
 
 # Disable "natural" scroll
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+defaults write -g com.apple.swipescrolldirection -bool false
 
 # Change Dock to left position
-defaults write com.apple.dock orientation left;
+ defaults write com.apple.dock orientation left;
 
 # Spped up animations
-defaults write com.apple.dock expose-animation-duration -float 0.12
+ defaults write com.apple.dock expose-animation-duration -float 0.12
 
 # Translucent hidden apps
-defaults write com.apple.Dock showhidden -bool YES
+ defaults write com.apple.Dock showhidden -bool YES
 
 # Remove full name when copying emails addresses
-defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+ defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 # Enable quick view selection
-defaults write com.apple.finder QLEnableTextSelection -bool TRUE;
+ defaults write com.apple.finder QLEnableTextSelection -bool TRUE;
 
 killall Finder
 killall Dock
 killall SystemUIServer
 
-echo "Cloning config repos.."
-echo "- Cloning common repo..."
-git clone https://github.com/wchavarria03/common "~/code/common/"
-
-echo "- Cloning powerlevel10k repo..."
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-echo "Common repo symlink"
-ln -s ~/code/common/common.zsh-theme ~/.oh-my-zsh/custom/themes/common.zsh-theme
-
-echo "- Configuring powerline repo"
-ln -s ~/code/dotfiles/.p10k.zsh ~/.p10k.zsh
-
-echo "ZSHR symlink"
-ln -s ~/code/dotfiles/.zshrc ~/.zshrc
-
-echo "Gitconfig symlink"
-ln -s ~/code/dotfiles/.gitconfig ~/.gitconfig
-
-echo "Gitconfig symlink"
-ln -s ~/code/dotfiles/.gitignore_global ~/.gitignore_global
-
-echo "Configuring Lua.."
-echo " -- Init.lua symlink"
-ln -s ~/code/dotfiles/lua/init.lua ~/.config/nvim/init.lua
-
-echo " -- Doc folder symlink"
-ln -s ~/code/dotfiles/lua/doc/ ~/.config/nvim/doc/
-
-echo " -- Lua folder folder symlink"
-ln -s ~/code/dotfiles/lua/lua ~/.config/nvim/lua
-
-echo "Bootstrapping complete!!!"
+echo "${COLOR_GREEN}*-----------------------  Bootstrapping complete!!!--------------------*${COLOR_REST}"

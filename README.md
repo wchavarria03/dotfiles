@@ -2,6 +2,7 @@
 
 Index
 - [Initial Dev Setup](https://github.com/wchavarria03/dotfiles#Initial-development-setup)
+- [Development Setup](https://github.com/wchavarria03/dotfiles#Development-setup)
 - [Font](https://github.com/wchavarria03/dotfiles#Font)
 - [Terminal ANSI Colors and Config](https://github.com/wchavarria03/dotfiles#Terminal-ANSI-Colors-and-Config)
 - [OhMyZsh Prompt](https://github.com/wchavarria03/dotfiles#OhMyZsh-Prompt)
@@ -10,7 +11,12 @@ Index
 - [nvim Config](https://github.com/wchavarria03/dotfiles#nvim-Config)
 - [gitconfig](https://github.com/wchavarria03/dotfiles#gitconfig)
 
-## Initial development setup
+## Install Xcode
+```
+xcode-select --install
+```
+
+## Development setup
 Run `mac_development_setup.sh` script on the root of this repo by doing
 ```
 sh mac_development_setup.sh
@@ -55,4 +61,34 @@ Gitconfig requires to replace the gpgp signing key
 ```
 [user]
   signingkey = <GPG Sign Key>
+```
+
+## Set recommended config
+### Bash completion
+Add the following line to the .bash_profile
+```
+[[ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ]] && . \"/usr/local/etc/profile.d/bash_completion.sh
+```
+
+### Zsh Completion
+Add the following lines to .zshrc
+```
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
+fi
+```
+You may also need to force rebuild `zcompdump`:
+
+```
+  rm -f ~/.zcompdump; compinit
+```
+
+Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
+to load these completions, you may need to run this:
+
+```
+  chmod -R go-w '/usr/local/share/zsh'
 ```
