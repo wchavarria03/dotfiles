@@ -169,7 +169,7 @@ ln -s ~/code/dotfiles/lua-files/doc ~/.config/nvim/doc
 echo "${COLOR_GREEN}*------------------------       Lua folder symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/lua-files/lua ~/.config/nvim/lua
 
-echo "$(color_green)*------------------------     Configuring OSX...--------------------*${COLOR_REST}"
+echo "${COLOR_GREEN}*------------------------     Configuring OSX...--------------------*${COLOR_REST}"
 
 # Set fast key repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 2
