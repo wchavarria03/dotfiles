@@ -10,10 +10,7 @@
 #   store before running the bootstrap script. Otherwise, Homebrew can't access
 #   the Xcode libraries as the agreement hasn't been accepted yet.
 #
-# Reading:
-#
-# - http://lapwinglabs.com/blog/hacker-guide-to-setting-up-your-mac
-# - https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716
+# Reading: - http://lapwinglabs.com/blog/hacker-guide-to-setting-up-your-mac - https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716
 # - https://news.ycombinator.com/item?id=8402079
 # - http://notes.jerzygangi.com/the-best-pgp-tutorial-for-mac-os-x-ever/
 
@@ -35,13 +32,13 @@ if test ! $(which brew); then
 else
     echo "${COLOR_GREEN}*------------------------    Homebrew already installed...                  ------------------------*${COLOR_REST}"
 fi
- 
+
 echo "${COLOR_GREEN}*------------------------    Updating homebrew...                           ------------------------*${COLOR_REST}"
 brew update
- 
+
 echo "${COLOR_GREEN}*------------------------    Upgrading homebrew...                          ------------------------*${COLOR_REST}"
 brew upgrade
- 
+
 if  brew info bash &>/dev/null; then
   echo "${COLOR_GREEN}*------------------------    Brew Bash package already installed            ------------------------*${COLOR_REST}"
 else
@@ -81,7 +78,7 @@ PACKAGES=(
   spectacle
   1password
 )
- 
+
 echo "${COLOR_GREEN}*------------------------                                                   ------------------------*${COLOR_REST}"
 echo "${COLOR_GREEN}*------------------------    Brew packages...                               ------------------------*${COLOR_REST}"
 
@@ -164,13 +161,13 @@ ln -s ~/code/dotfiles/.gitignore_global ~/.gitignore_global
 
 echo ${COLOR_GREEN}"*------------------------     Configuring Lua..--------------------*${COLOR_REST}"
 echo ${COLOR_GREEN}"*------------------------       Init.lua symlink--------------------*${COLOR_REST}"
-ln -s ~/code/dotfiles/lua/init.lua ~/.config/nvim/init.lua
+ln -s ~/code/dotfiles/lua-files/init.lua ~/.config/nvim/init.lua
 
 echo "${COLOR_GREEN}*------------------------       Doc folder symlink--------------------*${COLOR_REST}"
-ln -s ~/code/dotfiles/lua/doc ~/.config/nvim/doc
+ln -s ~/code/dotfiles/lua-files/doc ~/.config/nvim/doc
 
 echo "${COLOR_GREEN}*------------------------       Lua folder symlink--------------------*${COLOR_REST}"
-ln -s ~/code/dotfiles/lua/lua ~/.config/nvim/lua
+ln -s ~/code/dotfiles/lua-files/lua ~/.config/nvim/lua
 
 echo "$(color_green)*------------------------     Configuring OSX...--------------------*${COLOR_REST}"
 
