@@ -26,10 +26,8 @@ You can also reload configs manually or logout/login session.
 
 ## Lua Packer
 
-### Open Nvim
-You might get an error about a colorschema missing, you can ignore while we run Packer on the follwing step.
-
 ### Run Packer to install Lua Packages
+You might get an error about a colorschema missing, you can ignore while we run Packer on the follwing step.
 Into Nvim run the following commands
 ```
 :PackerInstall
