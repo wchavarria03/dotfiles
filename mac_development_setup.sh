@@ -57,6 +57,7 @@ PACKAGES=(
 #  python
   python3
 # the_silver_searcher
+  romkatv/powerlevel10k/powerlevel10k
   ripgrep
   tree
   nvim

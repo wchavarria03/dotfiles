@@ -9,11 +9,7 @@
 local g = vim.g
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
-g.nvim_tree_ignore = {'.git', 'node_modules', '.cache'}
-g.nvim_tree_gitignore = 1
--- g.nvim_tree_auto_open = 1
 g.nvim_tree_indent_markers = 1
-g.nvim_tree_hide_dotfiles = 0
 g.nvim_tree_git_hl = 1
 g.nvim_tree_width_allow_resize  = 1
 g.nvim_tree_group_empty = 1
@@ -67,6 +63,13 @@ require'nvim-tree'.setup {
       list = list
     }
   },
+  filters  = {
+    dotfiles = false,
+    custom = {'.git', 'node_modules', '.cache'}
+  },
+  git = {
+    ignore = true,
+  }
 }
 
 -- Keybindings are defined in `keymapping.lua`

@@ -80,7 +80,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.bash_profile
-# source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
