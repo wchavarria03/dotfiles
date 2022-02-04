@@ -68,9 +68,9 @@ opt.wildignore:append { "*.pyc", "*.o", "*.obj", ".git", "*.rbc", "*.class" , ".
 -- Colorscheme
 -----------------------------------------------------------
 opt.termguicolors = true      				-- enable 24-bit RGB colors
--- cmd('colorscheme codedark')
-cmd('colorscheme zephyr')
-
+g.vscode_style = "dark"
+g.vscode_italic_comment = 1
+cmd("colorscheme vscode")
 
 -----------------------------------------------------------
 -- Tabs, indent

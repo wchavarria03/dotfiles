@@ -9,8 +9,9 @@
 --]]
 
 local colors = {
-  bg = '#2c323c',
-  fg = none,
+  bg = '#9bb59a',
+  bg_inactive ='#90a4b0',
+  fg = '#000000',
   yellow = '#e5c07b',
   cyan = '#8abeb7',
   darkblue = '#528bff',
@@ -71,13 +72,12 @@ local comps = {
         return current_text
       end,
       hl = function()
-        local val = {
+        return {
           name = vi_mode_utils.get_mode_highlight_name(),
-          fg = colors.bg, -- vi_mode_utils.get_mode_color(),
-          bg = vi_mode_utils.get_mode_color(),
+          fg = colors.fg,
+          bg = vi_mode_utils.get_mode_color(), -- vi_mode_utils.get_mode_color(),
           style = 'bold'
         }
-        return val
       end,
       right_sep = ' ',
     },
@@ -86,40 +86,49 @@ local comps = {
   file = {
     info = {
       provider = {
-        name = 'file_info',
-        opts = { file_modified_icon = '' }
+          name = 'file_info',
+          opts = {
+              type = 'relative',
+              file_modified_icon = ''
+          }
       },
-      hl = {
-        fg = colors.blue,
-        style = 'bold'
+      short_provider = {
+          name = 'file_info',
+          opts = {
+              type = 'relative-short',
+              file_modified_icon = ''
+          }
       },
-    },
-    type = {
-      provider = { name = 'file_type' },
-    },
-    os = {
-      provider = function()
-        local os = vim.bo.fileformat:upper()
-        local icon
-        if os == 'UNIX' then
-          icon = ' '
-        elseif os == 'MAC' then
-          icon = ' '
-        else
-          icon = ' '
-        end
-        return icon .. os
-      end,
       hl = {
         fg = colors.fg,
+        bg = colors.bg,
         style = 'bold'
       },
-      left_sep = ' ',
+    },
+    info_inactive = {
+      provider = {
+          name = 'file_info',
+          opts = {
+              type = 'full-path',
+              file_modified_icon = ''
+          }
+      },
+      short_provider = {
+          name = 'file_info',
+          opts = {
+              type = 'short-path',
+              file_modified_icon = ''
+          }
+      },
+      hl = {
+        fg = colors.fg,
+        bg = colors.bg_inactive,
+        style = 'bold'
+      },
     },
     position = {
       provider = { name = 'position' },
       hl = {
-        fg = colors.cyan,
         style = 'bold'
       },
       left_sep = ' ',
@@ -152,7 +161,7 @@ local comps = {
     },
     hint = {
       provider = 'diagnostic_hints',
-      hl = { fg = colors.cyan },
+      hl = { fg = colors.magenta },
       left_sep = ' ',
       right_sep = ' ',
     },
@@ -207,13 +216,12 @@ table.insert(components.active[1], comps.git.add)
 table.insert(components.active[1], comps.git.change)
 table.insert(components.active[1], comps.git.remove)
 table.insert(components.inactive[1], comps.vi_mode.left)
-table.insert(components.inactive[1], comps.file.info)
+table.insert(components.inactive[1], comps.file.info_inactive)
 table.insert(components.active[2], comps.diagnos.err)
 table.insert(components.active[2], comps.diagnos.warn)
 table.insert(components.active[2], comps.diagnos.hint)
 table.insert(components.active[2], comps.diagnos.info)
 table.insert(components.active[2], comps.lsp.name)
-table.insert(components.active[2], comps.file.os)
 table.insert(components.active[2], comps.file.position)
 table.insert(components.active[2], comps.file.line_percentage)
 

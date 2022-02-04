@@ -15,7 +15,7 @@ return require('packer').startup(function()
   use 'famiu/feline.nvim'
 
   -- Color Schema
-  use 'glepnir/zephyr-nvim'
+  use 'Mofiqul/vscode.nvim'
 
   use 'neovim/nvim-lspconfig'
 
