@@ -1,5 +1,5 @@
 -----------------------------------------------------------
--- Statusline configuration file ---------------------------------------------------------
+ -- Statusline configuration file ---------------------------------------------------------
 
 --[[
   Plugin: feline.nvim
@@ -9,7 +9,7 @@
 --]]
 
 local colors = {
-  bg = '#9bb59a',
+  bg = '#839982',
   bg_inactive ='#90a4b0',
   fg = '#000000',
   yellow = '#e5c07b',
@@ -79,8 +79,7 @@ local comps = {
           style = 'bold'
         }
       end,
-      right_sep = ' ',
-    },
+    }
   },
   -- File info
   file = {
@@ -89,6 +88,7 @@ local comps = {
           name = 'file_info',
           opts = {
               type = 'relative',
+              colored_icon = false,
               file_modified_icon = ''
           }
       },
@@ -96,6 +96,7 @@ local comps = {
           name = 'file_info',
           opts = {
               type = 'relative-short',
+              colored_icon = false,
               file_modified_icon = ''
           }
       },
@@ -104,19 +105,36 @@ local comps = {
         bg = colors.bg,
         style = 'bold'
       },
+      padding = 1,
+      left_sep = {
+        str = 'block',
+        hl = {
+          fg = colors.bg,
+          bg = colors.bg,
+        }
+      },
+      right_sep = {
+        str = 'block',
+        hl = {
+          fg = colors.bg,
+          bg = colors.bg,
+        }
+      }
     },
     info_inactive = {
       provider = {
           name = 'file_info',
           opts = {
-              type = 'full-path',
+              type = 'relative',
+              colored_icon = false,
               file_modified_icon = ''
           }
       },
       short_provider = {
           name = 'file_info',
           opts = {
-              type = 'short-path',
+              type = 'relative-short',
+              colored_icon = false,
               file_modified_icon = ''
           }
       },
@@ -125,6 +143,21 @@ local comps = {
         bg = colors.bg_inactive,
         style = 'bold'
       },
+      padding = 1,
+      left_sep = {
+        str = 'block',
+        hl = {
+          fg = colors.bg_inactive,
+          bg = colors.bg_inactive,
+        }
+      },
+      right_sep = {
+        str = 'block',
+        hl = {
+          fg = colors.bg_inactive,
+          bg = colors.bg_inactive,
+        }
+      }
     },
     position = {
       provider = { name = 'position' },
@@ -136,6 +169,7 @@ local comps = {
     line_percentage = {
       provider = 'line_percentage',
       hl = {
+        fg = colors.magenta,
         style = 'bold'
       },
       left_sep = ' ',
@@ -217,6 +251,7 @@ table.insert(components.active[1], comps.git.change)
 table.insert(components.active[1], comps.git.remove)
 table.insert(components.inactive[1], comps.vi_mode.left)
 table.insert(components.inactive[1], comps.file.info_inactive)
+
 table.insert(components.active[2], comps.diagnos.err)
 table.insert(components.active[2], comps.diagnos.warn)
 table.insert(components.active[2], comps.diagnos.hint)
