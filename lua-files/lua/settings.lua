@@ -67,6 +67,7 @@ opt.wildignore:append { "*.pyc", "*.o", "*.obj", ".git", "*.rbc", "*.class" , ".
 -----------------------------------------------------------
 -- Colorscheme
 -----------------------------------------------------------
+opt.syntax = "ON"
 opt.termguicolors = true      				-- enable 24-bit RGB colors
 g.vscode_style = "dark"
 g.vscode_italic_comment = 1

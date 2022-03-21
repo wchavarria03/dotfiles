@@ -17,18 +17,22 @@ return require('packer').startup(function()
   -- Color Schema
   use 'Mofiqul/vscode.nvim'
 
-  use 'neovim/nvim-lspconfig'
+  -- Code Syntax highlight
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+
+  use {
+    'neovim/nvim-lspconfig',
+    event = { 'BufRead' },
+    after = 'nvim-treesitter'
+  }
 
   -- Fuzzy Finder
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
-  }
-
-  -- Code Syntax highlight
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
   }
 
   -- Directory Tree
@@ -38,10 +42,14 @@ return require('packer').startup(function()
   }
 
   --  Git info on nvim
- use {
+  use {
     'lewis6991/gitsigns.nvim',
     requires = {
       'nvim-lua/plenary.nvim'
     }
   }
+
+  -- Improve Lua files loading time by using cache files
+  use 'lewis6991/impatient.nvim'
+
 end)
