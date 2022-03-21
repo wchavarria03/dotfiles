@@ -52,6 +52,7 @@ PACKAGES=(
   docker-completion
   fzf
   git
+  glow # markdown previewer
   hub
   npm
 #  python
@@ -65,6 +66,7 @@ PACKAGES=(
   zsh
   zsh-completion
 #  wget
+
 # APPS
   brave-browser
   firefox

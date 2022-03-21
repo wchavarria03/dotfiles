@@ -121,3 +121,8 @@ NOTES:
 - I would like to change the files color when running `ls` command but It might require some extra work
 - To make the branch color magenta when doing `git status` I had to make a change on the .gitconfig and add the config to use the magenta ANSI color
 
+
+
+npm install -g typescript-language-server
+npm install -g @lifeart/ember-language-server
+npm i -g vscode-langservers-extracted
