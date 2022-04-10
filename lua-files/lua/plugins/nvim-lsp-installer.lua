@@ -1,15 +1,37 @@
 -----------------------------------------------------------
--- Neovim LSP configuration file
+-- Neovim LSP configuration and Neovim LSP Installer
 -----------------------------------------------------------
 
--- Plugin: nvim-lspconfig
--- for language server setup see: https://github.com/neovim/nvim-lspconfig
+-- Plugin: nvim-lsp-installer
+-- for language server setup see: https://github.com/williamboman/nvim-lsp-installer
 
-local nvim_lsp = require('lspconfig')
+local lsp_installer = require("nvim-lsp-installer")
+
+-- Include the servers you want to have installed by default below
+local servers = {
+   "ember",
+   "eslint",
+   "html",
+   "jsonls",
+   "sumneko_lua",
+   "tsserver",
+   "bashls",
+   "cssls",
+   "cssmodules_ls",
+   "stylelint_lsp",
+}
+
+for _, name in pairs(servers) do
+  local server_is_found, server = lsp_installer.get_server(name)
+  if server_is_found and not server:is_installed() then
+    print("Installing " .. name)
+    server:install()
+  end
+end
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local function on_attach (client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -40,26 +62,47 @@ local on_attach = function(client, bufnr)
 
 end
 
---[[ Language servers:
-Add here your language servers.
-For language servers list see:
-                                                                    https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
-Bash                    --> bashls                                  https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#bashls
-JavaScript/TypeScript   --> tsserver                                https://github.com/typescript-language-server/typescript-language-server
-HTML/CSS/JSON           --> vscode-html-languageserver              https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#html
-Ember                   --> ember                                   https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#ember
-Docker                  --> dockerls                                https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#dockerls
-JSON                    --> jsonls                                  https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#jsonls
-CSS                     --> cssls                                   https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#cssls
---]]
+local enhance_server_opts = {
+  ["eslintls"] = function(opts)
+    opts.settings = {
+      format = {
+        enable = true,
+      },
+    }
+  end,
+  ["sumneko_lua"] = function(opts)
+    opts.settings = {
+      Lua = {
+        diagnostics = {
+          globals = { 'vim', 'use' }
+        },
+      }
+    }
+  end,
+}
 
--- map buffer local keybindings when the language server attaches
-local servers = { 'cssls', 'bashls', 'tsserver', 'html', 'ember', 'dockerls', 'jsonls' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+
+lsp_installer.settings({
+  ui = {
+    icons = {
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗"
+    }
+  }
+})
+
+lsp_installer.on_server_ready(function(server)
+  local opts = {
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
-    }
+    },
   }
-end
+
+  if enhance_server_opts[server.name] then
+    enhance_server_opts[server.name](opts)
+  end
+
+  server:setup(opts)
+end)

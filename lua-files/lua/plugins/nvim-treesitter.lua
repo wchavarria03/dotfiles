@@ -16,7 +16,13 @@ require('nvim-treesitter.configs').setup {
     'html',
     'css',
     'scss',
-    'json'
+    'json',
+    'glimmer',
+    'jsdoc',
+    'lua',
+    'ruby',
+    'tsx',
+    'typescript'
   },
   incremental_selection = {
     enable = true,
