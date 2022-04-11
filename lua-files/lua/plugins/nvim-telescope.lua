@@ -8,16 +8,16 @@
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case',
-      '--hidden'
-    },
+--     vimgrep_arguments = {
+--       'rg',
+--       '--color=never',
+--       '--no-heading',
+--       '--with-filename',
+--       '--line-number',
+--       '--column',
+--       '--smart-case',
+--       '--hidden'
+--     },
     mappings = {
       i = {
         ["<esc>"] = actions.close,
@@ -30,3 +30,4 @@ require('telescope').setup{
   }
 }
 
+require('telescope').load_extension('fzf')

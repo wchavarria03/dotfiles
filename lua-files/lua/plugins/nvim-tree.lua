@@ -9,7 +9,6 @@
 local g = vim.g
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
-g.nvim_tree_indent_markers = 1
 g.nvim_tree_git_hl = 1
 g.nvim_tree_width_allow_resize  = 1
 g.nvim_tree_group_empty = 1
@@ -52,23 +51,22 @@ local list = {
 
 require'nvim-tree'.setup {
   view = {
-    -- width of the window, can be either a number (columns) or a string in `%`, for left or right side placement
-    width = 30,
-
     mappings = {
       -- custom only false will merge the list with the default mappings
-      -- if true, it will only use your list to set the mappings
+     -- if true, it will only use your list to set the mappings
       custom_only = false,
       -- list of mappings to set on the tree manually
       list = list
     }
   },
+  renderer = {
+    indent_markers = {
+      enable = true,
+    }
+  },
   filters  = {
     dotfiles = false,
     custom = {'.git', 'node_modules', '.cache'}
-  },
-  git = {
-    ignore = true,
   }
 }
 

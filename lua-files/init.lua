@@ -11,10 +11,13 @@ require('plugins/feline')             -- statusline
 -- require('plugins/vista')           -- tag viewer
 require('plugins/nvim-treesitter')    -- syntax highlight
 require('plugins/nvim-telescope')     -- fuzzy finder
+require('plugins/nvim-notify')        -- nice notification : Testing this one
 require('plugins/gitsigns')           -- git visual help
 -- require('plugins/nvim-autopairs')  -- autopairs
 require('plugins/nvim-lsp-installer') -- LSP settings
 require('plugins/nvim-cmp')           -- autocomplete
+require('plugins/wilder')             -- nice wildmenu
 
 -- OTHER POSSIBILITIES
 -- https://github.com/tpope/vim-dispatch
+-- /nvim-dap

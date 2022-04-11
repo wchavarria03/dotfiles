@@ -22,11 +22,19 @@ return require('packer').startup(function()
   }
 
   -- Completition
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'f3fora/cmp-spell',
+      'ray-x/cmp-treesitter',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-nvim-lsp-document-symbol'
+    }
+  }
 
   -- Code Syntax highlight
   use {
@@ -39,6 +47,11 @@ return require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
+  -- Notifications
+  use "rcarriga/nvim-notify"
 
   -- Directory Tree
   use {
@@ -56,6 +69,9 @@ return require('packer').startup(function()
 
   -- Improve Lua files loading time by using cache files
   use 'lewis6991/impatient.nvim'
+
+  -- Nice Wildmenu
+  use 'gelguy/wilder.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
