@@ -218,6 +218,19 @@ defaults write -g com.apple.swipescrolldirection -bool false
 # Enable quick view selection
  defaults write com.apple.finder QLEnableTextSelection -bool TRUE;
 
+# Enabling Right click with mouse
+defaults write com.apple.AppleMultitouchMouse MouseButtonMode TwoButton
+
+#Enabling right click with trackpad
+# defaults write com.apple.driver.AppleBluetoothMultitouch.mouse MouseOneFingerDoubleTapGesture 1
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick 0
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick 2
+defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.AppleMultitouchTrackpad TrackpadRightClick -bool false
+
+# Increase mouse speed
+defaults write com.apple.trackpad scaling -int 3
+
 killall Finder
 killall Dock
 killall SystemUIServer
