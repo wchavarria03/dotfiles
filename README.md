@@ -126,3 +126,7 @@ NOTES:
 npm install -g typescript-language-server
 npm install -g @lifeart/ember-language-server
 npm i -g vscode-langservers-extracted
+
+## Common issues
+1. Issues installing brew: You might need an stable connection to do it so if the installment gets interrupted at the middle you might need to uninstall all brew packages and do it again
+2. MAC M1 Chips + Brew: Looks like brew new path in M1 Macs is not added by default so we need to add the path following the suggestion after Brew gets installed, and then restart the terminal so the path takes effect. Then run again the install script.
