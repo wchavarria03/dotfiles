@@ -31,24 +31,3 @@ map('n', '<C-l>', '<C-w>l', default_opts)
 
 -- close all windows and exit from neovim
 map('n', '<leader>q', ':quitall<CR>', default_opts)
-
------------------------------------------------------------
--- Plugins shortcuts:
------------------------------------------------------------
--- nvim-tree
-map('n', '<C-g>', ':NvimTreeToggle<CR>', default_opts)       -- open/close
-map('n', '<S-r>', ':NvimTreeRefresh<CR>', default_opts)  -- refresh
-map('n', '<C-f>', ':NvimTreeFindFile<CR>', default_opts) -- search file
-
--- Vista
--- map('', '<C-m>', ':Vista<CR>', default_opts)  -- open/close vista window
-
--- Telescope
--- map('n', '<C-p>', ':Telescope find_files hidden=true<CR>', default_opts) -- search file
--- map('n', '<C-p>', "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<CR>", default_opts) -- search file
-map('n', '<C-p>', "<cmd>lua require'telescope.builtin'.find_files{}<CR>", default_opts) -- search file
-map('n', '<leader>fw', ':Telescope live_grep hidden=true<CR>', default_opts) -- search string
-map('n', '<leader>fh', '::Telescope oldfiles<CR>', default_opts) -- search file
-map('n', '<leader>fb', "<cmd>lua require'telescope.builtin'.buffers{}<CR>", default_opts) -- search file
-map('n', '<leader>fm', "<cmd>lua require'telescope.builtin'.marks{}<CR>", default_opts) -- search file
--- Pending Telescope Buffer commands

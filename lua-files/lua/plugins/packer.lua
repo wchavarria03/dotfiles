@@ -1,24 +1,36 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
 
-return require('packer').startup(function()
+local packer_bootstrap = ensure_packer()
+
+return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- System icons
-  use 'kyazdani42/nvim-web-devicons'
+  use 'nvim-tree/nvim-web-devicons'
 
   -- Status Line
-  use 'famiu/feline.nvim'
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
 
   -- Color Schema
-  use 'Mofiqul/vscode.nvim'
+  use 'rmehri01/onenord.nvim'
 
+  -- LSP Servers
   use {
-    'neovim/nvim-lspconfig',
-    'williamboman/nvim-lsp-installer'
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
   }
 
   -- Completition
@@ -44,7 +56,7 @@ return require('packer').startup(function()
 
   -- Fuzzy Finder
   use {
-    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope.nvim', tag = '0.1.1',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
@@ -56,7 +68,7 @@ return require('packer').startup(function()
   -- Directory Tree
   use {
     'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons'
+    requires = 'nvim-tree/nvim-web-devicons'
   }
 
   --  Git info on nvim
@@ -66,9 +78,6 @@ return require('packer').startup(function()
       'nvim-lua/plenary.nvim'
     }
   }
-
-  -- Improve Lua files loading time by using cache files
-  use 'lewis6991/impatient.nvim'
 
   -- Nice Wildmenu
   use 'gelguy/wilder.nvim'

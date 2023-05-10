@@ -69,9 +69,6 @@ opt.wildignore:append { "*.pyc", "*.o", "*.obj", ".git", "*.rbc", "*.class" , ".
 -----------------------------------------------------------
 opt.syntax = "ON"
 opt.termguicolors = true      				-- enable 24-bit RGB colors
-g.vscode_style = "dark"
-g.vscode_italic_comment = 1
-cmd("colorscheme vscode")
 
 -----------------------------------------------------------
 -- Tabs, indent
@@ -115,9 +112,3 @@ opt.autoread = true	  				-- Reload files changed outside vim
 -- Autocompletion
 -----------------------------------------------------------
 opt.completeopt = 'menuone,noselect,noinsert' 		-- completion options
-
-
------------------------------------------------------------
--- Dashboard Nvim
------------------------------------------------------------
-g.dashboard_default_executive = 'telescope'

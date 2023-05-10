@@ -8,6 +8,7 @@ wilder.set_option('renderer', wilder.popupmenu_renderer(
     right = {' ', wilder.popupmenu_scrollbar()},
     highlights = {
       border = 'Normal', -- highlight to use for the border
+      accent = wilder.make_hl('WilderAccent', 'Pmenu', {{a = 1}, {a = 1}, {foreground = '#f4468f'}}),
     },
     -- 'single', 'double', 'rounded' or 'solid'
     -- can also be a list of 8 characters, see :h wilder#popupmenu_border_theme() for more details
