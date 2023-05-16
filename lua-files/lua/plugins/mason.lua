@@ -23,7 +23,9 @@ local lsp_defaults = {
     end
 
     -- vim.option.set('omnifunc', 'v:lua.vim.lsp.omnifunc')
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lua_omnifunc')
+
 
     -- You can search each function in the help page.
     -- For example :help vim.lsp.buf.hover()
@@ -48,6 +50,7 @@ local lsp_defaults = {
 
     bufmap('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
     bufmap('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+    bufmap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>')
   end
 }
 

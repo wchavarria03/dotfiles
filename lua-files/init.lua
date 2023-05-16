@@ -27,9 +27,9 @@ require('plugins/nvim-telescope')     -- fuzzy finder
 require('plugins/nvim-notify')        -- nice notification : Testing this one
 require('plugins/gitsigns')           -- git visual help
 -- require('plugins/nvim-autopairs')  -- autopairs
--- require('plugins/nvim-lsp-installer') -- LSP settings
-require('plugins/mason') -- LSP settings
+require('plugins/mason')              -- LSP settings
 require('plugins/nvim-cmp')           -- autocomplete
+require('plugins/which-key')          -- Key Mappings Info
 -- require('plugins/wilder')             -- nice wildmenu
 
 -- OTHER POSSIBILITIES
