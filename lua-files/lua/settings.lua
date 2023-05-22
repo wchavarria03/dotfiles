@@ -15,9 +15,9 @@ local opt = vim.opt                   -- global/buffer/windows-scoped options
 -- General
 -----------------------------------------------------------
 g.mapleader = ','                     -- change leader to a comma
+g.mapllocaleader = ','                -- change local leader to a comma
 opt.timeoutlen = 500                  -- time waiting for key after leader key
 opt.clipboard = 'unnamedplus'         -- copy/paste to system clipboard
-opt.swapfile = false                  -- don't use swapfile
 
 
 -----------------------------------------------------------
@@ -57,7 +57,7 @@ exec([[
 -----------------------------------------------------------
 opt.hidden = true                     -- enable background buffers
 opt.history = 100                     -- remember n lines in history
-opt.lazyredraw = true                 -- faster scrolling
+-- opt.lazyredraw = true                 -- faster scrolling
 opt.synmaxcol = 240                   -- max column for syntax highlight
 opt.wildignore:append { "*.pyc", "*.o", "*.obj", ".git", "*.rbc", "*.class" , ".svn","vendor/gems/*",
 "*/node_modules/**", "*.png", "*.jpg", "*.mmdb", "*.dat", "*.sql", "*/coverage/**", "*/build/**", "build", "build/", "build/**" }

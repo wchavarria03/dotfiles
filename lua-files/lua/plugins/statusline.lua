@@ -6,25 +6,6 @@
   https://github.com/nvim-lualine/lualine.nvim
 --]]
 
--- Load the onenord theme for lualine
-local onenord = require('lualine.themes.onenord')
-local colors = {
-  bg = '#839982',
-  bg_inactive ='#90a4b0',
-  fg = '#000000',
-  --[[
-  yellow = '#e5c07b',
-  cyan = '#8abeb7',
-  darkblue = '#528bff',
-  green = '#98c379',
-  orange = '#d19a66',
-  violet = '#b294bb',
-  magenta = '#ff80ff',
-  blue = '#61afef';
-  red = '#e88388';
-  --]]
-}
-
 local comps = {
   file_name = {
     'filename',
@@ -88,32 +69,16 @@ local comps = {
   }
 }
 
--- Override inactive colors
-onenord.inactive = {
-  c = { bg = colors.bg_inactive, fg = colors.fg, gui = 'bold' },
-}
-
-local function is_nvim_tree()
-  local buftype = vim.bo.buftype
-  local filetype = vim.bo.filetype
-  return buftype == 'terminal' or (filetype == 'NvimTree' and vim.fn.exists('g:nvim_tree_window_id') == 1)
-end
-
-require('lualine').setup({
-  options = {
+return {
+  'nvim-lualine/lualine.nvim',
+  event = 'VeryLazy' ,
+  opts = {
     icons_enabled = true,
-    theme = onenord,
-    component_separators = {
-      left = '',
-      right = ''
-    },
-    section_separators = {
-      left = '',
-      right = ''
-    },
+    theme = 'catppuccin',
+    component_separators = '|',
+    section_separators = '',
     disabled_filetypes = {
-      'packer',
-      'NVimTree' ,
+      'NvimTree' ,
       statusline = {},
       winbar = {},
     },
@@ -124,35 +89,35 @@ require('lualine').setup({
       statusline = 1000,
       tabline = 1000,
       winbar = 1000,
-    }
-  },
-  sections = {
-    lualine_a = {'mode'},
-    lualine_b = {
-      comps.diff,
-      comps.diagnostics
     },
-    lualine_c = {
-      comps.file_name
+    sections = {
+      lualine_a = {'buffers'},
+      lualine_b = {
+        'mode',
+        comps.diff,
+        comps.diagnostics
+      },
+      lualine_c = {
+        comps.file_name
+      },
+      lualine_x = {'encoding', 'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
     },
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {
-      comps.file_name
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {
+        comps.file_name
+      },
+      lualine_y = {},
+      lualine_x = {'progress'},
+      lualine_z = {'location'}
     },
-    lualine_y = {},
-    lualine_x = {'progress'},
-    lualine_z = {'location'}
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = { 'nvim-tree' },
-  filetypes = { 'NvimTree' },
-  conditional = is_nvim_tree,
-})
+    tabline = {},
+    winbar = {},
+    inactive_winbar = {},
+    extensions = { 'nvim-tree' },
+    filetypes = { 'NvimTree' },
+  }
+}

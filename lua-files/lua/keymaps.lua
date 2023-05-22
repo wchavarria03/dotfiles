@@ -33,19 +33,6 @@ map('n', '<C-l>', '<C-w>l', default_opts)
 map('n', '<leader>q', ':quitall<CR>', default_opts)
 
 -- Buffers
-map('n', '<leader>bq', ':bd<CR>', default_opts)
+map('n', '<leader>bd', ':bd<CR>', default_opts)
 map("n", "<tab>", ":bnext<CR>", default_opts) -- Next Tab
 map("n", "<s-tab>", ":bprevious<CR>", default_opts) -- Previous tab
-
-
---------------------------------
--- Plugins global mappings
---------------------------------
--- Required because we are attaching the mappings of most of the plugins on the buffer attach callback
--- meaning some of them wont be available since the beginning
-
------------------
--- Nvim-tree
------------------
-map("n", "<leader>t", ":NvimTreeToggle<CR>", default_opts) -- Previous tab
-map("n", "<leader>tf", ":NvimTreeFindFile<CR>", default_opts) -- Previous tab

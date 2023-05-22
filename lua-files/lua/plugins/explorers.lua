@@ -59,19 +59,35 @@ local function on_attach(bufnr)
   vim.keymap.set('n', '<leader>to', ':lua OpenNodeInFinder()<CR>', opts('Open Finder'))
 end
 
-
-require'nvim-tree'.setup {
-  on_attach = on_attach,
-  renderer = {
-    indent_markers = {
-      enable = true,
-    }
+return {
+  {
+    'kyazdani42/nvim-tree.lua',
+    cmd = {
+      'NvimTreeFindFile',
+      'NvimTreeRefresh',
+      'NvimTreeToggle',
+    },
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    keys = {
+      { '<leader>t', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = 'Toggle tree' } },
+      { '<leader>tf', ':NvimTreeFindFile<CR>', { noremap = true, silent = true, desc = 'Focus tree' } },
+    },
+    opts = {
+      renderer = {
+        indent_markers = {
+          enable = true,
+        }
+      },
+      filters  = {
+        custom = {'.git', 'node_modules', '.cache'}
+      }
+    },
+    config = function()
+      require('nvim-tree').setup({
+        on_attach = on_attach,
+      })
+    end
   },
-  filters  = {
-    custom = {'.git', 'node_modules', '.cache'}
-  }
+  { 'nvim-tree/nvim-web-devicons' }
 }
 
--- Keybindings are defined in `keymapping.lua`
---- See: `help NvimTree`
---- https://github.cm/kyazdani42/nvim-tree.lua#keybindingso
