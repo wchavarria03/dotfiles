@@ -73,22 +73,11 @@ return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy' ,
   opts = {
-    icons_enabled = true,
     theme = 'catppuccin',
-    component_separators = '|',
-    section_separators = '',
     disabled_filetypes = {
       'NvimTree' ,
       statusline = {},
       winbar = {},
-    },
-    ignore_focus = {},
-    always_divide_middle = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
     },
     sections = {
       lualine_a = {'buffers'},
@@ -114,9 +103,6 @@ return {
       lualine_x = {'progress'},
       lualine_z = {'location'}
     },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
     extensions = { 'nvim-tree' },
     filetypes = { 'NvimTree' },
   }

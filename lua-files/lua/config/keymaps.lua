@@ -1,17 +1,16 @@
 -----------------------------------------------------------
--- Keymaps configuration file: keymaps of neovim
--- and plugins.
+-- Keymaps configuration file: keymaps of neovim and plugins.
 -----------------------------------------------------------
 
 local map = vim.api.nvim_set_keymap
 local default_opts = {noremap = true, silent = true}
 
------------------------------------------------------------
--- Neovim shortcuts:
------------------------------------------------------------
-
 -- clear search highlighting
 map('n', '<leader>c', ':nohl<CR>', default_opts)
+
+-- increment / decrement
+map('n', '+', '<C-a>', {noremap = true})
+map('n', '-', '<C-x>', {noremap = true})
 
 -- don't use arrow keys
 map('', '<up>', '<nop>', {noremap = true})
@@ -36,3 +35,7 @@ map('n', '<leader>q', ':quitall<CR>', default_opts)
 map('n', '<leader>bd', ':bd<CR>', default_opts)
 map("n", "<tab>", ":bnext<CR>", default_opts) -- Next Tab
 map("n", "<s-tab>", ":bprevious<CR>", default_opts) -- Previous tab
+
+-- Windows
+map("n", "<C-v>", ":vsplit<CR>", default_opts) -- Previous tab
+map("n", "<C-x>", ":split<CR>", default_opts) -- Previous tab

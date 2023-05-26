@@ -67,7 +67,7 @@ return {
       'NvimTreeRefresh',
       'NvimTreeToggle',
     },
-    dependencies = 'nvim-tree/nvim-web-devicons',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
       { '<leader>t', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = 'Toggle tree' } },
       { '<leader>tf', ':NvimTreeFindFile<CR>', { noremap = true, silent = true, desc = 'Focus tree' } },
@@ -87,7 +87,6 @@ return {
         on_attach = on_attach,
       })
     end
-  },
-  { 'nvim-tree/nvim-web-devicons' }
+  }
 }
 

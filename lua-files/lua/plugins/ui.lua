@@ -48,57 +48,58 @@ return {
   {
     "folke/noice.nvim",
     event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
-    lsp = {
-      -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-      override = {
-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        ["vim.lsp.util.stylize_markdown"] = true,
-        ["cmp.entry.get_documentation"] = true,
-      },
-    },
-    -- you can enable a preset for easier configuration
-    presets = {
-      bottom_search = true, -- use a classic bottom cmdline for search
-      command_palette = true, -- position the cmdline and popupmenu together
-      inc_rename = false, -- enables an input dialog for inc-rename.nvim
-      long_message_to_split = true, -- long messages will be sent to a split
-      lsp_doc_border = false, -- add a border to hover docs and signature help
-    },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    }
-  },
-  --[[
-  {
-    presets = {
-      bottom_search = false, -- use a classic bottom cmdline for search
-      command_palette = true, -- position the cmdline and popupmenu together
-      inc_rename = true, -- enables an input dialog for inc-rename.nvim
-      long_message_to_split = true, -- long messages will be sent to a split
-      lsp_doc_border = true,
-    },
     config = function()
-      -- require("telescope").load_extension("noice")
+      require("noice").setup({
+        presets = {
+          long_message_to_split = true, -- long messages will be sent to a split
+          command_palette = true, -- position the cmdline and popupmenu together
+          inc_rename = true, -- enables an input dialog for inc-rename.nvim
+        },
+        routes = {
+          {
+            filter = {
+              event = "msg_show",
+              kind = "",
+              find = "written",
+            },
+            opts = { skip = true },
+          },
+          {
+            filter = {
+              event = "msg_show",
+              kind = "search_count"
+            },
+            opts = { skip = true },
+          },
+          {
+            view = "mini",
+            filter = {
+              any = {
+                { event = "msg_showmode" }, -- see :h showmode
+                { find = " change" }, -- to use string.find() on message
+                { event = "msg_history_show" }, -- for :messages output
+                { event = "msg_show", kind = "wmsg" }, -- see :h W10
+                { find = "E486" }, -- see :h E486
+                { event = "msg_showcmd" }, -- see :h showcmd
+              },
+            },
+          },
+        },
+      })
+
+      require("telescope").load_extension("noice")
     end,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
-    }
+    },
   },
-  ]]--
   {
     'rcarriga/nvim-notify',
-    opts = {
-      timeout = 1500,
-      top_down = false
-    },
     config = function()
-      require('notify').setup();
-      vim.notify = require('notify')
+      require('notify').setup({
+        top_down = true
+      });
     end
   },
   {
@@ -118,8 +119,5 @@ return {
         blend = 0,
       }
     },
-    dependencies = {
-      'nvim-telescope/telescope.nvim'
-    }
   }
 }

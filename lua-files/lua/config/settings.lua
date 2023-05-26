@@ -6,7 +6,6 @@
 -- Neovim API aliases
 -----------------------------------------------------------
 local cmd = vim.cmd                   -- execute Vim commands
-local exec = vim.api.nvim_exec        -- execute Vimscript
 local g = vim.g                       -- global variables
 local opt = vim.opt                   -- global/buffer/windows-scoped options
 
@@ -17,7 +16,7 @@ local opt = vim.opt                   -- global/buffer/windows-scoped options
 g.mapleader = ','                     -- change leader to a comma
 g.mapllocaleader = ','                -- change local leader to a comma
 opt.timeoutlen = 500                  -- time waiting for key after leader key
-opt.clipboard = 'unnamedplus'         -- copy/paste to system clipboard
+opt.clipboard:append { 'unnamedplus' }-- copy/paste to system clipboard
 
 
 -----------------------------------------------------------
@@ -43,14 +42,6 @@ opt.wildmode = {'list', 'longest'}    -- Command-line completion mode
 -- remove whitespace on save
 cmd[[au BufWritePre * :%s/\s\+$//e]]
 
--- highlight on yank
-exec([[
-  augroup highlight_yank
-    autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 700)
-  augroup END
-]], false)
-
 
 -----------------------------------------------------------
 -- Memory, CPU
@@ -60,14 +51,7 @@ opt.history = 100                     -- remember n lines in history
 -- opt.lazyredraw = true                 -- faster scrolling
 opt.synmaxcol = 240                   -- max column for syntax highlight
 opt.wildignore:append { "*.pyc", "*.o", "*.obj", ".git", "*.rbc", "*.class" , ".svn","vendor/gems/*",
-"*/node_modules/**", "*.png", "*.jpg", "*.mmdb", "*.dat", "*.sql", "*/coverage/**", "*/build/**", "build", "build/", "build/**" }
-
-
------------------------------------------------------------
--- Colorscheme
------------------------------------------------------------
-opt.syntax = "ON"
-opt.termguicolors = true              -- enable 24-bit RGB colors
+"*/node_modules/**", "*.mmdb", "*.dat", "*.sql", "*/coverage/**" }
 
 -----------------------------------------------------------
 -- Tabs, indent
@@ -77,8 +61,6 @@ opt.shiftwidth = 4                    -- Size of an indent - 2 spaces when tab
 opt.tabstop = 4                       -- Number of spaces tabs count for - 1 tab == 2 spaces
 opt.softtabstop = 4	                  -- In insert mode, tabs are 2 spaces
 opt.smartindent = true                -- Insert indents automatically
-opt.cursorline = true                 -- Highlight cursor line
-
 
 cmd [[set formatoptions=njtcroql]]
 
@@ -105,9 +87,3 @@ cmd[[autocmd FileType markdown let g:indentLine_enabled=0]]
 -----------------------------------------------------------
 opt.updatecount = 100                 -- Write swap file to disk every 100 chars
 opt.autoread = true                   -- Reload files changed outside vim
-
-
------------------------------------------------------------
--- Autocompletion
------------------------------------------------------------
-opt.completeopt = 'menuone,noselect,noinsert' 		-- completion options
