@@ -44,11 +44,15 @@ return {
           }
         }
       })
-      vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>fw', builtin.live_grep, {})
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-      vim.keymap.set('n', '<leader>fm', builtin.marks, {})
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+      local bufmap = function(mode, lhs, rhs, desc)
+        vim.keymap.set(mode, lhs, rhs, { desc = 'Telescope' .. desc })
+      end
+      bufmap('n', '<C-p>', builtin.find_files, 'Find Files')
+      bufmap('n', '<leader>fw', builtin.live_grep, 'Grep Text')
+      bufmap('n', '<leader>fb', builtin.buffers, 'Buffers')
+      bufmap('n', '<leader>fm', builtin.marks, 'Marks')
+      bufmap('n', '<leader>fh', builtin.help_tags, 'Help Tags')
     end,
     dependencies = {
       {'nvim-lua/plenary.nvim'},

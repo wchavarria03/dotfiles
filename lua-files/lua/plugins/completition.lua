@@ -4,6 +4,7 @@
 
 -- Plugin: nvim-cmp
 -- https://github.com/hrsh7th/nvim-cmp
+
 return {
   {
     'hrsh7th/nvim-cmp',
@@ -97,16 +98,9 @@ return {
       'hrsh7th/cmp-buffer',                   -- nvim-comp for buffer words
       'hrsh7th/cmp-path',                     -- nvim-comp for filesystem paths.
       'hrsh7th/cmp-cmdline',                  -- nvim-comp for vim's cmdline
-      'f3fora/cmp-spell',                     -- nvim-comp for spell suggestions
       'hrsh7th/cmp-nvim-lsp',                 -- nvim-comp for neovim's built in LSP
-      'hrsh7th/cmp-nvim-lsp-document-symbol'  -- completition for textDocument/documentSymbol via nvim-lsp
+      'hrsh7th/cmp-nvim-lsp-document-symbol',  -- completition for textDocument/documentSymbol via nvim-lsp
+      'saadparwaiz1/cmp_luasnip',
     }
-  },
-  {
-    'f3fora/cmp-spell',
-    config = function ()
-      vim.opt.spell = true
-      vim.opt.spelllang = { 'en_us' }
-    end
   }
 }

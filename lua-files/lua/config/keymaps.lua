@@ -1,41 +1,39 @@
 -----------------------------------------------------------
 -- Keymaps configuration file: keymaps of neovim and plugins.
 -----------------------------------------------------------
-
-local map = vim.api.nvim_set_keymap
-local default_opts = {noremap = true, silent = true}
+local bufmap = function(mode, lhs, rhs, desc)
+  vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = 'Keymaps: ' .. desc })
+end
 
 -- clear search highlighting
-map('n', '<leader>c', ':nohl<CR>', default_opts)
+bufmap('n', '<leader>c', ':nohl<CR>', 'Clear Selection')
 
 -- increment / decrement
-map('n', '+', '<C-a>', {noremap = true})
-map('n', '-', '<C-x>', {noremap = true})
+bufmap('n', '+', '<C-a>', 'Increment')
+bufmap('n', '-', '<C-x>', 'Decrement')
 
--- don't use arrow keys
-map('', '<up>', '<nop>', {noremap = true})
-map('', '<down>', '<nop>', {noremap = true})
-map('', '<left>', '<nop>', {noremap = true})
-map('', '<right>', '<nop>', {noremap = true})
+-- Avoid Arrow Keys
+bufmap('', '<up>', '<nop>', 'Arrow up disabled')
+bufmap('', '<down>', '<nop>', 'Arrow down disabled')
+bufmap('', '<left>', '<nop>', 'Arrow left disabled')
+bufmap('', '<right>', '<nop>', 'Arrow right disabled')
 
--- fast saving with <leader> and s
-map('n', '<leader>s', ':w<CR>', default_opts)
-map('i', '<leader>s', '<C-c>:w<CR>', default_opts)
+-- Files
+bufmap('n', '<leader>s', ':w<CR>', 'Save File')
+bufmap('i', '<leader>s', '<C-c>:w<CR>', 'Save File')
 
 -- Navigation
-map('n', '<C-h>', '<C-w>h', default_opts)
-map('n', '<C-j>', '<C-w>j', default_opts)
-map('n', '<C-k>', '<C-w>k', default_opts)
-map('n', '<C-l>', '<C-w>l', default_opts)
-
--- close all windows and exit from neovim
-map('n', '<leader>q', ':quitall<CR>', default_opts)
+bufmap('n', '<C-h>', '<C-w>h', 'Move Left Window')
+bufmap('n', '<C-j>', '<C-w>j', 'Move Right Window')
+bufmap('n', '<C-k>', '<C-w>k', 'Move Up Window')
+bufmap('n', '<C-l>', '<C-w>l', 'Move Down Window')
 
 -- Buffers
-map('n', '<leader>bd', ':bd<CR>', default_opts)
-map("n", "<tab>", ":bnext<CR>", default_opts) -- Next Tab
-map("n", "<s-tab>", ":bprevious<CR>", default_opts) -- Previous tab
+bufmap('n', '<leader>bd', ':bd<CR>', 'Buffer Delete')
+bufmap("n", "<leader>bn", ":bnext<CR>", 'Buffer Next')
+bufmap("n", "<leader>bp", ":bprevious<CR>", 'Buffer Prev')
 
 -- Windows
-map("n", "<C-v>", ":vsplit<CR>", default_opts) -- Previous tab
-map("n", "<C-x>", ":split<CR>", default_opts) -- Previous tab
+bufmap('n', '<leader>q', ':quitall<CR>', 'Close All Windows')
+bufmap("n", "<C-v>", ":vsplit<CR>", 'Window Split Vert')
+bufmap("n", "<C-x>", ":split<CR>", 'Window Split Hori')

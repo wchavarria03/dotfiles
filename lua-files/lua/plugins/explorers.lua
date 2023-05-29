@@ -25,10 +25,6 @@ g.nvim_tree_icons = {
 local function on_attach(bufnr)
   local api = require('nvim-tree.api')
 
-  local function opts(desc)
-    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-  end
-
   -- Open tree node in the Finder
   _G.OpenNodeInFinder = function()
     local node = api.tree.get_node_under_cursor()
@@ -47,16 +43,20 @@ local function on_attach(bufnr)
   -- ADD ALL DEFAULT MAPPINGS ON_ATTACH
   api.config.mappings.default_on_attach(bufnr)
 
+  local bufmap = function(mode, lhs, rhs, desc)
+    vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, noremap = true, silent = true, nowait = true, desc = 'NVIM-TREE: ' .. desc })
+  end
+
   -- CUSTOM MAPPINGS
-  vim.keymap.set('n', '<leader>tr', api.tree.change_root_to_node, opts('CD'))
-  vim.keymap.set('n', '<leader>tR', api.tree.change_root_to_parent, opts('Up'))
-  vim.keymap.set('n', '<leader>tX', api.node.navigate.parent, opts('Parent Directory'))
-  vim.keymap.set('n', '<leader>tx', api.node.navigate.parent_close, opts('Close Directory'))
-  vim.keymap.set('n', '<leader>te', api.tree.expand_all, opts('Expand All'))
-  vim.keymap.set('n', '<leader>tE', api.tree.collapse_all, opts('Collapse All'))
-  vim.keymap.set('n', '<leader>tp', api.fs.copy.relative_path, opts('Copy Relative Path'))
-  vim.keymap.set('n', '<leader>tP', api.fs.copy.absolute_path, opts('Copy Absolute Path'))
-  vim.keymap.set('n', '<leader>to', ':lua OpenNodeInFinder()<CR>', opts('Open Finder'))
+  bufmap('n', '<leader>tr', api.tree.change_root_to_node, 'CD')
+  bufmap('n', '<leader>tR', api.tree.change_root_to_parent, 'Up')
+  bufmap('n', '<leader>tX', api.node.navigate.parent, 'Parent Directory')
+  bufmap('n', '<leader>tx', api.node.navigate.parent_close, 'Close Directory')
+  bufmap('n', '<leader>te', api.tree.expand_all, 'Expand All')
+  bufmap('n', '<leader>tE', api.tree.collapse_all, 'Collapse All')
+  bufmap('n', '<leader>tp', api.fs.copy.relative_path, 'Copy Relative Path')
+  bufmap('n', '<leader>tP', api.fs.copy.absolute_path, 'Copy Absolute Path')
+  bufmap('n', '<leader>to', ':lua OpenNodeInFinder()<CR>', 'Open Finder')
 end
 
 return {
@@ -69,8 +69,8 @@ return {
     },
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
-      { '<leader>t', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = 'Toggle tree' } },
-      { '<leader>tf', ':NvimTreeFindFile<CR>', { noremap = true, silent = true, desc = 'Focus tree' } },
+      { '<leader>tt', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = 'NVIM-TREE: Toggle tree' } },
+      { '<leader>tf', ':NvimTreeFindFile<CR>', { noremap = true, silent = true, desc = 'NVIM-TREE: Focus tree' } },
     },
     opts = {
       renderer = {

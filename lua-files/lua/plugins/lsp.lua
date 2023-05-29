@@ -11,6 +11,7 @@ return {
     cmd = "Mason",
     keys = { "<cmd>Mason<cr>" },
     build = ":MasonUpdate",
+    config = true,
     opts = {
       ui = {
         icons = {
@@ -29,29 +30,29 @@ return {
 
       masonLspConfig.setup {
         ensure_installed = {
-          "html",
-          "jsonls",
-          "lua_ls",
-          "tsserver",
-          "bashls",
-          "cssls",
-          "cssmodules_ls",
-          "stylelint_lsp",
-          "ember",
-          "eslint",
+          'bashls',
+          'cssls',
+          'cssmodules_ls',
+          'ember',
+          'eslint',
+          'html',
+          'jsonls',
+          'lua_ls',
+          'ruby_ls',
+          'stylelint_lsp',
+          'tsserver',
         }
       }
 
       ---
       -- LSP servers
       ---
-      local default_handler = function(server)
-        -- See :help lspconfig-setup
-        lspconfig[server].setup({})
-      end
-
       masonLspConfig.setup_handlers({
-        default_handler,
+        function(server)
+          -- See :help lspconfig-setup
+          lspconfig[server].setup({})
+        end,
+
         ['tsserver'] = function()
           lspconfig.tsserver.setup({
             settings = {
@@ -73,7 +74,10 @@ return {
           }
         end,
       })
-    end
+    end,
+    dependencies = {
+      'williamboman/mason.nvim',
+    }
   },
   {
     'neovim/nvim-lspconfig',
@@ -86,44 +90,36 @@ return {
         flags = {
           debounce_text_changes = 150,
         },
-        -- capabilities = require('cmp_nvim_lsp').update_capabilities(
-        --  vim.lsp.protocol.make_client_capabilities()
-        -- ),
-        on_attach = function(client, bufnr)
-          local bufmap = function(mode, lhs, rhs)
-            local opts = {noremap = true, silent = true}
-            vim.keymap.set(mode, lhs, rhs, opts)
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        on_attach = function(_, bufnr)
+          local bufmap = function(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = 'LSP: ' .. desc })
           end
 
-          -- vim.option.set('omnifunc', 'v:lua.vim.lsp.omnifunc')
-          -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
           vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lua_omnifunc')
-
 
           -- You can search each function in the help page.
           -- For example :help vim.lsp.buf.hover()
-          bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-          bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-          bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-          bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-          bufmap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>')
-          bufmap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>')
-          bufmap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>')
-          bufmap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-          bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+          bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', 'Declaration')
+          bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', 'Definition')
+          bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', 'Hover')
+          bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', 'Implementation')
+          bufmap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add Workspace')
+          bufmap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove Workspace')
+          bufmap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List Workspaces')
+          bufmap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', 'Type Definition')
+          bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', 'References')
           -- bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-          bufmap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
-          bufmap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-          bufmap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
-          bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-          bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+          bufmap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename')
+          bufmap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action')
+          bufmap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Line Diagnostics')
 
-          bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
-          bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+          bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>', 'Range Action')
+          bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', 'Diagnostic Modal')
 
-          bufmap('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-          bufmap('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-          bufmap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>')
+          bufmap('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Prev')
+          bufmap('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<cr>',  'Next')
+          bufmap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', 'Telescope Diagostics')
         end
       }
 
