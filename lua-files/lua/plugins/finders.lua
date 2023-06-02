@@ -4,19 +4,22 @@
 
 -- Plugin: nvim-telescope
 --- https://github.com/nvim-telescope/telescope.nvim
+
+local utils = require "core.utils"
+
 return {
   {
-    "junegunn/fzf.vim",
-    event = { "BufReadPost", "BufNewFile" },
+    'junegunn/fzf.vim',
+    event = { 'BufReadPost', 'BufNewFile' },
   },
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.1',
     event = 'VeryLazy',
-    cmd = "Telescope",
+    cmd = 'Telescope',
     keys = {
-      { '<C-p>', ':Telescope find_files<CR>', { noremap = true, silent = true, desc = 'Find Files' } },
-      { '<leader>fw', ':NvimTreeFindFile<CR>', { noremap = true, silent = true, desc = 'Find Words' } },
+      { '<C-p>', ':Telescope find_files<CR>', { noremap = true, silent = true, desc = 'Telescope Find Files' } },
+      { '<leader>fw', ':NvimTreeFindFile<CR>', { noremap = true, silent = true, desc = 'TelescopeFind Words' } },
     },
     config = function()
       local telescope = require('telescope');
@@ -26,33 +29,26 @@ return {
       telescope.setup({
         defaults = {
           mappings = {
+            -- TODO Add desc to the following keys to improve which-key suggestions
             i = {
-              ["<esc>"] = actions.close,
-              ["<C-k>"] = "move_selection_previous",
-              ["<C-j>"] = "move_selection_next",
-              ["<C-h>"] = "preview_scrolling_up",
-              ["<C-l>"] = "preview_scrolling_down",
-              ["<C-w>"] = "which_key"
-            },
-            n = {
-              ["<C-p>"] = builtin.find_files,
-              ["<leader>fw"] = builtin.live_grep,
-              ["<leader>fwh"] = builtin.live_grep,
-              ["<leader>fb"] = builtin.buffers,
-              ["<leader>fm"] = builtin.marks,
-            },
+              ['<esc>'] = actions.close,
+              ['<C-k>'] = 'move_selection_previous',
+              ['<C-j>'] = 'move_selection_next',
+              ['<C-h>'] = 'preview_scrolling_up',
+              ['<C-l>'] = 'preview_scrolling_down',
+              ['<C-w>'] = 'which_key',
+            }
           }
         }
       })
 
-      local bufmap = function(mode, lhs, rhs, desc)
-        vim.keymap.set(mode, lhs, rhs, { desc = 'Telescope' .. desc })
-      end
-      bufmap('n', '<C-p>', builtin.find_files, 'Find Files')
-      bufmap('n', '<leader>fw', builtin.live_grep, 'Grep Text')
-      bufmap('n', '<leader>fb', builtin.buffers, 'Buffers')
-      bufmap('n', '<leader>fm', builtin.marks, 'Marks')
-      bufmap('n', '<leader>fh', builtin.help_tags, 'Help Tags')
+      utils.mapKey('Telescope', 'n', '<C-p>', builtin.find_files, { desc = 'Find Files' })
+      utils.mapKey('Telescope', 'n', '<leader>fw', builtin.live_grep, { desc = 'Grep Text' })
+      utils.mapKey('Telescope', 'n', '<leader>fb', builtin.buffers, { desc = 'Buffers' })
+      utils.mapKey('Telescope', 'n', '<leader>fm', builtin.marks, { desc = 'Marks' })
+      utils.mapKey('Telescope', 'n', '<leader>fh', builtin.help_tags, { desc = 'Help Tags' })
+      utils.mapKey('Telescope', 'n', '<leader>fc', builtin.git_commits, { desc = 'Git Commits' })
+      utils.mapKey('Telescope', 'n', '<leader>fs', builtin.git_status, { desc = 'Git Status' })
     end,
     dependencies = {
       {'nvim-lua/plenary.nvim'},
@@ -60,11 +56,12 @@ return {
     },
   },
   {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    cmd = "Telescope",
-    build = "make",
+    'nvim-telescope/telescope-fzf-native.nvim',
+    cmd = 'Telescope',
+    build = 'make',
     config = function()
-      require("telescope").load_extension("fzf")
+      -- TODO Test performance using fzf
+      require('telescope').load_extension('fzf')
     end,
   },
 }

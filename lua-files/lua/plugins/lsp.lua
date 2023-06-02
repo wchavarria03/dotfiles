@@ -1,58 +1,59 @@
------------------------------------------------------------
+-----------------------------------------------------------lsplsp
 -- Neovim LSP configuration and Neovim LSP Installer
 -----------------------------------------------------------
 
 -- Plugin: mason
 -- for language server setup see: https://github.com/williamboman/mason
 
+local utils = require "core.utils"
+local merge_tb = vim.tbl_deep_extend
+
 return {
   {
     'williamboman/mason.nvim',
-    cmd = "Mason",
-    keys = { "<cmd>Mason<cr>" },
-    build = ":MasonUpdate",
+    cmd = 'Mason',
+    keys = { { '<cmd>Mason<cr>', desc = 'Mason' } },
+    build = ':MasonUpdate',
     config = true,
     opts = {
       ui = {
+        border = 'single',
         icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗"
+          package_installed = '✓',
+          package_pending = '➜',
+          package_uninstalled = '✗'
         }
       }
     }
   },
   {
     'williamboman/mason-lspconfig.nvim',
+    event = { 'BufEnter', 'BufReadPost', 'BufNewFile' },
     config = function()
       local lspconfig = require('lspconfig')
-      local masonLspConfig = require("mason-lspconfig")
+      local masonLspConfig = require('mason-lspconfig')
 
-      masonLspConfig.setup {
-        ensure_installed = {
-          'bashls',
-          'cssls',
-          'cssmodules_ls',
-          'ember',
-          'eslint',
-          'html',
-          'jsonls',
-          'lua_ls',
-          'ruby_ls',
-          'stylelint_lsp',
-          'tsserver',
-        }
+      local servers_to_install = {
+        'bashls',
+        'cssls',
+        'cssmodules_ls',
+        'ember',
+        'eslint',
+        'html',
+        'jsonls',
+        'lua_ls',
+        'ruby_ls',
+        'stylelint_lsp',
+        'tsserver',
       }
 
-      ---
-      -- LSP servers
-      ---
-      masonLspConfig.setup_handlers({
+      local handlers = {
+        -- Default handler for most of the servers
         function(server)
-          -- See :help lspconfig-setup
-          lspconfig[server].setup({})
+          lspconfig[server].setup {}
         end,
 
+        -- Override tsserver with this handler
         ['tsserver'] = function()
           lspconfig.tsserver.setup({
             settings = {
@@ -62,17 +63,22 @@ return {
             }
           })
         end,
-        ["lua_ls"] = function ()
+        ['lua_ls'] = function ()
           lspconfig.lua_ls.setup {
             settings = {
               Lua = {
                 diagnostics = {
-                  globals = { "vim", "use", "group" }
+                  globals = { 'vim', 'use', 'group' }
                 }
               }
             }
           }
         end,
+      }
+
+      masonLspConfig.setup({
+        handlers = handlers,
+        ensure_installed  = servers_to_install
       })
     end,
     dependencies = {
@@ -81,57 +87,63 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "LspInfo", "LspInstall", "LspUninstall" },
+    event = { 'BufReadPost', 'BufNewFile' },
+    cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     config = function()
       local lspconfig = require('lspconfig')
+      local lsp_defaults = lspconfig.util.default_config
 
-      local lsp_defaults = {
+      local lsp_custom_capabilities = merge_tb(
+        'force',
+        lsp_defaults.capabilities,
+        require('cmp_nvim_lsp').default_capabilities()
+      )
+
+      local lsp_custom_config = {
         flags = {
           debounce_text_changes = 150,
         },
-        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        capabilities = lsp_custom_capabilities,
         on_attach = function(_, bufnr)
-          local bufmap = function(mode, lhs, rhs, desc)
-            vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = 'LSP: ' .. desc })
-          end
+          local opts = { noremap = true, silent = true, buffer=bufnr }
 
-          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lua_omnifunc')
+          vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
           -- You can search each function in the help page.
           -- For example :help vim.lsp.buf.hover()
-          bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', 'Declaration')
-          bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', 'Definition')
-          bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', 'Hover')
-          bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', 'Implementation')
-          bufmap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add Workspace')
-          bufmap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove Workspace')
-          bufmap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List Workspaces')
-          bufmap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', 'Type Definition')
-          bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', 'References')
-          -- bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-          bufmap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename')
-          bufmap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action')
-          bufmap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Line Diagnostics')
+          utils.mapKey('LSP', 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', merge_tb('force', opts, { desc = 'Declaration' }))
+          utils.mapKey('LSP', 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', merge_tb('force', opts, { desc = 'Definition' }))
+          utils.mapKey('LSP', 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', merge_tb('force', opts, { desc = 'Hover' }))
+          utils.mapKey('LSP', 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', merge_tb('force', opts, { desc = 'Implementation' }))
+          utils.mapKey('LSP', 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', merge_tb('force', opts, { desc = 'Add Workspace' }))
+          utils.mapKey('LSP', 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', merge_tb('force', opts, { desc = 'Remove Workspace' }))
+          utils.mapKey('LSP', 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', merge_tb('force', opts, { desc = 'List Workspaces' }))
+          utils.mapKey('LSP', 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', merge_tb('force', opts, { desc = 'Type Definition' }))
+          utils.mapKey('LSP', 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', merge_tb('force', opts, { desc = 'References' }))
+          utils.mapKey('LSP', 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', merge_tb('force', opts, { desc = 'Signature' }))
+          utils.mapKey('LSP', 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', merge_tb('force', opts, { desc = 'Rename' }))
+          utils.mapKey('LSP', 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', merge_tb('force', opts, { desc = 'Code Action' }))
+          utils.mapKey('LSP', 'n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', merge_tb('force', opts, { desc = 'Line Diagnostics' }))
 
-          bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>', 'Range Action')
-          bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', 'Diagnostic Modal')
+          utils.mapKey('LSP', 'x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>', merge_tb('force', opts, { desc = 'Range Action' }))
+          utils.mapKey('LSP', 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', merge_tb('force', opts, { desc = 'Diagnostic Modal' }))
 
-          bufmap('n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<cr>', 'Prev')
-          bufmap('n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<cr>',  'Next')
-          bufmap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', 'Telescope Diagostics')
+          utils.mapKey('LSP', 'n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<cr>', merge_tb('force', opts, { desc = 'Prev' }))
+          utils.mapKey('LSP', 'n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<cr>', merge_tb('force', opts, { desc =  'Next' }))
+          utils.mapKey('LSP', 'n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', merge_tb('force', opts, { desc = 'Telescope Diagostics' }))
         end
       }
 
       lspconfig.util.default_config = vim.tbl_deep_extend(
         'force',
-        lspconfig.util.default_config,
-        lsp_defaults
+        lsp_defaults,
+        lsp_custom_config
       )
     end,
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'hrsh7th/cmp-nvim-lsp'
     },
   }
 }

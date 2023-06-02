@@ -7,6 +7,8 @@
 
 -- G config needs to be set  before setup call
 local g = vim.g
+local utils = require "core.utils"
+local merge_tb = vim.tbl_deep_extend
 
 g.nvim_tree_git_hl = 1
 g.nvim_tree_width_allow_resize  = 1
@@ -19,7 +21,7 @@ g.nvim_tree_show_icons = {
 }
 
 g.nvim_tree_icons = {
-  default = "‣ "
+  default = '‣ '
 }
 
 local function on_attach(bufnr)
@@ -43,20 +45,18 @@ local function on_attach(bufnr)
   -- ADD ALL DEFAULT MAPPINGS ON_ATTACH
   api.config.mappings.default_on_attach(bufnr)
 
-  local bufmap = function(mode, lhs, rhs, desc)
-    vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, noremap = true, silent = true, nowait = true, desc = 'NVIM-TREE: ' .. desc })
-  end
+  local opts = { buffer = bufnr, noremap = true, silent = true, nowait = true }
 
   -- CUSTOM MAPPINGS
-  bufmap('n', '<leader>tr', api.tree.change_root_to_node, 'CD')
-  bufmap('n', '<leader>tR', api.tree.change_root_to_parent, 'Up')
-  bufmap('n', '<leader>tX', api.node.navigate.parent, 'Parent Directory')
-  bufmap('n', '<leader>tx', api.node.navigate.parent_close, 'Close Directory')
-  bufmap('n', '<leader>te', api.tree.expand_all, 'Expand All')
-  bufmap('n', '<leader>tE', api.tree.collapse_all, 'Collapse All')
-  bufmap('n', '<leader>tp', api.fs.copy.relative_path, 'Copy Relative Path')
-  bufmap('n', '<leader>tP', api.fs.copy.absolute_path, 'Copy Absolute Path')
-  bufmap('n', '<leader>to', ':lua OpenNodeInFinder()<CR>', 'Open Finder')
+  utils.mapKey('NVIM-TREE', 'n', '<leader>tr', api.tree.change_root_to_node, merge_tb('force', opts, { desc = 'CD' }))
+  utils.mapKey('NVIM-TREE', 'n', '<leader>tR', api.tree.change_root_to_parent, merge_tb('force', opts, { desc = 'Up' }))
+  utils.mapKey('NVIM-TREE', 'n', '<leader>tX', api.node.navigate.parent, merge_tb('force', opts, { desc = 'Parent Directory' }))
+  utils.mapKey('NVIM-TREE', 'n', '<leader>tx', api.node.navigate.parent_close, merge_tb('force', opts, { desc = 'Close Directory' }))
+  utils.mapKey('NVIM-TREE', 'n', '<leader>te', api.tree.expand_all, merge_tb('force', opts, { desc = 'Expand All' }))
+  utils.mapKey('NVIM-TREE', 'n', '<leader>tE', api.tree.collapse_all, merge_tb('force', opts, { desc = 'Collapse All' }))
+  utils.mapKey('NVIM-TREE', 'n', '<leader>tp', api.fs.copy.relative_path, merge_tb('force', opts, { desc = 'Copy Relative Path' }))
+  utils.mapKey('NVIM-TREE', 'n', '<leader>tP', api.fs.copy.absolute_path, merge_tb('force', opts, { desc = 'Copy Absolute Path' }))
+  utils.mapKey('NVIM-TREE', 'n', '<leader>to', ':lua OpenNodeInFinder()<CR>', merge_tb('force', opts, { desc = 'Open Finder' }))
 end
 
 return {
@@ -66,6 +66,9 @@ return {
       'NvimTreeFindFile',
       'NvimTreeRefresh',
       'NvimTreeToggle',
+      'NvimTreeOpen',
+      'NvimTreeFocus',
+      'NvimTreeFindFileToggle',
     },
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     keys = {
@@ -73,6 +76,11 @@ return {
       { '<leader>tf', ':NvimTreeFindFile<CR>', { noremap = true, silent = true, desc = 'NVIM-TREE: Focus tree' } },
     },
     opts = {
+      disable_netrw = true,
+      hijack_netrw = true,
+      hijack_cursor = true,
+      hijack_unnamed_buffer_when_opening = false,
+      sync_root_with_cwd = true,
       renderer = {
         indent_markers = {
           enable = true,
@@ -82,10 +90,12 @@ return {
         custom = {'.git', 'node_modules', '.cache'}
       }
     },
-    config = function()
-      require('nvim-tree').setup({
-        on_attach = on_attach,
-      })
+    config = function(_, opts)
+      require('nvim-tree').setup(
+        merge_tb('force', opts, {
+          on_attach = on_attach,
+        })
+      )
     end
   }
 }

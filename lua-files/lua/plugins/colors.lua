@@ -26,8 +26,8 @@ return {
         shade = 'light',
       }
     },
-    config = function ()
-      require('catppuccin').setup()
+    config = function (_, opts)
+      require('catppuccin').setup(opts)
       vim.cmd.colorscheme('catppuccin')
     end,
   },
@@ -38,6 +38,17 @@ return {
   -----------------------------------------------------------
   {
     'nvim-treesitter/nvim-treesitter',
+    event = { 'BufReadPost', 'BufNewFile' },
+    cmd = {
+      'TSInstall',
+      'TSInstallInfo',
+      'TSUpdate',
+      'TSBufEnable',
+      'TSBufDisable',
+      'TSEnable',
+      'TSDisable',
+      'TSModuleInfo',
+    },
     opts = {
       autopairs = {
         enable = true
@@ -46,42 +57,49 @@ return {
         enable = true,
       },
       ensure_installed =  {
-        'javascript',
-        'html',
+        'bash',
         'css',
-        'scss',
-        'json',
         'glimmer',
+        'html',
+        'javascript',
         'jsdoc',
+        'json',
         'lua',
+        'markdown',
+        'markdown_inline',
+        'regex',
         'ruby',
+        'scss',
         'tsx',
         'typescript',
         'vim',
-        'regex',
-        'bash',
-        'markdown',
-        'markdown_inline'
       },
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
+          init_selection = 'gnn',
+          node_incremental = 'grn',
+          scope_incremental = 'grc',
+          node_decremental = 'grm',
         },
       },
       indent = {
         enable = true
       }
     },
-    build = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
-    end,
-    config = function()
-      require('nvim-treesitter.configs').setup({})
+    build = ':TSUpdate',
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
     end
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
   }
 }

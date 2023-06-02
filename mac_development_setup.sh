@@ -52,6 +52,7 @@ PACKAGES=(
   docker-completion
   fzf
   git
+  gh
   glow # markdown previewer
   hub
   npm

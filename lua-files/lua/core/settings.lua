@@ -17,7 +17,7 @@ g.mapleader = ','                     -- change leader to a comma
 g.mapllocaleader = ','                -- change local leader to a comma
 opt.timeoutlen = 500                  -- time waiting for key after leader key
 opt.clipboard:append { 'unnamedplus' }-- copy/paste to system clipboard
-
+opt.mouse = ''                        -- disable mouse
 
 -----------------------------------------------------------
 -- Neovim UI
@@ -38,6 +38,8 @@ opt.smartcase = true                  -- ignore lowercase for the whole pattern
 opt.scrolloff = 3                     -- minimum n# of lines above and below cursor
 opt.relativenumber = true             -- Relative line numbers
 opt.wildmode = {'list', 'longest'}    -- Command-line completion mode
+opt.pumblend = 10                     -- transparency of pop-up menu
+opt.pumheight = 8                     -- pop up menu height
 
 -- remove whitespace on save
 cmd[[au BufWritePre * :%s/\s\+$//e]]
@@ -50,8 +52,8 @@ opt.hidden = true                     -- enable background buffers
 opt.history = 100                     -- remember n lines in history
 -- opt.lazyredraw = true                 -- faster scrolling
 opt.synmaxcol = 240                   -- max column for syntax highlight
-opt.wildignore:append { "*.pyc", "*.o", "*.obj", ".git", "*.rbc", "*.class" , ".svn","vendor/gems/*",
-"*/node_modules/**", "*.mmdb", "*.dat", "*.sql", "*/coverage/**" }
+opt.wildignore:append { '*.pyc', '*.o', '*.obj', '.git', '*.rbc', '*.class' , '.svn','vendor/gems/*',
+'*/node_modules/**', '*.mmdb', '*.dat', '*.sql', '*/coverage/**' }
 
 -----------------------------------------------------------
 -- Tabs, indent

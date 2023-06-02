@@ -1,6 +1,6 @@
 local opt = vim.opt                   -- global/buffer/windows-scoped options
 
-opt.syntax = "ON"
+opt.syntax = 'ON'
 opt.cursorline = true                 -- Highlight cursor line
 opt.termguicolors = true              -- enable 24-bit RGB colors
 

@@ -1,12 +1,14 @@
 -----------------------------------------------------------
 -- Keymaps configuration file: keymaps of neovim and plugins.
 -----------------------------------------------------------
-local bufmap = function(mode, lhs, rhs, desc)
-  vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = 'Keymaps: ' .. desc })
+local bufmap = function(mode, lhs, rhs, desc, opts)
+  local local_opts = { noremap = true, silent = true, desc = 'Keymaps: ' .. desc }
+  vim.keymap.set(mode, lhs, rhs, local_opts)
 end
 
 -- clear search highlighting
 bufmap('n', '<leader>c', ':nohl<CR>', 'Clear Selection')
+bufmap('n', '<Esc>', ':nohl<CR>', 'Clear Selection')
 
 -- increment / decrement
 bufmap('n', '+', '<C-a>', 'Increment')
@@ -30,10 +32,10 @@ bufmap('n', '<C-l>', '<C-w>l', 'Move Down Window')
 
 -- Buffers
 bufmap('n', '<leader>bd', ':bd<CR>', 'Buffer Delete')
-bufmap("n", "<leader>bn", ":bnext<CR>", 'Buffer Next')
-bufmap("n", "<leader>bp", ":bprevious<CR>", 'Buffer Prev')
+bufmap('n', '<leader>bn', ':bnext<CR>', 'Buffer Next')
+bufmap('n', '<leader>bp', ':bprevious<CR>', 'Buffer Prev')
 
 -- Windows
 bufmap('n', '<leader>q', ':quitall<CR>', 'Close All Windows')
-bufmap("n", "<C-v>", ":vsplit<CR>", 'Window Split Vert')
-bufmap("n", "<C-x>", ":split<CR>", 'Window Split Hori')
+bufmap('n', '<C-v>', ':vsplit<CR>', 'Window Split Vert')
+bufmap('n', '<C-x>', ':split<CR>', 'Window Split Hori')
