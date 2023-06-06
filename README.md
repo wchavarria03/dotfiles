@@ -133,14 +133,12 @@ NOTES:
 
 ## Screenshoots
 ![Alpha Dashboard Plugin](https://github.com/wchavarria03/dotfiles/blob/master/images/Alpha-Dashboard.png)
+
 ![Common Prompt Terminal](https://github.com/wchavarria03/dotfiles/blob/master/images/Commandline.png)
+
 ![LSP, Snippets and Completion](https://github.com/wchavarria03/dotfiles/blob/master/images/LSP-Snippets-Completion.png)
+
 ![Telescope](https://github.com/wchavarria03/dotfiles/blob/master/images/Telescope.png)
-
-
-npm install -g typescript-language-server
-npm install -g @lifeart/ember-language-server
-npm i -g vscode-langservers-extracted
 
 ## Common issues
 1. Issues installing brew: You might need an stable connection to do it so if the installment gets interrupted at the middle you might need to uninstall all brew packages and do it again
