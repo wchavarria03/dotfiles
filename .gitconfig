@@ -1,7 +1,7 @@
 [user]
     name = Walter Chavarria
     email = wchavarria03@gmail.com
-    signingkey = 80A39869C2F82560
+    signingkey = <YOUR_KEY>
 [color]
     ui = auto
 [color "branch"]
