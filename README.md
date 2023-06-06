@@ -134,6 +134,11 @@ NOTES:
 - I would like to change the files color when running `ls` command but It might require some extra work
 - To make the branch color magenta when doing `git status` I had to make a change on the .gitconfig and add the config to use the magenta ANSI color
 
+## Screenshoots
+![Alpha Dashboard Plugin](https://github.com/wchavarria03/dotfiles/blob/master/images/Alpha-Dashboard.png)
+![Common Prompt Terminal](https://github.com/wchavarria03/dotfiles/blob/master/images/Commandline.png)
+![LSP, Snippets and Completion](https://github.com/wchavarria03/dotfiles/blob/master/images/LSP-Snippets-Completion.png)
+![Telescope](https://github.com/wchavarria03/dotfiles/blob/master/images/Telescope.png)
 
 
 npm install -g typescript-language-server
