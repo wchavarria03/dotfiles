@@ -7,6 +7,7 @@
 [![](https://img.shields.io/badge/Neovim-0.9+-blueviolet.svg?style=for-the-badge&logo=Neovim)](https://github.com/neovim/neovim)
 
 </div>
+
 # Dev Setup
 
 Index
