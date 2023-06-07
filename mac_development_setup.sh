@@ -21,9 +21,10 @@ echo "${COLOR_GREEN}*------------------------  Starting MAC Setup...            
 
 echo "${COLOR_GREEN}*------------------------    Creating folders structure...                  ------------------------*${COLOR_REST}"
 [[ ! -d ~/code ]] && mkdir ~/code
-[[ ! -d ~/Documents/screenshots ]] && mkdir ~/Documents/screenshots
-[[ ! -d ~/.config ]] && mkdir ~/.config
-[[ ! -d ~/.config/nvim ]] && mkdir ~/.config/nvim
+[[ ! -d ~/Documents/screenshots ]] && mkdir ~/Documents/screenshots && echo '~/Documents/screenshots folder created!!'
+[[ ! -d ~/.config ]] && mkdir ~/.config && echo '~/.config folder created!!'
+[[ ! -d ~/.config/nvim ]] && mkdir ~/.config/nvim && echo '~/.config/nvim folder created!!'
+[[ ! -d ~/.secrets ]] && mkdir ~/.secrets && echo '~/.secrets folder created!!'
 
 # Check for Homebrew, install if we don't have it
 if test ! $(which brew); then
@@ -39,7 +40,7 @@ brew update
 echo "${COLOR_GREEN}*------------------------    Upgrading homebrew...                          ------------------------*${COLOR_REST}"
 brew upgrade
 
-if  brew info bash &>/dev/null; then
+if brew info bash &>/dev/null; then
   echo "${COLOR_GREEN}*------------------------    Brew Bash package already installed            ------------------------*${COLOR_REST}"
 else
   echo "${COLOR_GREEN}*------------------------    Installing Brew Bash package...                ------------------------*${COLOR_REST}"
@@ -49,7 +50,6 @@ fi
 PACKAGES=(
 #  ack
   bash-completion
-  docker-completion
   fzf
   git
   gh
@@ -70,14 +70,13 @@ PACKAGES=(
 
 # APPS
   brave-browser
-  firefox
   gimp
   google-chrome
   gnupg
   iterm2
   notion
   postman
-  sequel-pro
+  sequel-ace
   slack
   spectacle
   1password
@@ -108,12 +107,24 @@ brew cleanup
 echo "${COLOR_GREEN}*------------------------     Installing brew cask fonts...------------------------*${COLOR_REST}"
 brew tap homebrew/cask-fonts
 
+# TODO CHECK WHY ICONS ON TERMINAL ARE BROKEN WITH FIRA
 FONTS=(
     font-fira-code
 )
 brew install ${FONTS[@]}
 
 echo "${COLOR_GREEN}*------------------------     Repos                                 --------------------*${COLOR_REST}"
+if [ ! -d ~/code/secrets/ ]
+then
+    echo "${COLOR_GREEN}*------------------------       Cloning secrets repo...--------------------*${COLOR_REST}"
+    cd ~/code
+    git clone https://github.com/wchavarria03/secrets
+else
+    echo "${COLOR_GREEN}*------------------------       Updating secrets repo...--------------------*${COLOR_REST}"
+    cd ~/code/secrets
+    git pull
+fi
+
 if [ ! -d ~/code/dotfiles/ ]
 then
     echo "${COLOR_GREEN}*------------------------       Cloning dotfiles repo...--------------------*${COLOR_REST}"
@@ -125,6 +136,7 @@ else
     git pull
 fi
 
+# TODO CHECK IF STILL USED
 if [ ! -d ~/code/common/ ]
 then
     echo "${COLOR_GREEN}*------------------------       Cloning common repo...--------------------*${COLOR_REST}"
@@ -148,6 +160,10 @@ else
     cd ~/code/dotfiles
 fi
 
+echo "${COLOR_GREEN}*------------------------     Secrets repo symlink--------------------*${COLOR_REST}"
+ln -s ~/code/secrets/secrets.zsh ~/.secrets/secrets.zsh
+
+# TOD CONFIRM IF STILL USED
 echo "${COLOR_GREEN}*------------------------     Common repo symlink--------------------*${COLOR_REST}"
 ln -s ~/code/common/common.zsh-theme ~/.oh-my-zsh/custom/themes/common.zsh-theme
 
@@ -160,19 +176,17 @@ ln -s ~/code/dotfiles/.zshrc ~/.zshrc
 echo "${COLOR_GREEN}*------------------------     Gitconfig symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/.gitconfig ~/.gitconfig
 
-echo ${COLOR_GREEN}"*------------------------     Gitconfig symlink--------------------*${COLOR_REST}"
+echo ${COLOR_GREEN}"*------------------------     Git Ignore Global symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/.gitignore_global ~/.gitignore_global
 
 echo ${COLOR_GREEN}"*------------------------     Configuring Lua..--------------------*${COLOR_REST}"
 echo ${COLOR_GREEN}"*------------------------       Init.lua symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/lua-files/init.lua ~/.config/nvim/init.lua
 
-echo "${COLOR_GREEN}*------------------------       Doc folder symlink--------------------*${COLOR_REST}"
-ln -s ~/code/dotfiles/lua-files/doc ~/.config/nvim/doc
-
 echo "${COLOR_GREEN}*------------------------       Lua folder symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/lua-files/lua ~/.config/nvim/lua
 
+# ------------------------------ OSX CONFIG
 echo "${COLOR_GREEN}*------------------------     Configuring OSX...--------------------*${COLOR_REST}"
 
 # Set fast key repeat rate
@@ -182,7 +196,7 @@ defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write -g ApplePressAndHoldEnabled -bool true
 
 # Screenshots folder
-defaults write com.apple.screencapture location /Documents/screenshots/
+defaults write com.apple.screencapture location ~/Documents/screenshots/
 
 # Show hidden files on finder
 defaults write com.apple.Finder AppleShowAllFiles -bool YES
@@ -207,7 +221,7 @@ defaults write -g com.apple.swipescrolldirection -bool false
 # Change Dock to left position
  defaults write com.apple.dock orientation left;
 
-# Spped up animations
+# Speed up animations
  defaults write com.apple.dock expose-animation-duration -float 0.12
 
 # Translucent hidden apps

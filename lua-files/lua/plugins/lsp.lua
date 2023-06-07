@@ -120,7 +120,7 @@ return {
           utils.mapKey('LSP', 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', merge_tb('force', opts, { desc = 'List Workspaces' }))
           utils.mapKey('LSP', 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', merge_tb('force', opts, { desc = 'Type Definition' }))
           utils.mapKey('LSP', 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', merge_tb('force', opts, { desc = 'References' }))
-          utils.mapKey('LSP', 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', merge_tb('force', opts, { desc = 'Signature' }))
+          utils.mapKey('LSP', 'n', '<C-K>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', merge_tb('force', opts, { desc = 'Signature' }))
           utils.mapKey('LSP', 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', merge_tb('force', opts, { desc = 'Rename' }))
           utils.mapKey('LSP', 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', merge_tb('force', opts, { desc = 'Code Action' }))
           utils.mapKey('LSP', 'n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', merge_tb('force', opts, { desc = 'Line Diagnostics' }))

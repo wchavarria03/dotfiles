@@ -1,7 +1,7 @@
 [user]
     name = Walter Chavarria
     email = wchavarria03@gmail.com
-    signingkey = <YOUR_KEY>
+    signingkey = $(GPG_KEY)
 [color]
     ui = auto
 [color "branch"]
