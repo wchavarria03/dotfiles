@@ -173,6 +173,9 @@ ln -s ~/code/dotfiles/.p10k.zsh ~/.p10k.zsh
 echo "${COLOR_GREEN}*------------------------     ZSHR symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/.zshrc ~/.zshrc
 
+echo "${COLOR_GREEN}*------------------------     ZSHRENV symlink--------------------*${COLOR_REST}"
+ln -s ~/code/dotfiles/.zshenv ~/.zshenv
+
 echo "${COLOR_GREEN}*------------------------     Gitconfig symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/.gitconfig ~/.gitconfig
 

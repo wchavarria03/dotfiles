@@ -1,7 +1,6 @@
 [user]
     name = Walter Chavarria
     email = wchavarria03@gmail.com
-    signingkey = $(GPG_KEY)
 [color]
     ui = auto
 [color "branch"]
@@ -46,3 +45,5 @@
     insteadOf = https://github.com/
 [gpg]
     program = gpg
+[include]
+    path = ~/gpg_key.inc ; find "foo.inc" in your `$HOME` directory
