@@ -65,7 +65,6 @@ PACKAGES=(
   nvim
   nvm
   zsh
-  zsh-completion
 #  wget
 
 # APPS
@@ -109,7 +108,7 @@ brew tap homebrew/cask-fonts
 
 # TODO CHECK WHY ICONS ON TERMINAL ARE BROKEN WITH FIRA
 FONTS=(
-    font-fira-code
+    font-meslo-for-powerline
 )
 brew install ${FONTS[@]}
 

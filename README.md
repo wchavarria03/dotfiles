@@ -12,7 +12,7 @@
 
 Index
 - [Initial Dev Setup](https://github.com/wchavarria03/dotfiles#Initial-development-setup)
-- [Development Setup](https://github.com/wchavarria03/dotfiles#Development-setup)
+- [Automatic Setup](https://github.com/wchavarria03/dotfiles#Development-setup)
 - [Font](https://github.com/wchavarria03/dotfiles#Font)
 - [Terminal ANSI Colors and Config](https://github.com/wchavarria03/dotfiles#Terminal-ANSI-Colors-and-Config)
 - [OhMyZsh Prompt](https://github.com/wchavarria03/dotfiles#OhMyZsh-Prompt)
@@ -26,23 +26,13 @@ Index
 $ xcode-select --install
 ```
 
-## Development setup
+## Automatic setup
 Run `mac_development_setup.sh` script on the root of this repo by doing
 ```
 $ sh mac_development_setup.sh
 ````
 We need all the symlinks and configuration to be loaded on a new terminal.
 You can also reload configs manually or logout/login session.
-
-## Lua Packer
-
-### Run Packer to install Lua Packages
-You might get an error about a colorschema missing, you can ignore while we run Packer on the follwing step.
-Into Nvim run the following commands
-```
-:PackerInstall
-```
-Close nvim
 
 ## Powerlink Config
 ### Install Meslo Font for Powerlink10k
@@ -51,69 +41,52 @@ In the terminal run the folling, accept font installation
 $ p10k configure
 ```
 
-### Spurce powerlink10k config
-Add the following line to .zshrc file
-```
-source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme
-```
-
 ## Restart terminal
 Get Packer packages loaded
 Previous error about colorschema shouldn't be happening anymore
 
 ## Git
-Gitconfig requires to replace the gpgp signing key
+Gitconfig requires to add a file to your $HOME folder with the name gpg_key.inc. This file will be loaded as an extention of your .gitconfig file, inside the file the content should looks like the example below.
+NOTE: You can also add the key directly and remove the include code from the .gitconfig file.
 ```
 [user]
-  signingkey = <GPG Sign Key>
-```
-
-## Bash completion
-Add the following line to the .bash_profile
-```
-[[ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ]] && . \"/usr/local/etc/profile.d/bash_completion.sh
-```
-
-## Zsh Completion
-Add the following lines to .zshrc
-```
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
-```
-You may also need to force rebuild `zcompdump`:
-
-```
-  rm -f ~/.zcompdump; compinit
-```
-
-Additionally, if you receive "zsh compinit: insecure directories" warnings when attempting
-to load these completions, you may need to run this:
-
-```
-  chmod -R go-w '/usr/local/share/zsh'
+    signingkey = <KEY>
 ```
 
 ## Terminal ANSI Colors and Config
-- Font Fira Code SemiBold 11pt.
-- Background Color: #282D35 ![#f03c15](https://placehold.it/15/282D35/000000?text=+)
-- Cursor Color: #FBFCFC ![#f03c15](https://placehold.it/15/FBFCFC/000000?text=+)
-- Cursor Text: #282D35 ![#f03c15](https://placehold.it/15/282D35/000000?text=+)
+- MesloLGS NF Bold 12pt.
+- Foreground Color: #C7C7C7 ![#C7C7C7](https://placehold.it/15/C7C7C7/000000?text=+)
+- Background Color: #282D35 ![#F03C15](https://placehold.it/15/282D35/000000?text=+)
+- Selection Color: #C1DDFF ![#C1DDFF](https://placehold.it/15/C1DDFF/000000?text=+)
+- Selected Text Color: #000000 ![#000000](https://placehold.it/15/000000/000000?text=+)
+- Badge Color: #FF2600 ![#FF2600](https://placehold.it/15/FF2600/000000?text=+)
+- Tab Color: Disabled
+- Underline Color: Disabled
+- Brighten bold text Color: Disabled
+- Minimun Contrast: 0
 
-- Font Color: #9CA3B2 ![#9CA3B2](https://placehold.it/15/9CA3B2/000000?text=+)
+- Cursor Color: #FBFCFC ![#F03C15](https://placehold.it/15/FBFCFC/000000?text=+)
+- Cursor Text: #282D35 ![#F03C15](https://placehold.it/15/282D35/000000?text=+)
+
+NORMAL
 - Black 0: #3E4352 ![#3E4352](https://placehold.it/15/3E4352/000000?text=+)
 - Red 1: #FF5458 ![#FF5458](https://placehold.it/15/FF5458/000000?text=+)
 - Green 2: #84A86C ![#84A86C](https://placehold.it/15/84A86C/000000?text=+)
 - Yellow 3: #E4BD48 ![#E4BD48](https://placehold.it/15/E4BD48/000000?text=+)
 - Blue 4: #5D9EE7 ![#5D9EE7](https://placehold.it/15/5D9EE7/000000?text=+)
 - Magenta 5: #C991E1 ![#C991E1](https://placehold.it/15/C991E1/000000?text=+)
-- Cyan 6: #A969BE ![#A969BE](https://placehold.it/15/A969BE/000000?text=+)
+- Cyan 6: #45DCC7 ![#45DCC7](https://placehold.it/15/45DCC7/000000?text=+)
 - White 7: #CBD09B ![#CBD09B](https://placehold.it/15/CBD09B/000000?text=+)
 
-NOTE: Bright colors are the same because I am not using them yet
+Bright
+- Black 0: #676767 ![#676767](https://placehold.it/15/676767/000000?text=+)
+- Red 1: #FF6D67 ![#FF6D67](https://placehold.it/15/FF6D67/000000?text=+)
+- Green 2: #5FF967 ![#5FF967](https://placehold.it/15/5FF967/000000?text=+)
+- Yellow 3: #FEFB67 ![#FEFB67](https://placehold.it/15/FEFB67/000000?text=+)
+- Blue 4: #6871FF ![#6871FF](https://placehold.it/15/6871FF/000000?text=+)
+- Magenta 5: #FF76FF ![#FF76FF](https://placehold.it/15/FF76FF/000000?text=+)
+- Cyan 6: #5FFDFF ![#5FFDFF](https://placehold.it/15/5FFDFF/000000?text=+)
+- White 7: #FFFEFE ![#FFFEFE](https://placehold.it/15/FFFEFE/000000?text=+)
 
 ![Terminal Config](https://github.com/wchavarria03/dotfiles/blob/master/images/TerminalConfig.png)
 
@@ -126,10 +99,6 @@ But I wanted a previous state of it so I fork the repo and add the small change 
 Terminal should look like:
 
 ![Common Prompt Terminal](https://github.com/wchavarria03/dotfiles/blob/master/images/CommonPrompt.png)
-
-NOTES:
-- I would like to change the files color when running `ls` command but It might require some extra work
-- To make the branch color magenta when doing `git status` I had to make a change on the .gitconfig and add the config to use the magenta ANSI color
 
 ## Screenshoots
 ![Alpha Dashboard Plugin](https://github.com/wchavarria03/dotfiles/blob/master/images/Alpha-Dashboard.png)
