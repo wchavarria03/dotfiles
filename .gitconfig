@@ -46,4 +46,4 @@
 [gpg]
     program = gpg
 [include]
-    path = ~/gpg_key.inc ; find "foo.inc" in your `$HOME` directory
+    path = ~/gpg_key.inc

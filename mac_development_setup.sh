@@ -160,8 +160,9 @@ else
     cd ~/code/dotfiles
 fi
 
-echo "${COLOR_GREEN}*------------------------     Secrets repo symlink--------------------*${COLOR_REST}"
+echo "${COLOR_GREEN}*------------------------     Secrets repo symlinks--------------------*${COLOR_REST}"
 ln -s ~/code/secrets/secrets.zsh ~/.secrets/secrets.zsh
+ln -s ~/code/secrets/gpg_key.inc ~/gpg_key.inc
 
 # TOD CONFIRM IF STILL USED
 echo "${COLOR_GREEN}*------------------------     Common repo symlink--------------------*${COLOR_REST}"
@@ -172,9 +173,6 @@ ln -s ~/code/dotfiles/.p10k.zsh ~/.p10k.zsh
 
 echo "${COLOR_GREEN}*------------------------     ZSHR symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/.zshrc ~/.zshrc
-
-echo "${COLOR_GREEN}*------------------------     ZSHRENV symlink--------------------*${COLOR_REST}"
-ln -s ~/code/dotfiles/.zshenv ~/.zshenv
 
 echo "${COLOR_GREEN}*------------------------     Gitconfig symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/.gitconfig ~/.gitconfig
