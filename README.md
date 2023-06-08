@@ -88,7 +88,8 @@ Bright
 - Cyan 6: #5FFDFF ![#5FFDFF](https://placehold.it/15/5FFDFF/000000?text=+)
 - White 7: #FFFEFE ![#FFFEFE](https://placehold.it/15/FFFEFE/000000?text=+)
 
-![Terminal Config](https://github.com/wchavarria03/dotfiles/blob/master/images/TerminalConfig.png)
+![Terminal Colors](https://github.com/wchavarria03/dotfiles/blob/master/images/config-colors.png)
+![Terminal Text](https://github.com/wchavarria03/dotfiles/blob/master/images/config-text.png)
 
 
 ## NOTES:
@@ -100,14 +101,19 @@ Terminal should look like:
 
 ![Common Prompt Terminal](https://github.com/wchavarria03/dotfiles/blob/master/images/CommonPrompt.png)
 
-## Screenshoots
-![Alpha Dashboard Plugin](https://github.com/wchavarria03/dotfiles/blob/master/images/Alpha-Dashboard.png)
+## Screenshots
+Alpha Plugin
+![Alpha Plugin](https://github.com/wchavarria03/dotfiles/blob/master/images/plugin-alpha.png)
 
-![Common Prompt Terminal](https://github.com/wchavarria03/dotfiles/blob/master/images/Commandline.png)
+LSP Plugins
+![LSP, Snippets and Completion](https://github.com/wchavarria03/dotfiles/blob/master/images/plugins-lsp.png)
 
-![LSP, Snippets and Completion](https://github.com/wchavarria03/dotfiles/blob/master/images/LSP-Snippets-Completion.png)
 
-![Telescope](https://github.com/wchavarria03/dotfiles/blob/master/images/Telescope.png)
+Telescope Plugin
+![Telescope](https://github.com/wchavarria03/dotfiles/blob/master/images/plugin-telescope.png)
+
+Command Line Plugin
+![Command Line Plugin](https://github.com/wchavarria03/dotfiles/blob/master/images/plugin-noise.png)
 
 ## Common issues
 1. Issues installing brew: You might need an stable connection to do it so if the installment gets interrupted at the middle you might need to uninstall all brew packages and do it again
