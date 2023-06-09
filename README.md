@@ -11,6 +11,7 @@
 # Dev Setup
 
 Index
+- [Requirements](https://github.com/wchavarria03/dotfiles#Initial-development-setup)
 - [Initial Dev Setup](https://github.com/wchavarria03/dotfiles#Initial-development-setup)
 - [Automatic Setup](https://github.com/wchavarria03/dotfiles#Development-setup)
 - [Font](https://github.com/wchavarria03/dotfiles#Font)
@@ -46,12 +47,7 @@ Get Packer packages loaded
 Previous error about colorschema shouldn't be happening anymore
 
 ## Git
-Gitconfig requires to add a file to your $HOME folder with the name gpg_key.inc. This file will be loaded as an extention of your .gitconfig file, inside the file the content should looks like the example below.
-NOTE: You can also add the key directly and remove the include code from the .gitconfig file.
-```
-[user]
-    signingkey = <KEY>
-```
+SSH keys were moved to 1password and sinin commits is now using ssh instead of GPG.
 
 ## Terminal ANSI Colors and Config
 - MesloLGS NF Bold 12pt.

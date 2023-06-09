@@ -79,6 +79,7 @@ PACKAGES=(
   slack
   spectacle
   1password
+  1password/tap/1password-cli
 )
 
 echo "${COLOR_GREEN}*------------------------                                                   ------------------------*${COLOR_REST}"

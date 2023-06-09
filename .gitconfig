@@ -1,6 +1,7 @@
 [user]
     name = Walter Chavarria
     email = wchavarria03@gmail.com
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINYO5lGpoLvobPw5V5dAGyEFIOOTK0UtgrPafcRIk2q/
 [color]
     ui = auto
 [color "branch"]
@@ -44,6 +45,7 @@
 [url "git@github.com:"]
     insteadOf = https://github.com/
 [gpg]
-    program = gpg
-[include]
-    path = ~/gpg_key.inc
+    format = ssh
+[gpg "ssh"]
+    program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+	allowedSignersFile = /Users/wchavarria/.ssh/allowed_signers
