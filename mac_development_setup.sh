@@ -151,7 +151,7 @@ else
 fi
 
 echo "${COLOR_GREEN}*------------------------     ZSH Auto load op_env symlinks--------------------*${COLOR_REST}"
-ln -s ~/code/dotfiles/.zsh_autoload_functions/env_op ~/.zsh_autoload_functions/env-op
+ln -s ~/code/dotfiles/.zsh_autoload_functions/env-op ~/.zsh_autoload_functions/env-op
 
 # TOD CONFIRM IF STILL USED
 echo "${COLOR_GREEN}*------------------------     Common repo symlink--------------------*${COLOR_REST}"

@@ -76,7 +76,7 @@ DISABLE_UPDATE_PROMPT="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git direnv)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.bash_profile
@@ -132,7 +132,7 @@ export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Direnv
-eval "$(direnv hook bash)"
+# eval "$(direnv hook bash)"
 export GPG_TTY=$(tty)
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
