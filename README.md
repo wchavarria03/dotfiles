@@ -11,18 +11,17 @@
 # Dev Setup
 
 Index
-- [Requirements](https://github.com/wchavarria03/dotfiles#Initial-development-setup)
-- [Initial Dev Setup](https://github.com/wchavarria03/dotfiles#Initial-development-setup)
-- [Automatic Setup](https://github.com/wchavarria03/dotfiles#Development-setup)
-- [Font](https://github.com/wchavarria03/dotfiles#Font)
+- [Requirements](https://github.com/wchavarria03/dotfiles#Requirements)
+- [Automatic Setup](https://github.com/wchavarria03/dotfiles#Automatic-setup)
+- [Powerlink Config](https://github.com/wchavarria03/dotfiles#Powerlin-Config)
 - [Terminal ANSI Colors and Config](https://github.com/wchavarria03/dotfiles#Terminal-ANSI-Colors-and-Config)
-- [OhMyZsh Prompt](https://github.com/wchavarria03/dotfiles#OhMyZsh-Prompt)
-- [ZSH Config](https://github.com/wchavarria03/dotfiles#zsh-Config)
-- [tmux Config](https://github.com/wchavarria03/dotfiles#tmux-Config)
-- [nvim Config](https://github.com/wchavarria03/dotfiles#nvim-Config)
-- [gitconfig](https://github.com/wchavarria03/dotfiles#gitconfig)
+- [tmux Config](https://github.com/wchavarria03/dotfiles#Notes)
+- [nvim Config](https://github.com/wchavarria03/dotfiles#Screenshots)
+- [Commonn issues](https://github.com/wchavarria03/dotfiles#Common-issues)
 
-## Install Xcode
+## Requirements
+
+### Install Xcode
 ```
 $ xcode-select --install
 ```
@@ -48,6 +47,7 @@ Previous error about colorschema shouldn't be happening anymore
 
 ## Git
 SSH keys were moved to 1password and sinin commits is now using ssh instead of GPG.
+SSH keys needs to be added on github account as Authentication Keys and Signing keys
 
 ## Terminal ANSI Colors and Config
 - MesloLGS NF Bold 12pt.
