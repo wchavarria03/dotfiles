@@ -24,7 +24,7 @@ echo "${COLOR_GREEN}*------------------------    Creating folders structure...  
 [[ ! -d ~/Documents/screenshots ]] && mkdir ~/Documents/screenshots && echo '~/Documents/screenshots folder created!!'
 [[ ! -d ~/.config ]] && mkdir ~/.config && echo '~/.config folder created!!'
 [[ ! -d ~/.config/nvim ]] && mkdir ~/.config/nvim && echo '~/.config/nvim folder created!!'
-[[ ! -d ~/.secrets ]] && mkdir ~/.secrets && echo '~/.secrets folder created!!'
+[[ ! -d ~/.zsh_autoload_functions ]] && mkdir ~/.zsh_autoload_functions && echo '~/.zsh_autoload_functions folder created!!'
 
 # Check for Homebrew, install if we don't have it
 if test ! $(which brew); then
@@ -114,16 +114,6 @@ FONTS=(
 brew install ${FONTS[@]}
 
 echo "${COLOR_GREEN}*------------------------     Repos                                 --------------------*${COLOR_REST}"
-if [ ! -d ~/code/secrets/ ]
-then
-    echo "${COLOR_GREEN}*------------------------       Cloning secrets repo...--------------------*${COLOR_REST}"
-    cd ~/code
-    git clone https://github.com/wchavarria03/secrets
-else
-    echo "${COLOR_GREEN}*------------------------       Updating secrets repo...--------------------*${COLOR_REST}"
-    cd ~/code/secrets
-    git pull
-fi
 
 if [ ! -d ~/code/dotfiles/ ]
 then
@@ -160,9 +150,8 @@ else
     cd ~/code/dotfiles
 fi
 
-echo "${COLOR_GREEN}*------------------------     Secrets repo symlinks--------------------*${COLOR_REST}"
-ln -s ~/code/secrets/secrets.zsh ~/.secrets/secrets.zsh
-ln -s ~/code/secrets/gpg_key.inc ~/gpg_key.inc
+echo "${COLOR_GREEN}*------------------------     ZSH Auto load op_env symlinks--------------------*${COLOR_REST}"
+ln -s ~/code/dotfiles/.zsh_autoload_functions/env_op ~/.zsh_autoload_functions/env-op
 
 # TOD CONFIRM IF STILL USED
 echo "${COLOR_GREEN}*------------------------     Common repo symlink--------------------*${COLOR_REST}"

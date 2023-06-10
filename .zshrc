@@ -111,6 +111,12 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Autoload zsh shell functions defined in the function path for 1password keys
+fpath=( ~/.zsh_autoload_functions "${fpath[@]}" )
+autoload -Uz env-op
+
+env-op "LTV TOKENS"
+
 # Bash completion
 [[ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ]] && . \"/usr/local/etc/profile.d/bash_completion.sh
 
