@@ -155,5 +155,10 @@ return {
         blend = 0,
       }
     },
+  },
+  {
+    "nvim-zh/colorful-winsep.nvim",
+    config = true,
+    event = { "WinNew" },
   }
 }

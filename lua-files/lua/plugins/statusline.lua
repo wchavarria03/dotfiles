@@ -70,48 +70,40 @@ local comps = {
 }
 
 return {
-  {
-    'nvim-lualine/lualine.nvim',
-    event = 'VeryLazy' ,
-    opts = {
-      theme = 'catppuccin',
-      disabled_filetypes = {
-        'NvimTree' ,
-        statusline = {},
-        winbar = {},
+  'nvim-lualine/lualine.nvim',
+  event = 'VeryLazy' ,
+  opts = {
+    theme = 'catppuccin',
+    disabled_filetypes = {
+      'NvimTree' ,
+      statusline = {},
+      winbar = {},
+    },
+    sections = {
+      lualine_a = {'buffers'},
+      lualine_b = {
+        'mode',
+        comps.diff,
+        comps.diagnostics
       },
-      sections = {
-        lualine_a = {},
-        lualine_b = {
-          'mode',
-          comps.diff,
-          comps.diagnostics
-        },
-        lualine_c = {
-          comps.file_name
-        },
-        lualine_x = {'encoding', 'filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
+      lualine_c = {
+        comps.file_name
       },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {
-          comps.file_name
-        },
-        lualine_y = {},
-        lualine_x = {'progress'},
-        lualine_z = {'location'}
+      lualine_x = {'encoding', 'filetype'},
+      lualine_y = {'progress'},
+      lualine_z = {'location'}
+    },
+    inactive_sections = {
+      lualine_a = {},
+      lualine_b = {},
+      lualine_c = {
+        comps.file_name
       },
-      extensions = { 'nvim-tree' },
-      filetypes = { 'NvimTree' },
-    }
-  },
-  {
-    'akinsho/bufferline.nvim',
-    event = { 'BufReadPost', 'BufNewFile' },
-    version = "*",
-    dependencies = 'nvim-tree/nvim-web-devicons'
+      lualine_y = {},
+      lualine_x = {'progress'},
+      lualine_z = {'location'}
+    },
+    extensions = { 'nvim-tree' },
+    filetypes = { 'NvimTree' },
   }
 }

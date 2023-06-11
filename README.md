@@ -13,7 +13,7 @@
 Index
 - [Requirements](https://github.com/wchavarria03/dotfiles#Requirements)
 - [Automatic Setup](https://github.com/wchavarria03/dotfiles#Automatic-setup)
-- [Powerlink Config](https://github.com/wchavarria03/dotfiles#Powerlin-Config)
+- [Powerlink Config](https://github.com/wchavarria03/dotfiles#Powerlink-Config)
 - [Terminal ANSI Colors and Config](https://github.com/wchavarria03/dotfiles#Terminal-ANSI-Colors-and-Config)
 - [tmux Config](https://github.com/wchavarria03/dotfiles#Notes)
 - [nvim Config](https://github.com/wchavarria03/dotfiles#Screenshots)

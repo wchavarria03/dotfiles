@@ -22,7 +22,7 @@ return {
       },
       dim_inactive = {
         enabled = true,
-        percentage = 0.40,
+        percentage = 0.60,
         shade = 'light',
       }
     },
