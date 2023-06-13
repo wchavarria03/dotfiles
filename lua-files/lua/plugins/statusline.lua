@@ -154,14 +154,14 @@ return {
 
 
       utils.mapKey('Buffer', 'n', '<leader>b1', '<Cmd>BufferLineGoToBuffer 1<CR>', merge_tb('force', buffer_opts, { desc = 'Go 1'}))
-      utils.mapKey('Buffer', 'n', '<leader>b1', '<Cmd>BufferLineGoToBuffer 2<CR>', merge_tb('force', buffer_opts, { desc = 'Go 2'}))
-      utils.mapKey('Buffer', 'n', '<leader>b2', '<Cmd>BufferLineGoToBuffer 3<CR>', merge_tb('force', buffer_opts, { desc = 'Go 3'}))
-      utils.mapKey('Buffer', 'n', '<leader>b3', '<Cmd>BufferLineGoToBuffer 4<CR>', merge_tb('force', buffer_opts, { desc = 'Go 4'}))
-      utils.mapKey('Buffer', 'n', '<leader>b4', '<Cmd>BufferLineGoToBuffer 5<CR>', merge_tb('force', buffer_opts, { desc = 'Go 5'}))
-      utils.mapKey('Buffer', 'n', '<leader>b5', '<Cmd>BufferLineGoToBuffer 6<CR>', merge_tb('force', buffer_opts, { desc = 'Go 6'}))
-      utils.mapKey('Buffer', 'n', '<leader>b6', '<Cmd>BufferLineGoToBuffer 7<CR>', merge_tb('force', buffer_opts, { desc = 'Go 7'}))
-      utils.mapKey('Buffer', 'n', '<leader>b7', '<Cmd>BufferLineGoToBuffer 8<CR>', merge_tb('force', buffer_opts, { desc = 'Go 8'}))
-      utils.mapKey('Buffer', 'n', '<leader>b8', '<Cmd>BufferLineGoToBuffer 9<CR>', merge_tb('force', buffer_opts, { desc = 'Go 9'}))
+      utils.mapKey('Buffer', 'n', '<leader>b2', '<Cmd>BufferLineGoToBuffer 2<CR>', merge_tb('force', buffer_opts, { desc = 'Go 2'}))
+      utils.mapKey('Buffer', 'n', '<leader>b3', '<Cmd>BufferLineGoToBuffer 3<CR>', merge_tb('force', buffer_opts, { desc = 'Go 3'}))
+      utils.mapKey('Buffer', 'n', '<leader>b4', '<Cmd>BufferLineGoToBuffer 4<CR>', merge_tb('force', buffer_opts, { desc = 'Go 4'}))
+      utils.mapKey('Buffer', 'n', '<leader>b5', '<Cmd>BufferLineGoToBuffer 5<CR>', merge_tb('force', buffer_opts, { desc = 'Go 5'}))
+      utils.mapKey('Buffer', 'n', '<leader>b6', '<Cmd>BufferLineGoToBuffer 6<CR>', merge_tb('force', buffer_opts, { desc = 'Go 6'}))
+      utils.mapKey('Buffer', 'n', '<leader>b7', '<Cmd>BufferLineGoToBuffer 7<CR>', merge_tb('force', buffer_opts, { desc = 'Go 7'}))
+      utils.mapKey('Buffer', 'n', '<leader>b8', '<Cmd>BufferLineGoToBuffer 8<CR>', merge_tb('force', buffer_opts, { desc = 'Go 8'}))
+      utils.mapKey('Buffer', 'n', '<leader>b9', '<Cmd>BufferLineGoToBuffer 9<CR>', merge_tb('force', buffer_opts, { desc = 'Go 9'}))
     end,
     dependencies = 'nvim-tree/nvim-web-devicons',
   }
