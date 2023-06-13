@@ -30,11 +30,6 @@ bufmap('n', '<C-j>', '<C-w>j', 'Move Right Window')
 bufmap('n', '<C-k>', '<C-w>k', 'Move Up Window')
 bufmap('n', '<C-l>', '<C-w>l', 'Move Down Window')
 
--- Buffers
-bufmap('n', '<leader>bd', ':bd<CR>', 'Buffer Delete')
-bufmap('n', '<leader>bn', ':bnext<CR>', 'Buffer Next')
-bufmap('n', '<leader>bp', ':bprevious<CR>', 'Buffer Prev')
-
 -- Windows
 bufmap('n', '<leader>q', ':quitall<CR>', 'Close All Windows')
 bufmap('n', '<C-v>', ':vsplit<CR>', 'Window Split Vert')
