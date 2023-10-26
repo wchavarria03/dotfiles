@@ -80,6 +80,8 @@ PACKAGES=(
   spectacle
   1password
   1password/tap/1password-cli
+  alfred
+  stats
 )
 
 echo "${COLOR_GREEN}*------------------------                                                   ------------------------*${COLOR_REST}"

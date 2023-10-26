@@ -87,7 +87,8 @@ return {
         }
       },
       filters  = {
-        custom = {'.git', 'node_modules', '.cache'}
+        custom = {'.git', 'node_modules', '.cache'},
+        dotfiles = false
       }
     },
     config = function(_, opts)

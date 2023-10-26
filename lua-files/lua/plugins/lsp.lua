@@ -99,9 +99,29 @@ return {
         require('cmp_nvim_lsp').default_capabilities()
       )
 
+      vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+      vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+      local border = {
+        {"╭", "FloatBorder"},
+        {"─", "FloatBorder"},
+        {"╮", "FloatBorder"},
+        {"│", "FloatBorder"},
+        {"╯", "FloatBorder"},
+        {"─", "FloatBorder"},
+        {"╰", "FloatBorder"},
+        {"│", "FloatBorder"},
+      }
+      local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+      function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+        opts = opts or {}
+        opts.border = opts.border or border
+        return orig_util_open_floating_preview(contents, syntax, opts, ...)
+      end
+
       local lsp_custom_config = {
         flags = {
-          debounce_text_changes = 150,
+          debounce_text_changes = 1000,
         },
         capabilities = lsp_custom_capabilities,
         on_attach = function(_, bufnr)
@@ -134,6 +154,8 @@ return {
         end
       }
 
+
+      require('lspconfig.ui.windows').default_options.border = 'single'
       lspconfig.util.default_config = vim.tbl_deep_extend(
         'force',
         lsp_defaults,

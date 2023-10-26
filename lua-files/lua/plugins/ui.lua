@@ -43,6 +43,7 @@ return {
   {
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
+    main = "ibl",
     opts = {
       char_list = { '│', '¦', '┆', '┊' },
       filetype_exclude = {
@@ -144,7 +145,7 @@ return {
     config = function(_, opts)
       require('which-key').setup(opts)
       vim.o.timeout = true
-      vim.o.timeoutlen = 300
+      vim.o.timeoutlen = 1000
     end
   },
   {

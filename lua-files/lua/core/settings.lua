@@ -37,7 +37,7 @@ opt.ignorecase = true                 -- ignore case letters when search
 opt.smartcase = true                  -- ignore lowercase for the whole pattern
 opt.scrolloff = 3                     -- minimum n# of lines above and below cursor
 opt.relativenumber = true             -- Relative line numbers
-opt.wildmode = {'list', 'longest'}    -- Command-line completion mode
+opt.wildmode = {'list', 'longest', 'full'}    -- Command-line completion mode
 opt.pumblend = 10                     -- transparency of pop-up menu
 opt.pumheight = 8                     -- pop up menu height
 
@@ -59,9 +59,9 @@ opt.wildignore:append { '*.pyc', '*.o', '*.obj', '.git', '*.rbc', '*.class' , '.
 -- Tabs, indent
 -----------------------------------------------------------
 opt.expandtab = true                  -- use spaces instead of tabs
-opt.shiftwidth = 4                    -- Size of an indent - 2 spaces when tab
-opt.tabstop = 4                       -- Number of spaces tabs count for - 1 tab == 2 spaces
-opt.softtabstop = 4	                  -- In insert mode, tabs are 2 spaces
+opt.shiftwidth = 2                    -- Size of an indent - 2 spaces when tab
+opt.tabstop = 2                       -- Number of spaces tabs count for - 1 tab == 2 spaces
+opt.softtabstop = 2	                  -- In insert mode, tabs are 2 spaces
 opt.smartindent = true                -- Insert indents automatically
 
 cmd [[set formatoptions=njtcroql]]
