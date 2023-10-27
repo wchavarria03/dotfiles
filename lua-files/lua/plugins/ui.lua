@@ -45,25 +45,49 @@ return {
     event = { 'BufReadPost', 'BufNewFile' },
     main = "ibl",
     opts = {
-      char_list = { '│', '¦', '┆', '┊' },
-      filetype_exclude = {
-        'TelescopePrompt',
-        'TelescopeResults',
-        'alpha',
-        'help',
-        'lazy',
-        'lspinfo',
-        'mason',
-        'nvim-tree',
-        'terminal',
+      -- char_list = { '│', '¦', '┆', '┊' },
+      exclude = {
+        filetypes = {
+         'TelescopePrompt',
+         'TelescopeResults',
+         'lspinfo',
+         'help',
+          '',
+         'alpha',
+         'lazy',
+         'mason',
+         'nvim-tree',
+         'terminal',
+        }
       },
-      buftype_exclude = { 'terminal', 'nofile' },
-      show_current_context = true,
-      show_current_context_start = true,
-      show_end_of_line = false,
-      show_first_indent_level = false,
-      show_trailing_blankline_indent = false,
-      space_char_blankline = ' ',
+      scope = {
+        show_end = false,
+        include = {
+          node_type = {
+            ['*'] = {
+              'arguments',
+              'bracket',
+              'block',
+              'declaration',
+              'expression_list',
+              'field',
+              'for',
+              'func_literal',
+              'function ',
+              'if',
+              'import',
+              'import_spec_list',
+              'list',
+              'return_statement',
+              'short_var_declaration',
+              'statement',
+              'switch_body',
+              'try',
+              'type'
+            }
+          },
+        },
+      }
     }
   },
   {
