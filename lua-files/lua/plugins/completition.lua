@@ -27,6 +27,7 @@ return {
         Field = "",
         Variable = "",
         Class = "",
+        Copilot = "",
         Interface = "",
         Module = "",
         Property = "",
@@ -47,16 +48,36 @@ return {
         TypeParameter = "",
       }
 
-      local cmd_mappings = {
-        ['<Tab>'] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
-        }),
-      }
+      local has_words_before = function()
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+        local line, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+      end
+
+
+      -- local cmd_mappings = {
+       --  ['<Tab>'] = cmp.mapping.confirm({
+       --    behavior = cmp.ConfirmBehavior.Replace,
+       --    select = true,
+       --  }),
+      -- }
+
+      -- Copilot fix
+      cmp.setup({
+        mapping = {
+          ["<Tab>"] = vim.schedule_wrap(function(fallback)
+            if cmp.visible() and has_words_before() then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+            else
+              fallback()
+            end
+          end),
+        },
+      })
 
       -- cmdline
       cmp.setup.cmdline(':', {
-        mapping = cmp.mapping.preset.cmdline(cmd_mappings),
+        -- mapping = cmp.mapping.preset.cmdline(cmd_mappings),
         sources = cmp.config.sources({
           {
             name = 'cmdline',
@@ -70,7 +91,7 @@ return {
       })
       -- lsp_document_symbols
       cmp.setup.cmdline({ '/', '?' }, {
-        mapping = cmp.mapping.preset.cmdline(cmd_mappings),
+        -- mapping = cmp.mapping.preset.cmdline(cmd_mappings),
         sources = cmp.config.sources({
           { name = 'nvim_lsp_document_symbol' },
           { name = 'buffer' }
@@ -96,41 +117,42 @@ return {
           c = cmp.mapping.close(),
         }),
         ["<CR>"] = cmp.mapping.confirm { select = true },
-        ["<Tab>"] = cmp.mapping(
-          function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
-            elseif check_backspace() then
-              fallback()
-            else
-              fallback()
-            end
-          end,
-          {
-            "i",
-            "s",
-          }
-        ),
-        ["<S-Tab>"] = cmp.mapping(
-          function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, {
-            "i",
-            "s",
-          }
-        ),
+        -- ["<Tab>"] = cmp.mapping(
+        --   function(fallback)
+        --     if cmp.visible() then
+        --       cmp.select_next_item()
+        --     elseif luasnip.expand_or_jumpable() then
+        --       luasnip.expand_or_jump()
+        --     elseif check_backspace() then
+        --       fallback()
+        --     else
+        --       fallback()
+        --     end
+        --   end,
+        --   {
+        --     "i",
+        --     "s",
+        --   }
+        -- ),
+        -- ["<S-Tab>"] = cmp.mapping(
+        --   function(fallback)
+        --     if cmp.visible() then
+        --       cmp.select_prev_item()
+        --     elseif luasnip.jumpable(-1) then
+        --       luasnip.jump(-1)
+        --     else
+        --       fallback()
+        --     end
+        --   end, {
+        --     "i",
+        --     "s",
+        --   }
+        -- ),
       })
 
       opts.sources = cmp.config.sources({
         { name = 'nvim_lsp', keyword_length = 1 },
+        { name = "copilot", group_index = 2 },
         { name = "luasnip", keyword_length = 2 },
         {
           name = 'buffer',
@@ -163,6 +185,7 @@ return {
             path = '[Path]',
             nvim_lua = '[Lua]',
             cmdline = '[Cmdline]',
+            copilot = '[Copilot]'
           })[entry.source.name]
           return vim_item
         end,
@@ -212,4 +235,10 @@ return {
       require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  }
 }

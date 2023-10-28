@@ -141,6 +141,18 @@ else
     cd ~/code/dotfiles
 fi
 
+if [ ! -d ~/code/notes/ ]
+then
+    echo "${COLOR_GREEN}*------------------------       Cloning notes repo...--------------------*${COLOR_REST}"
+    cd ~/code
+    git clone https://github.com/wchavarria03/notes
+else
+    echo "${COLOR_GREEN}*------------------------       Updating notes repo...--------------------*${COLOR_REST}"
+    cd ~/code/notes
+    git pull
+    cd ~/code/dotfiles
+fi
+
 if [ ! -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k ]
 then
     echo "${COLOR_GREEN}*------------------------       Cloning Powerlevel10k repo...--------------------*${COLOR_REST}"
@@ -177,6 +189,9 @@ ln -s ~/code/dotfiles/lua-files/init.lua ~/.config/nvim/init.lua
 
 echo "${COLOR_GREEN}*------------------------       Lua folder symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/lua-files/lua ~/.config/nvim/lua
+
+echo "${COLOR_GREEN}*------------------------     Notes folder symlink--------------------*${COLOR_REST}"
+ln -s ~/code/notes ~/notes
 
 # ------------------------------ OSX CONFIG
 echo "${COLOR_GREEN}*------------------------     Configuring OSX...--------------------*${COLOR_REST}"

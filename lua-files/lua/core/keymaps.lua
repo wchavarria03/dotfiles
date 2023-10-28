@@ -8,7 +8,7 @@ end
 
 -- clear search highlighting
 bufmap('n', '<leader>c', ':nohl<CR>', 'Clear Selection')
-bufmap('n', '<Esc>', ':nohl<CR>', 'Clear Selection')
+-- bufmap('n', '<Esc>', ':nohl<CR>', 'Clear Selection')
 
 -- increment / decrement
 bufmap('n', '+', '<C-a>', 'Increment')
