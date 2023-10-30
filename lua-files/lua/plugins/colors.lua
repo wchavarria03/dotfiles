@@ -77,10 +77,11 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = 'gnn',
-          node_incremental = 'grn',
-          scope_incremental = 'grc',
-          node_decremental = 'grm',
+          init_selection = '<leader>ss',
+          node_incremental = '<leader>si',
+          node_decremental = '<leader>sd',
+          scope_incremental = '<leader>ssi',
+          scope_decremental= '<leader>ssd',
         },
       },
       indent = {

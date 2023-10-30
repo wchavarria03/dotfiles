@@ -133,24 +133,26 @@ return {
           -- For example :help vim.lsp.buf.hover()
           utils.mapKey('LSP', 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', merge_tb('force', opts, { desc = 'Declaration' }))
           utils.mapKey('LSP', 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', merge_tb('force', opts, { desc = 'Definition' }))
-          utils.mapKey('LSP', 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', merge_tb('force', opts, { desc = 'Hover' }))
           utils.mapKey('LSP', 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', merge_tb('force', opts, { desc = 'Implementation' }))
-          utils.mapKey('LSP', 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', merge_tb('force', opts, { desc = 'Add Workspace' }))
-          utils.mapKey('LSP', 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', merge_tb('force', opts, { desc = 'Remove Workspace' }))
-          utils.mapKey('LSP', 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', merge_tb('force', opts, { desc = 'List Workspaces' }))
-          utils.mapKey('LSP', 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', merge_tb('force', opts, { desc = 'Type Definition' }))
           utils.mapKey('LSP', 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', merge_tb('force', opts, { desc = 'References' }))
-          utils.mapKey('LSP', 'n', '<C-d>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', merge_tb('force', opts, { desc = 'Signature' }))
-          utils.mapKey('LSP', 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', merge_tb('force', opts, { desc = 'Rename' }))
-          utils.mapKey('LSP', 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', merge_tb('force', opts, { desc = 'Code Action' }))
-          utils.mapKey('LSP', 'n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', merge_tb('force', opts, { desc = 'Line Diagnostics' }))
+          utils.mapKey('LSP', 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', merge_tb('force', opts, { desc = 'Hover' }))
 
-          utils.mapKey('LSP', 'x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>', merge_tb('force', opts, { desc = 'Range Action' }))
-          utils.mapKey('LSP', 'n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', merge_tb('force', opts, { desc = 'Diagnostic Modal' }))
+          -- TODO: Pending to learn how to use the workspace
+          utils.mapKey('LSP', 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', merge_tb('force', opts, { desc = 'Add Workspace' }))
+          utils.mapKey('LSP', 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', merge_tb('force', opts, { desc = 'Remove Workspace' }))
+          utils.mapKey('LSP', 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', merge_tb('force', opts, { desc = 'List Workspaces' }))
+
+          -- utils.mapKey('LSP', 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<cr>', merge_tb('force', opts, { desc = 'Type Definition' }))
+          utils.mapKey('LSP', 'n', '<C-d>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', merge_tb('force', opts, { desc = 'Signature' }))
+          utils.mapKey('LSP', 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', merge_tb('force', opts, { desc = 'Code Action' }))
+          utils.mapKey('LSP', 'x', '<leader>cA', '<cmd>lua vim.lsp.buf.range_code_action()<cr>', merge_tb('force', opts, { desc = 'Range Action' }))
+          utils.mapKey('LSP', 'n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<cr>', merge_tb('force', opts, { desc = 'Rename' }))
+
+          utils.mapKey('LSP', 'n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<cr>', merge_tb('force', opts, { desc = 'Diagnostic Modal' }))
+          utils.mapKey('LSP', 'n', '<leader>dl', '<cmd>Telescope diagnostics<CR>', merge_tb('force', opts, { desc = 'Telescope Diagnostics' }))
 
           utils.mapKey('LSP', 'n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<cr>', merge_tb('force', opts, { desc = 'Prev' }))
           utils.mapKey('LSP', 'n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<cr>', merge_tb('force', opts, { desc =  'Next' }))
-          utils.mapKey('LSP', 'n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', merge_tb('force', opts, { desc = 'Telescope Diagostics' }))
         end
       }
 

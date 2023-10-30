@@ -110,6 +110,13 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Use Neovim as "preferred editor"
+export VISUAL=nvim
+
+# Use Neovim instead of Vim or Vi
+alias vim=nvim
+alias vi=nvim
+
 # Autoload zsh shell functions defined in the function path for 1password keys
 fpath=( ~/.zsh_autoload_functions "${fpath[@]}" )
 autoload -Uz env-op
