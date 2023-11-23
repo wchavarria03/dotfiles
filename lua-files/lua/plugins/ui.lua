@@ -43,6 +43,7 @@ return {
   {
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufReadPost', 'BufNewFile' },
+    enabled = false,
     main = "ibl",
     opts = {
       -- char_list = { '│', '¦', '┆', '┊' },
@@ -101,6 +102,7 @@ return {
           inc_rename = true, -- enables an input dialog for inc-rename.nvim
           lsp_doc_border = true,
         },
+        throttle = 1000 /120,
         routes = {
           {
             view = 'mini',
@@ -154,6 +156,9 @@ return {
     },
     config = function()
       require('notify').setup({
+        fps =120,
+        render = "minimal",
+        timeout = 500,
         top_down = true
       });
     end
@@ -182,9 +187,5 @@ return {
       }
     },
   },
-  {
-    "nvim-zh/colorful-winsep.nvim",
-    config = true,
-    event = { "WinNew" },
-  }
 }
+

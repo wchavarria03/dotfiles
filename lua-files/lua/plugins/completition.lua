@@ -1,10 +1,6 @@
 -----------------------------------------------------------
 -- Autocomplete configuration file
 -----------------------------------------------------------
-
--- Plugin: nvim-cmp
--- https://github.com/hrsh7th/nvim-cmp
-
 return {
   {
     'hrsh7th/nvim-cmp',
@@ -237,6 +233,8 @@ return {
   },
   {
     "zbirenbaum/copilot-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
+    dependencies = {'zbirenbaum/copilot.lua'},
     config = function ()
       require("copilot_cmp").setup()
     end

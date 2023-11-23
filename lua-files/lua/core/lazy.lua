@@ -1,17 +1,19 @@
------------------------------------------------------------
--- Improve Loading TImes
------------------------------------------------------------
-vim.loader.enable()
 
-
+vim.g.mapleader = ','                     -- change leader to a comma
+vim.opt.timeoutlen = 500                  -- time waiting for key after leader key
 -----------------------------------------------------------
 -- NVIM Tree (Disable netrw)
 -----------------------------------------------------------
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require('core/settings')                   -- settings
-require('core/highlights')                 -- highlights
+-----------------------------------------------------------
+-- Improve Loading TImes
+-----------------------------------------------------------
+vim.loader.enable()
+
+require('core/options')                    -- options
+require('core/commands')                   -- commands
 require('core/keymaps')                    -- keymaps
 
 -----------------------------------------------------------

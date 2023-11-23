@@ -59,12 +59,15 @@ PACKAGES=(
 #  python
   python3
 # the_silver_searcher
-  romkatv/powerlevel10k/powerlevel10k
+  powerlevel10k
   ripgrep
   tree
   nvim
   nvm
   zsh
+# Terminal suggestions
+  zsh-syntax-highlighting
+  zsh-autosuggestions
 #  wget
 
 # APPS
@@ -128,19 +131,6 @@ else
     git pull
 fi
 
-# TODO CHECK IF STILL USED
-if [ ! -d ~/code/common/ ]
-then
-    echo "${COLOR_GREEN}*------------------------       Cloning common repo...--------------------*${COLOR_REST}"
-    cd ~/code
-    git clone https://github.com/wchavarria03/common
-else
-    echo "${COLOR_GREEN}*------------------------       Updating common repo...--------------------*${COLOR_REST}"
-    cd ~/code/common
-    git pull
-    cd ~/code/dotfiles
-fi
-
 if [ ! -d ~/code/notes/ ]
 then
     echo "${COLOR_GREEN}*------------------------       Cloning notes repo...--------------------*${COLOR_REST}"
@@ -153,23 +143,19 @@ else
     cd ~/code/dotfiles
 fi
 
-if [ ! -d ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k ]
+if [ ! -d ${ZSH_CUSTOM}/themes/powerlevel10k ]
 then
     echo "${COLOR_GREEN}*------------------------       Cloning Powerlevel10k repo...--------------------*${COLOR_REST}"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
 else
     echo "${COLOR_GREEN}*------------------------       Updating Powerlevel10k repo...--------------------*${COLOR_REST}"
-    cd ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    cd ${ZSH_CUSTOM}/themes/powerlevel10k
     git pull
     cd ~/code/dotfiles
 fi
 
 echo "${COLOR_GREEN}*------------------------     ZSH Auto load op_env symlinks--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/.zsh_autoload_functions/env-op ~/.zsh_autoload_functions/env-op
-
-# TOD CONFIRM IF STILL USED
-echo "${COLOR_GREEN}*------------------------     Common repo symlink--------------------*${COLOR_REST}"
-ln -s ~/code/common/common.zsh-theme ~/.oh-my-zsh/custom/themes/common.zsh-theme
 
 echo "${COLOR_GREEN}*------------------------     Configuring powerline repo--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/.p10k.zsh ~/.p10k.zsh
