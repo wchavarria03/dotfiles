@@ -24,6 +24,9 @@ echo "${COLOR_GREEN}*------------------------    Creating folders structure...  
 [[ ! -d ~/Documents/screenshots ]] && mkdir ~/Documents/screenshots && echo '~/Documents/screenshots folder created!!'
 [[ ! -d ~/.config ]] && mkdir ~/.config && echo '~/.config folder created!!'
 [[ ! -d ~/.config/nvim ]] && mkdir ~/.config/nvim && echo '~/.config/nvim folder created!!'
+[[ ! -d ~/.config/nvim/backupdir ]] && mkdir ~/.config/nvim/backupdir && echo '~/.config/nvim/backupdir folder created!!'
+[[ ! -d ~/.config/nvim/swap ]] && mkdir ~/.config/nvim/swap && echo '~/.config/nvim/swap folder created!!'
+[[ ! -d ~/.config/nvim/undodir ]] && mkdir ~/.config/nvim/undodir && echo '~/.config/nvim/undodir folder created!!'
 [[ ! -d ~/.zsh_autoload_functions ]] && mkdir ~/.zsh_autoload_functions && echo '~/.zsh_autoload_functions folder created!!'
 
 # Check for Homebrew, install if we don't have it

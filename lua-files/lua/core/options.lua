@@ -37,14 +37,14 @@ local options = {
   wildmode = {'list', 'longest', 'full'},    -- Command-line completion mode
 
   backup = true,                             -- disable backup
-  backupdir = '~/.config/nvim/backupdir',    -- set backupdir
+  backupdir = vim.fn.expand('~/.config/nvim/backupdir'),    -- set backupdir
 
   updatecount = 200,                         -- Write swap file to disk every 100 chars
   autoread = true,                           -- Reload files changed outside vim
-  directory = '~/.config/nvim/swap',         -- set directory
+  directory = vim.fn.expand('~/.config/nvim/swap'),         -- set directory
 
   undofile = true,                           -- enable undofile
-  undodir = '~/.config/nvim/undodir',        -- set undodir
+  undodir = vim.fn.expand('~/.config/nvim/undodir'),        -- set undodir
 
   history = 100,                             -- remember n lines in history
 
