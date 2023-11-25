@@ -1,5 +1,6 @@
 
 vim.g.mapleader = ','                     -- change leader to a comma
+vim.g.maplocalleader = ';'                -- change local leader to a commacorelua
 vim.opt.timeoutlen = 500                  -- time waiting for key after leader key
 -----------------------------------------------------------
 -- NVIM Tree (Disable netrw)
@@ -15,7 +16,6 @@ vim.loader.enable()
 require('core/options')                    -- options
 require('core/commands')                   -- commands
 require('core/keymaps')                    -- keymaps
-
 -----------------------------------------------------------
 -- Import Lua modules
 -----------------------------------------------------------

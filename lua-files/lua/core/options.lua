@@ -34,7 +34,9 @@ local options = {
   foldnestmax = 10,	                         -- maximum fold depth
   foldenable = true,	                       -- set to display all folds open
   foldlevel = 2,	                           -- close folds with a level higher than this
-  wildmode = {'list', 'longest', 'full'},    -- Command-line completion mode
+
+ -- wildmode = {'list', 'longest', 'full'},    -- Command-line completion mode
+ -- wildoptions = 'pum',                       -- vertical wildmenu
 
   backup = true,                             -- disable backup
   backupdir = vim.fn.expand('~/.config/nvim/backupdir'),    -- set backupdir
@@ -48,13 +50,12 @@ local options = {
 
   history = 100,                             -- remember n lines in history
 
-  colorcolumn = '100',                       -- line lenght marker at 100 columns
   updatetime = 200,                          -- faster completion
   scrolloff = 15,                            -- minimum n# of lines above and below cursor
   mouse = '',                                -- disable mouse
 
   lazyredraw = true,                         -- faster scrolling
-  synmaxcol = 240,                           -- max column for syntax highlight
+  synmaxcol = 200,                           -- max column for syntax highlight
 
   list = true,                       -- Show some invisible characters
   listchars = {

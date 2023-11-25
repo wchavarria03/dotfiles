@@ -9,11 +9,6 @@ return {
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
 
-      local check_backspace = function()
-        local col = vim.fn.col '.' - 1
-        return col == 0 or vim.fn.getline('.'):sub(col, col):match '%s'
-      end
-
       --   פּ ﯟ   some other good icons
       local kind_icons = {
         Text = "",
@@ -50,50 +45,6 @@ return {
         return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
       end
 
-
-      -- local cmd_mappings = {
-       --  ['<Tab>'] = cmp.mapping.confirm({
-       --    behavior = cmp.ConfirmBehavior.Replace,
-       --    select = true,
-       --  }),
-      -- }
-
-      -- Copilot fix
-      cmp.setup({
-        mapping = {
-          ["<Tab>"] = vim.schedule_wrap(function(fallback)
-            if cmp.visible() and has_words_before() then
-              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            else
-              fallback()
-            end
-          end),
-        },
-      })
-
-      -- cmdline
-      cmp.setup.cmdline(':', {
-        -- mapping = cmp.mapping.preset.cmdline(cmd_mappings),
-        sources = cmp.config.sources({
-          {
-            name = 'cmdline',
-            option = {
-              ignore_cmds = { 'Man', '!' }
-            }
-          },
-          { name = 'path', options = { trailing_slash = true, label_trailing_slash = true } },
-          { name = 'buffer' },
-        }),
-      })
-      -- lsp_document_symbols
-      cmp.setup.cmdline({ '/', '?' }, {
-        -- mapping = cmp.mapping.preset.cmdline(cmd_mappings),
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp_document_symbol' },
-          { name = 'buffer' }
-        })
-      })
-
       local winhighlight = 'Normal:Normal,FloatBorder:FloatBorder,CursorLine:CursorLine,Search:Search'
       opts.window = {
         completion = cmp.config.window.bordered({ winhighlight = winhighlight, border = 'single' }),
@@ -113,42 +64,28 @@ return {
           c = cmp.mapping.close(),
         }),
         ["<CR>"] = cmp.mapping.confirm { select = true },
-        -- ["<Tab>"] = cmp.mapping(
-        --   function(fallback)
-        --     if cmp.visible() then
-        --       cmp.select_next_item()
-        --     elseif luasnip.expand_or_jumpable() then
-        --       luasnip.expand_or_jump()
-        --     elseif check_backspace() then
-        --       fallback()
-        --     else
-        --       fallback()
-        --     end
-        --   end,
-        --   {
-        --     "i",
-        --     "s",
-        --   }
-        -- ),
-        -- ["<S-Tab>"] = cmp.mapping(
-        --   function(fallback)
-        --     if cmp.visible() then
-        --       cmp.select_prev_item()
-        --     elseif luasnip.jumpable(-1) then
-        --       luasnip.jump(-1)
-        --     else
-        --       fallback()
-        --     end
-        --   end, {
-        --     "i",
-        --     "s",
-        --   }
-        -- ),
-      })
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+          elseif require("copilot.suggestion").is_visible() then
+            require("copilot.suggestion").accept()
+          elseif luasnip.expand_or_locally_jumpable() then
+            luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+
+        end, {
+        'i',
+        's'
+        });
+      });
 
       opts.sources = cmp.config.sources({
-        { name = 'nvim_lsp', keyword_length = 1 },
-        { name = "copilot", group_index = 2 },
+        { name = 'nvim_lsp', keyword_length = 2 },
+        { name = "copilot", group_index = 2, priority = 60 },
         { name = "luasnip", keyword_length = 2 },
         {
           name = 'buffer',
@@ -161,8 +98,13 @@ return {
         },
         { name = 'path' },
         { name = 'treesitter' },
-        -- { name = 'spell' },
       });
+
+      opts.sorting = opts.sorting or require('cmp.config.default')().sorting;
+      opts.sorting.comparators = {
+        require('copilot_cmp.comparators').prioritize,
+        unpack(opts.sorting.comparators or {})
+      }
 
       opts.snippet = {
         expand = function (args)
@@ -193,7 +135,7 @@ return {
       }
 
       opts.experimental = {
-        ghost_text = true -- set to false if using copilot
+        ghost_text = false
       }
     end,
     config = function(_, opts)
@@ -204,11 +146,12 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',                  -- nvim-comp for vim's cmdline
+      -- 'hrsh7th/cmp-cmdline',                  -- nvim-comp for vim's cmdline
       'hrsh7th/cmp-nvim-lsp-document-symbol', -- completition for textDocument/documentSymbol via nvim-lsp
       'petertriho/cmp-git',
 
       'windwp/nvim-autopairs',                -- autopairing of (){}[] etc
+      'zbirenbaum/copilot-cmp',
     }
   },
   {
@@ -235,8 +178,24 @@ return {
     "zbirenbaum/copilot-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {'zbirenbaum/copilot.lua'},
-    config = function ()
-      require("copilot_cmp").setup()
+    config = function (_, opts)
+      local copilot_cmp = require('copilot_cmp')
+      copilot_cmp.setup(opts)
+
+      -- attach cmp source whenever copilot attaches
+      -- fixes lazy-loading issues with the copilot cmp source
+      local copilotAttach
+      copilotAttach = vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client ~= nil and client.name == 'copilot' then
+            copilot_cmp._on_insert_enter({})
+          end
+        end,
+        -- on_detach = function ()
+        --  vim.api.nvim_del_autocmd({id = copilotAttach, clear = true})
+        -- end,
+      })
     end
   }
 }

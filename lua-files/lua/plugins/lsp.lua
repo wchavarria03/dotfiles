@@ -151,8 +151,8 @@ return {
           utils.mapKey('LSP', 'n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<cr>', merge_tb('force', opts, { desc = 'Diagnostic Modal' }))
           utils.mapKey('LSP', 'n', '<leader>dl', '<cmd>Telescope diagnostics<CR>', merge_tb('force', opts, { desc = 'Telescope Diagnostics' }))
 
-          utils.mapKey('LSP', 'n', '<leader>p', '<cmd>lua vim.diagnostic.goto_prev()<cr>', merge_tb('force', opts, { desc = 'Prev' }))
-          utils.mapKey('LSP', 'n', '<leader>n', '<cmd>lua vim.diagnostic.goto_next()<cr>', merge_tb('force', opts, { desc =  'Next' }))
+          utils.mapKey('LSP', 'n', '<leader>k', '<cmd>lua vim.diagnostic.goto_prev()<cr>', merge_tb('force', opts, { desc = 'Prev' }))
+          utils.mapKey('LSP', 'n', '<leader>j', '<cmd>lua vim.diagnostic.goto_next()<cr>', merge_tb('force', opts, { desc =  'Next' }))
         end
       }
 

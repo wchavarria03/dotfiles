@@ -8,7 +8,9 @@ end
 
 -- clear search highlighting
 bufmap('n', '<leader>c', ':nohl<CR>', 'Clear Selection')
--- bufmap('n', '<Esc>', ':nohl<CR>', 'Clear Selection')
+-- Escape mappings
+bufmap('i', '<Esc>', '<Nop>', 'Block Escape')
+bufmap('i', 'jk', '<Esc>', 'Escape')
 
 -- increment / decrement
 bufmap('n', '+', '<C-a>', 'Increment')
@@ -31,6 +33,5 @@ bufmap('n', '<C-k>', '<C-w>k', 'Move Up Window')
 bufmap('n', '<C-l>', '<C-w>l', 'Move Down Window')
 
 -- Windows
-bufmap('n', '<leader>q', ':quitall<CR>', 'Close All Windows')
 bufmap('n', '<C-v>', ':vsplit<CR>', 'Window Split Vert')
 bufmap('n', '<C-x>', ':split<CR>', 'Window Split Hori')

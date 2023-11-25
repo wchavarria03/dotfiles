@@ -76,6 +76,10 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy' ,
+    init = function()
+      -- disable until lualine loads
+      vim.opt.laststatus = 0
+    end,
     opts = {
       theme = 'catppuccin',
       disabled_filetypes = {
@@ -93,7 +97,10 @@ return {
         lualine_c = {
           comps.file_name
         },
-        lualine_x = {'encoding', 'filetype'},
+        lualine_x = {
+          'encoding',
+          'filetype'
+        },
         lualine_y = {'progress'},
         lualine_z = {'location'}
       },

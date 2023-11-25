@@ -125,9 +125,10 @@ return {
             filter = {
               any = {
                 { event = 'msg_show', find = '%d+ more lines' },
+                { event = 'msg_show', find = '%d+ fewer lines' },
                 { event = 'msg_show', find = '%d+ lines yanked' },
                 { event = 'msg_show', kind = '', find = 'written' },
-                -- { event = 'msg_show', kind = 'search_count' },
+                { event = 'msg_show', kind = 'search_count' },
               },
             },
             opts = { skip = true },
