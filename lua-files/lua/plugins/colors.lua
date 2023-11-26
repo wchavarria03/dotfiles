@@ -29,6 +29,7 @@ return {
     config = function (_, opts)
       require('catppuccin').setup(opts)
       vim.cmd.colorscheme('catppuccin')
+      vim.api.nvim_command('highlight VertSplit guifg=#95bb92')
     end,
   },
 

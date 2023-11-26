@@ -41,57 +41,6 @@ return {
     }
   },
   {
-    'lukas-reineke/indent-blankline.nvim',
-    event = { 'BufReadPost', 'BufNewFile' },
-    enabled = false,
-    main = "ibl",
-    opts = {
-      -- char_list = { '│', '¦', '┆', '┊' },
-      exclude = {
-        filetypes = {
-         'TelescopePrompt',
-         'TelescopeResults',
-         'lspinfo',
-         'help',
-          '',
-         'alpha',
-         'lazy',
-         'mason',
-         'nvim-tree',
-         'terminal',
-        }
-      },
-      scope = {
-        show_end = false,
-        include = {
-          node_type = {
-            ['*'] = {
-              'arguments',
-              'bracket',
-              'block',
-              'declaration',
-              'expression_list',
-              'field',
-              'for',
-              'func_literal',
-              'function ',
-              'if',
-              'import',
-              'import_spec_list',
-              'list',
-              'return_statement',
-              'short_var_declaration',
-              'statement',
-              'switch_body',
-              'try',
-              'type'
-            }
-          },
-        },
-      }
-    }
-  },
-  {
     'folke/noice.nvim',
     event = 'VeryLazy',
     config = function()
