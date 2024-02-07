@@ -2,6 +2,7 @@
 
 # Function to setup mac config
 setup_mac_config() {
+  echo ${COLOR_GREEN}"Configuring MAC defaults..${COLOR_REST}"
   # Set fast key repeat rate
   defaults write NSGlobalDomain KeyRepeat -int 2
 

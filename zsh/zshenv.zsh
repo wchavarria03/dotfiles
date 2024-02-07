@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-echo "zshenv is being sourced!"
-
 ###############################
 # EXPORT ENVIRONMENT VARIABLE #
 ###############################
@@ -9,6 +7,7 @@ echo "zshenv is being sourced!"
 export TERM='rxvt-256color'
 export DOTFILES="$HOME/code/dotfiles"
 export WORKSPACE="$HOME/code"
+export NOTES_DIR="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes"
 
 [ -f "$DOTFILES/install_config" ] && source "$DOTFILES/install_config"
 
@@ -29,3 +28,5 @@ export SAVEHIST=5000                                    # Maximum events in hist
 
 # OTHER
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
+export ASDF_DIR="$HOME/.config/asdf"
+export ASDF_DATA_DIR="$HOME/.config/asdf"

@@ -1,25 +1,27 @@
 #!/usr/bin/env bash
 
 # Function to install or update Brew packages
-install_packages() {
+install_brew_packages() {
   local packages=(
+    asdf
+    bash
+    direnv
+    exa
     fzf
     git
     gh
     glow # markdown previewer
+    neovim
     npm
     python3
     ripgrep
+    starship
     nvim
-    asdf
     zsh
-
-    # Terminal suggestions
-    zsh-syntax-highlighting
-    zsh-autosuggestions
 
     # APPS
     brave-browser
+    docker
     google-chrome
     gnupg
     iterm2
@@ -27,27 +29,31 @@ install_packages() {
     postman
     sequel-ace
     slack
-    spectacle
     1password
     1password/tap/1password-cli
+
+    # Terminal suggestions
+    bash-completion
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    docker-completion
   )
 
-  echo "${COLOR_GREEN}Installing/upgrading Brew packages...${COLOR_RESET}"
+  echo "${COLOR_GREEN}Brew packages...${COLOR_RESET}"
   for package in "${packages[@]}"; do
       if brew info "$package" &>/dev/null; then
-          echo "${COLOR_GREEN}$package already installed.${COLOR_RESET}"
+          echo "${COLOR_GREEN}- $package already installed.${COLOR_RESET}"
       else
-          echo "${COLOR_GREEN}Installing $package...${COLOR_RESET}"
+          echo "${COLOR_GREEN}- Installing $package...${COLOR_RESET}"
           brew install "$package"
       fi
   done
 
-  echo "${COLOR_GREEN}Installing Brew cask docker...${COLOR_REST}"
-  brew install --cask docker
-
-  echo "${COLOR_GREEN}Cleaning up Brew...${COLOR_REST}"
+  echo "${COLOR_GREEN}- Cleaning up Brew...${COLOR_REST}"
   brew cleanup
 
-  echo "${COLOR_GREEN}Installing brew cask fonts...${COLOR_REST}"
+  echo "${COLOR_GREEN}- Installing cask fonts...${COLOR_REST}"
   brew tap homebrew/cask-fonts
 }
+
+install_brew_packages
