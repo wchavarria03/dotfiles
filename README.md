@@ -4,7 +4,7 @@
   <img alt="Last commit" src="https://img.shields.io/github/last-commit/wchavarria03/dotfiles?logo=git&style=for-the-badge"/>
 </a>
 
-[![](https://img.shields.io/badge/Neovim-0.9+-blueviolet.svg?style=for-the-badge&logo=Neovim)](https://github.com/neovim/neovim)
+[![](https://img.shields.io/badge/Neovim-0.9.5+-blueviolet.svg?style=for-the-badge&logo=Neovim)](https://github.com/neovim/neovim)
 
 </div>
 
@@ -13,9 +13,7 @@
 Index
 - [Requirements](https://github.com/wchavarria03/dotfiles#Requirements)
 - [Automatic Setup](https://github.com/wchavarria03/dotfiles#Automatic-setup)
-- [Powerlink Config](https://github.com/wchavarria03/dotfiles#Powerlink-Config)
 - [Terminal ANSI Colors and Config](https://github.com/wchavarria03/dotfiles#Terminal-ANSI-Colors-and-Config)
-- [tmux Config](https://github.com/wchavarria03/dotfiles#Notes)
 - [nvim Config](https://github.com/wchavarria03/dotfiles#Screenshots)
 - [Commonn issues](https://github.com/wchavarria03/dotfiles#Common-issues)
 
@@ -26,24 +24,25 @@ Index
 $ xcode-select --install
 ```
 
+
 ## Automatic setup
-Run `mac_development_setup.sh` script on the root of this repo by doing
+
+### Pre-install step
+zshenv file is required on the user root folder to change the default paths before running the installation script
 ```
-$ sh mac_development_setup.sh
+[Pending to add steps and split the installa]
+```
+Restart terminal to get zshenv file applied
+
+### Install step
+Run `install.sh` script on the installation folder
+```
+$ cd installation
+$ chmod +x install.sh
+$ ./install
 ````
 We need all the symlinks and configuration to be loaded on a new terminal.
 You can also reload configs manually or logout/login session.
-
-## Powerlink Config
-### Install Meslo Font for Powerlink10k
-In the terminal run the folling, accept font installation
-```
-$ p10k configure
-```
-
-## Restart terminal
-Get Packer packages loaded
-Previous error about colorschema shouldn't be happening anymore
 
 ## Git
 SSH keys were moved to 1password and sinin commits is now using ssh instead of GPG.
@@ -87,15 +86,6 @@ Bright
 ![Terminal Colors](https://github.com/wchavarria03/dotfiles/blob/master/images/config-colors.png)
 ![Terminal Text](https://github.com/wchavarria03/dotfiles/blob/master/images/config-text.png)
 
-
-## NOTES:
-### OhMyZsh Prompt (NOT AVAILABLE CURRENTLY)
-I am using the minimal prompt from Jack Harris https://github.com/jackharrisonsherlock/common
-But I wanted a previous state of it so I fork the repo and add the small change I want
-
-Terminal should look like:
-
-![Common Prompt Terminal](https://github.com/wchavarria03/dotfiles/blob/master/images/CommonPrompt.png)
 
 ## Screenshots
 Alpha Plugin
