@@ -62,7 +62,6 @@ return {
 
       -- utils.mapKey('Telescope', 'n', '<C-p>', builtin.find_files, { desc = 'Find Files' })j
       utils.mapKey('Telescope', 'n', '<leader>fw', builtin.live_grep, { desc = 'Grep Text' })
-      -- utils.mapKey('Telescope', 'n', '<leader>fb', builtin.buffers, { desc = 'Buffers' })
       utils.mapKey('Telescope', 'n', '<leader>fm', builtin.marks, { desc = 'Marks' })
       utils.mapKey('Telescope', 'n', '<leader>fh', builtin.help_tags, { desc = 'Help Tags' })
       utils.mapKey('Telescope', 'n', '<leader>fc', builtin.git_commits, { desc = 'Git Commits' })

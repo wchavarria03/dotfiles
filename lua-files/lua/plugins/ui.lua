@@ -43,6 +43,9 @@ return {
   {
     'folke/noice.nvim',
     event = 'VeryLazy',
+    keys = {
+      { "<leader>nd", "<cmd>NoiceDismiss<cr>", desc = "Dismiss Noice Message" },
+    },
     config = function()
       require('noice').setup({
         presets = {
@@ -138,4 +141,3 @@ return {
     },
   },
 }
-

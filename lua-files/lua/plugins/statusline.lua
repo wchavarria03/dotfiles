@@ -121,7 +121,7 @@ return {
       utils.mapKey('Buffer', 'n', '<leader>b', ':BufferLineCycleNext<CR>',  merge_tb('force', buffer_opts, { desc = 'Next'}))
       utils.mapKey('Buffer', 'n', '<leader>bp', ':BufferLineCyclePrev<CR>',  merge_tb('force', buffer_opts, { desc = 'Prev'}))
       utils.mapKey('Buffer', 'n', '<leader>bca', ':BufferLineCloseOthers<CR>', merge_tb('force', buffer_opts, { desc = 'Close all but'}))
-      utils.mapKey('Buffer', 'n', '<leader>bf', ':BufferLinePick<CR>', merge_tb('force', buffer_opts, { desc = 'Close all but'}))
+      utils.mapKey('Buffer', 'n', '<leader>bf', ':BufferLinePick<CR>', merge_tb('force', buffer_opts, { desc = 'Pick Buffer'}))
 
 
 

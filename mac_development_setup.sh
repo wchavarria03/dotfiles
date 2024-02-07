@@ -23,10 +23,12 @@ echo "${COLOR_GREEN}*------------------------    Creating folders structure...  
 [[ ! -d ~/code ]] && mkdir ~/code
 [[ ! -d ~/Documents/screenshots ]] && mkdir ~/Documents/screenshots && echo '~/Documents/screenshots folder created!!'
 [[ ! -d ~/.config ]] && mkdir ~/.config && echo '~/.config folder created!!'
+[[ ! -d ~/.config/zsh]] && mkdir ~/.config/zsh && echo '~/.config/zsh folder created!!'
 [[ ! -d ~/.config/nvim ]] && mkdir ~/.config/nvim && echo '~/.config/nvim folder created!!'
 [[ ! -d ~/.config/nvim/backupdir ]] && mkdir ~/.config/nvim/backupdir && echo '~/.config/nvim/backupdir folder created!!'
 [[ ! -d ~/.config/nvim/swap ]] && mkdir ~/.config/nvim/swap && echo '~/.config/nvim/swap folder created!!'
 [[ ! -d ~/.config/nvim/undodir ]] && mkdir ~/.config/nvim/undodir && echo '~/.config/nvim/undodir folder created!!'
+
 [[ ! -d ~/.zsh_autoload_functions ]] && mkdir ~/.zsh_autoload_functions && echo '~/.zsh_autoload_functions folder created!!'
 
 # Check for Homebrew, install if we don't have it
@@ -57,16 +59,13 @@ PACKAGES=(
   git
   gh
   glow # markdown previewer
-  hub
   npm
 #  python
   python3
 # the_silver_searcher
-  powerlevel10k
   ripgrep
-  tree
   nvim
-  nvm
+  asdf
   zsh
 # Terminal suggestions
   zsh-syntax-highlighting
@@ -75,7 +74,6 @@ PACKAGES=(
 
 # APPS
   brave-browser
-  gimp
   google-chrome
   gnupg
   iterm2
@@ -86,8 +84,6 @@ PACKAGES=(
   spectacle
   1password
   1password/tap/1password-cli
-  alfred
-  stats
 )
 
 echo "${COLOR_GREEN}*------------------------                                                   ------------------------*${COLOR_REST}"
@@ -146,25 +142,15 @@ else
     cd ~/code/dotfiles
 fi
 
-if [ ! -d ${ZSH_CUSTOM}/themes/powerlevel10k ]
-then
-    echo "${COLOR_GREEN}*------------------------       Cloning Powerlevel10k repo...--------------------*${COLOR_REST}"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
-else
-    echo "${COLOR_GREEN}*------------------------       Updating Powerlevel10k repo...--------------------*${COLOR_REST}"
-    cd ${ZSH_CUSTOM}/themes/powerlevel10k
-    git pull
-    cd ~/code/dotfiles
-fi
-
+echo "${COLOR_GREEN}*------------------------      SYMBLINKS                           --------------------*${COLOR_REST}"
 echo "${COLOR_GREEN}*------------------------     ZSH Auto load op_env symlinks--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/.zsh_autoload_functions/env-op ~/.zsh_autoload_functions/env-op
 
-echo "${COLOR_GREEN}*------------------------     Configuring powerline repo--------------------*${COLOR_REST}"
-ln -s ~/code/dotfiles/.p10k.zsh ~/.p10k.zsh
+echo "${COLOR_GREEN}*------------------------     ZSHR symlink--------------------*${COLOR_REST}"
+ln -s ~/code/dotfiles/.zshenv ~/.zshenv
 
 echo "${COLOR_GREEN}*------------------------     ZSHR symlink--------------------*${COLOR_REST}"
-ln -s ~/code/dotfiles/.zshrc ~/.zshrc
+ln -s ~/code/dotfiles/zsh/.zshrc ~/zsh/.zshrc
 
 echo "${COLOR_GREEN}*------------------------     Gitconfig symlink--------------------*${COLOR_REST}"
 ln -s ~/code/dotfiles/.gitconfig ~/.gitconfig
@@ -215,19 +201,19 @@ defaults -currentHost write -g com.apple.trackpad.enableSecondaryClick -bool YES
 defaults write -g com.apple.swipescrolldirection -bool false
 
 # Change Dock to left position
- defaults write com.apple.dock orientation left;
+defaults write com.apple.dock orientation left;
 
 # Speed up animations
- defaults write com.apple.dock expose-animation-duration -float 0.12
+defaults write com.apple.dock expose-animation-duration -float 0.12
 
 # Translucent hidden apps
- defaults write com.apple.Dock showhidden -bool YES
+defaults write com.apple.Dock showhidden -bool YES
 
 # Remove full name when copying emails addresses
- defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 # Enable quick view selection
- defaults write com.apple.finder QLEnableTextSelection -bool TRUE;
+defaults write com.apple.finder QLEnableTextSelection -bool TRUE;
 
 # Enabling Right click with mouse
 defaults write com.apple.AppleMultitouchMouse MouseButtonMode TwoButton

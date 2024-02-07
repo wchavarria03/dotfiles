@@ -3,43 +3,35 @@ local merge_tb = vim.tbl_deep_extend
 
 return {
   {
-    'nvim-neorg/neorg',
-    event = 'VeryLazy',
-    build = ':Neorg sync-parsers',
+    "epwalsh/obsidian.nvim",
+    version = "*",  -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
     dependencies = {
-      'nvim-lua/plenary.nvim'
+      "nvim-lua/plenary.nvim",
     },
-    config = function ()
-      require('neorg').setup {
-        load = {
-          ['core.defaults'] = {},
-          ['core.concealer'] = {},
-          ['core.keybinds'] = {},
-          ['core.dirman'] = {
-            config = {
-              workspaces = {
-                work = '~/notes/work',
-              },
-              default_workspace = 'work'
-            }
-          },
-          ['core.journal'] = {
-            config = {
-              journal_folder = 'daily_journal',
-              strategy = 'flat',
-            }
-          },
+    opts = {
+      workspaces = {
+        {
+          name = "Notes",
+          path = "/Users/wchavarria/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes"
         }
-      }
+      },
+    },
+    config = function(_, opts)
+      require("obsidian").setup(opts)
 
-      local opts = { noremap = true, silent = true }
+      local localOpts = { noremap = true, silent = true, nowait = true }
 
-      utils.mapKey('Neorg', 'n', '<leader>n', ':Neorg index<CR>', merge_tb('force', opts, { desc = 'Neorg index' }));
-      utils.mapKey('Neorg', 'n', '<leader>nm', ':Neorg<CR>', merge_tb('force', opts, { desc = 'Neorg Menu' }));
-      utils.mapKey('Neorg', 'n', '<leader>nc', ':Neorg return<CR>', merge_tb('force', opts, { desc = 'Neorg Close' }));
+      utils.mapKey('Obsidian', 'n', '<leader>fn', '<cmd>ObsidianQuickSwitch<CR>', merge_tb('force', localOpts, { desc = 'Find Notes' }));
 
-      vim.wo.foldlevel = 99
-      vim.wo.conceallevel = 2
+      vim.keymap.set("n", "gd", function()
+        if require("obsidian").util.cursor_on_markdown_link() then
+          return "<cmd>ObsidianFollowLink<CR>"
+        else
+          return "gd"
+        end
+      end, { noremap = false, expr = true })
     end,
   }
 }
