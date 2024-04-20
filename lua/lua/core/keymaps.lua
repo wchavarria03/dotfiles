@@ -1,7 +1,7 @@
 -----------------------------------------------------------
 -- Keymaps configuration file: keymaps of neovim and plugins.
 -----------------------------------------------------------
-local bufmap = function(mode, lhs, rhs, desc, opts)
+local bufmap = function(mode, lhs, rhs, desc)
   local local_opts = { noremap = true, silent = true, desc = 'Keymaps: ' .. desc }
   vim.keymap.set(mode, lhs, rhs, local_opts)
 end

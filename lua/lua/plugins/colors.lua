@@ -7,7 +7,10 @@ return {
     opts = {
       flavour = 'mocha',
       integrations = {
+        cmp = true,
         gitsigns = true,
+        harpoon = true,
+        mason = true,
         noice = true,
         notify = true,
         nvimtree = true,
@@ -32,11 +35,6 @@ return {
       vim.api.nvim_command('highlight VertSplit guifg=#95bb92')
     end,
   },
-
-  -----------------------------------------------------------
-  -- Treesitter configuration file
-  --- https://github.com/nvim-treesitter/nvim-treesitter
-  -----------------------------------------------------------
   {
     'nvim-treesitter/nvim-treesitter',
     event = { 'BufReadPost', 'BufNewFile' },
@@ -60,7 +58,6 @@ return {
       ensure_installed =  {
         'bash',
         'css',
-        'glimmer',
         'html',
         'javascript',
         'jsdoc',
@@ -82,7 +79,6 @@ return {
           node_incremental = '<leader>si',
           node_decremental = '<leader>sd',
           scope_incremental = '<leader>ssi',
-          scope_decremental= '<leader>ssd',
         },
       },
       indent = {
@@ -98,10 +94,6 @@ return {
     "folke/todo-comments.nvim",
     event = "BufRead",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
+    opts = {}
   }
 }

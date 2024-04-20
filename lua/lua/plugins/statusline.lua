@@ -18,55 +18,84 @@ return {
       vim.opt.laststatus = 0
     end,
     opts = {
-      theme = 'catppuccin',
-       disabled_filetypes = {
-         'NvimTree' ,
-         statusline = {},
-         winbar = {},
-       },
-      sections = {
-        lualine_a = {
-          {
-            'mode',
-          }
-        },
-        lualine_b = {'branch', 'diff', 'diagnostics'},
-        lualine_c = {'filename'},
-        lualine_x = {'encoding', 'fileformat', 'filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
-      },
-      inactive_sections = {
-        lualine_a = {
-          {
-            'filename',
-            color = { fg = '#000000', bg = '#9cdf9b' }
+    },
+    config = function(_, opts)
+       -- local harpoon = require("harpoon.mark")
+
+       local function harpoon_component()
+         local total_marks = harpoon.get_length()
+
+         if total_marks == 0 then
+           return ""
+         end
+
+         local current_mark = "—"
+
+         local mark_idx = harpoon.get_current_index()
+         if mark_idx ~= nil then
+           current_mark = tostring(mark_idx)
+         end
+
+         return string.format("󱡅 %s/%d", current_mark, total_marks)
+       end
+
+      -- Get the default options
+      require('lualine').setup({
+        options = vim.tbl_extend('force', opts, {
+          theme = 'catppuccin',
+          globalstatius = true,
+          disabled_filetypes = {
+            'NvimTree' ,
+            statusline = {},
+            winbar = {},
           },
-        },
-        lualine_b = {
-          {
-            empty_component,
-            color = { fg = '#000000', bg = '#9cdf9b' }
-          }
-        },
-        lualine_c = {
-          {
-            empty_component,
-            color = { fg = '#000000', bg = '#9cdf9b' }
-          }
-        },
-        lualine_x = {
-          {
-            'location',
-            color = { fg = '#000000', bg = '#9cdf9b' }
+          extensions = { 'nvim-tree' },
+          filetypes = { 'NvimTree' },
+        }),
+        sections = {
+          lualine_a = {
+            {
+              'mode',
+            }
           },
+          lualine_b = {'branch', 'diff', 'diagnostics'},
+          -- lualine_b = {'branch', harpoon_component, 'diff', 'diagnostics'},
+          lualine_c = {'filename'},
+          lualine_x = {'filetype'},
+          lualine_y = {'progress'},
+          lualine_z = {'location'}
         },
-        lualine_y = {},
-        lualine_z = {}
-      },
-       extensions = { 'nvim-tree' },
-       filetypes = { 'NvimTree' },
-     },
+        inactive_sections = {
+          lualine_a = {
+            {
+              'filename',
+              color = { fg = '#000000', bg = '#9cdf9b' }
+            },
+          },
+          lualine_b = {
+            {
+              empty_component,
+              color = { fg = '#000000', bg = '#9cdf9b' }
+            }
+          },
+          lualine_c = {
+            {
+              empty_component,
+              color = { fg = '#000000', bg = '#9cdf9b' }
+            }
+          },
+          lualine_x = {
+            {
+              'location',
+              color = { fg = '#000000', bg = '#9cdf9b' }
+            },
+          },
+          lualine_y = {},
+          lualine_z = {}
+        },
+      })
+    end,
+    dependencies = { "ThePrimeagen/harpoon" },
   },
   {
     'akinsho/bufferline.nvim',

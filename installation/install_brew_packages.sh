@@ -17,6 +17,7 @@ install_brew_packages() {
     ripgrep
     starship
     nvim
+    zoxide
     zsh
 
     # APPS
@@ -26,11 +27,12 @@ install_brew_packages() {
     gnupg
     iterm2
     notion
-    postman
+    bruno
     sequel-ace
     slack
     1password
     1password/tap/1password-cli
+    raycast
 
     # Terminal suggestions
     bash-completion

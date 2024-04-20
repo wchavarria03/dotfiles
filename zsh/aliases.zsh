@@ -101,7 +101,7 @@ dreset () {
     docker system prune -a
 }
 
-JOBFILE="$DOTFILES/job-aliases.zsh"
+JOBFILE="$DOTFILES/zsh/job-aliases.zsh"
 if [ -f "$JOBFILE" ]; then
     source "$JOBFILE"
 fi

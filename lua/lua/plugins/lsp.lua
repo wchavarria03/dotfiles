@@ -172,6 +172,16 @@ return {
   },
   {
     "hinell/lsp-timeout.nvim",
+    enabled = false,
     dependencies={ "neovim/nvim-lspconfig" }
+  },
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      vim.diagnostic.config({
+        virtual_text = false,
+      })
+      require("lsp_lines").setup()
+    end,
   }
 }

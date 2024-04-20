@@ -7,7 +7,7 @@
 export TERM='rxvt-256color'
 export DOTFILES="$HOME/code/dotfiles"
 export WORKSPACE="$HOME/code"
-export NOTES_DIR="$HOME/Library/Mobile Documents/iCloud~md~obsidian/Documents/Notes"
+export NOTES_DIR="~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
 
 [ -f "$DOTFILES/install_config" ] && source "$DOTFILES/install_config"
 

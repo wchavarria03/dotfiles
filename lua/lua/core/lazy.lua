@@ -99,7 +99,3 @@ if not status_ok then
 end
 
 lazy.setup('plugins', opts)
-
--- OTHER POSSIBILITIES
--- https://github.com/tpope/vim-dispatch
--- /nvim-dap

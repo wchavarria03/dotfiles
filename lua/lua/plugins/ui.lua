@@ -29,8 +29,8 @@ return {
         utils.mapKey('Gitsigns', 'n', '<leader>gp', gs.prev_hunk, merge_tb('force', opts, { desc = 'Prev Hunk' }))
         utils.mapKey('Gitsigns', { 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>', merge_tb('force', opts, { desc = 'Stage Hunk'}))
         utils.mapKey('Gitsigns', { 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>', merge_tb('force', opts, { desc = 'Reset Hunk'}))
-        utils.mapKey('Gitsigns', 'n', '<leader>gS', gs.stage_buffer, merge_tb('force', opts, { desc = 'Stage Buffer'}))
         utils.mapKey('Gitsigns', 'n', '<leader>gu', gs.undo_stage_hunk, merge_tb('force', opts, { desc = 'Undo Stage Hunk'}))
+        utils.mapKey('Gitsigns', 'n', '<leader>gS', gs.stage_buffer, merge_tb('force', opts, { desc = 'Stage Buffer'}))
         utils.mapKey('Gitsigns', 'n', '<leader>gR', gs.reset_buffer, merge_tb('force', opts, { desc = 'Reset Buffer'}))
         utils.mapKey('Gitsigns', 'n', '<leader>gp', gs.preview_hunk, merge_tb('force', opts, { desc = 'Preview Hunk'}))
         utils.mapKey('Gitsigns', 'n', '<leader>gb', function() gs.blame_line({ full = true }) end, merge_tb('force', opts, { desc = 'Blame Line'}))
@@ -139,5 +139,5 @@ return {
         blend = 0,
       }
     },
-  },
+  }
 }

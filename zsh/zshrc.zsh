@@ -65,6 +65,8 @@ export LANG=en_US.UTF-8
 source $DOTFILES/zsh/aliases.zsh
 
 # Set up the alias to call the function
+alias note="$DOTFILES/scripts/note.sh"
+alias notes="$DOTFILES/scripts/notes.sh"
 
 # Bash completion
 [[ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ]] && . \"/usr/local/etc/profile.d/bash_completion.sh
@@ -72,5 +74,6 @@ source $DOTFILES/zsh/aliases.zsh
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 
 eval "$(starship init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
-. /usr/local/opt/asdf/libexec/asdf.sh
+. $(brew --prefix asdf)/libexec/asdf.sh

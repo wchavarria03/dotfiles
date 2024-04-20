@@ -19,13 +19,15 @@ local options = {
   signcolumn = 'yes',                        -- always show the sign column
   showmode = false,                          -- don't show mode
   wrap = false,                              -- disable line wrap
-  cursorline = false,                        -- Highlight cursor line
+  cursorline = true,                        -- Highlight cursor line
   fileencoding = 'utf-8',                    -- set file encoding to utf-8
 
   foldmethod = 'indent',                     -- enable folding (default 'foldmarker')
   -- opt.foldcolumn = '1'                    -- defines 1 col at window left, to indicate folding
   foldnestmax = 10,	                         -- maximum fold depth
   foldlevel = 2,	                           -- close folds with a level higher than this
+
+  conceallevel = 1,                          -- Show concealed text
 
  -- wildmode = {'list', 'longest', 'full'},    -- Command-line completion mode
  -- wildoptions = 'pum',                       -- vertical wildmenu
@@ -61,8 +63,11 @@ local options = {
   titlestring = "NVIM - %t",                 -- set titlestring
   guifont = "MesloLGS NF:h18",               -- set font
 
-  clipboard = 'unnamedplus'                  -- copy/paste to system clipboard'
+  clipboard = 'unnamedplus',                  -- copy/paste to system clipboard'
+
+  completeopt = 'menuone,noinsert,noselect',  -- completion options
 }
+
 
 vim.opt.shortmess:append('c')                -- don't pass messages to |ins-completion-menu
 

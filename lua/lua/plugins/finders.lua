@@ -14,7 +14,7 @@ return {
   },
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.2',
+    tag = '0.1.5',
     event = 'VeryLazy',
     cmd = 'Telescope',
     keys = {
@@ -38,7 +38,16 @@ return {
               ['<C-l>'] = 'preview_scrolling_down',
               ['<C-w>'] = 'which_key',
             }
-          }
+          },
+          file_ignore_patterns = {
+            "node_modules",
+            "yarn.lock",
+            ".git",
+            ".sl",
+            "_build",
+            ".next",
+          },
+          hidden = true,
         }
       })
 
@@ -77,14 +86,19 @@ return {
     cmd = 'Telescope',
     build = 'make',
     config = function()
-      -- TODO Test performance using fzf
       require('telescope').load_extension('fzf')
     end,
   },
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      search = {
+        multi_window = false,
+        wrap = false,
+        incremental = true,
+      },
+    },
     keys = {
       {
         "f",
@@ -112,5 +126,35 @@ return {
         desc = "Remote Flash",
       },
     },
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    config = function()
+      local harpoon = require("harpoon")
+      harpoon.setup()
+
+      utils.mapKey('Harpoon', 'n', '<leader>ha', function() harpoon:list():append() end, { desc = 'Append to list' })
+
+      local conf = require("telescope.config").values
+      local function toggle_telescope(harpoon_files)
+        local file_paths = {}
+        for _, item in ipairs(harpoon_files.items) do
+          table.insert(file_paths, item.value)
+        end
+
+        require("telescope.pickers").new({}, {
+          prompt_title = "Harpoon",
+          finder = require("telescope.finders").new_table({
+            results = file_paths,
+          }),
+          previewer = conf.file_previewer({}),
+          sorter = conf.generic_sorter({}),
+        }):find()
+      end
+
+      utils.mapKey('Harpoon', 'n', '<leader>hl', function() toggle_telescope(harpoon:list()) end, { desc = 'Open harpoon window' })
+    end,
+    dependencies = { "nvim-lua/plenary.nvim" }
   }
 }
