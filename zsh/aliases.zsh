@@ -30,6 +30,10 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias h='history'
 
+# Set up the alias to call the function
+alias note="$DOTFILES/scripts/note.sh"
+alias notes="$DOTFILES/scripts/notes.sh"
+
 # GIT ALIASES -----------------------------------------------------------------
 alias gc='git commit'
 alias gco='git checkout'

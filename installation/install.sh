@@ -26,6 +26,7 @@ main() {
     source install_brew_packages.sh
     source install_brew_fonts.sh
     #source setup_dotfiles.sh
+    #source setup_tmux_tpm.sh
     source setup_symblinks.sh
     source setup_mac_config.sh
 

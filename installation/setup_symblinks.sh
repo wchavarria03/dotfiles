@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-# Function to setup symblinks repo
+t Function to setup symblinks repo
 setup_symblinks() {
   echo ${COLOR_GREEN}"Configuring ZSH..${COLOR_REST}"
   echo "${COLOR_GREEN}- ZSH Auto load op_env symlinks${COLOR_REST}"
@@ -34,6 +34,17 @@ setup_symblinks() {
 
   echo "${COLOR_GREEN}- tool-versions symlink${COLOR_REST}"
   ln -s ~/code/dotfiles/asdf/.tool-versions ~/.config/asdf/.tool-versions
+
+  echo "${COLOR_GREEN}Configuring Tmux ..${COLOR_REST}"
+  echo ${COLOR_GREEN}"- tmux.config symlink${COLOR_REST}"
+  ln -s ~/code/dotfiles/tmux/tmux.conf ~/.config/.tmux.conf
+
+  echo ${COLOR_GREEN}"- tmux.config symlink${COLOR_REST}"
+  ln -s ~/code/dotfiles/tmux/tmux.reset.conf ~/.config/tmux/.tmux.reset.conf
+
+  echo "${COLOR_GREEN}Configuring StarShip ..${COLOR_REST}"
+  echo ${COLOR_GREEN}"- starship.toml symlink${COLOR_REST}"
+  ln -s ~/code/dotfiles/startship/starship.toml ~/.config/starship/starship.toml
 }
 
 setup_symblinks
