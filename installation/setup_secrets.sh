@@ -10,10 +10,9 @@ setup_secrets() {
     git clone https://github.com/wchavarria03/secrets ~/code
   else
     echo "${COLOR_GREEN}- Updating secrets repo...${COLOR_REST}"
-    pushd
     cd ~/code/secrets
     git pull
-    popd
+    cd - > /dev/null  # Return to the original directory, suppressing output
   fi
 }
 

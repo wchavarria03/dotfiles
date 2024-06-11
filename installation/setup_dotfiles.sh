@@ -9,10 +9,9 @@ setup_dotfiles() {
     git clone https://github.com/wchavarria03/dotfiles ~/code
   else
     echo "${COLOR_GREEN}- Updating dotfiles repo...${COLOR_REST}"
-    pushd
     cd ~/code/dotfiles
     git pull
-    popd
+    cd - > /dev/null  # Return to the original directory, suppressing output
   fi
 }
 
