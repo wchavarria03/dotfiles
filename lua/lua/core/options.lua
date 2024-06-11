@@ -1,76 +1,114 @@
 local options = {
-  smartindent = true,                        -- Insert indents automatically
-  tabstop = 2,                               -- Number of spaces tabs count for - 1 tab == 2 spaces
-  shiftwidth = 2,                            -- Size of an indent - 2 spaces when tab
-  expandtab = true,                          -- use spaces instead of tabs
-  softtabstop = 2,	                         -- In insert mode, tabs are 2 spaces
-  showtabline = 2,                           -- Always show tabs
+	-- Insert indents automatically
+	smartindent = true,
+	-- Number of spaces tabs count for - 1 tab == 2 spaces
+	tabstop = 1,
+	-- Size of an indent - 2 spaces when tab
+	shiftwidth = 2,
+	-- use spaces instead of tabs
+	expandtab = true,
+	-- In insert mode, tabs are 2 spaces
+	softtabstop = 2,
+	-- Always show tabs
+	showtabline = 2,
 
-  number = true,                             -- show line number
-  relativenumber = true,                     -- Relative line numbers
-  ignorecase = true,                         -- ignore case letters when search
-  smartcase = true,                          -- ignore lowercase for the whole pattern
+	-- show line number
+	number = true,
+	-- Relative line numbers
+	relativenumber = true,
+	-- ignore case letters when search
+	ignorecase = true,
+	-- ignore lowercase for the whole pattern
+	smartcase = true,
 
-  splitright = true,                         -- vertical split to the right
-  splitbelow = true,                         -- horizontal split to the bottom
+	-- vertical split to the right
+	splitright = true,
+	-- horizontal split to the bottom
+	splitbelow = true,
 
-  syntax = 'ON',                             -- syntax highlight
-  termguicolors = true,                      -- enable 24-bit RGB colors
-  signcolumn = 'yes',                        -- always show the sign column
-  showmode = false,                          -- don't show mode
-  wrap = false,                              -- disable line wrap
-  cursorline = true,                        -- Highlight cursor line
-  fileencoding = 'utf-8',                    -- set file encoding to utf-8
+	-- syntax highlight
+	syntax = "ON",
+	-- enable 24-bit RGB colors
+	termguicolors = true,
+	-- always show the sign column
+	signcolumn = "yes",
+	-- don't show mode
+	showmode = false,
+	-- disable line wrap
+	wrap = false,
+	-- Highlight cursor line
+	cursorline = true,
+	-- set file encoding to utf-8
+	fileencoding = "utf-8",
 
-  foldmethod = 'indent',                     -- enable folding (default 'foldmarker')
-  -- opt.foldcolumn = '1'                    -- defines 1 col at window left, to indicate folding
-  foldnestmax = 10,	                         -- maximum fold depth
-  foldlevel = 2,	                           -- close folds with a level higher than this
+	-- enable folding (default 'foldmarker')
+	foldmethod = "indent",
 
-  conceallevel = 1,                          -- Show concealed text
+	-- maximum fold depth
+	foldnestmax = 10,
+	-- close folds with a level higher than this
+	foldlevel = 2,
 
- -- wildmode = {'list', 'longest', 'full'},    -- Command-line completion mode
- -- wildoptions = 'pum',                       -- vertical wildmenu
+	-- Show concealed text
+	conceallevel = 1,
 
-  backup = true,                             -- disable backup
-  backupdir = vim.fn.expand('~/.config/nvim/backupdir'),    -- set backupdir
+	-- wildmode = {'list', 'longest', 'full'},    -- Command-line completion mode
+	-- wildoptions = 'pum',                       -- vertical wildmenu
 
-  updatecount = 200,                         -- Write swap file to disk every 100 chars
-  directory = vim.fn.expand('~/.config/nvim/swap'),         -- set directory
+	-- disable backup
+	backup = true,
+	-- set backupdir
+	backupdir = vim.fn.expand("~/.config/nvim/backupdir"),
 
-  undofile = true,                           -- enable undofile
-  undodir = vim.fn.expand('~/.config/nvim/undodir'),        -- set undodir
+	-- Write swap file to disk every 100 chars
+	updatecount = 200,
+	-- set directory
+	directory = vim.fn.expand("~/.config/nvim/swap"),
 
-  history = 100,                             -- remember n lines in history
+	-- enable undofile
+	undofile = true,
+	-- set undodir
+	undodir = vim.fn.expand("~/.config/nvim/undodir"),
 
-  updatetime = 200,                          -- faster completion
-  scrolloff = 15,                            -- minimum n# of lines above and below cursor
-  mouse = '',                                -- disable mouse
+	-- remember n lines in history
+	history = 100,
 
-  synmaxcol = 200,                           -- max column for syntax highlight
+	-- faster completion
+	updatetime = 200,
+	-- minimum n# of lines above and below cursor
+	scrolloff = 15,
+	-- disable mouse
+	mouse = "",
 
-  list = true,                       -- Show some invisible characters
-  listchars = {
-    tab = "⇥ ",
-    leadmultispace = "┊ ",
-    trail = "␣",
-    space = "·",
-    nbsp = "⍽"
-  },
-  showmatch = true,                  -- highlight matching parenthesis
+	-- max column for syntax highlight
+	synmaxcol = 200,
 
-  title = true,                              -- set title
-  titlestring = "NVIM - %t",                 -- set titlestring
-  guifont = "MesloLGS NF:h18",               -- set font
+	-- Show some invisible characters
+	list = true,
+	listchars = {
+		tab = "» ",
+		leadmultispace = "┊ ",
+		trail = "␣",
+		space = "·",
+		nbsp = "⍽",
+	},
+	showmatch = true, -- highlight matching parenthesis
 
-  clipboard = 'unnamedplus',                  -- copy/paste to system clipboard'
+	-- set title
+	title = true,
+	-- set titlestring
+	titlestring = "NVIM - %t",
 
-  completeopt = 'menuone,noinsert,noselect',  -- completion options
+	-- copy/paste to system clipboard'
+	clipboard = "unnamedplus",
+
+	-- completion options
+	completeopt = "menuone,noinsert,noselect",
 }
 
-
-vim.opt.shortmess:append('c')                -- don't pass messages to |ins-completion-menu
+-- don't pass messages to |ins-completion-menu
+vim.opt.shortmess:append("c")
 
 for option, value in pairs(options) do
-  vim.opt[option] = value
+	vim.opt[option] = value
 end

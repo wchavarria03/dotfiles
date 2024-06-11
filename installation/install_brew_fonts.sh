@@ -14,7 +14,7 @@ install_brew_fonts() {
         echo "${COLOR_GREEN}- $font already installed.${COLOR_RESET}"
     else
         echo "${COLOR_GREEN}- Installing $font...${COLOR_RESET}"
-        brew install "$font"
+        brew install --cask "$font"
     fi
   done
 }

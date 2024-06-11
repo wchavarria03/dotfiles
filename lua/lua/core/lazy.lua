@@ -1,7 +1,7 @@
 
 vim.g.mapleader = ','                     -- change leader to a comma
 vim.g.maplocalleader = ';'                -- change local leader to a commacorelua
-vim.opt.timeoutlen = 500                  -- time waiting for key after leader key
+vim.opt.timeoutlen = 300                  -- time waiting for key after leader key
 -----------------------------------------------------------
 -- NVIM Tree (Disable netrw)
 -----------------------------------------------------------

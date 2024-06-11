@@ -53,9 +53,6 @@ install_brew_packages() {
 
   echo "${COLOR_GREEN}- Cleaning up Brew...${COLOR_REST}"
   brew cleanup
-
-  echo "${COLOR_GREEN}- Installing cask fonts...${COLOR_REST}"
-  brew tap homebrew/cask-fonts
 }
 
 install_brew_packages
