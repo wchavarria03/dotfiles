@@ -26,18 +26,27 @@ $ xcode-select --install
 ## Automatic setup
 
 ### Pre-install step
-zshenv file is required on the user root folder to change the default paths before running the installation script
+zshenv file is required on the user root folder to change the default paths before running the setup script
 Restart terminal to get zshenv file applied
 
 ### Install step
-Run `install.sh` script on the installation folder
+Run `install.sh` script on the setup folder
 ```
-$ cd installation
+$ cd setup
 $ chmod +x install.sh
 $ ./install.sh
 ````
 We need all the symlinks and configuration to be loaded on a new terminal.
 You can also reload configs manually or logout/login session.
+
+### Clean up
+Run `clean_up.sh` script on the setup folder
+
+```
+$ cd setup
+$ chmod +x clean_up.sh
+$ ./clean_up.sh
+````
 
 ## Others 
 ### Git

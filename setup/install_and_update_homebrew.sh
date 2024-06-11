@@ -15,3 +15,7 @@ install_and_update_homebrew() {
     echo "${COLOR_GREEN}Upgrading homebrew...${COLOR_REST}"
     brew upgrade
 }
+
+install_and_update_homebrew_clean_up() {
+  echo "${COLOR_GREEN}Install and update Homebrew clean up - coming feature...${COLOR_RESET}"
+}

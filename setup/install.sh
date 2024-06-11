@@ -20,7 +20,7 @@ COLOR_GREEN=$(tput setaf 2)
 
 # Main function to orchestrate the setup process
 main() {
-  # Loop through all .sh files in the installation directory
+  # Loop through all .sh files in the setup directory
   for file in ./*.sh; do
     # Make the file executable
     chmod +x "$file"

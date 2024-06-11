@@ -14,3 +14,7 @@ setup_dotfiles() {
     cd - > /dev/null  # Return to the original directory, suppressing output
   fi
 }
+
+setup_dotfiles_clean_up() {
+  echo "${COLOR_GREEN}Setup dotfiles clean up - coming feature...${COLOR_RESET}"
+}

@@ -40,3 +40,7 @@ setup_symblinks() {
   echo ${COLOR_GREEN}"- starship.toml symlink${COLOR_REST}"
   ln -s ~/code/dotfiles/startship/starship.toml ~/.config/starship/starship.toml
 }
+
+setup_symblinks_clean_up() {
+  echo "${COLOR_GREEN}Setup symblinks clean up - coming feature...${COLOR_RESET}"
+}

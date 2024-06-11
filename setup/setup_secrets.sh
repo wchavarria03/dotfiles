@@ -15,3 +15,7 @@ setup_secrets() {
     cd - > /dev/null  # Return to the original directory, suppressing output
   fi
 }
+
+setup_secrets_clean_up() {
+  echo "${COLOR_GREEN}Setup secrets clean up - coming feature...${COLOR_RESET}"
+}

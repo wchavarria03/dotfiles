@@ -11,3 +11,7 @@ create_folders() {
         fi
     done
 }
+
+create_folders_clean_up() {
+echo "${COLOR_GREEN}Create folder clean up - coming feature... $folder${COLOR_RESET}"
+}

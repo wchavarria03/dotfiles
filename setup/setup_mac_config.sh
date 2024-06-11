@@ -60,3 +60,7 @@ setup_mac_config() {
   # Increase mouse speed
   defaults write com.apple.trackpad scaling -int 3
 }
+
+setup_mac_config_clean_up() {
+  echo "${COLOR_GREEN}Setup mac confog clean up - coming feature...${COLOR_RESET}"
+}

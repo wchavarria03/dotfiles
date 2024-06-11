@@ -18,3 +18,7 @@ install_brew_fonts() {
     fi
   done
 }
+
+install_brew_fonts_clean_up() {
+  echo "${COLOR_GREEN}Install Brew fonts clean up - coming feature...${COLOR_RESET}"
+}
