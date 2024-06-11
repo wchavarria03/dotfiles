@@ -24,7 +24,7 @@ main() {
   for file in ./*.sh; do
     # Make the file executable
     chmod +x "$file"
-    echo "Making $file executable..."  # Optional: Print a message for clarity
+    echo "${COLOR_GREEN}Making $file executable...${COLOR_RESET}"
   done
 
   echo "${COLOR_GREEN}Starting OSX setup...${COLOR_RESET}"
@@ -32,8 +32,8 @@ main() {
   source install_and_update_homebrew.sh
   source install_brew_packages.sh
   source install_brew_fonts.sh
-  source setup_dotfiles.sh
   source setup_secrets.sh
+  source setup_dotfiles.sh
   source setup_symblinks.sh
   source setup_mac_config.sh
 
