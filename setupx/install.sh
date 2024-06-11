@@ -20,7 +20,7 @@ COLOR_GREEN=$(tput setaf 2)
 
 # Main function to orchestrate the setup process
 main() {
-  # Loop through all .sh files in the setup directory
+  # Loop through all .sh files in the installation directory
   for file in ./*.sh; do
     # Make the file executable
     chmod +x "$file"
@@ -28,30 +28,14 @@ main() {
   done
 
   echo "${COLOR_GREEN}Starting OSX setup...${COLOR_RESET}"
-
   source create_folders.sh
-  create_folders
-
   source install_and_update_homebrew.sh
-  install_and_update_homebrew
-
   source install_brew_packages.sh
-  install_brew_packages
-
   source install_brew_fonts.sh
-  install_brew_fonts
-
   source setup_secrets.sh
-  setup_secrets
-
   source setup_dotfiles.sh
-  setup_dotfiles
-
   source setup_symblinks.sh
-  setup_symblinks
-
   source setup_mac_config.sh
-  setup_mac_config
 
   # Add more setup steps here
   echo "${COLOR_GREEN}OSX setup completed.${COLOR_RESET}"
