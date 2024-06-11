@@ -15,5 +15,3 @@ install_and_update_homebrew() {
     echo "${COLOR_GREEN}Upgrading homebrew...${COLOR_REST}"
     brew upgrade
 }
-
-install_and_update_homebrew

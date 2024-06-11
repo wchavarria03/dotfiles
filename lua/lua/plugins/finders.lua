@@ -49,7 +49,7 @@ return {
 						"--hidden",
 						"--color=never",
 						"--no-heading",
-						"----smart-case",
+						"--smart-case",
 						"--with-filename",
 						"--line-number",
 						"--column",

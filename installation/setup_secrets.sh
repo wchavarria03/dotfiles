@@ -15,5 +15,3 @@ setup_secrets() {
     cd - > /dev/null  # Return to the original directory, suppressing output
   fi
 }
-
-setup_secrets

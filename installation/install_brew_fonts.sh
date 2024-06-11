@@ -18,5 +18,3 @@ install_brew_fonts() {
     fi
   done
 }
-
-install_brew_fonts

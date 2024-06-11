@@ -60,5 +60,3 @@ setup_mac_config() {
   # Increase mouse speed
   defaults write com.apple.trackpad scaling -int 3
 }
-
-setup_mac_config

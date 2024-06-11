@@ -29,5 +29,6 @@ export SAVEHIST=5000                                    # Maximum events in hist
 
 # OTHER
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
-export ASDF_DIR="$HOME/.config/asdf"
 export ASDF_DATA_DIR="$HOME/.config/asdf"
+export ASDF_CONFIG_FILE="$HOME/.config/asdf"
+export ASDF_DEFAULT_TOOL_VERSIONS_FILENAME="$HOME/.config/asdf/.tool-versions"

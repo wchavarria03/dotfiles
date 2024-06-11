@@ -54,5 +54,3 @@ install_brew_packages() {
   echo "${COLOR_GREEN}- Cleaning up Brew...${COLOR_REST}"
   brew cleanup
 }
-
-install_brew_packages

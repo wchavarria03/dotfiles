@@ -33,11 +33,10 @@ setup_symblinks() {
   ln -s ~/code/dotfiles/asdf/.asdfrc ~/.config/asdf/.asdfrc
 
   echo "${COLOR_GREEN}- tool-versions symlink${COLOR_REST}"
-  ln -s ~/code/dotfiles/asdf/.tool-versions ~/.config/asdf/.tool-versions
+  # Needs to be on the rrot folder
+  ln -s ~/code/dotfiles/asdf/.tool-versions ~/.tool-versions
 
   echo "${COLOR_GREEN}Configuring StarShip ..${COLOR_REST}"
   echo ${COLOR_GREEN}"- starship.toml symlink${COLOR_REST}"
   ln -s ~/code/dotfiles/startship/starship.toml ~/.config/starship/starship.toml
 }
-
-setup_symblinks

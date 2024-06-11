@@ -11,5 +11,3 @@ create_folders() {
         fi
     done
 }
-
-create_folders
