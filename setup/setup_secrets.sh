@@ -7,7 +7,7 @@ setup_secrets() {
   if [ ! -d ~/code/secrets/ ]
   then
     echo "${COLOR_GREEN}- Cloning secrets repo...${COLOR_REST}"
-    git clone https://github.com/wchavarria03/secrets ~/code
+    git clone https://github.com/wchavarria03/secrets ~/code/secrets
   else
     echo "${COLOR_GREEN}- Updating secrets repo...${COLOR_REST}"
     cd ~/code/secrets

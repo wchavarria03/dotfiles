@@ -32,6 +32,7 @@ main() {
   source install_and_update_homebrew.sh
   source install_brew_packages.sh
   source install_brew_fonts.sh
+  source setup_tmux_tpm.sh
   source setup_secrets.sh
   source setup_dotfiles.sh
   source setup_symblinks.sh

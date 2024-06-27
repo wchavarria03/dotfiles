@@ -94,11 +94,6 @@ local options = {
 	},
 	showmatch = true, -- highlight matching parenthesis
 
-	-- set title
-	title = true,
-	-- set titlestring
-	titlestring = "NVIM - %t",
-
 	-- copy/paste to system clipboard'
 	clipboard = "unnamedplus",
 
