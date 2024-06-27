@@ -239,7 +239,7 @@ return {
 				"cssls",
 				"html",
 				"jsonls",
-				"ruby_ls",
+				-- "ruby_ls",
 				"stylelint_lsp",
 			})
 
