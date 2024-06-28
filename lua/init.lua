@@ -1,2 +1,2 @@
 -- bootstrap lazy.nvim and your plugins
-require('core.lazy')
+require 'core.lazy'
