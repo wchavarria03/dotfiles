@@ -53,6 +53,10 @@ setup_symblinks() {
   echo "${COLOR_GREEN}Configuring StarShip ..${COLOR_REST}"
   echo ${COLOR_GREEN}"- starship.toml symlink${COLOR_REST}"
   ln -s ~/code/dotfiles/startship/starship.toml ~/.config/starship/starship.toml
+
+  echo "${COLOR_GREEN}Others ..${COLOR_REST}"
+  echo ${COLOR_GREEN}"- go cobra.yaml symlink${COLOR_REST}"
+  ln -s ~/code/dotfiles/go/cobra.yml ~/.cobra.yaml
 }
 
 setup_symblinks_clean_up() {

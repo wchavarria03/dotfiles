@@ -139,7 +139,10 @@ return {
             usePlaceholders = true,
             analyses = {
               unusedparams = true,
+              unusedvariable = true,
               staticcheck = true,
+              shadow = true,
+              useany = true,
             },
           },
         },
@@ -162,10 +165,11 @@ return {
         'js-debug-adapter',
 
         -- Formatters
-        'stylua',
         'gofumpt',
         'goimports-reviser',
         'golines',
+        'prettier',
+        'stylua',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }

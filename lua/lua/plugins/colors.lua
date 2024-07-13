@@ -60,10 +60,6 @@ return {
       ensure_installed = {
         'bash',
         'css',
-        'go',
-        'gomod',
-        'gosum',
-        'gowork',
         'html',
         'javascript',
         'jsdoc',
@@ -79,6 +75,13 @@ return {
         'typescript',
         'vim',
         'vimdoc',
+
+        -- GO
+        'go',
+        'gomod',
+        'gosum',
+        'gowork',
+        'gotmpl',
       },
       incremental_selection = {
         enable = true,

@@ -4,11 +4,11 @@ local options = {
   -- Number of spaces tabs count for - 1 tab == 2 spaces
   tabstop = 1,
   -- Size of an indent - 2 spaces when tab
-  shiftwidth = 2,
+  shiftwidth = 4,
   -- use spaces instead of tabs
   expandtab = true,
   -- In insert mode, tabs are 2 spaces
-  softtabstop = 2,
+  softtabstop = 4,
   -- Always show tabs
   showtabline = 2,
 
@@ -99,6 +99,8 @@ local options = {
 
   -- completion options
   completeopt = 'menuone,noinsert,noselect',
+
+  cmdheight = 2,
 }
 
 -- don't pass messages to |ins-completion-menu
