@@ -42,7 +42,7 @@ return {
 
 			local localOpts = { noremap = true, silent = true, nowait = true }
 			utils.mapKey(
-				'Obsidian',
+				'Notes:',
 				'n',
 				'<leader>fn',
 				'<cmd>ObsidianQuickSwitch<CR>',
@@ -55,7 +55,7 @@ return {
 				else
 					return 'gd'
 				end
-			end, { noremap = false, expr = true, desc = '' })
+			end, { noremap = false, expr = true, desc = 'Notes: Follow Link' })
 		end,
 		dependencies = {
 			'nvim-lua/plenary.nvim',

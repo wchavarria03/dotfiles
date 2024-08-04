@@ -53,10 +53,10 @@ return {
 					['<C-l>'] = cmp.mapping.scroll_docs(4),
 					['<C-Space>'] = cmp.mapping.complete(),
 					['<C-y>'] = cmp.config.disable,
-					['<esc>'] = cmp.mapping({
-						i = cmp.mapping.abort(),
-						c = cmp.mapping.close(),
-					}),
+					-- ['<esc>'] = cmp.mapping({
+					-- 	i = cmp.mapping.abort(),
+					-- 	c = cmp.mapping.close(),
+					-- }),
 					['<CR>'] = cmp.mapping.confirm({ select = false }),
 					['<Tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then

@@ -13,7 +13,7 @@ return {
 					-- require('conform').format({ async = true, lsp_fallback = true })
 				end,
 				mode = { 'n', 'v' },
-				desc = '[C]ode [F]ormat Buffer',
+				desc = 'Formatter: [C]ode [F]ormat Buffer',
 			},
 		},
 		opts = {
@@ -30,5 +30,9 @@ return {
 				lsp_format = 'fallback',
 			},
 		},
+	},
+	{
+		'zapling/mason-conform.nvim',
+		opts = {},
 	},
 }

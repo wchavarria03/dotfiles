@@ -22,4 +22,19 @@ return {
 		config = true,
 		event = { 'WinLeave' },
 	},
+	{ 'numToStr/Comment.nvim', opts = {} },
+	{
+		'j-hui/fidget.nvim',
+		opts = {},
+	},
+	{
+		'folke/todo-comments.nvim',
+		cmd = { 'TodoTrouble', 'TodoTelescope' },
+		event = 'VeryLazy',
+		opts = {},
+		keys = {
+			{ '<leader>st', '<cmd>TodoTelescope<cr>', desc = 'TODO: [S]earch [T]odo' },
+			{ '<leader>sT', '<cmd>TodoTelescope keywords=TODO,FIX,FIXME<cr>', desc = 'TODO: Todo/Fix/Fixme' },
+		},
+	},
 }

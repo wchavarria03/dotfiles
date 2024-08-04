@@ -7,6 +7,10 @@ keymap.set('n', '<leader>c', ':nohlsearch<CR>', { desc = 'Global: [C]lear Select
 keymap.set('i', '<Esc>', '<Nop>', { desc = 'Global: Block Escape' })
 keymap.set('i', 'jk', '<Esc>', { desc = 'Global: Escape' })
 
+-- Remap for dealing with word wrap
+keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { desc = 'Global: Block Escape', expr = true, silent = true })
+keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Global: Block Escape', expr = true, silent = true })
+
 -- increment / decrement
 keymap.set('n', '+', '<C-a>', { desc = 'Global: Increment' })
 keymap.set('n', '-', '<C-x>', { desc = 'Global: Decrement' })
@@ -18,7 +22,7 @@ keymap.set('', '<left>', '<nop>', { desc = 'Global: Arrow left disabled' })
 keymap.set('', '<right>', '<nop>', { desc = 'Global: Arrow right disabled' })
 
 -- Files
-keymap.set({ 'i', 'x', 'n', 's' }, '<leader>sf', '<cmd>w<cr><esc>', { desc = 'Global: Save File' })
+keymap.set({ 'i', 'x', 'n', 's' }, '<leader>sf', '<cmd>w<cr><esc>', { desc = 'Global: [S]ave [F]ile' })
 
 -- Navigation
 keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Global: Move Left Window' })

@@ -1,5 +1,5 @@
-local keymaps = require('../../config/plugins/lspconfig/keymaps')
-local options = require('../../config/plugins/lspconfig/options')
+local keymaps = require('../config/plugins/lsp/keymaps')
+local options = require('../config/plugins/lsp/options')
 
 return {
 	'neovim/nvim-lspconfig',
