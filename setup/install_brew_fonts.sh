@@ -6,6 +6,7 @@ install_brew_fonts() {
   local fonts=(
     font-meslo-for-powerline
     font-fira-code
+    font-jetbrains-mono
   )
 
   echo "${COLOR_GREEN}Brew Fonts...${COLOR_RESET}"

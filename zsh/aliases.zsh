@@ -1,6 +1,6 @@
 # ALIASES ---------------------------------------------------------------------
 alias d=docker
-alias dc=docker-compose
+alias dc="docker compose"
 alias dkill="pgrep \"Docker\" | xargs kill -9"
 alias hcat='highlight -O ansi'
 
@@ -13,13 +13,11 @@ alias zn='vim $NOTES_DIR/$(date +"%Y%m%d%H%M.md")'
 # Define a function for the alias
 lst() {
   local level=${1:-2}  # Use the provided level or default to 2 if not provided
-  exa -aT --icons -I 'node_modules|gems|images|.git|media' --level $level
+  eza -aT --icons -I 'node_modules|gems|images|.git|media' --level $level
 }
 
-alias l='exa -lah'
-alias ls='exa -lag --header --classify --no-user --no-permissions --icons'
-alias lst="lst"
-alias sl=exa
+alias l='eza -lah'
+alias ls='eza -lag --header --classify --no-user --no-permissions --icons' alias lst="lst"
 alias c='clear'
 alias trim="awk '{\$1=\$1;print}'"
 alias ..='cd ..'
@@ -46,7 +44,7 @@ alias gcp='git cherry-pick'
 alias gd='git diff -w'
 alias gds='git diff -w --staged'
 alias grs='git restore --staged'
-alias gst='git rev-parse --git-dir > /dev/null 2>&1 && git status || exa'
+alias gst='git rev-parse --git-dir > /dev/null 2>&1 && git status || eza'
 alias gu='git reset --soft HEAD~1'
 alias gpr='git remote prune origin'
 alias ff='gpr && git pull --ff-only'

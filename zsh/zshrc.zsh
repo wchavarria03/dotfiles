@@ -3,7 +3,7 @@ export PATH=$HOME/.docker/bin:$HOME/bin:/usr/local/bin:$PATH
 
 COMPLETION_WAITING_DOTS="true"
 
-# Souce plugins manually
+# Source plugins manually
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 

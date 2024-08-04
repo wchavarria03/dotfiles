@@ -40,9 +40,6 @@ symbol = " "
 [nodejs]
 format = "[$symbol($version )]($style)"
 
-[ruby]
-format = '[$symbol($version )]($style)'
-
 [cmd_duration]
 format = "[$duration]($style)"
 style = "yellow"
