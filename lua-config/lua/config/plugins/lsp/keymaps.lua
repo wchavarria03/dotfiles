@@ -1,3 +1,5 @@
+local utils = require('config.utils')
+
 local M = {}
 
 M.setup = function(event)
@@ -41,10 +43,10 @@ M.setup = function(event)
 	keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<CR>', opts)
 
 	opts.desc = 'LSP: Diagnostic Prev'
-	keymap.set('n', '<leader>k', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
+	keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
 
 	opts.desc = 'LSP: Diagnostic Next'
-	keymap.set('n', '<leader>j', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
+	keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
 
 	opts.desc = 'LSP: Restart LSP'
 	keymap.set('n', '<leader>rs', ':LspRestart<cr>', opts)

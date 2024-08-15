@@ -31,11 +31,11 @@ keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Global: Move Up Window' })
 keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Global: Move Down Window' })
 
 -- Resize window using <ctrl> arrow keys
-keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Global: Increase Window Height' })
-keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Global: Decrease Window Height' })
-keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Global: Decrease Window Width' })
-keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Global: Increase Window Width' })
+keymap.set('n', '<C->', '<cmd>resize +5<cr>', { desc = 'Global: Increase Window Height' })
+keymap.set('n', '<C->', '<cmd>resize -5<cr>', { desc = 'Global: Decrease Window Height' })
+keymap.set('n', '<C-<>', '<cmd>vertical resize -5<cr>', { desc = 'Global: Decrease Window Width' })
+keymap.set('n', '<C->>', '<cmd>vertical resize +5<cr>', { desc = 'Global: Increase Window Width' })
 
 -- Windows
-keymap.set('n', '<C-v>', ':vsplit<CR>', { desc = 'Global: Window Split Vert' })
-keymap.set('n', '<C-x>', ':split<CR>', { desc = 'Global: Window Split Hori' })
+keymap.set('n', '<C-->', ':vsplit<CR>', { desc = 'Global: Window Split Vert' })
+keymap.set('n', '<C-\\>', ':split<CR>', { desc = 'Global: Window Split Hori' })

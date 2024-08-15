@@ -7,4 +7,19 @@ M.mapKey = function(context, mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, merge_tb('force', opts, local_desc))
 end
 
+M.fun = function(t)
+	local f = t[1]
+	local args = { unpack(t, 2) }
+	return function()
+		return f(unpack(args))
+	end
+end
+
+M.fn = function(f, ...)
+	local args = { ... }
+	return function(...)
+		return f(unpack(args), ...)
+	end
+end
+
 return M

@@ -29,7 +29,9 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export STARSHIP_CACHE_DISABLED=1
 
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(fzf --zsh)"
+
+source <(fzf --zsh)
+
 
 source /Users/wchavarria/.config/op/plugins.sh
 
