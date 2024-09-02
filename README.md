@@ -4,7 +4,7 @@
   <img alt="Last commit" src="https://img.shields.io/github/last-commit/wchavarria03/dotfiles?logo=git&style=for-the-badge"/>
 </a>
 
-[![](https://img.shields.io/badge/Neovim-0.9.5+-blueviolet.svg?style=for-the-badge&logo=Neovim)](https://github.com/neovim/neovim)
+[![](https://img.shields.io/badge/Neovim-0.10.1+-blueviolet.svg?style=for-the-badge&logo=Neovim)](https://github.com/neovim/neovim)
 
 </div>
 
