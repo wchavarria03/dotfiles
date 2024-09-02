@@ -1,1 +1,13 @@
+.config/cache
+.config/local
 .DS_Store
+scripts
+setup
+.config/nvim/backupdir
+.config/nvim/undodir
+.config/asdf/installs
+.config/asdf/shims
+.config/asdf/plugins
+.config/asdf/downloads
+.config/zsh/.zsh_history
+.config/nvim/swap

@@ -21,13 +21,15 @@ install_brew_packages() {
         zsh
 
         # APPS
+        # alacritty
+        kitty
         brave-browser
         docker
-        google-chrome
         gnupg
         iterm2
         notion
         bruno
+        insomnia
         sequel-ace
         slack
         1password
@@ -39,6 +41,7 @@ install_brew_packages() {
         zsh-syntax-highlighting
         zsh-autosuggestions
         docker-completion
+
     )
 
     echo "${COLOR_GREEN}Brew packages...${COLOR_RESET}"

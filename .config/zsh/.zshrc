@@ -11,12 +11,13 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 export LANG=en_US.UTF-8
 
 # Set personal aliases, overriding those provided
-source $DOTFILES/zsh/aliases.zsh
+source $DOTFILES/.config/zsh/aliases.zsh
 
 # Bash completion
 [[ -r \"/usr/local/etc/profile.d/bash_completion.sh\" ]] && . \"/usr/local/etc/profile.d/bash_completion.sh
 
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 export GOPATH=$(asdf where golang)/packages
 export GOBIN=$(asdf where golang)/packages/bin
@@ -32,7 +33,6 @@ eval "$(zoxide init --cmd cd zsh)"
 
 source <(fzf --zsh)
 
-
-source /Users/wchavarria/.config/op/plugins.sh
+# source /Users/wchavarria/.config/op/plugins.sh
 
 . $(brew --prefix asdf)/libexec/asdf.sh

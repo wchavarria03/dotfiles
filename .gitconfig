@@ -50,3 +50,7 @@
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     ls = ls-files
     ign = ls-files -o -i --exclude-standard #ignored by git
+[init]
+	defaultBranch = main
+[include]
+	path = ~/code/secrets/git.inc

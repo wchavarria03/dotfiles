@@ -35,7 +35,6 @@ main() {
   source setup_tmux_tpm.sh
   source setup_secrets.sh
   source setup_dotfiles.sh
-  source setup_symblinks.sh
   source setup_mac_config.sh
 
   # Add more setup steps here

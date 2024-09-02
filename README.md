@@ -50,7 +50,7 @@ $ ./clean_up.sh
 
 ## Others 
 ### Git
-SSH keys were moved to 1password and sinin commits is now using ssh instead of GPG.
+SSH keys were moved to 1password and signin commits is now using ssh instead of GPG.
 SSH keys needs to be added on github account as Authentication Keys and Signing keys
 
 ### Secrets
@@ -60,3 +60,22 @@ This repo would only fetch and load them if available
 ## Common issues
 1. Issues installing brew: You might need an stable connection to do it so if the installment gets interrupted at the middle you might need to uninstall all brew packages and do it again
 2. MAC M1 Chips + Brew: Looks like brew new path in M1 Macs is not added by default so we need to add the path following the suggestion after Brew gets installed, and then restart the terminal so the path takes effect. Then run again the install script.
+
+# New Steps
+## Run stow
+```
+$ make stow
+```
+
+## asdf
+Install the pending plugins first
+```
+$ asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+
+$ asdf plugin add python https://github.com/asdf-community/asdf-python.git
+
+$ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+
+$ asdf install
+
+```
