@@ -5,12 +5,12 @@ keys.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 keys.keys = {
 	{
-		key = "'",
+		key = "\\",
 		mods = "LEADER",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 	{
-		key = "5",
+		key = "-",
 		mods = "LEADER",
 		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},

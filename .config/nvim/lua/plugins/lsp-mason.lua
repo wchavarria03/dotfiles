@@ -22,7 +22,7 @@ return {
 			mason_lspconfig.setup({
 				ensure_installed = {
 					-- LSPs
-					'tsserver',
+					'ts_ls',
 					'lua_ls',
 
 					'bashls',

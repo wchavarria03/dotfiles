@@ -26,10 +26,11 @@ export GOPRIVATE="github.com/ltvco/*"
 export PATH="$GOBIN:$GOROOT/bin:${PATH}"
 
 eval "$(starship init zsh)"
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-export STARSHIP_CACHE_DISABLED=1
 
 eval "$(zoxide init --cmd cd zsh)"
+
+bindkey '˙' backward-word  # ⌥ + ← [skip word backward]
+bindkey '¬' forward-word   # ⌥ + → [skip word forward]
 
 source <(fzf --zsh)
 
