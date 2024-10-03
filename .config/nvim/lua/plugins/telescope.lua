@@ -72,6 +72,28 @@ return {
 						'--glob=!**/build/*',
 						'--glob=!**/dist/*',
 						'--glob=!**/node_modules/*',
+						'--glob=!**/node_modules/*',
+						'--glob=!**/nvim/undodir/*',
+						'--glob=!**/nvim/swap/*',
+						'--glob=!**/nvim/backup/*',
+						'--glob=!**/nvim/backupdir/*',
+						'--glob=!**/asdf/plugins/*',
+						'--glob=!**/asdf/installs/*',
+						'--glob=!**/asdf/shims/*',
+						'--glob=!**/local/share/*',
+						'--glob=!**/.config/cache/*',
+						'--glob=!**/.config/zsh/.zcompdump',
+					},
+					hidden = true,
+					no_ignore = true,
+				})
+			end, { desc = 'Find Files' })
+
+			utils.mapKey('Telescope', 'n', '<leader>fhf', function()
+				builtin.find_files({
+					find_command = {
+						'rg',
+						'--files',
 					},
 					hidden = true,
 					no_ignore = true,
@@ -86,10 +108,6 @@ return {
 					},
 				})
 			end, { desc = 'Grep All Text' })
-
-			utils.mapKey('Telescope', 'n', '<leader>fn', function()
-				builtin.find_files({ cwd = vim.fn.stdpath('config') })
-			end, { desc = '[N]eovim files' })
 
 			utils.mapKey('Telescope', 'n', '<leader>fw', builtin.live_grep, { desc = 'Grep Text' })
 			utils.mapKey('Telescope', 'n', '<leader>fb', builtin.buffers, { desc = 'Buffers' })

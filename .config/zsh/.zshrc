@@ -7,6 +7,14 @@ COMPLETION_WAITING_DOTS="true"
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
+
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
@@ -29,10 +37,15 @@ eval "$(starship init zsh)"
 
 eval "$(zoxide init --cmd cd zsh)"
 
+source <(fzf --zsh)
+
+# Use zsh history on arrow up/down
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+
+# jump word to work on zsh input
 bindkey '˙' backward-word  # ⌥ + ← [skip word backward]
 bindkey '¬' forward-word   # ⌥ + → [skip word forward]
-
-source <(fzf --zsh)
 
 # source /Users/wchavarria/.config/op/plugins.sh
 

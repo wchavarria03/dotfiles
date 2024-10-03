@@ -13,11 +13,7 @@ config.macos_window_background_blur = 30
 config = utils.mergeTables(config, require("color"))
 config = utils.mergeTables(config, require("tabbar"))
 config = utils.mergeTables(config, require("keymaps"))
---
 
--- Auto applied config
--- require("smart-splits").run_smart_splits(config)
---
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 smart_splits.apply_to_config(config, {
 	direction_keys = { "h", "j", "k", "l" },
@@ -27,5 +23,22 @@ smart_splits.apply_to_config(config, {
 		resize = "META", -- modifier to use for pane resize, e.g. META+h to resize to the left
 	},
 })
+
+local projects = require("projects")
+
+table.insert(config.keys, {
+	key = "p",
+	mods = "LEADER",
+	action = projects.choose_project(),
+})
+
+table.insert(config.keys, {
+	key = "f",
+	mods = "LEADER",
+	action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
+})
+
+local bootstrap = require("bootstrap")
+wezterm.on("gui-startup", bootstrap.init)
 
 return config

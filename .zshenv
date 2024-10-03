@@ -3,9 +3,10 @@
 ###############################
 # EXPORT ENVIRONMENT VARIABLE #
 ###############################
-export WORKSPACE="$HOME/code"
-export SECRETSREPO="$HOME/code/secrets"
-export DOTFILES="$HOME/code/dotfiles"
+export WORKSPACE_PERSONAL="$HOME/personal"
+export WORKSPACE_WORK="$HOME/work"
+export SECRETSREPO="$HOME/personal/secrets"
+export DOTFILES="$HOME/personal/dotfiles"
 export NOTES_DIR="~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
 
 [ -f "$DOTFILES/install_config" ] && source "$DOTFILES/install_config"
@@ -22,8 +23,12 @@ export VISUAL="nvim"
 # ZSH
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$ZDOTDIR/.zhistory"                    # History filepath
-export HISTSIZE=5000                                    # Maximum events for internal history
-export SAVEHIST=5000                                    # Maximum events in history file
+export HISTSIZE=1000                                    # Maximum events for internal history
+export SAVEHIST=999                                     # Maximum events in history file
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
 
 # OTHER
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"

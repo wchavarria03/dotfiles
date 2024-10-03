@@ -41,7 +41,6 @@ You can also reload configs manually or logout/login session.
 
 ### Clean up
 Run `clean_up.sh` script on the setup folder
-
 ```
 $ cd setup
 $ chmod +x clean_up.sh
@@ -55,13 +54,12 @@ SSH keys needs to be added on github account as Authentication Keys and Signing 
 
 ### Secrets
 Personal and job related secrets are managed on a private repo
-This repo would only fetch and load them if available
 
 ## Common issues
 1. Issues installing brew: You might need an stable connection to do it so if the installment gets interrupted at the middle you might need to uninstall all brew packages and do it again
 2. MAC M1 Chips + Brew: Looks like brew new path in M1 Macs is not added by default so we need to add the path following the suggestion after Brew gets installed, and then restart the terminal so the path takes effect. Then run again the install script.
 
-# New Steps
+# Post Install
 ## Run stow
 ```
 $ make stow
@@ -79,3 +77,9 @@ $ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 $ asdf install
 
 ```
+
+## TODOS / Improvements
+
+### TO IGNORE WITH CTR-P on NVIM
+- config/zsh/.zsh_sessions
+- Almost the same as the stow ignore file

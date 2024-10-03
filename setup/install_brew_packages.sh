@@ -2,6 +2,10 @@
 
 # Function to install or update Brew packages
 install_brew_packages() {
+    # Borders in conjuntion with AeroSpace
+    echo "${COLOR_GREEN}-- Installing tap formulae${COLOR_RESET}"
+    brew tap FelixKratz/formulae
+
     local packages=(
         asdf
         bash
@@ -21,40 +25,40 @@ install_brew_packages() {
         zsh
 
         # APPS
-        # alacritty
-        kitty
         brave-browser
+        dbeaver
         docker
         gnupg
-        iterm2
-        notion
         bruno
         insomnia
         sequel-ace
         slack
         1password
         1password/tap/1password-cli
+        obsidian
         raycast
+        wezterm
+
+        aeroSpace
+        borders # requires formulae tap
 
         # Terminal suggestions
         bash-completion
         zsh-syntax-highlighting
         zsh-autosuggestions
         docker-completion
-
     )
 
-    echo "${COLOR_GREEN}Brew packages...${COLOR_RESET}"
     for package in "${packages[@]}"; do
         if brew info "$package" &>/dev/null; then
-            echo "${COLOR_GREEN}- $package already installed.${COLOR_RESET}"
+            echo "${COLOR_GREEN}-- $package already installed.${COLOR_RESET}"
         else
-            echo "${COLOR_GREEN}- Installing $package...${COLOR_RESET}"
+            echo "${COLOR_GREEN}-- Installing $package...${COLOR_RESET}"
             brew install "$package"
         fi
     done
 
-    echo "${COLOR_GREEN}- Cleaning up Brew...${COLOR_REST}"
+    echo "${COLOR_GREEN}-- Cleaning up Brew...${COLOR_REST}"
     brew cleanup
 }
 

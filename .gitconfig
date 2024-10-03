@@ -53,4 +53,4 @@
 [init]
 	defaultBranch = main
 [include]
-	path = ~/code/secrets/git.inc
+	path = ~/personal/secrets/git.inc
