@@ -32,37 +32,43 @@ main() {
   done
 
   echo " "
-  echo "${COLOR_GREEN}******** Stage 2- Prep folders and brew ********${COLOR_RESET}"
+  echo "${COLOR_GREEN}******** Stage 2 - Prep folders and brew ********${COLOR_RESET}"
   echo "${COLOR_GREEN}- Create folders${COLOR_RESET}"
   source create_folders.sh
+  create_folders
 
   echo "${COLOR_GREEN}- Brew install and update${COLOR_RESET}"
   source install_and_update_homebrew.sh
+  install_and_update_homebrew
 
   echo "${COLOR_GREEN}- Brew install packages${COLOR_RESET}"
   source install_brew_packages.sh
+  install_brew_packages
 
   echo "${COLOR_GREEN}- Brew install Fonts${COLOR_RESET}"
   source install_brew_fonts.sh
+  install_brew_fonts
 
   echo " "
-  echo "${COLOR_GREEN}******** Stage 3- Setup Config Repos ********${COLOR_RESET}"
+  echo "${COLOR_GREEN}******** Stage 3 - Setup Config Repos ********${COLOR_RESET}"
   echo "${COLOR_GREEN}- Setup SECRETS repo${COLOR_REST}"
   source setup_secrets.sh
+  setup_secrets
 
   echo "${COLOR_GREEN}- Setup DOTFILES repo${COLOR_REST}"
   source setup_dotfiles.sh
+  setup_dotfiles
 
   echo "${COLOR_GREEN}- Setup NOTES repo${COLOR_REST}"
   source setup_notes.sh
-
+  setup_notes
 
   echo " "
-  echo "${COLOR_GREEN}******** Stage 4- Configure MAC ********${COLOR_RESET}"
+  echo "${COLOR_GREEN}******** Stage 4 - Configure MAC ********${COLOR_RESET}"
   echo ${COLOR_GREEN}"- Configuring MAC defaults..${COLOR_REST}"
   source setup_mac_config.sh
 
-  echo "${COLOR_GREEN}******** Stage 3- Completition ********${COLOR_RESET}"
+  echo "${COLOR_GREEN}******** Stage 5 - Complete Installation ********${COLOR_RESET}"
   echo "${COLOR_GREEN} - OSX setup completed.${COLOR_RESET}"
 }
 

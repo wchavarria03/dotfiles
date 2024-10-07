@@ -26,7 +26,7 @@ install_brew_packages() {
 
         # APPS
         brave-browser
-        dbeaver
+        dbeaver-community
         docker
         gnupg
         bruno
