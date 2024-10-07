@@ -40,7 +40,7 @@ We need all the symlinks and configuration to be loaded on a new terminal.
 You can also reload configs manually or logout/login session.
 
 ### Clean up
-Run `clean_up.sh` script on the setup folder
+Run `clean_up.sh` script on the setup folder [Coming soon..]
 ```
 $ cd setup
 $ chmod +x clean_up.sh
@@ -65,7 +65,7 @@ Personal and job related secrets are managed on a private repo
 $ make stow
 ```
 
-## asdf
+## Install asdf plugins
 Install the pending plugins first
 ```
 $ asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
