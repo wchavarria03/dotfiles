@@ -1,4 +1,4 @@
-# ALIASES ---------------------------------------------------------------------
+#ALIASES ---------------------------------------------------------------------
 alias d=docker
 alias dc="docker compose"
 alias dkill="pgrep \"Docker\" | xargs kill -9"
@@ -7,8 +7,6 @@ alias hcat='highlight -O ansi'
 alias v='nvim -w ~/.vimlog "$@"'
 alias vi='nvim -w ~/.vimlog "$@"'
 alias vim='nvim -w ~/.vimlog "$@"'
-
-alias zn='vim $NOTES_DIR/$(date +"%Y%m%d%H%M.md")'
 
 # Define a function for the alias
 lst() {
@@ -29,8 +27,10 @@ alias mv='mv -i'
 alias h='history'
 
 # Set up the alias to call the function
-alias note="$DOTFILES/scripts/note.sh"
-alias notes="$DOTFILES/scripts/notes.sh"
+alias zn="$DOTFILES/scripts/note.sh"
+# alias notes="$DOTFILES/scripts/notes.sh"
+  
+alias pyp='pip install -r requirements.txt --index-url https://${PYPI_USERNAME}:${PYPI_PASSWORD}@pypi.ltvops.com/simple'
 
 # GIT ALIASES -----------------------------------------------------------------
 alias gc='git commit'

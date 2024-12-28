@@ -111,7 +111,7 @@ vim.opt.fillchars = {
 vim.opt.showmatch = true -- highlight matching parenthesis
 
 -- copy/paste to system clipboard'
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = 'unnamed,unnamedplus'
 
 -- completion options
 vim.opt.completeopt = 'menu,menuone,noselect,noinsert'

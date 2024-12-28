@@ -7,7 +7,7 @@ export WORKSPACE_PERSONAL="$HOME/personal"
 export WORKSPACE_WORK="$HOME/work"
 export SECRETSREPO="$HOME/personal/secrets"
 export DOTFILES="$HOME/personal/dotfiles"
-export NOTES_DIR="~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents"
+export NOTES_DIR="$HOME/personal/notes"
 
 [ -f "$DOTFILES/install_config" ] && source "$DOTFILES/install_config"
 

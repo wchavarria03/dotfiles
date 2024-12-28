@@ -21,6 +21,7 @@ return {
 				lua = { 'stylua' },
 				python = { 'black', 'isort' },
 				go = { 'gofumpt', 'goimports-reviser', 'golines' },
+				beancount = { 'bean-format' },
 				['*'] = { 'codespell' },
 			},
 			format_on_save = {

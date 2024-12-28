@@ -66,6 +66,19 @@ M.setup = function()
 			},
 		},
 	})
+
+	lspconfig.beancount.setup({
+		root_dir = lspconfig.util.root_pattern('beanfile', '.git'),
+		settings = {
+			init_options = {
+				journalFile = '~/personal/finances/main.beancount',
+			},
+			beancount = {
+				journalFile = '~/personal/finances/main.beancount',
+			},
+		},
+		cmd = { '/usr/local/bin/beancount-language-server' },
+	})
 end
 
 return M

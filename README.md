@@ -16,7 +16,9 @@ Index
 - [Others](https://github.com/wchavarria03/dotfiles#Others)
 - [Commonn issues](https://github.com/wchavarria03/dotfiles#Common-issues)
 
-## Requirements
+## Pre Install
+
+### Update your mac to latest version
 
 ### Install Xcode
 ```

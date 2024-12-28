@@ -4,7 +4,9 @@
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
+after-login-command = [
+    'exec-and-forget ${XDG_CONFIG_HOME}/aerospace/open_notes.sh'
+]
 
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
@@ -91,6 +93,9 @@ tell application "WezTerm"
 end tell'
 '''
 
+ctrl-shift-alt-cmd-1 = 'exec-and-forget ~/personal/dotfiles/.config/aerospace/open_notes.sh'
+# ctrl-shift-t = 'workspace 5'
+# ctrl-shift-cmd-1 = 'move-node-to-workspace 1'
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
@@ -159,6 +164,18 @@ run = 'move-node-to-workspace 3'
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
 run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Obsidian'
+run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'wezterm-gui'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'zwift'
+run = ['move-node-to-workspace 7']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

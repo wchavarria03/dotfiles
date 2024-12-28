@@ -30,6 +30,7 @@ return {
 				'typescript',
 				'vim',
 				'vimdoc',
+				'beancount',
 
 				-- Lua
 				'lua',

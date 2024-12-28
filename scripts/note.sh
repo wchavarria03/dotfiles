@@ -8,17 +8,19 @@ get_filename() {
     echo "$filename"
 }
 
-# function to create and open a file in the specified directory
+#rfunction to create and open a file in the specified directory
 open_file() {
     # Cd into the directory
     cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/ || exit
     # cd "$NOTES_DIR/$workspace_name" || exit
 
-    filepath="$default_notes_folder/$filename.md"
+    filepath="$NOTES_DIR/$default_notes_folder/$filename.md"
+    echo filepath
 
-    # Check if the file does not
+    # Check if the file does not exist
     if [[ ! -f $filepath ]]; then
-        # Create the file and open it in nvim
+        # Create the file
+        echo "Creating $filepath"
         touch $filepath
     fi
 
@@ -32,8 +34,9 @@ open_file() {
         echo "Date: $timestamp"
     } >>$filepath
 
+    echo "Opening $filepath"
     # Open the existing file in nvim
-    nvim '+ normal ggzzi' $filepath
+    nvim '+ normal ggzzi' $filepath -c :NoNeckPain
 }
 
 # Prompt the user if no filename is provided
@@ -44,7 +47,7 @@ fi
 # if more than one argument is given, print error message and stop script
 if [[ $# -gt 1 ]]; then
     echo "Please provide only one filename separated by dashes, without .md extension."
-    echo "Example: note my-new-note"
+    echo "Example: zn my-new-note"
     exit 1
 fi
 

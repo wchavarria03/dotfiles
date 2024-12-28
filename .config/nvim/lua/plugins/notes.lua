@@ -12,7 +12,7 @@ return {
 			workspaces = {
 				{
 					name = 'Notes',
-					path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents',
+					path = '~/Library/Mobile Documents/iCloud~md~obsidian/Documents/notes',
 				},
 			},
 			templates = {
@@ -35,6 +35,31 @@ return {
 			open_notes_in = 'vsplit',
 			follow_url_func = function(url)
 				vim.fn.jobstart({ 'open', url }) -- Mac OS
+			end,
+			note_frontmatter_func = function(note)
+				-- Add the title of the note as an alias.
+				if note.title then
+					note:add_alias(note.title)
+				end
+
+				local out = { id = note.id, aliases = note.aliases, tags = note.tags }
+
+				-- `note.metadata` contains any manually added fields in the frontmatter.
+				-- So here we just make sure those fields are kept in the frontmatter.
+				if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+					for k, v in pairs(note.metadata) do
+						out[k] = v
+					end
+				end
+
+				return out
+			end,
+			-- Optional, customize how note file names are generated given the ID, target directory, and title.
+			note_path_func = function(spec)
+				-- Print the value of spec.title
+				print('spec.title: ' .. tostring(spec.title))
+				local path = spec.dir / tostring(spec.title)
+				return path:with_suffix('.md')
 			end,
 		},
 		config = function(_, opts)

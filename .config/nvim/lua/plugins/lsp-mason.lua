@@ -31,6 +31,8 @@ return {
 
 					'gopls',
 					'pyright',
+
+					-- 'beancount', -- installed using homebrew because of errors on the one installed on Mason
 				},
 			})
 		end,

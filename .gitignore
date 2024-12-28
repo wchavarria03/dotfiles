@@ -11,4 +11,5 @@ setup
 .config/asdf/plugins
 .config/asdf/downloads
 .config/zsh/.zsh_history
+.config/zsh/.zsh_sessions
 .config/zsh/.zcompdump

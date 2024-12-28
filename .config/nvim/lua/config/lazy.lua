@@ -22,12 +22,14 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = '\\'
 require('config/keymaps')
 require('config/options')
+require('config/commands')
+require('config/notes')
 
 -- Setup lazy.nvim
 require('lazy').setup({
 	spec = {
-        { import = 'plugins' },
-    },
+		{ import = 'plugins' },
+	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
 	install = { colorscheme = { 'catppuccin' } },

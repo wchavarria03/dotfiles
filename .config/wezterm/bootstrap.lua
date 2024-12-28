@@ -10,24 +10,36 @@ config.init = function(cmd)
 		args = cmd.args
 	end
 
-	-- Set a workspace for coding on a current project
-	-- Top pane is for the editor, bottom pane is for the build tool
+	-- Function to remove "notes" from args list
+	local function pop_notes(local_args)
+		for i, v in ipairs(local_args) do
+			if v == "notes" then
+				table.remove(local_args, i)
+				return true
+			end
+		end
+		return false
+	end
+
 	local project_dir = wezterm.home_dir
+	local notes_dir = "/personal/notes"
+
+	-- Check and remove "notes" from args
+	local is_note_window = pop_notes(args)
+	if is_note_window then
+		project_dir = wezterm.home_dir .. notes_dir
+		-- exit_behavior = "Close"
+	end
+
 	local _, build_pane, window = mux.spawn_window({
 		workspace = "coding",
 		cwd = project_dir,
 		args = args,
 	})
 
-	build_pane:split({
-		direction = "Top",
-		size = 0.8,
-		cwd = project_dir,
-	})
-
 	window:gui_window():maximize()
+	window:gui_window():focus()
 
-	-- We want to startup in the coding workspace
 	mux.set_active_workspace("coding")
 end
 

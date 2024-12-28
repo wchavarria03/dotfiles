@@ -1,9 +1,9 @@
 local wezterm = require("wezterm")
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
-local smart_split_table = {}
+local module = {}
 
-smart_split_table.run_smart_splits = function(config)
+function module.apply_to_config(config)
 	smart_splits.apply_to_config(config, {
 		-- the default config is here, if you'd like to use the default keys,
 		-- you can omit this configuration table parameter and just use
@@ -19,4 +19,4 @@ smart_split_table.run_smart_splits = function(config)
 	})
 end
 
-return smart_split_table
+return module

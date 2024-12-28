@@ -29,7 +29,6 @@ install_brew_packages() {
         dbeaver-community
         docker
         gnupg
-        bruno
         insomnia
         sequel-ace
         slack

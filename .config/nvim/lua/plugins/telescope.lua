@@ -36,6 +36,7 @@ return {
 						'_build',
 						'.next',
 						'dist',
+						'venv',
 					},
 					vimgrep_arguments = {
 						'rg',
@@ -73,6 +74,7 @@ return {
 						'--glob=!**/dist/*',
 						'--glob=!**/node_modules/*',
 						'--glob=!**/node_modules/*',
+						'--glob=!**/venv/*',
 						'--glob=!**/nvim/undodir/*',
 						'--glob=!**/nvim/swap/*',
 						'--glob=!**/nvim/backup/*',
