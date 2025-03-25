@@ -1,0 +1,14 @@
+# Editor config
+font-family = JetBrains Mono NL
+theme = catppuccin-mocha
+background-opacity = 0.9
+background-blur = true
+
+macos-titlebar-style = tabs
+
+split-divider-color = #CBA6F7
+
+keybind = super+ctrl+k=goto_split:up
+keybind = super+ctrl+j=goto_split:down
+keybind = super+ctrl+l=goto_split:right
+keybind = super+ctrl+h=goto_split:left
