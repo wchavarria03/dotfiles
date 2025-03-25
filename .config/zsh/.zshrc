@@ -27,12 +27,6 @@ source $DOTFILES/.config/zsh/aliases.zsh
 export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
-export GOPATH=$(asdf where golang)/packages
-export GOBIN=$(asdf where golang)/packages/bin
-export GOROOT=$(asdf where golang)/go
-export GOPRIVATE="github.com/ltvco/*"
-export PATH="$GOBIN:$GOROOT/bin:${PATH}"
-
 eval "$(starship init zsh)"
 
 eval "$(zoxide init --cmd cd zsh)"
@@ -47,6 +41,16 @@ bindkey '^[[B' history-search-forward
 bindkey '˙' backward-word  # ⌥ + ← [skip word backward]
 bindkey '¬' forward-word   # ⌥ + → [skip word forward]
 
-# source /Users/wchavarria/.config/op/plugins.sh
+############
+### ASDF ###
+############
+# Add ASDF shims to PATH
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-. $(brew --prefix asdf)/libexec/asdf.sh
+# Configure ASDF completions
+fpath=("${ASDF_DATA_DIR:-$HOME/.asdf}/completions" $fpath)
+autoload -Uz compinit && compinit
+
+# Load ASDF Golang plugin environment
+source "$ASDF_CONFIG_FILE/plugins/golang/set-env.zsh"
+

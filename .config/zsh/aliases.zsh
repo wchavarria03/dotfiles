@@ -95,6 +95,7 @@ dclear () {
 
 alias docker-clear=dclear
 
+
 dreset () {
     dclear
     docker images -q | xargs docker rmi -f
