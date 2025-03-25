@@ -1,0 +1,9 @@
+database:
+  - name: "cattle-management-local"
+    host: "0.0.0.0"
+    port: 5432
+    db: "cattle_management_db"
+    password: ""
+    user: "postgres"
+    driver: "postgres"
+limit: 50
