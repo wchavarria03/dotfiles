@@ -1,54 +1,56 @@
 return {
-	'catppuccin/nvim',
-	lazy = false,
-	priority = 1000,
-	opts = {
-		flavour = 'mocha',
-		integrations = {
-			aerial = true,
-			alpha = true,
-			cmp = true,
-			dashboard = true,
-			fidget = true,
-			flash = true,
-			gitsigns = true,
-			harpoon = false,
-			headlines = true,
-			illuminate = true,
-			indent_blankline = { enabled = true },
-			leap = true,
-			lsp_trouble = true,
-			markdown = true,
-			mason = true,
-			mini = true,
-			native_lsp = {
-				enabled = true,
-				underlines = {
-					errors = { 'undercurl' },
-					hints = { 'undercurl' },
-					warnings = { 'undercurl' },
-					information = { 'undercurl' },
-				},
-			},
-			navic = { enabled = true, custom_bg = 'lualine' },
-			neotest = true,
-			neotree = true,
-			noice = true,
-			notify = true,
-			semantic_tokens = true,
-			telescope = true,
-			treesitter = true,
-			treesitter_context = true,
-			which_key = true,
-		},
-		dim_inactive = {
-			enabled = true,
-			percentage = 0.60,
-			shade = 'light',
-		},
-	},
-	config = function(_, opts)
-		require('catppuccin').setup(opts)
-		vim.cmd.colorscheme('catppuccin-mocha')
-	end,
+  "catppuccin/nvim",
+  name = "catppuccin",
+  opts = {
+    flavour = "mocha",
+    integrations = {
+      blink_cmp = true,
+      bufferline = true,
+      copilot_vim = true,
+      flash = true,
+      fzf = true,
+      gitsigns = true,
+      harpoon = true,
+      mason = true,
+      mini = {
+        enabled = true,
+        indentscope_color = "lavender",
+      },
+      neotree = true,
+      noice = true,
+      native_lsp = {
+        enabled = true,
+        virtual_text = {
+          errors = { "italic" },
+          hints = { "italic" },
+          warnings = { "italic" },
+          information = { "italic" },
+          ok = { "italic" },
+        },
+        underlines = {
+          errors = { "underline" },
+          hints = { "underline" },
+          warnings = { "underline" },
+          information = { "underline" },
+          ok = { "underline" },
+        },
+        inlay_hints = {
+          background = true,
+        },
+      },
+      treesitter = true,
+      render_markdown = true,
+      snacks = true,
+      which_key = true,
+    },
+    dim_inactive = {
+      enabled = true,
+      percentage = 0.60,
+      shade = "light",
+    },
+  },
+  config = function(_, opts)
+    require("catppuccin").setup(opts)
+    vim.cmd.colorscheme("catppuccin-mocha")
+  end,
 }

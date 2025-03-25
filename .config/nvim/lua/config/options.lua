@@ -1,132 +1,63 @@
--- Insert indents automatically
-vim.opt.smartindent = true
---
-vim.opt.shiftround = true -- Round indent
--- Number of spaces tabs count for - 1 tab == 2 spaces
-vim.opt.tabstop = 4
--- Size of an indent - 2 spaces when tab
-vim.opt.shiftwidth = 4
--- use spaces instead of tabs
-vim.opt.expandtab = true
--- In insert mode tabs are 2 spaces
-vim.opt.softtabstop = 4
--- Always show tabs
-vim.opt.showtabline = 2
-
--- show line number
-vim.opt.number = true
--- Relative line numbers
-vim.opt.relativenumber = true
--- ignore case letters when search
-vim.opt.ignorecase = true
--- ignore lowercase for the whole pattern
-vim.opt.smartcase = true
-
--- vertical split to the right
-vim.opt.splitright = true
--- horizontal split to the bottom
-vim.opt.splitbelow = true
-vim.opt.splitkeep = 'screen'
-
--- syntax highlight
-vim.opt.syntax = 'ON'
--- enable 24-bit RGB colors
-vim.opt.termguicolors = true
--- always show the sign column
-vim.opt.signcolumn = 'yes'
--- don't show mode
-vim.opt.showmode = false
--- disable line wrap
-vim.opt.wrap = false
--- Highlight cursor line
-vim.opt.cursorline = true
--- set file encoding to utf-8
-vim.opt.fileencoding = 'utf-8'
-
--- enable folding (default 'foldmarker')
-vim.opt.foldmethod = 'indent'
--- maximum fold depth
-vim.opt.foldnestmax = 10
--- close folds with a level higher than this
-vim.opt.foldlevel = 5
--- Show concealed text
-vim.opt.conceallevel = 1
-vim.opt.foldtext = ''
-
--- Confirm actions
-vim.opt.confirm = true
-
-vim.opt.wildmode = 'longest:full,full' -- Command-line completion mode
--- wildoptions = 'pum'                      -- vertical wildmenu
-
--- disable backup
-vim.opt.backup = true
--- set backupdir
-vim.opt.backupdir = vim.fn.expand('~/.config/nvim/backupdir')
-
--- Write swap file to disk every 100 chars
-vim.opt.updatecount = 200
--- set directory
-vim.opt.directory = vim.fn.expand('~/.config/nvim/swap')
-
--- enable undofile
-vim.opt.undofile = true
--- set undodir
-vim.opt.undodir = vim.fn.expand('~/.config/nvim/undodir')
-vim.opt.undolevels = 10000
-
--- remember n lines in history
-vim.opt.history = 100
-
--- faster completion
-vim.opt.updatetime = 200
--- minimum n# of lines above and below cursor
-vim.opt.scrolloff = 15
-vim.opt.smoothscroll = true
--- disable mouse
-vim.opt.virtualedit = 'block'
-vim.opt.mouse = ''
-vim.opt.timeoutlen = 300
-
--- max column for syntax highlight
-vim.opt.synmaxcol = 200
-
--- Show some invisible characters
-vim.opt.list = true
-vim.opt.listchars = {
-	tab = '» ',
-	leadmultispace = '┊ ',
-	trail = '␣',
-	space = '·',
-	nbsp = '⍽',
-}
+vim.opt.clipboard = "unnamedplus" -- copy/paste to system clipboard'
+vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+vim.opt.confirm = true -- Confirm to save changes before exiting modified buffer
+vim.opt.cursorline = true -- Highlight cursor line
+vim.opt.expandtab = true -- use spaces instead of tabs
 vim.opt.fillchars = {
-	foldopen = '',
-	foldclose = '',
-	fold = ' ',
-	foldsep = ' ',
-	diff = '╱',
-	eob = ' ',
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
 }
-vim.opt.showmatch = true -- highlight matching parenthesis
-
--- copy/paste to system clipboard'
-vim.opt.clipboard = 'unnamed,unnamedplus'
-
--- completion options
-vim.opt.completeopt = 'menu,menuone,noselect,noinsert'
-
-vim.opt.cmdheight = 2
-vim.opt.winminwidth = 5
-vim.opt.formatoptions = 'jcroqlnt'
-vim.opt.jumpoptions = 'view'
-
--- Popup blen
-vim.opt.pumblend = 10
--- Maximum number of entries in a popup
-vim.opt.pumheight = 10
-
--- don't pass messages to |ins-completion-menu
--- Maximum number of entries in a popup
-vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
-vim.opt.spelloptions:append('noplainbuffer')
+vim.opt.foldlevel = 99 -- close folds with a level higher than this
+vim.opt.foldmethod = "indent"
+vim.opt.formatoptions = "jcroqlnt"
+vim.opt.grepformat = "%f:%l:%c:%m"
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.ignorecase = true -- ignore case letters when search
+vim.opt.inccommand = "nosplit" -- preview incremental substitute
+vim.opt.jumpoptions = "view"
+vim.opt.laststatus = 2 -- global statusline
+vim.opt.linebreak = true -- Wrap lines at convenient points
+vim.opt.list = true -- Show some invisible characters
+vim.opt.listchars = {
+  tab = "» ",
+  leadmultispace = "┊ ",
+  trail = "␣",
+  space = "·",
+  nbsp = "⍽",
+}
+vim.opt.mouse = "" -- disable mouse
+vim.opt.number = true -- show line number
+vim.opt.pumblend = 10 -- Pop-up blend
+vim.opt.pumheight = 10 -- Maximum number of entries in a pop-up
+vim.opt.relativenumber = true -- Relative line numbers
+vim.opt.ruler = false -- Disable the default ruler
+vim.opt.scrolloff = 4
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+vim.opt.shiftround = true -- Round indent
+vim.opt.shiftwidth = 2 -- Size of an indent - 2 spaces when tab
+vim.opt.shortmess:append({ W = true, c = true, C = true })
+vim.opt.showmode = false -- Don't show mode since we have a statusline
+vim.opt.sidescrolloff = 8 -- Columns of context
+vim.opt.signcolumn = "yes" -- always show the sign column
+vim.opt.smartcase = true -- Don't ignore case with capitals
+vim.opt.smartindent = true -- Insert indents automatically
+vim.opt.spell = true
+vim.opt.spelllang = { "en" }
+vim.opt.splitbelow = true -- Put new windows below current
+vim.opt.splitkeep = "screen"
+vim.opt.splitright = true -- Put new windows right of current
+vim.opt.tabstop = 2 -- Number of spaces tabs count for
+vim.opt.termguicolors = true -- True color support
+vim.opt.timeoutlen = 300 -- Lower than default (1000) to quickly trigger which-key
+vim.opt.undofile = true
+vim.opt.undolevels = 10000
+vim.opt.updatetime = 200 -- Save swap file and trigger CursorHold
+vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
+vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
+vim.opt.winminwidth = 5 -- Minimum window width
+vim.opt.wrap = false -- Disable line wrap
