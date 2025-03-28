@@ -79,6 +79,5 @@ return {
     },
     question_header = "  User ",
     answer_header = "  Copilot ",
-    model = "claude-3.7-sonnet",
   },
 }
