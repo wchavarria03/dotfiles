@@ -32,5 +32,3 @@ setopt hist_verify
 
 # OTHER
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
-export ASDF_DATA_DIR="$HOME/.config/asdf"
-export ASDF_CONFIG_FILE="$HOME/.config/asdf"
