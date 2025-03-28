@@ -79,6 +79,10 @@ $ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 $ asdf install
 
 ```
+## Login to 1password
+- Enable the 1password cli on the Desktop app
+- Run `op signin` on your terminal (maybe not needed since it was added to the .zshrc)
+- Make sure your ssh key is already stored on 1password.
 
 ## TODOS / Improvements
 
