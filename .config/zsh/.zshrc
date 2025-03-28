@@ -44,13 +44,13 @@ bindkey '¬' forward-word   # ⌥ + → [skip word forward]
 ############
 ### ASDF ###
 ############
-# Add ASDF shims to PATH
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# append completions to fpath
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+. ~/.asdf/plugins/golang/set-env.zsh
 
-# Configure ASDF completions
-fpath=("${ASDF_DATA_DIR:-$HOME/.asdf}/completions" $fpath)
-autoload -Uz compinit && compinit
 
-# Load ASDF Golang plugin environment
-source "$ASDF_CONFIG_FILE/plugins/golang/set-env.zsh"
+# Initialize brew completions
+autoload -Uz compinit
+compinit
 
