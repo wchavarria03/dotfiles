@@ -28,8 +28,8 @@ export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 eval "$(starship init zsh)"
-
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(op signin)"
 
 source <(fzf --zsh)
 
