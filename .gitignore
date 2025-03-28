@@ -16,3 +16,4 @@ setup
 .config/zsh/.zcompdump
 .config/zsh/.zcompcache
 .config/github-copilot/hosts.json
+.config/github-copilot
