@@ -49,5 +49,10 @@ return {
       time_format = "%H:%M",
       substitutions = {},
     },
+
+    -- Avoid conflict with render-markdown plugin
+    ui = {
+      enable = false,
+    },
   },
 }

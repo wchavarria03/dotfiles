@@ -4,8 +4,11 @@ return {
   lazy = false,
   opts = {
     bigfile = { enabled = true },
+    dim = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
+    quickfile = { enabled = true },
+    rename = { enabled = true },
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },

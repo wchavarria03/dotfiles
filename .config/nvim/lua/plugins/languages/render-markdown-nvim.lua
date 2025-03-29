@@ -7,6 +7,8 @@ return {
       right_pad = 1,
     },
     file_types = { "markdown", "Avante" },
+    completions = { blink = { enabled = true } },
+    latex = { enabled = false },
   },
   ft = { "markdown", "norg", "rmd", "org", "Avante" },
   config = function(_, opts)
