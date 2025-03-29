@@ -11,7 +11,6 @@ return {
       javascript = { "eslint_d" },
       json = { "biome" },
       lua = { "luacheck" },
-      markdown = { "markdownlint-cli2" },
       python = { "flake8" },
       typescript = { "eslint_d" },
       -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
