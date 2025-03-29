@@ -32,7 +32,7 @@ setup_mac_config() {
   defaults write -g com.apple.swipescrolldirection -bool false
 
   # Change Dock to left position
-  defaults write com.apple.dock orientation left;
+  defaults write com.apple.dock orientation left
 
   # Speed up animations
   defaults write com.apple.dock expose-animation-duration -float 0.12
@@ -44,7 +44,7 @@ setup_mac_config() {
   defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
   # Enable quick view selection
-  defaults write com.apple.finder QLEnableTextSelection -bool TRUE;
+  defaults write com.apple.finder QLEnableTextSelection -bool TRUE
 
   # Enabling Right click with mouse
   defaults write com.apple.AppleMultitouchMouse MouseButtonMode TwoButton
@@ -58,6 +58,13 @@ setup_mac_config() {
 
   # Increase mouse speed
   defaults write com.apple.trackpad scaling -int 3
+
+  # Restart all affected services at once
+  echo "Applying all config changes..."
+  for app in "Dock" "Finder" "SystemUIServer" "Mail"; do
+    killall "$app" >/dev/null 2>&1 || true
+  done
+  echo "Configuration complete! All changes have been applied."
 }
 
 setup_mac_config_clean_up() {

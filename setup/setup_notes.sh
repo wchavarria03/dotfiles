@@ -6,27 +6,23 @@ setup_notes() {
   NOTES_PATH=~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents
   echo "---"
   echo $NOTES_PATH
-  if [ ! -d "$NOTES_PATH" ]
-  then
+  if [ ! -d "$NOTES_PATH" ]; then
     echo "${COLOR_GREEN}-- Cloning notes repo...${COLOR_REST}"
     git clone https://github.com/wchavarria03/notes "$NOTES_PATH"
   else
     echo "${COLOR_GREEN}-- Updating notes repo...${COLOR_REST}"
     cd "$NOTES_PATH/notes"
     git pull
-    cd - > /dev/null  # Return to the original directory, suppressing output
+    cd - >/dev/null # Return to the original directory, suppressing output
   fi
 
-
-  if [ ! -d "~/personal/notes" ]
-  then
+  if [ ! -d "~/personal/notes" ]; then
     echo "${COLOR_GREEN}-- Creating notes repo symblink ...${COLOR_REST}"
     create_symlink "$NOTES_PATH/notes" ~/personal/notes
   else
     echo "${COLOR_GREEN}-- Notes repo symblink its already there...${COLOR_REST}"
   fi
 }
-
 
 create_symlink() {
   local target=$1
@@ -43,5 +39,3 @@ create_symlink() {
 setup_notes_clean_up() {
   echo "${COLOR_GREEN}Setup notes clean up - coming feature...${COLOR_RESET}"
 }
-
-setup_notes
