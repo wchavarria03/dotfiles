@@ -34,6 +34,8 @@ $ xcode-select --install
 zshenv file is required on the user root folder to change the default paths before running the setup script
 Restart terminal to get zshenv file applied
 
+Swap mac Caps Lock key with CTRL.
+
 ### Install step
 
 Run `install.sh` script on the setup folder
@@ -98,7 +100,9 @@ $ asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 
 $ asdf install # installs everything listed on the .tools-versions
 ```
+
 ## Login to 1password
+
 - Enable the 1password cli on the Desktop app
 - Run `op signin` on your terminal (maybe not needed since it was added to the .zshrc)
 - Make sure your ssh key is already stored on 1password.
