@@ -58,7 +58,7 @@ return {
       formatters_by_ft = {
         bash = { "shfmt" },
         beancount = { "bean-format" },
-        go = { "golines", "goimports-reviser", "gofumpt" },
+        go = { "golines", "goimports", "gofumpt" },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         json = { "biome", "prettier" },
         lua = { "stylua" },
