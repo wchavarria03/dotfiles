@@ -37,21 +37,24 @@ require("lazy").setup({
     { import = "plugins/util" },
     { import = "plugins" },
   },
-  -- install = { colorscheme = { "catppuccin" } },
-  -- install = { colorscheme = { "tokyonight" } },
-  --vim.cmd[[colorscheme tokyonight]]
-  -- check for plugin updates periodically
   checker = {
     enabled = true,
-  }, -- automatically check for plugin updates
+    notify = false, -- don't show update notifications
+    frequency = 3600 * 24, -- check once per day
+  },
   performance = {
+    cache = {
+      enabled = true,
+    },
+    reset_packpath = true, -- reset the package path to improve startup time
     rtp = {
+      reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
       -- disable some rtp plugins
       disabled_plugins = {
         "gzip",
-        -- "matchit",
-        -- "matchparen",
-        -- "netrwPlugin",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
@@ -61,5 +64,20 @@ require("lazy").setup({
   },
   ui = {
     border = "rounded",
+    icons = {
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🔑",
+      plugin = "🔌",
+      runtime = "💻",
+      require = "🌙",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+      lazy = "💤 ",
+    },
   },
 })
