@@ -4,7 +4,9 @@ return {
   lazy = false,
   opts = {
     picker = {
-      enabled = true,
+      matcher = {
+        frecency = true,
+      },
     },
   },
   keys = {
