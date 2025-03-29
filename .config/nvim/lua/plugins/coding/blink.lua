@@ -1,7 +1,7 @@
 return {
   "saghen/blink.cmp",
   version = "*",
-  event = "InsertEnter",
+  event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
     "fang2hou/blink-copilot",
     "rafamadriz/friendly-snippets",
@@ -28,6 +28,12 @@ return {
         selection = {
           preselect = false,
         },
+      },
+      performance = {
+        debounce_ms = 80,
+        throttle_ms = 80,
+        cache_size = 100,
+        max_results = 50,
       },
     },
     snippets = {
@@ -57,6 +63,29 @@ return {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
           score_offset = 100, -- show at a higher priority than lsp
+        },
+        lsp = {
+          name = "lsp",
+          score_offset = 90,
+          async = true,
+          cache = {
+            enabled = true,
+            max_size = 100,
+          },
+        },
+        snippets = {
+          name = "snippets",
+          score_offset = 80,
+        },
+        buffer = {
+          name = "buffer",
+          score_offset = 60,
+          max_item_count = 10,
+        },
+        path = {
+          name = "path",
+          score_offset = 50,
+          trailing_slash = true,
         },
       },
     },
