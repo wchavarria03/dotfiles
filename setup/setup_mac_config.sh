@@ -2,11 +2,11 @@
 
 # Function to setup mac config
 setup_mac_config() {
-  # Set fast key repeat rate
-  defaults write NSGlobalDomain KeyRepeat -int 2
-
-  # Repeat keys
-  defaults write -g ApplePressAndHoldEnabled -bool true
+  # Set keyboard repeat rate to maximum speed (lowest values = fastest)
+  defaults write NSGlobalDomain KeyRepeat -int 1         # 1 is the lowest (fastest) possible value
+  defaults write NSGlobalDomain InitialKeyRepeat -int 1  # 1 is the lowest (fastest) possible delay
+  defaults write -g AppleKeyboardUIMode -int 3          # Full keyboard access
+  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false # Disable press-and-hold, enable key repeat
 
   # Screenshots folder
   defaults write com.apple.screencapture location ~/Documents/screenshots/
@@ -31,8 +31,9 @@ setup_mac_config() {
   # Disable "natural" scroll
   defaults write -g com.apple.swipescrolldirection -bool false
 
-  # Change Dock to left position
+  # Dock configurations
   defaults write com.apple.dock orientation left
+  defaults write com.apple.dock tilesize -int 48
 
   # Speed up animations
   defaults write com.apple.dock expose-animation-duration -float 0.12
