@@ -48,6 +48,7 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 # append completions to fpath
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 . ~/.asdf/plugins/golang/set-env.zsh
+export PATH="$PATH:$(go env GOBIN)"
 
 
 # Initialize brew completions
