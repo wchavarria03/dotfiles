@@ -4,15 +4,16 @@ return {
   build = ":Copilot auth",
   event = "InsertEnter",
   opts = {
-    suggestion = {
-      enabled = false,
-    },
     panel = {
       enabled = false,
     },
     filetypes = {
+      yaml = true,
       markdown = true,
       help = true,
+      gitcommit = true,
+      gitrebase = true,
     },
+    copilot_model = "gpt-4o-copilot",
   },
 }
