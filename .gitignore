@@ -1,6 +1,5 @@
 .DS_Store
 scripts
-setup
 .asdf
 .config/op/
 .config/cache
