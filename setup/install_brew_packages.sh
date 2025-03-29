@@ -34,6 +34,7 @@ install_brew_packages() {
         # APPS
         brave-browser
         dbeaver-community
+        discord
         docker
         gnupg
         insomnia
