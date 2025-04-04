@@ -1,6 +1,7 @@
 -- TODO: Review if only needed for the nice CMD box if yes, find something to replace it
 return {
   "folke/noice.nvim",
+  enabled = false,
   event = "VeryLazy",
   opts = {
     lsp = {

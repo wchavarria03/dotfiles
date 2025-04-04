@@ -3,8 +3,8 @@ return {
   version = "*",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    "fang2hou/blink-copilot",
-    "rafamadriz/friendly-snippets",
+    -- "fang2hou/blink-copilot",
+    -- "Kaiser-Yang/blink-cmp-avante",
   },
   opts = {
     completion = {
@@ -30,34 +30,18 @@ return {
         },
       },
     },
-    snippets = {
-      preset = "luasnip",
-    },
 
     sources = {
-      default = { "copilot", "lazydev", "snippets", "lsp", "path", "buffer" },
-      providers = {
-        copilot = {
-          name = "copilot",
-          module = "blink-copilot",
-          score_offset = 100,
-          async = true,
-          transform_items = function(_, items)
-            local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-            local kind_idx = #CompletionItemKind + 1
-            CompletionItemKind[kind_idx] = "Copilot"
-            for _, item in ipairs(items) do
-              item.kind = kind_idx
-            end
-            return items
-          end,
-        },
-        -- LuaLS completion source
-        lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
-          score_offset = 100, -- show at a higher priority than lsp
-        },
+      -- default = { "avante", "lsp", "path", "buffer" },
+      default = { "lsp", "path", "buffer" },
+      -- providers = {
+      --   avante = {
+      --     name = "Avante",
+      --     module = "blink-cmp-avante",
+      --   },
+      -- },
+      per_filetype = {
+        codecompanion = { "codecompanion" },
       },
     },
     keymap = {
@@ -67,18 +51,18 @@ return {
   config = function(_, opts)
     require("blink.cmp").setup(opts)
 
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "BlinkCmpMenuOpen",
-      callback = function()
-        vim.b.copilot_suggestion_hidden = true
-      end,
-    })
-
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "BlinkCmpMenuClose",
-      callback = function()
-        vim.b.copilot_suggestion_hidden = false
-      end,
-    })
+    -- vim.api.nvim_create_autocmd("User", {
+    --   pattern = "BlinkCmpMenuOpen",
+    --   callback = function()
+    --     vim.b.copilot_suggestion_hidden = true
+    --   end,
+    -- })
+    --
+    -- vim.api.nvim_create_autocmd("User", {
+    --   pattern = "BlinkCmpMenuClose",
+    --   callback = function()
+    --     vim.b.copilot_suggestion_hidden = false
+    --   end,
+    -- })
   end,
 }
