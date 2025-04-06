@@ -20,35 +20,37 @@ install_brew_packages() {
     eza
     fzf
     git
-    gh
     glow # markdown previewer
     neovim
     npm
-    ripgrep
-    starship
     nvim
+    ripgrep
+    ruftop # install rust top to get cargo and be able to install some mason lsp with mason
+    starship
     zoxide
     zsh
 
     # APPS
+    1password
+    1password-cli
     brave-browser
     dbeaver-community
     discord
     docker
+    ghostty
     gnupg
     insomnia
-    sequel-ace
-    slack
-    1password
-    1password-cli
+    kitty
     obsidian
     raycast
-    kitty
-    ghostty
+    sequel-ace
+    slack
 
     # CLI apps
     atac
     dblab
+    gh
+    lazygit
 
     ## Desktop Manager
     aeroSpace
@@ -56,9 +58,9 @@ install_brew_packages() {
 
     # Terminal suggestions
     bash-completion
-    zsh-syntax-highlighting
-    zsh-autosuggestions
     docker-completion
+    zsh-autosuggestions
+    zsh-syntax-highlighting
   )
 
   for package in "${packages[@]}"; do

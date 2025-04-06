@@ -59,3 +59,4 @@ export PATH="$PATH:$(go env GOBIN)"
 autoload -Uz compinit
 compinit
 
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"

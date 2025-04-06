@@ -99,6 +99,16 @@ $ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 $ asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
 
 $ asdf install # installs everything listed on the .tools-versions
+
+```
+
+## Ruftop for cargo and mason package installs
+```
+$ rustup default stable
+
+$ echo 'export PATH="/opt/homebrew/opt/rustup/bin:$PATH"' >> /Users/wchavarria/.config/zsh/.zshrc
+
+$ rustup-init
 ```
 
 ## Login to 1password

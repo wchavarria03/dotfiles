@@ -32,3 +32,4 @@ setopt hist_verify
 
 # OTHER
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
+. "$HOME/.cargo/env"
