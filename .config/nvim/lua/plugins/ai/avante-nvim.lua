@@ -148,7 +148,7 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
-    "echasnovski/mini.icons",
+    "nvim-tree/nvim-web-devicons",
     "zbirenbaum/copilot.lua", -- for providers='copilot'
     "MeanderingProgrammer/render-markdown.nvim",
   },
