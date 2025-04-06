@@ -51,9 +51,9 @@ return {
       auto_set_keymaps = true,
       auto_apply_diff_after_generation = false,
       support_paste_from_clipboard = false,
-      minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
-      enable_token_counting = true, -- Whether to enable token counting. Default to true.
-      enable_cursor_planning_mode = false, -- Whether to enable Cursor Planning Mode. Default to false.
+      minimize_diff = true,                        -- Whether to remove unchanged lines when applying a code block
+      enable_token_counting = true,                -- Whether to enable token counting. Default to true.
+      enable_cursor_planning_mode = false,         -- Whether to enable Cursor Planning Mode. Default to false.
       enable_claude_text_editor_tool_mode = false, -- Whether to enable Claude Text Editor Tool Mode.
     },
 
@@ -102,10 +102,10 @@ return {
     windows = {
       -- -@type "right" | "left" | "top" | "bottom"
       position = "right", -- the position of the sidebar
-      wrap = true, -- similar to vim.o.wrap
-      width = 30, -- default % based on available width
+      wrap = true,        -- similar to vim.o.wrap
+      width = 30,         -- default % based on available width
       sidebar_header = {
-        enabled = true, -- true, false to enable/disable the header
+        enabled = true,   -- true, false to enable/disable the header
         align = "center", -- left, center, right for title
         rounded = true,
       },
@@ -118,7 +118,7 @@ return {
         start_insert = true, -- Start insert mode when opening the edit window
       },
       ask = {
-        floating = true, -- Open the 'AvanteAsk' prompt in a floating window
+        floating = true,     -- Open the 'AvanteAsk' prompt in a floating window
         start_insert = true, -- Start insert mode when opening the ask window
         border = "rounded",
         -- -@type "ours" | "theirs"
