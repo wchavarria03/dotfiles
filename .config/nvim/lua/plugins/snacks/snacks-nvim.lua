@@ -13,5 +13,24 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = true },
   },
-  keys = {},
+  keys = {
+    {
+      "<leader>bd",
+      function()
+        require("snacks").bufdelete()
+      end,
+      desc = "Delete Buffer",
+    },
+    {
+      "<leader>bo",
+      function()
+        require("snacks").bufdelete.other()
+      end,
+      desc = "Delete Other Buffers",
+    },
+    { "<leader>[b", "<cmd>bnext<cr>",     desc = "Next Buffer", },
+    { "<leader>]b", "<cmd>bprevious<cr>", desc = "Previous Buffer", },
+    { "<leader>bb", "<cmd>e #<cr>",       desc = "Switch to Other Buffer" },
+    { "<leader>bD", "<cmd>:bd<cr>",       desc = "Delete Buffer and Window" },
+  },
 }

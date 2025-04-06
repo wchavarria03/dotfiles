@@ -38,9 +38,9 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      -- tabline = {
-      --   lualine_a = { { "buffers", mode = 2, use_mode_colors = true } },
-      -- },
+      tabline = {
+        lualine_a = { { "buffers", mode = 2, use_mode_colors = true } },
+      },
       extensions = { "neo-tree", "lazy", "trouble", "mason" },
     }
 
