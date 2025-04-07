@@ -50,8 +50,9 @@ vim.schedule(function()
   snacks.toggle.diagnostics():map("<leader>td")
   snacks.toggle.line_number():map("<leader>tl")
   snacks.toggle
-    .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = "Conceal Level" })
-    :map("<leader>tc")
+      .option("conceallevel",
+        { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = "Conceal Level" })
+      :map("<leader>tc")
   snacks.toggle.treesitter():map("<leader>tT")
   snacks.toggle.dim():map("<leader>tD")
   snacks.toggle.animate():map("<leader>ta")
@@ -65,16 +66,29 @@ vim.schedule(function()
   snacks.toggle.zen():map("<leader>tz")
 
   snacks
-    .toggle({
-      name = "Mini Pairs",
-      get = function()
-        return not vim.g.minipairs_disable
-      end,
-      set = function(state)
-        vim.g.minipairs_disable = not state
-      end,
-    })
-    :map("<leader>tp")
+      .toggle({
+        name = "Mini Pairs",
+        get = function()
+          return not vim.g.minipairs_disable
+        end,
+        set = function(state)
+          vim.g.minipairs_disable = not state
+        end,
+      })
+      :map("<leader>tp")
+
+  snacks.toggle
+      .new({
+        id = "Format on Save",
+        name = "Format on Save",
+        get = function()
+          return vim.g.autoformat
+        end,
+        set = function(_)
+          vim.g.autoformat = not vim.g.autoformat
+        end,
+      })
+      :map("<leader>tf")
 
   -- highlights under cursor
   vim.keymap.set("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
