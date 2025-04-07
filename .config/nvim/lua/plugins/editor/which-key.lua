@@ -21,7 +21,7 @@ return {
         { "<leader>gh", group = "hunks" },
         { "<leader>q", group = "quit/session" },
         { "<leader>r", group = "restart" },
-        { "<leader>rl", group = "lsp" },
+        { "<leader>l", group = "lsp" },
         { "<leader>s", group = "search" },
         { "<leader>t", group = "toggle" },
         { "<leader>tg", group = "git", icon = { icon = "󰙵 ", color = "cyan" } },
