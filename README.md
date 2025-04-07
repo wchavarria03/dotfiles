@@ -102,6 +102,14 @@ $ asdf install # installs everything listed on the .tools-versions
 
 ```
 
+## Docker Completion
+
+```
+$ mkdir -p ~/.docker/completions
+$ docker completion zsh > ~/.docker/completions/_docker
+```
+
+
 ## Ruftop for cargo and mason package installs
 ```
 $ rustup default stable
