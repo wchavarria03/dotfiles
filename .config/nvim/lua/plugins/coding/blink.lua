@@ -3,8 +3,8 @@ return {
   version = "*",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    -- "fang2hou/blink-copilot",
-    -- "Kaiser-Yang/blink-cmp-avante",
+    "giuxtaposition/blink-cmp-copilot",
+    "Kaiser-Yang/blink-cmp-avante",
   },
   opts = {
     completion = {
@@ -12,7 +12,7 @@ return {
         border = "single",
         draw = {
           columns = {
-            { "kind_icon", "label", gap = 1 },
+            { "kind_icon",         "label", gap = 1 },
             { "label_description", gap = 2, "kind" },
           },
         },
@@ -32,16 +32,18 @@ return {
     },
 
     sources = {
-      -- default = { "avante", "lsp", "path", "buffer" },
-      default = { "lsp", "path", "buffer" },
-      -- providers = {
-      --   avante = {
-      --     name = "Avante",
-      --     module = "blink-cmp-avante",
-      --   },
-      -- },
-      per_filetype = {
-        codecompanion = { "codecompanion" },
+      default = { "copilot", "avante", "lsp", "path", "buffer" },
+      providers = {
+        avante = {
+          name = "Avante",
+          module = "blink-cmp-avante",
+        },
+        copilot = {
+          name = "copilot",
+          module = "blink-cmp-copilot",
+          score_offset = 100,
+          async = true,
+        }
       },
     },
     keymap = {
