@@ -1,6 +1,9 @@
 return {
   "mfussenegger/nvim-lint",
   event = "VeryLazy",
+  dependecies = {
+    "rshkarin/mason-nvim-lint",
+  },
   opts = {
     events = { "BufWritePost", "BufReadPost", "InsertLeave" },
     linters_by_ft = {

@@ -1,17 +1,10 @@
-local function override_lsp()
-  local lsp_error_override = { "yamlls" }
-  local active_lsp = require("utils").clients_lsp()
-  for _, client in ipairs(lsp_error_override) do
-    if string.match(client, active_lsp) then
-      return true
-    end
-  end
-end
-
 return {
   "stevearc/conform.nvim",
   event = "VeryLazy",
   cmd = "ConformInfo",
+  dependencies = {
+    "zapling/mason-conform.nvim",
+  },
   keys = {
     {
       "<leader>cF",
@@ -25,41 +18,30 @@ return {
   opts = function()
     local opts = {
       default_format_opts = {
-        timeout_ms = 3000,
-        async = false,
-        quiet = false,
         lsp_format = "fallback",
       },
-      -- format_on_save = function()
-      -- local next = next
-      --- check if we have to skip formatting due to lsp errors
-      -- if next(vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })) ~= nil and not override_lsp() then
-      -- local clients = require("utils").clients_lsp()
-      -- local icons = require("utils").icons
-      -- require("Snacks").notifier.notify("WALTER")
-      --
-      -- require("Snacks").notifier.notify(
-      --   "LSP errors, cannot format: "
-      --     .. #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
-      --     .. icons.statusline.Error
-      --     .. " "
-      --     .. #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
-      --     .. icons.statusline.Warn,
-      --   "warn",
-      --   { title = clients, style = "compact", ft = "txt", id = "lsp_error" }
-      -- )
-      -- return
-      -- end
-
-      -- return { timeout_ms = 3000, lsp_fallback = true, lsp_format = "fallback" }
-      -- end,
-      format_on_save = { timeout_ms = 3000, lsp_fallback = true, lsp_format = "fallback" },
+      format_on_save = function(bufnr)
+        if vim.g.autoformat then
+          local disable_filetypes = {}
+          local lsp_format_opt
+          if disable_filetypes[vim.bo[bufnr].filetype] then
+            lsp_format_opt = "never"
+          else
+            lsp_format_opt = "fallback"
+          end
+          return {
+            timeout_ms = 3000,
+            lsp_format = lsp_format_opt,
+          }
+        else
+          return
+        end
+      end,
 
       formatters_by_ft = {
         bash = { "shfmt" },
         beancount = { "bean-format" },
         go = { "golines", "goimports", "gofumpt", "golangci-lint" },
-        javascript = { "prettierd", "prettier", stop_after_first = true },
         json = { "biome", "prettier" },
         lua = { "stylua" },
         ["markdown"] = { "prettier" },
@@ -67,7 +49,10 @@ return {
         ruby = { "rubocop" },
         python = { "isort", "black" },
         sh = { "shfmt" },
+        javascript = { "prettierd", "prettier", stop_after_first = true },
         typescript = { "prettierd", "prettier", stop_after_first = true },
+        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+        javascriptreact = { "prettierd", "prettier", stop_after_first = true },
       },
     }
     return opts

@@ -13,47 +13,6 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
     config = function()
-      -- mason-lspconfig doesn't not install linters, formatters nor any other tools besides the language servers.
-      -- This is the list of them that were manually installed.
-
-      -- Linters
-      ---- Bash
-      -------- shellcheck
-      ---- Docker
-      -------- hadolint
-      ---- Go
-      -------- golangcilint - JSON
-      -------- Biome
-      ---- Lua
-      -------- TODO: Fix this linter which is failing to install on mason
-      -------- luacheck
-      ---- Python
-      -------- flake8
-      ---- Typscript
-      ------- eslint_d
-      ---- General coding spell
-      -------- codespell
-      -------- cspell
-      ---- Github
-      -------- commitlint
-
-      -- Formatters
-      ---- Python
-      -------- black
-      -------- isort
-      ---- Go
-      -------- gofumpt
-      -------- goimports-reviser
-      -------- golines
-      ---- JSON
-      -------- biome
-      ---- Lua
-      -------- stylua
-      ---- Markdown / Javascript / json
-      -------- prettier
-      ---- Shell
-      -------- shfmt
-
       require("mason-lspconfig").setup({
         ensure_installed = {
           -- Bash
@@ -75,18 +34,13 @@ return {
           -- Lua
           "lua_ls",
 
-          -- Markdown
-          "marksman",
+          -- Ruby
+          -- "ruby_lsp", -- Having issues installing this one
 
-          -- Python
-          "pyright",
-
-          -- Python
-          "ruby_lsp",
           -- TypeScript / Javascript
-          "ts_ls",
+          -- "ts_ls",
         },
-        automatic_installation = false,
+        automatic_installation = true,
       })
     end,
   },
