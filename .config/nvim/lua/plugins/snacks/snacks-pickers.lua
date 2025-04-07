@@ -7,13 +7,16 @@ return {
       matcher = {
         frecency = true,
       },
+      sources = {
+        files = { hidden = true },
+      }
     },
   },
   keys = {
     {
       "<leader>/",
       function()
-        require("snacks").picker.grep()
+        require("snacks").picker.grep({ hidden = true })
       end,
       desc = "Grep",
     },
