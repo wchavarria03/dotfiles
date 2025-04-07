@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.docker/bin:$HOME/bin:/usr/local/bin:$PATH
+FPATH="$HOME/.docker/completions:$FPATH"
 
 #Check the architecture and set the Homebrew path accordingly
 if [[ "$(uname -m)" == "arm64" ]]; then
