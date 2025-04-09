@@ -25,7 +25,7 @@ install_brew_packages() {
     npm
     nvim
     ripgrep
-    ruftop # install rust top to get cargo and be able to install some mason lsp with mason
+    ruftup # install rust top to get cargo and be able to install some mason lsp with mason
     starship
     zoxide
     zsh
