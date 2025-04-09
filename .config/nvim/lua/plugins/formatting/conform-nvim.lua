@@ -55,6 +55,7 @@ return {
         javascriptreact = { "prettierd", "prettier", stop_after_first = true },
       },
     }
+    vim.g.autoformat = true
     return opts
   end,
 }

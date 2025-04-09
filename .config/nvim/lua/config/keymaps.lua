@@ -85,7 +85,7 @@ vim.schedule(function()
           return vim.g.autoformat
         end,
         set = function(_)
-          vim.g.autoformat = not vim.g.autoformat
+          vim.g.autoformat= not vim.g.autoformat
         end,
       })
       :map("<leader>tf")
