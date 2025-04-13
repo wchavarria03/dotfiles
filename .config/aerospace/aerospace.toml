@@ -107,6 +107,7 @@ alt-5 = 'workspace 5'
 alt-b = 'workspace b'
 alt-s = 'workspace s'
 alt-t = 'workspace t'
+alt-i = 'workspace i'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -117,6 +118,7 @@ alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-b = 'move-node-to-workspace b'
 alt-shift-s = 'move-node-to-workspace s'
 alt-shift-t = 'move-node-to-workspace t'
+alt-shift-i = 'move-node-to-workspace i'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -149,28 +151,17 @@ run= [
 ]
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'zwift'
-run = ['move-node-to-workspace 1']
-
-[[on-window-detected]]
 if.app-id = 'com.brave.Browser'
 run = ['layout tiling', 'move-node-to-workspace b']
 
 [[on-window-detected]]
-if.app-id = 'com.github.wez.wezterm'
+if.app-name-regex-substring = 'obsidian'
 run = 'move-node-to-workspace 2'
 
+# Cursor IDE
 [[on-window-detected]]
-if.app-name-regex-substring = 'Obsidian'
-run = 'move-node-to-workspace 2'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'wezterm-gui'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-id = "com.apple.Calculator"  # Replace with the app ID
-run = "layout floating"
+if.app-id = 'com.todesktop.230313mzl4w4u92'
+run = 'move-node-to-workspace i'
 
 [[on-window-detected]]
 if.app-id = '*'
