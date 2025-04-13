@@ -131,6 +131,11 @@ $ rustup-init
 
 `brew completions link`
 
+## Cursor Editor
+
+Disable keypressed MAC special character input box
+`defaults write com.todesktop.230313mzl4w4u92 ApplePressAndHoldEnabled -bool false   `
+
 ## TODOS / Improvements
 
 ### TO IGNORE WITH CTR-P on NVIM
