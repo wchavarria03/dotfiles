@@ -1,3 +1,7 @@
+if vim.g.vscode then
+    return
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
   callback = function(event)
