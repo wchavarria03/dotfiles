@@ -11,7 +11,6 @@ is_brew_package_installed() {
 install_brew_packages() {
   echo "${COLOR_GREEN}-- Installing tap formulae${COLOR_RESET}"
   brew tap FelixKratz/formulae ## For borders
-  brew tap danvergara/tools    ## For dblab
 
   local packages=(
     asdf
@@ -48,7 +47,7 @@ install_brew_packages() {
 
     # CLI apps
     posting
-    dblab
+    lazysql
     gh
     lazygit
 

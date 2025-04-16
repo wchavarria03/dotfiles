@@ -1,0 +1,9 @@
+[[database]]
+Name = 'cattle-management-local'
+Provider = 'postgres'
+DBName = 'cattle_management_db'
+URL = 'postgresql://postgres:@0.0.0.0:5432/cattle_management_db?sslmode=disable'
+[application]
+DefaultPageSize = 20
+DisableSidebar = false
+SidebarOverlay = false
