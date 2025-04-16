@@ -29,7 +29,13 @@ alias h='history'
 # Set up the alias to call the function
 alias zn="$DOTFILES/scripts/note.sh"
 # alias notes="$DOTFILES/scripts/notes.sh"
-  
+
+# Opens a API Terminal
+alias term_api='open -na Ghostty.app --args --title="API Terminal"'
+
+# Opens a DB Terminal
+alias term_db='open -na Ghostty.app --args --title="DB Terminal"'
+
 alias pyp='pip install -r requirements.txt --index-url https://${PYPI_USERNAME}:${PYPI_PASSWORD}@pypi.ltvops.com/simple'
 
 # GIT ALIASES -----------------------------------------------------------------

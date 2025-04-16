@@ -12,3 +12,9 @@ keybind = super+ctrl+k=goto_split:up
 keybind = super+ctrl+j=goto_split:down
 keybind = super+ctrl+l=goto_split:right
 keybind = super+ctrl+h=goto_split:left
+
+# Needed to get the macOS title fix when creating new windows
+# It was updated to tip on 04/15 to get the latest fixes and them moved back to stable
+# This won't take effect until new official release is done
+# But we won't get more pre-release features updates
+auto-update-channel = stable

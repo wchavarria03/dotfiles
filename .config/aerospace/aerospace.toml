@@ -104,10 +104,14 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
+alt-a = 'workspace a'
 alt-b = 'workspace b'
+alt-c = 'workspace c'
+alt-d = 'workspace d'
+alt-i = 'workspace i'
+alt-m = 'workspace m'
 alt-s = 'workspace s'
 alt-t = 'workspace t'
-alt-i = 'workspace i'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -115,10 +119,14 @@ alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-a = 'move-node-to-workspace a'
 alt-shift-b = 'move-node-to-workspace b'
+alt-shift-c = 'move-node-to-workspace c'
+alt-shift-d = 'move-node-to-workspace d'
+alt-shift-i = 'move-node-to-workspace i'
+alt-shift-m = 'move-node-to-workspace m'
 alt-shift-s = 'move-node-to-workspace s'
 alt-shift-t = 'move-node-to-workspace t'
-alt-shift-i = 'move-node-to-workspace i'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -137,12 +145,22 @@ run = 'move-node-to-workspace s'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.mail'
-run = 'move-node-to-workspace s'
+run = 'move-node-to-workspace m'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.calendar'
-run = 'move-node-to-workspace s'
+run = 'move-node-to-workspace c'
 
+[[on-window-detected]]
+if.window-title-regex-substring="DB Terminal"
+run = 'move-node-to-workspace d'
+
+[[on-window-detected]]
+if.window-title-regex-substring="API Terminal"
+run = 'move-node-to-workspace a'
+
+# Layour floating fixes the issue where every tab on ghostty
+# is classified as a new window by aerospace
 [[on-window-detected]]
 if.app-id="com.mitchellh.ghostty"
 run= [
@@ -152,11 +170,22 @@ run= [
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
-run = ['layout tiling', 'move-node-to-workspace b']
+run = [
+ #   'layout tiling',
+     'move-node-to-workspace b'
+ ]
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'obsidian'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace n'
+
+[[on-window-detected]]
+if.app-id = 'com.sequel-ace.sequel-ace'
+run = 'move-node-to-workspace d'
+
+[[on-window-detected]]
+if.app-id = 'com.insomnia.app'
+run = 'move-node-to-workspace a'
 
 # Cursor IDE
 [[on-window-detected]]
