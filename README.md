@@ -136,6 +136,9 @@ $ rustup-init
 Disable keypressed MAC special character input box
 `defaults write com.todesktop.230313mzl4w4u92 ApplePressAndHoldEnabled -bool false   `
 
+## Brave / Browser
+- Sync brave with other Devices including extensions.
+
 ## TODOS / Improvements
 
 ### TO IGNORE WITH CTR-P on NVIM
