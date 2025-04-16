@@ -47,7 +47,7 @@ install_brew_packages() {
     slack
 
     # CLI apps
-    atac
+    posting
     dblab
     gh
     lazygit
