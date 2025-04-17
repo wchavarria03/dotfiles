@@ -133,8 +133,11 @@ $ rustup-init
 
 ## Cursor Editor
 
-Disable keypressed MAC special character input box
+1. Disable keypressed MAC special character input box
 `defaults write com.todesktop.230313mzl4w4u92 ApplePressAndHoldEnabled -bool false   `
+
+2. Copy `cursor/keybindings.json` and `cursor/settings.json` into the editor configs files.
+
 
 ## Brave / Browser
 - Sync brave with other Devices including extensions.

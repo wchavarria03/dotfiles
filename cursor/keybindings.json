@@ -1,0 +1,141 @@
+// Place your key bindings in this file to override the defaults
+[
+    // Navigation
+    {
+        "key": "ctrl-h",
+        "command": "workbench.action.navigateLeft",
+    },
+    {
+        "key": "ctrl-l",
+        "command": "workbench.action.navigateRight"
+    },
+    {
+        "key": "ctrl-j",
+        "command": "workbench.action.navigateDown"
+    },
+    {
+        "key": "ctrl-k",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": ", a f",
+        "command": "aipanel",
+        "when": "neovim.mode == normal && (editorTextFocus || !inputFocus)"
+    },
+    {
+        "key": ", a e",
+        "command": "composerMode.chat",
+        "when": "neovim.mode == normal && (editorTextFocus || !inputFocus)"
+    },
+    {
+        "key": ", a a",
+        "command": "composerMode.agent",
+        "when": "neovim.mode == normal && (editorTextFocus || !inputFocus)"
+    },
+    {
+        "key": ", a q",
+        "command": "aichat.close-sidebar",
+        "when": "neovim.mode == normal && (editorTextFocus || !inputFocus)"
+    },
+    {
+        "key": ", l",
+        "command": "workbench.extensions.action.focusExtensionsView",
+        "when": "neovim.mode == normal && (editorTextFocus || !inputFocus)"
+    },
+    {
+        "key": ", f f",
+        "command": "workbench.action.quickOpen",
+        "when": "neovim.mode == normal && (editorTextFocus || !inputFocus)"
+    },
+    // {
+    //     "key": ", /",
+    //     "command": "workbench.action.quickTextSearch",
+    //     "when": "neovim.mode == normal && (editorTextFocus || !inputFocus)"
+    // },
+    {
+        "key": ", /",
+        "command": "workbench.action.findInFiles",
+        "when": "neovim.mode == normal && (editorTextFocus || !inputFocus)"
+    },
+    // {
+    //     "key": ", e",
+    //     "command": "workbench.files.action.focusFilesExplorer",
+    //     "when": "neovim.mode == normal && (editorTextFocus || !inputFocus)"
+    // },
+    {
+        "key": ", e",
+        "command": "workbench.files.action.focusFilesExplorer",
+        "when": "neovim.mode == normal && (editorTextFocus || !inputFocus) && !filesExplorerFocus",
+    },
+    {
+        "key": ", e",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "filesExplorerFocus && !inputFocus",
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "list.focusAnyDown",
+        "when": "sideBarFocus"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "list.focusAnyUp",
+        "when": "sideBarFocus"
+    },
+    // Coding
+    {
+        "key": ", c a",
+        "command": "editor.action.codeAction",
+        "when": "neovim.mode == normal && editorTextFocus"
+    },
+    {
+        "key": ", c r",
+        "command": "editor.action.rename",
+        "when": "neovim.mode == normal && editorTextFocus"
+    },
+    // TODO: Check all other code actions
+    {
+        "key": ", b d",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "neovim.mode == normal && editorTextFocus"
+    },
+    // File explorer
+    {
+        "key": "s",
+        "command": "explorer.openToSide",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot"
+    },
+    {
+        "key": "shift-s",
+        "command": "runCommands",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot",
+        "args": {
+            "commands": [
+                "workbench.action.splitEditorDown",
+                "explorer.openAndPassFocus",
+                "workbench.action.closeOtherEditors"
+            ]
+        }
+    },
+    {
+        "key": "c",
+        "command": "filesExplorer.copy",
+        "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsRoot"
+    },
+    // Others
+    {
+        "key": "alt+space",
+        "command": "whichkey.show",
+        "when": "editorTextFocus"
+    },
+]

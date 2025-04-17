@@ -1,0 +1,23 @@
+{
+    "breadcrumbs.enabled": false,
+    "editor.fontFamily": "JetBrains Mono NL, Menlo, Monaco, 'Courier New', monospace",
+    "editor.lineNumbers": "relative",
+    "editor.wordWrap": "on",
+    "editor.minimap.enabled": false,
+    "workbench.tips.enabled": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.escape",
+        },
+    },
+    "window.commandCenter": false,
+    "window.newWindowProfile": null,
+    "window.restoreWindows": "none",
+    "workbench.editor.showTabs": "multiple",
+    "workbench.activityBar.orientation": "vertical",
+    "workbench.sideBar.location": "right",
+    "workbench.colorTheme": "Catppuccin Frappé",
+}
