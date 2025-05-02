@@ -42,26 +42,6 @@ require("lazy").setup({
     notify = false, -- don't show update notifications
     frequency = 3600 * 24, -- check once per day
   },
-  performance = {
-    cache = {
-      enabled = true,
-    },
-    reset_packpath = true, -- reset the package path to improve startup time
-    rtp = {
-      reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
-      -- disable some rtp plugins
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
-      },
-    },
-  },
   ui = {
     border = "rounded",
     icons = {

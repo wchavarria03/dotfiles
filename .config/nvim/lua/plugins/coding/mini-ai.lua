@@ -1,5 +1,6 @@
 return {
-  "echasnovski/mini.ai",
+  "echasnovski/mini.nvim",
+  version = false,
   event = "VeryLazy",
   opts = function()
     local ai = require("mini.ai")
@@ -22,5 +23,8 @@ return {
         U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
       },
     }
+  end,
+  config = function(_, opts)
+    require("mini.ai").setup(opts)
   end,
 }

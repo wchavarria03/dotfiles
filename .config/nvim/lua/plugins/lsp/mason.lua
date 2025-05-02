@@ -34,11 +34,14 @@ return {
           -- Lua
           "lua_ls",
 
+          -- Markdown
+          "marksman",
+
           -- Ruby
           -- "ruby_lsp", -- Having issues installing this one
 
           -- TypeScript / Javascript
-          -- "ts_ls",
+          "ts_ls",
         },
         automatic_installation = true,
       })
