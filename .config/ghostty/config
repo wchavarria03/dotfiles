@@ -1,8 +1,6 @@
 # Editor config
-font-family = JetBrains Mono NL
+font-family = JA2031etBrains Mono NL
 theme = catppuccin-mocha
-background-opacity = 0.9
-background-blur = true
 
 macos-titlebar-style = tabs
 
