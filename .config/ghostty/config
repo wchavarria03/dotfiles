@@ -1,5 +1,5 @@
 # Editor config
-font-family = JA2031etBrains Mono NL
+font-family = JetBrains Mono NL
 theme = catppuccin-mocha
 
 macos-titlebar-style = tabs
@@ -10,6 +10,9 @@ keybind = super+ctrl+k=goto_split:up
 keybind = super+ctrl+j=goto_split:down
 keybind = super+ctrl+l=goto_split:right
 keybind = super+ctrl+h=goto_split:left
+
+# Stop Ghostty when I close everything.
+quit-after-last-window-closed = true
 
 # Needed to get the macOS title fix when creating new windows
 # It was updated to tip on 04/15 to get the latest fixes and them moved back to stable
