@@ -11,5 +11,12 @@ return {
       end,
       desc = "Git Lazy Git (open)",
     },
+    {
+      "<leader>gl",
+      function()
+        require("snacks").lazygit.log()
+      end,
+      desc = "Git Log",
+    },
   },
 }
