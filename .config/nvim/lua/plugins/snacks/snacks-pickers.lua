@@ -9,7 +9,7 @@ return {
       },
       sources = {
         files = { hidden = true },
-      }
+      },
     },
   },
   keys = {
@@ -26,13 +26,6 @@ return {
         require("snacks").picker.command_history()
       end,
       desc = "Command History",
-    },
-    {
-      "<leader>n",
-      function()
-        require("snacks").picker.notifications()
-      end,
-      desc = "Notification History",
     },
     -- find
     {
@@ -67,7 +60,6 @@ return {
       "<leader>fp",
       function()
         require("snacks").picker.projects({
-
           dev = { "~/work", "~/personal" },
         })
       end,
@@ -96,6 +88,13 @@ return {
         require("snacks").picker.grep_buffers()
       end,
       desc = "Search Open Buffers",
+    },
+    {
+      "<leader>sn",
+      function()
+        require("snacks").picker.notifications()
+      end,
+      desc = "Search Notification History",
     },
     {
       "<leader>sw",
@@ -279,11 +278,11 @@ return {
       desc = "Git Branches",
     },
     {
-      "<leader>gl",
+      "<leader>gc",
       function()
         require("snacks").picker.git_log()
       end,
-      desc = "Git Log",
+      desc = "Git commits",
     },
     {
       "<leader>gL",
