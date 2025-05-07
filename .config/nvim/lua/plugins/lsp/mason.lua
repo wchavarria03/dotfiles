@@ -40,6 +40,9 @@ return {
                     -- Ruby
                     -- "ruby_lsp", -- Having issues installing this one
 
+                    -- TOML
+                    'taplo',
+
                     -- TypeScript / Javascript
                     'ts_ls',
 
