@@ -77,8 +77,7 @@ Which includes the following sections
 │ │ │ ├── twilight.lua
 │ │ │ └── zen-mode.lua
 │ │ ├── colorscheme.lua
-│ │ ├── colorscheme.lua2
-│ │ └── obsidian.lua
+│ │ └── colorscheme.lua2
 ├── spell/
 ├── init.lua
 └── stylua.toml
@@ -102,7 +101,6 @@ Which includes the following sections
   - **ui**: Plugins that enhance the user interface (e.g., status line, icons).
   - **util**: Utility plugins for various enhancements (e.g., session management, file operations).
   - **colorscheme.lua**: Configuration for color schemes.
-  - **obsidian.lua**: Configuration for Obsidian integration.
 - **spell**: Directory for spell check files.
 - **init.lua**: Main initialization file for Neovim configuration.
 - **stylua.toml**: Configuration file for the StyLua formatter.
@@ -200,7 +198,3 @@ UI editor enhancements and configurations.
 ### colorscheme.lua
 
 - Configuration for color schemes.
-
-### obsidian.lua
-
-- Configuration for Obsidian integration, a knowledge base application, Notes.
