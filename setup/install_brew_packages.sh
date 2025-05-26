@@ -26,6 +26,7 @@ install_brew_packages() {
         ripgrep
         ruftup # install rust top to get cargo and be able to install some mason lsp with mason
         starship
+        uv # python package manager
         zoxide
         zsh
 
