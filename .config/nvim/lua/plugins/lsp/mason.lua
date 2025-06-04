@@ -48,6 +48,9 @@ return {
 
                     -- YAML
                     'yamlls',
+
+                    -- Solidity
+                    'vscode-solidity-server',
                 },
                 automatic_installation = true,
             }
