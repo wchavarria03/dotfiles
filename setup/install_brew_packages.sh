@@ -21,12 +21,9 @@ install_brew_packages() {
         git
         glow # markdown previewer
         neovim
-        npm
-        nvim
         ripgrep
-        ruftup # install rust top to get cargo and be able to install some mason lsp with mason
+        rustup # install rust top to get cargo and be able to install some mason lsp with mason
         starship
-        uv # python package manager
         zoxide
         zsh
 
@@ -46,13 +43,11 @@ install_brew_packages() {
         slack
 
         # CLI apps
-        posting
-        lazysql
         gh
         lazygit
 
         ## Desktop Manager
-        aeroSpace
+        aerospace
         borders # requires formulae tap
 
         # Terminal suggestions
