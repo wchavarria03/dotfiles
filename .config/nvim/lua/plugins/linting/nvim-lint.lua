@@ -16,7 +16,7 @@ return {
             lua = { 'luacheck' },
             python = { 'flake8' },
             typescript = { 'eslint_d' },
-            solidity = { 'solhint' },
+            solidity = { 'solhint', 'prettier_d' },
             -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
             ['_'] = { 'cspell', 'codespell' },
         },

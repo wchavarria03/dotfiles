@@ -91,6 +91,7 @@ vim.lsp.enable 'golangci_lint_ls'
 vim.lsp.enable 'gopls'
 vim.lsp.enable 'json_ls'
 vim.lsp.enable 'lua_ls'
+vim.lsp.enable 'solidity_ls'
 vim.lsp.enable 'taplo'
 vim.lsp.enable 'yamlls'
 
