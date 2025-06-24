@@ -110,7 +110,7 @@ alt-c = 'workspace c'
 alt-d = 'workspace d'
 alt-i = 'workspace i'
 alt-m = 'workspace m'
-alt-n = 'workspace n'
+alt-o = 'workspace n'
 alt-s = 'workspace s'
 alt-t = 'workspace t'
 
@@ -126,7 +126,7 @@ alt-shift-c = 'move-node-to-workspace c'
 alt-shift-d = 'move-node-to-workspace d'
 alt-shift-i = 'move-node-to-workspace i'
 alt-shift-m = 'move-node-to-workspace m'
-alt-shift-n = 'move-node-to-workspace n'
+alt-shift-o = 'move-node-to-workspace n'
 alt-shift-s = 'move-node-to-workspace s'
 alt-shift-t = 'move-node-to-workspace t'
 
@@ -176,7 +176,7 @@ run = [
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = 'move-node-to-workspace n'
+run = 'move-node-to-workspace o'
 
 [[on-window-detected]]
 if.app-id = 'com.sequel-ace.sequel-ace'
