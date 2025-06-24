@@ -36,7 +36,7 @@ vim.keymap.set('v', '<C-u>', '<C-u>zz', { desc = 'Scroll Up', noremap = true, si
 
 -- keep highlight after indenting
 vim.keymap.set('v', '<', '<gv', { desc = 'Indent', noremap = true, silent = true })
-vim.keymap.set('v', '<', '>gv', { desc = 'Indent', noremap = true, silent = true })
+vim.keymap.set('v', '>', '>gv', { desc = 'Indent', noremap = true, silent = true })
 
 -- Windows
 vim.keymap.set('n', '<C-->', ':vsplit<CR>', { desc = 'Global: Window Split Vert' })
