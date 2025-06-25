@@ -1,29 +1,3 @@
--- return {
---   "yetone/avante.nvim",
---   event = "VeryLazy",
---   version = "*",
---   opts = {
---     provider = "copilot",
---   },
---   build = "make",
---   window = {
---     ask = {
---       floating = true,
---     },
---   },
---   dependencies = {
---     "nvim-treesitter/nvim-treesitter",
---     "stevearc/dressing.nvim",
---     "nvim-lua/plenary.nvim",
---     "MunifTanjim/nui.nvim",
---     --- The below dependencies are optional,
---     "ibhagwan/fzf-lua", -- for file_selector provider fzf
---     "echasnovski/mini.icons",
---     "zbirenbaum/copilot.lua",
---     "MeanderingProgrammer/render-markdown.nvim",
---   },
--- }
-
 return {
     'yetone/avante.nvim',
     event = 'VeryLazy',
