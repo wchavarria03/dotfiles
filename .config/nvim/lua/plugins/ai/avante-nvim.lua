@@ -1,6 +1,12 @@
 return {
     'yetone/avante.nvim',
-    event = 'VeryLazy',
+    event = 'VeryLazy', -- Load after other plugins are ready
+    cmd = { 'Avante', 'AvanteAsk', 'AvanteDiff' }, -- Command triggers
+    keys = {
+        -- Add key triggers for common avante actions
+        { '<leader>aa', '<cmd>Avante<cr>', desc = 'Open Avante' },
+        { '<leader>aq', '<cmd>AvanteAsk<cr>', desc = 'Avante Ask' },
+    },
     version = '*',
     opts = {
         -- -@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
@@ -18,21 +24,33 @@ return {
                 endpoint = 'https://api.anthropic.com',
                 model = 'claude-3-5-sonnet-20241022',
                 extra_request_body = {
-                    temperature = 0,
+                    temperature = 0.75,
                     max_tokens = 4096,
                 },
             },
         },
         behaviour = {
-            auto_suggestions = false,
+            auto_suggestions = true,
             auto_set_highlight_group = true,
             auto_set_keymaps = true,
             auto_apply_diff_after_generation = false,
             support_paste_from_clipboard = false,
             minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
             enable_token_counting = true, -- Whether to enable token counting. Default to true.
-            enable_cursor_planning_mode = false, -- Whether to enable Cursor Planning Mode. Default to false.
             enable_claude_text_editor_tool_mode = false, -- Whether to enable Claude Text Editor Tool Mode.
+        },
+        prompt_logger = { -- logs prompts to disk (timestamped, for replay/debugging)
+            enabled = false, -- Disable logging to improve performance
+            log_dir = vim.fn.stdpath 'cache' .. '/avante_prompts', -- directory where logs are saved
+            fortune_cookie_on_success = false, -- shows a random fortune after each logged prompt (requires `fortune` installed)
+            next_prompt = {
+                normal = '<C-n>', -- load the next (newer) prompt log in normal mode
+                insert = '<C-n>',
+            },
+            prev_prompt = {
+                normal = '<C-p>', -- load the previous (older) prompt log in normal mode
+                insert = '<C-p>',
+            },
         },
 
         mappings = {
@@ -103,6 +121,12 @@ return {
                 focus_on_apply = 'ours', -- which diff to focus after applying
             },
         },
+        highlights = {
+            diff = {
+                current = 'DiffText',
+                incoming = 'DiffAdd',
+            },
+        },
         diff = {
             autojump = true,
             -- -@type string | fun(): any
@@ -113,8 +137,8 @@ return {
             override_timeoutlen = 500,
         },
         suggestion = {
-            debounce = 600,
-            throttle = 600,
+            debounce = 1000, -- Increase debounce to reduce API calls
+            throttle = 1000, -- Increase throttle to reduce API calls
         },
         ---------------------------------
         --          MCPHub Configs     --
@@ -122,14 +146,24 @@ return {
         -- system_prompt as function ensures LLM always has latest MCP server state
         -- This is evaluated for every message, even in existing chats
         system_prompt = function()
-            local hub = require('mcphub').get_hub_instance()
-            return hub and hub:get_active_servers_prompt() or ''
+            local ok, hub = pcall(require, 'mcphub')
+            if ok then
+                local hub_instance = hub.get_hub_instance()
+                return hub_instance and hub_instance:get_active_servers_prompt() or ''
+            end
+            return ''
         end,
         -- Using function prevents requiring mcphub before it's loaded
         custom_tools = function()
-            return {
-                require('mcphub.extensions.avante').mcp_tool(),
-            }
+            local tools = {}
+            local ok, mcp_tool = pcall(require, 'mcphub.extensions.avante')
+            if ok then
+                local tool = mcp_tool.mcp_tool()
+                if tool then
+                    table.insert(tools, tool)
+                end
+            end
+            return tools
         end,
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
