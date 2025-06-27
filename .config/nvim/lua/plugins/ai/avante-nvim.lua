@@ -50,6 +50,13 @@ return {
             end,
             desc = 'Explain Code',
         },
+        {
+            '<leader>as',
+            function()
+                avante_ask_prompt(function(prompts) return prompts.general_status() end)
+            end,
+            desc = 'General Status Report',
+        },
     },
     version = '*',
     opts = {
