@@ -1,12 +1,3 @@
-if vim.g.vscode then
-    return
-end
-
-vim.lsp.config('*', {
-    capabilities = require('blink.cmp').get_lsp_capabilities(),
-    root_markers = { '.git' },
-})
-
 vim.lsp.enable 'bash_ls'
 vim.lsp.enable 'beancount_ls'
 vim.lsp.enable 'docker_compose_ls'
@@ -18,6 +9,31 @@ vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'solidity_ls'
 vim.lsp.enable 'taplo'
 vim.lsp.enable 'yamlls'
+
+-- Only configure LSP if blink.cmp is available
+local ok, blink_cmp = pcall(require, 'blink.cmp')
+if ok then
+    vim.lsp.config('*', {
+        capabilities = blink_cmp.get_lsp_capabilities(),
+        root_markers = { '.git' },
+    })
+else
+    -- Fallback configuration without blink.cmp
+    vim.lsp.config('*', {
+        root_markers = { '.git' },
+    })
+end
+
+vim.diagnostic.config {
+    underline = true,
+    update_in_insert = false,
+    virtual_text = true,
+    severity_sort = true,
+    float = {
+        border = 'rounded',
+        source = true,
+    },
+}
 
 local function get_active_lsp_names(bufnr)
     local clients = vim.lsp.get_clients { bufnr = bufnr }
