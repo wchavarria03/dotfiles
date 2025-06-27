@@ -19,5 +19,14 @@ return {
       ["."] = false,
     },
     copilot_model = "gpt-4o-copilot",
+    server_opts_overrides = {
+      trace = "verbose",
+      settings = {
+        advanced = {
+          listCount = 10,
+          inlineSuggestCount = 3,
+        },
+      },
+    },
   },
 }

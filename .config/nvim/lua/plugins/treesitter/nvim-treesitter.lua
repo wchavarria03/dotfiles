@@ -2,7 +2,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     version = false, -- last release is way too old and doesn't work on Windows
     build = ':TSUpdate',
-    event = { 'VeryLazy' },
+    event = { 'BufReadPost', 'BufNewFile' },
     init = function(plugin)
         require('lazy.core.loader').add_to_rtp(plugin)
         require 'nvim-treesitter.query_predicates'
@@ -79,6 +79,10 @@ return {
                 node_decremental = '<bs>',
             },
         },
+        -- Performance optimizations
+        sync_install = false,
+        auto_install = true,
+        ignore_install = {},
     },
     config = function(_, opts)
         require('nvim-treesitter.configs').setup(opts)

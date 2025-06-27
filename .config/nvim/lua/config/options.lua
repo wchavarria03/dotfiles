@@ -12,7 +12,8 @@ vim.o.smartindent = true -- Insert indents automatically
 
 vim.o.swapfile = false -- Don't use swapfile
 vim.o.undofile = true
-vim.o.undolevels = 10000
+vim.o.undolevels = 5000
+vim.o.undodir = vim.fn.stdpath('data') .. '/undodir' -- Set undo directory
 
 vim.o.ignorecase = true -- ignore case letters when search
 vim.o.smartcase = true -- Don't ignore case with capitals
@@ -60,3 +61,14 @@ vim.o.winminwidth = 5 -- Minimum window width
 
 -- TO BE Tested
 vim.o.list = true -- Show some invisible characters
+
+-- Performance optimizations
+vim.o.lazyredraw = true -- Don't redraw while executing macros
+vim.o.hidden = true -- Hide buffers instead of closing them
+vim.o.backup = false -- Don't create backup files
+vim.o.writebackup = false -- Don't create backup files
+vim.o.history = 1000 -- Increase command history
+vim.o.shada = '!,\'1000,<50,s10,h' -- Increase shada history
+vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions' -- Session options
+vim.o.viewoptions = 'cursor,folds,slash,unix' -- View options
+vim.o.viminfo = '!,\'1000,<50,s10,h' -- Viminfo options

@@ -1,9 +1,11 @@
 return {
     'nvim-lualine/lualine.nvim',
+    event = 'VeryLazy',
     opts = function()
         local opts = {
             options = {
                 theme = 'auto',
+                globalstatus = true,
             },
             sections = {
                 lualine_a = { 'mode' },
@@ -14,15 +16,17 @@ return {
                 lualine_x = {
                     {
                         function()
-                            local clients = package.loaded['copilot']
-                                    and vim.lsp.get_clients { name = 'copilot', bufnr = 0 }
-                                or {}
+                            local clients = vim.lsp.get_clients { name = 'copilot', bufnr = 0 }
                             if #clients > 0 then
                                 local status = require('copilot.api').status.data.status
-                                return (status == 'InProgress' and '... ')
-                                    or (status == 'Warning' and 'X ')
-                                    or ''
+                                return (status == 'InProgress' and '...')
+                                    or (status == 'Warning' and 'X')
+                                    or ''
                             end
+                            return ''
+                        end,
+                        cond = function()
+                            return package.loaded['copilot'] ~= nil
                         end,
                     },
                     { require 'mcphub.extensions.lualine' },
