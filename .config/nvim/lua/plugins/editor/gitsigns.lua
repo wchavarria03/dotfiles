@@ -1,6 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       preview_config = {
         border = "rounded",
@@ -27,14 +28,6 @@ return {
             gs.nav_hunk("prev")
           end
         end, "Prev Hunk")
-
-        map("n", "]H", function()
-          gs.nav_hunk("last")
-        end, "Last Hunk")
-
-        map("n", "[H", function()
-          gs.nav_hunk("first")
-        end, "First Hunk")
 
         map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
         map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
@@ -66,41 +59,44 @@ return {
     config = function(_, opts)
       require("gitsigns").setup(opts)
 
-      require("snacks")
-        .toggle({
-          name = "Git Signs",
-          get = function()
-            return require("gitsigns.config").config.signcolumn
-          end,
-          set = function(state)
-            require("gitsigns").toggle_signs(state)
-          end,
-        })
-        :map("<leader>tgs")
+      -- Only setup snacks toggles if snacks is available
+      if package.loaded.snacks then
+        require("snacks")
+          .toggle({
+            name = "Git Signs",
+            get = function()
+              return require("gitsigns.config").config.signcolumn
+            end,
+            set = function(state)
+              require("gitsigns").toggle_signs(state)
+            end,
+          })
+          :map("<leader>tgs")
 
-      require("snacks")
-        .toggle({
-          name = "Git Word",
-          get = function()
-            return require("gitsigns.config").config.word_diff
-          end,
-          set = function(state)
-            require("gitsigns").toggle_word_diff(state)
-          end,
-        })
-        :map("<leader>tgw")
+        require("snacks")
+          .toggle({
+            name = "Git Word",
+            get = function()
+              return require("gitsigns.config").config.word_diff
+            end,
+            set = function(state)
+              require("gitsigns").toggle_word_diff(state)
+            end,
+          })
+          :map("<leader>tgw")
 
-      require("snacks")
-        .toggle({
-          name = "Git blame line",
-          get = function()
-            return require("gitsigns.config").config.current_line_blame
-          end,
-          set = function(state)
-            require("gitsigns").toggle_current_line_blame(state)
-          end,
-        })
-        :map("<leader>tb")
+        require("snacks")
+          .toggle({
+            name = "Git blame line",
+            get = function()
+              return require("gitsigns.config").config.current_line_blame
+            end,
+            set = function(state)
+              require("gitsigns").toggle_current_line_blame(state)
+            end,
+          })
+          :map("<leader>tb")
+      end
     end,
   },
 }
