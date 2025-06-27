@@ -42,21 +42,34 @@ return {
             end,
 
             formatters_by_ft = {
+                -- Core languages
                 bash = { 'shfmt' },
-                beancount = { 'bean-format' },
-                go = { 'golines', 'goimports', 'gofumpt', 'golangci-lint' },
-                json = { 'biome', 'prettier' },
                 lua = { 'stylua' },
-                ['markdown'] = { 'prettier' },
-                ['markdown.mdx'] = { 'prettier' },
-                ruby = { 'rubocop' },
-                python = { 'isort', 'black' },
-                -- sh = { 'shfmt' },
-                solidity = { 'prettierd' },
+                python = { 'ruff', 'isort', 'black' },
+                go = { 'golines', 'goimports', 'gofumpt' },
+                
+                -- Web development
                 javascript = { 'prettierd', 'prettier', stop_after_first = true },
                 typescript = { 'prettierd', 'prettier', stop_after_first = true },
                 typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
                 javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+                json = { 'biome', 'prettier' },
+                yaml = { 'prettier' },
+                
+                -- Documentation
+                markdown = { 'prettier' },
+                ['markdown.mdx'] = { 'prettier' },
+                
+                -- Infrastructure
+                dockerfile = { 'hadolint' },
+                
+                -- Specialized
+                beancount = { 'bean-format' },
+                ruby = { 'rubocop' },
+                solidity = { 'prettierd' },
+                
+                -- Configuration files
+                toml = { 'taplo' },
             },
         }
         vim.g.autoformat = true
