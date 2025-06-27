@@ -21,10 +21,10 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.inccommand = 'nosplit'
 
--- Display
+-- Display (VS Code compatible)
 vim.o.scrolloff = 4
 vim.o.signcolumn = 'yes'
-vim.o.cursorline = true
+-- vim.o.cursorline = true  -- Can cause glitches in VS Code
 vim.o.sidescrolloff = 8
 
 -- Performance
@@ -44,7 +44,7 @@ vim.o.wildmode = 'longest:full,full'
 
 -- VS Code compatible options only
 vim.o.wrap = false
-vim.o.conceallevel = 2
+vim.o.conceallevel = 0  -- Disable conceal to prevent UI glitches
 vim.o.formatoptions = 'jcroqlnt'
 vim.o.grepformat = '%f:%l:%c:%m'
 vim.o.grepprg = 'rg --vimgrep'

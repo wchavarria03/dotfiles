@@ -2,14 +2,14 @@ local function augroup(name)
     return vim.api.nvim_create_augroup('wchavarria_nvim_' .. name, { clear = true })
 end
 
--- Highlight on yank
-vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking (copying) text',
-    group = augroup 'highlight_yank',
-    callback = function()
-        vim.hl.on_yank()
-    end,
-})
+-- Highlight on yank (disabled for VS Code compatibility)
+-- vim.api.nvim_create_autocmd('TextYankPost', {
+--     desc = 'Highlight when yanking (copying) text',
+--     group = augroup 'highlight_yank',
+--     callback = function()
+--         vim.hl.on_yank()
+--     end,
+-- })
 
 -- Filetype-specific settings
 vim.api.nvim_create_autocmd({ 'FileType' }, {
@@ -19,16 +19,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
-        vim.opt_local.conceallevel = 2
-    end,
-})
-
--- Fix conceallevel for json files
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-    group = augroup 'json_conceal',
-    pattern = { 'json', 'jsonc', 'json5' },
-    callback = function()
-        vim.opt_local.conceallevel = 0
+        vim.opt_local.conceallevel = 0  -- Keep conceal disabled
     end,
 })
 

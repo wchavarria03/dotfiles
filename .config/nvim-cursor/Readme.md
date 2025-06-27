@@ -103,6 +103,24 @@ This configuration provides Neovim's powerful editing capabilities while leverag
 | `<C-d>/<C-u>` | Enhanced scrolling (centered) |
 | `<`/`>` | Indent with selection preservation |
 
+### Plugin-Specific Keymaps
+| Key | Action |
+|-----|--------|
+| `<leader>y` | Open Yank History (Yanky) |
+| `<leader>cn` | Generate Code Annotations (Neogen) |
+| `<leader>cF` | Format Injected Languages (Conform) |
+
+### Advanced Yank Operations (Yanky)
+| Key | Action |
+|-----|--------|
+| `y` | Enhanced yank with highlighting |
+| `p/P` | Enhanced put after/before |
+| `gp/gP` | Enhanced put after/before (linewise) |
+| `[y/]y` | Cycle through yank history |
+| `[p/]p` | Put with indentation |
+| `>p/<p` | Put with shift right/left |
+| `=p/=P` | Put with filter |
+
 ## 🔧 Configuration
 
 ### Options (`lua/config/options.lua`)
@@ -126,7 +144,7 @@ Essential autocommands for:
 ## 📦 Plugins
 
 ### Essential Plugins Only
-- **`coding/`** - Coding enhancements (pairs, surround, ai, snippets)
+- **`coding/`** - Coding enhancements (pairs, surround, ai, snippets, yanky, neogen)
 - **`formatting/`** - Code formatting (conform.nvim)
 - **`linting/`** - Code linting (nvim-lint)
 
@@ -139,6 +157,9 @@ The following plugins were intentionally removed as they duplicate VS Code funct
 - ❌ Syntax highlighting (treesitter, etc.) - VS Code handles syntax
 - ❌ Search plugins (flash, etc.) - VS Code has search
 - ❌ Utility plugins (zen-mode, etc.) - VS Code has zen mode
+- ❌ Completion plugins (blink, etc.) - VS Code has IntelliSense
+- ❌ Comment plugins (ts-comments, etc.) - VS Code has commenting
+- ❌ Undo tree plugins (undotree, etc.) - VS Code has undo history
 
 ## 🚀 Installation
 
@@ -171,6 +192,26 @@ The following plugins were intentionally removed as they duplicate VS Code funct
    {
      "vscode-neovim.useWSL": false,
      "vscode-neovim.neovimInitVim": "~/.config/nvim-cursor/init.lua"
+   }
+   ```
+
+5. **Recommended VS Code Extensions**
+   For enhanced functionality equivalent to removed Neovim plugins:
+   ```json
+   {
+     "extensions": [
+       "ms-vscode.vscode-json",
+       "bradlc.vscode-tailwindcss",
+       "esbenp.prettier-vscode",
+       "ms-python.python",
+       "ms-vscode.vscode-typescript-next",
+       "ms-vscode.vscode-js-debug",
+       "ms-vscode.vscode-js-debug-companion",
+       "ms-vscode.vscode-eslint",
+       "ms-vscode.vscode-prettier",
+       "ms-vscode.vscode-json-language-features",
+       "ms-vscode.vscode-typescript-language-features"
+     ]
    }
    ```
 

@@ -22,8 +22,6 @@ require('lazy').setup {
     spec = {
         -- Only essential plugins for VS Code Neovim
         { import = 'plugins/coding' },
-        { import = 'plugins/formatting' },
-        { import = 'plugins/linting' },
     },
     -- dev = { "~/work", "~/personal" },
     rocks = {

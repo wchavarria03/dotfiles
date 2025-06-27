@@ -1,11 +1,11 @@
 return {
   "gbprod/yanky.nvim",
   opts = {
-    highlight = { timer = 150 },
+    highlight = { timer = 50 },
   },
   keys = {
     {
-      "<leader>p",
+      "<leader>y",
       function()
         vim.cmd([[YankyRingHistory]])
       end,
