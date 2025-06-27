@@ -49,7 +49,7 @@ return {
                 lua = { 'stylua' },
                 python = { 'isort', 'black', 'ruff' },
                 go = { 'golines', 'goimports', 'gofumpt' },
-                
+
                 -- Web development
                 javascript = { 'prettierd', 'prettier', stop_after_first = true },
                 typescript = { 'prettierd', 'prettier', stop_after_first = true },
@@ -57,19 +57,20 @@ return {
                 javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
                 json = { 'biome', 'prettier' },
                 yaml = { 'prettier' },
-                
+
                 -- Documentation
                 markdown = { 'prettier' },
                 ['markdown.mdx'] = { 'prettier' },
-                
+
                 -- Infrastructure
                 dockerfile = { 'hadolint' },
-                
+                terraform = { 'terraform_fmt' },
+
                 -- Specialized
                 
                 ruby = { 'rubocop' },
                 solidity = { 'prettierd' },
-                
+
                 -- Configuration files
                 toml = { 'taplo' },
             },

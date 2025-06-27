@@ -4,7 +4,6 @@ return {
     opts = {
         -- Only install linters that are available in Mason's registry
         ensure_installed = {
-            -- Core linters that are definitely available
             'shellcheck', -- bash
             'luacheck', -- lua
             'flake8', -- python
@@ -16,6 +15,7 @@ return {
             'codespell', -- spell checking
             'yamllint', -- yaml
             'ruff', -- python (modern alternative to flake8)
+            'tflint', -- terraform
         },
         -- Ignore problematic linters that aren't available in Mason's registry
         ignore_install = {

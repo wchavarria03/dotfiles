@@ -8,6 +8,7 @@ vim.lsp.enable 'json_ls'
 vim.lsp.enable 'lua_ls'
 vim.lsp.enable 'solidity_ls'
 vim.lsp.enable 'taplo'
+vim.lsp.enable 'terraform_ls'
 vim.lsp.enable 'yamlls'
 
 -- Only configure LSP if blink.cmp is available

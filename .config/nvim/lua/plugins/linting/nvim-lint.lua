@@ -14,6 +14,7 @@ return {
             json = { 'biome' },
             lua = { 'luacheck' },
             python = { 'ruff', 'flake8' },
+            terraform = { 'tflint' },
             typescript = { 'eslint_d' },
             solidity = { 'solhint' },
             yaml = { 'yamllint' },
