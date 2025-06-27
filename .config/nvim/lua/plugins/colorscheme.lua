@@ -2,6 +2,8 @@ return {
     {
         'catppuccin/nvim',
         name = 'catppuccin',
+        lazy = false, -- Load immediately for better UX
+        priority = 1000, -- Load early
         opts = {
             flavour = 'mocha',
             integrations = {
@@ -55,9 +57,12 @@ return {
             vim.cmd.colorscheme 'catppuccin-mocha'
         end,
     },
+    -- Alternative themes - lazy load only when needed
     {
         'rose-pine/neovim',
         name = 'rose-pine',
+        lazy = true,
+        cmd = 'RosePine',
         config = function()
             require('rose-pine').setup {
                 variant = 'main',
@@ -73,24 +78,25 @@ return {
                     FloatBorder = { fg = '#ebbcba', bg = '#232136' },
                 },
             }
-            -- vim.cmd.colorscheme("rose-pine")
         end,
     },
     {
         'rebelot/kanagawa.nvim',
+        lazy = true,
+        cmd = 'Kanagawa',
         config = function()
             require('kanagawa').setup {
-                compile = false, -- enable compiling the colorscheme
-                undercurl = true, -- enable undercurls
+                compile = false,
+                undercurl = true,
                 commentStyle = { italic = true },
                 functionStyle = {},
                 keywordStyle = { italic = false },
                 statementStyle = { bold = true },
                 typeStyle = {},
-                transparent = true, -- do not set background color
-                dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-                terminalColors = true, -- define vim.g.terminal_color_{0,17}
-                colors = { -- add/modify theme and palette colors
+                transparent = true,
+                dimInactive = false,
+                terminalColors = true,
+                colors = {
                     palette = {},
                     theme = {
                         wave = {},
@@ -103,13 +109,13 @@ return {
                         },
                     },
                 },
-                overrides = function(colors) -- add/modify highlights
+                overrides = function(colors)
                     local theme = colors.theme
                     return {
                         NormalFloat = { bg = 'none' },
                         FloatBorder = { bg = 'none' },
                         FloatTitle = { bg = 'none' },
-                        Pmenu = { fg = theme.ui.shade0, bg = 'NONE', blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
+                        Pmenu = { fg = theme.ui.shade0, bg = 'NONE', blend = vim.o.pumblend },
                         PmenuSel = { fg = 'NONE', bg = theme.ui.bg_p2 },
                         PmenuSbar = { bg = theme.ui.bg_m1 },
                         PmenuThumb = { bg = theme.ui.bg_p2 },
@@ -137,10 +143,10 @@ return {
             }
         end,
     },
-    -- NOTE: neosolarized
     {
         'craftzdog/solarized-osaka.nvim',
-        lazy = false,
+        lazy = true,
+        cmd = 'SolarizedOsaka',
         config = function()
             require('solarized-osaka').setup {
                 transparent = true,
@@ -163,42 +169,22 @@ return {
                 lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
                 on_highlights = function(hl, c)
                     local prompt = '#2d3149'
-                    hl.TelescopeNormal = {
-                        bg = c.bg_dark,
-                        fg = c.fg_dark,
-                    }
-                    hl.TelescopeBorder = {
-                        bg = c.bg_dark,
-                        fg = c.bg_dark,
-                    }
-                    hl.TelescopePromptNormal = {
-                        bg = c.bg_dark,
-                    }
-                    hl.TelescopePromptBorder = {
-                        bg = c.bg_dark,
-                        fg = c.bg_dark,
-                    }
-                    hl.TelescopePromptTitle = {
-                        bg = prompt,
-                        fg = '#2C94DD',
-                    }
-                    hl.TelescopePreviewTitle = {
-                        bg = c.bg_dark,
-                        fg = c.bg_dark,
-                    }
-                    hl.TelescopeResultsTitle = {
-                        bg = c.bg_dark,
-                        fg = c.bg_dark,
-                    }
+                    hl.TelescopeNormal = { bg = c.bg_dark, fg = c.fg_dark }
+                    hl.TelescopeBorder = { bg = c.bg_dark, fg = c.bg_dark }
+                    hl.TelescopePromptNormal = { bg = c.bg_dark }
+                    hl.TelescopePromptBorder = { bg = c.bg_dark, fg = c.bg_dark }
+                    hl.TelescopePromptTitle = { bg = prompt, fg = '#2C94DD' }
+                    hl.TelescopePreviewTitle = { bg = c.bg_dark, fg = c.bg_dark }
+                    hl.TelescopeResultsTitle = { bg = c.bg_dark, fg = c.bg_dark }
                 end,
             }
         end,
     },
-    -- NOTE : tokyonight
     {
         'folke/tokyonight.nvim',
         name = 'folkeTokyonight',
-        -- priority = 1000,
+        lazy = true,
+        cmd = 'TokyoNight',
         config = function()
             require('tokyonight').setup {
                 style = 'night',
