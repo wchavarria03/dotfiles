@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# Function to check if a Brew package is installed
+# Function to check if a Brew package is instal
+led
 is_brew_package_installed() {
     local package_name="$1"
     brew list "$package_name" &>/dev/null
@@ -20,6 +21,7 @@ install_brew_packages() {
         fzf
         git
         glow # markdown previewer
+        luarocks #lua linter and development
         neovim
         ripgrep
         rustup # install rust top to get cargo and be able to install some mason lsp with mason
