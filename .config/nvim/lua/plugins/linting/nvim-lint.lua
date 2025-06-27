@@ -1,22 +1,25 @@
 return {
     'mfussenegger/nvim-lint',
     event = 'VeryLazy',
-    dependecies = {
+    dependencies = {
         'rshkarin/mason-nvim-lint',
     },
     opts = {
         events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
         linters_by_ft = {
             bash = { 'shellcheck' },
-            beancount = { 'bean_check' },
+            -- beancount = { 'bean_check' }, -- Looks like this is not available in Mason's registry anymore
             dockerfile = { 'hadolint' },
-            go = { 'golangcilint' },
+            go = { 'golangci-lint' },
             javascript = { 'eslint_d' },
             json = { 'biome' },
             lua = { 'luacheck' },
-            python = { 'flake8' },
+            python = { 'ruff', 'flake8' },
             typescript = { 'eslint_d' },
-            solidity = { 'solhint', 'prettier_d' },
+            solidity = { 'solhint' },
+            yaml = { 'yamllint' },
+            markdown = { 'cspell', 'codespell' },
+            text = { 'cspell', 'codespell' },
             -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
             ['_'] = { 'cspell', 'codespell' },
         },
