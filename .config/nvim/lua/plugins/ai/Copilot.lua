@@ -7,8 +7,18 @@ return {
     panel = {
       enabled = false,
     },
-    suggestion = { -- blink-cmp-copilot would be in charge of this
-      enabled = false,
+    suggestion = {
+      enabled = true,
+      auto_trigger = false,
+      debounce = 150,
+      keymap = {
+        accept = "<C-l>",
+        accept_word = false,
+        accept_line = false,
+        next = "<C-]>",
+        prev = "<C-[>",
+        dismiss = "<C-]>",
+      },
     },
     filetypes = {
       yaml = true,

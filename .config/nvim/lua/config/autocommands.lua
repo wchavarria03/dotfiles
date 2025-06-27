@@ -33,18 +33,6 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, {
     end,
 })
 
--- Copilot chat keymap to open last chat response
-vim.api.nvim_create_autocmd('BufEnter', {
-    pattern = 'copilot-*',
-    callback = function()
-        vim.opt_local.relativenumber = true
-
-        vim.keymap.set('n', '<leader>al', function()
-            print(require('CopilotChat').response())
-        end, { buffer = true, remap = true, desc = 'Last copilot response' })
-    end,
-})
-
 -- Fix conceallevel for markdown, gitcommit and txt filetypes
 vim.api.nvim_create_autocmd({ 'FileType' }, {
     group = vim.api.nvim_create_augroup('edit_text', { clear = true }),

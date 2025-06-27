@@ -1,3 +1,18 @@
+-- Helper function to safely load Avante API and execute a prompt
+local function avante_ask_prompt(prompt_func)
+    local ok, avante = pcall(require, 'avante.api')
+    if not ok or not avante then
+        vim.notify('Avante plugin is not loaded yet. Please try again.', vim.log.levels.ERROR)
+        return
+    end
+
+    local prompts = require 'config.avante-prompts'
+    local prompt = prompt_func(prompts)
+    if prompt then
+        avante.ask({ question = prompt })
+    end
+end
+
 return {
     'yetone/avante.nvim',
     event = 'VeryLazy', -- Load after other plugins are ready
@@ -6,6 +21,35 @@ return {
         -- Add key triggers for common avante actions
         { '<leader>aa', '<cmd>Avante<cr>', desc = 'Open Avante' },
         { '<leader>aq', '<cmd>AvanteAsk<cr>', desc = 'Avante Ask' },
+        -- Custom prompts using separate prompts file
+        {
+            '<leader>ac',
+            function()
+                avante_ask_prompt(function(prompts) return prompts.generate_commit_message() end)
+            end,
+            desc = 'Generate Commit Message',
+        },
+        {
+            '<leader>ap',
+            function()
+                avante_ask_prompt(function(prompts) return prompts.list_pending_prs() end)
+            end,
+            desc = 'List PRs for Review',
+        },
+        {
+            '<leader>ar',
+            function()
+                avante_ask_prompt(function(prompts) return prompts.review_current_file() end)
+            end,
+            desc = 'Review Current File',
+        },
+        {
+            '<leader>ae',
+            function()
+                avante_ask_prompt(function(prompts) return prompts.explain_code() end)
+            end,
+            desc = 'Explain Code',
+        },
     },
     version = '*',
     opts = {
