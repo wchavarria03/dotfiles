@@ -3,6 +3,9 @@ vim.keymap.set({ 'n', 'x' }, '<Down>', "v:count == 0 ? 'gj' : 'j'", { desc = 'Do
 vim.keymap.set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
 vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, silent = true })
 
+-- Move selected line / block of text in visual mode
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line up', noremap = true, silent = true })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line down', noremap = true, silent = true })
 -- Buffers navigation
 vim.keymap.set('n', '<C-k>', '<C-w><up>', { desc = 'Move Up', expr = true, silent = true })
 vim.keymap.set('n', '<C-h>', '<C-w><left>', { desc = 'Move Left', expr = true, silent = true })
