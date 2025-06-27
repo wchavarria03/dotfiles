@@ -22,23 +22,23 @@ return {
                     'lua_ls',                    -- Lua
                     'ts_ls',                     -- TypeScript/JavaScript
                     'yamlls',                    -- YAML
-                    
+
                     -- Web development
                     'html',                      -- HTML
                     'cssls',                     -- CSS
                     'emmet_ls',                  -- Emmet
-                    
+
                     -- Infrastructure & DevOps
                     'dockerls',                  -- Docker
                     'docker_compose_language_service', -- Docker Compose
-                    
+
                     -- Documentation
                     'marksman',                  -- Markdown
-                    
+
                     -- Configuration files
                     'taplo',                     -- TOML
                     'yamlls',                    -- YAML
-                    
+
                     -- Specialized
                     'beancount',                 -- Beancount
                     'solidity_ls',               -- Solidity
