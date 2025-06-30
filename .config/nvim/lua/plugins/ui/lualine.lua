@@ -14,17 +14,7 @@ return {
                     { 'filename', path = 1 },
                 },
                 lualine_x = {
-                    {
-                        function()
-                            local clients = vim.lsp.get_clients { name = 'copilot', bufnr = 0 }
-                            if #clients > 0 then
-                                local status = require('copilot.api').status.data.status
-                                return (status == 'InProgress' and '...')
-                                    or (status == 'Warning' and 'X')
-                                    or ''
-                            end
-                            return ''
-                        end,
+                    { require('config.lualine_components').copilot_status,
                         cond = function()
                             return package.loaded['copilot'] ~= nil
                         end,
