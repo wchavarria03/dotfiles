@@ -24,6 +24,8 @@ return {
                 if vim.g.autoformat then
                     local disable_filetypes = {
                         sh = true,
+                        make = true,
+                        dockerfile = true,
                     }
 
                     local lsp_format_opt
@@ -45,7 +47,7 @@ return {
                 -- Core languages
                 bash = { 'shfmt' },
                 lua = { 'stylua' },
-                python = { 'ruff', 'isort', 'black' },
+                python = { 'isort', 'black', 'ruff' },
                 go = { 'golines', 'goimports', 'gofumpt' },
                 
                 -- Web development

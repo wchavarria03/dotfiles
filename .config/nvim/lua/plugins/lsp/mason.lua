@@ -37,8 +37,6 @@ return {
 
                     -- Configuration files
                     'taplo',                     -- TOML
-                    'yamlls',                    -- YAML
-
                     -- Specialized
                     
                     'solidity_ls',               -- Solidity
