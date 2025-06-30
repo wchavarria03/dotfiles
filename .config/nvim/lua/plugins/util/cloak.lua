@@ -21,6 +21,8 @@ return {
               "git.inc",
               "hosts.json",
               "config.json",
+              "secrets.json",
+              "credentials.json",
             },
             -- Match an equals sign and any character after it.
             -- This can also be a table of patterns to cloak,

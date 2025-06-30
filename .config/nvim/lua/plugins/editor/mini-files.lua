@@ -18,8 +18,27 @@ return {
             end,
             desc = 'Toggle Explorer Directory',
         },
-        -- TODO: Add keys to copy current cwd and relative path
-        -- Look into the help for mini.files for examples
+        {
+            'yc',
+            function(state)
+                local node = state.get_node_under_cursor()
+                if node ~= nil and node.path ~= nil then
+                    vim.fn.setreg('+', node.path)
+                end
+            end,
+            desc = 'Copy Path',
+        },
+        {
+            'yp',
+            function(state)
+                local node = state.get_node_under_cursor()
+                if node ~= nil and node.path ~= nil then
+                    vim.fn.setreg('+', vim.fn.fnamemodify(node.path, ':.')
+)
+                end
+            end,
+            desc = 'Copy Relative Path',
+        }
     },
     opts = {
         mappings = {
