@@ -40,7 +40,7 @@ return {
                     'yamlls',                    -- YAML
 
                     -- Specialized
-                    'beancount',                 -- Beancount
+                    
                     'solidity_ls',               -- Solidity
                     'ruby_lsp',                  -- Ruby
                 },

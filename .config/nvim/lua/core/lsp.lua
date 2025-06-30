@@ -1,5 +1,5 @@
 vim.lsp.enable 'bash_ls'
-vim.lsp.enable 'beancount_ls'
+
 vim.lsp.enable 'docker_compose_ls'
 vim.lsp.enable 'docker_ls'
 vim.lsp.enable 'golangci_lint_ls'

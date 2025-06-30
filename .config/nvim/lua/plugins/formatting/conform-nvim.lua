@@ -64,7 +64,7 @@ return {
                 dockerfile = { 'hadolint' },
                 
                 -- Specialized
-                beancount = { 'bean-format' },
+                
                 ruby = { 'rubocop' },
                 solidity = { 'prettierd' },
                 

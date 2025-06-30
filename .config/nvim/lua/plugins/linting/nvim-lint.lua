@@ -8,7 +8,6 @@ return {
         events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
         linters_by_ft = {
             bash = { 'shellcheck' },
-            -- beancount = { 'bean_check' }, -- Looks like this is not available in Mason's registry anymore
             dockerfile = { 'hadolint' },
             go = { 'golangci-lint' },
             javascript = { 'eslint_d' },
