@@ -52,10 +52,13 @@ return {
 
                 -- Web development
                 javascript = { 'prettierd', 'prettier', stop_after_first = true },
-                typescript = { 'prettierd', 'prettier', stop_after_first = true },
-                typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
                 javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
                 json = { 'biome', 'prettier' },
+                css = { 'stylelint', 'prettier', stop_after_first = true },
+                less = { 'stylelint' },
+                scss = { 'stylelint' },
+                typescript = { 'prettierd', 'prettier', stop_after_first = true },
+                typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
                 yaml = { 'prettier' },
 
                 -- Documentation
@@ -67,7 +70,7 @@ return {
                 terraform = { 'terraform_fmt' },
 
                 -- Specialized
-                
+
                 ruby = { 'rubocop' },
                 solidity = { 'prettierd' },
 

@@ -4,25 +4,29 @@ return {
     dependencies = {
         'rshkarin/mason-nvim-lint',
     },
-    opts = {
-        events = { 'BufWritePost', 'BufReadPost', 'InsertLeave' },
-        linters_by_ft = {
+    config = function()
+        local lint = require 'lint'
+        lint.linters_by_ft = {
             bash = { 'shellcheck' },
             dockerfile = { 'hadolint' },
             go = { 'golangci-lint' },
             javascript = { 'eslint_d' },
             json = { 'biome' },
             lua = { 'luacheck' },
+            markdown = { 'markdownlint', 'cspell', 'codespell' },
             python = { 'ruff', 'flake8' },
-            terraform = { 'tflint' },
-            typescript = { 'eslint_d' },
+            ruby = { 'rubocop' },
             solidity = { 'solhint' },
-            yaml = { 'yamllint' },
-            markdown = { 'cspell', 'codespell' },
+            terraform = { 'tflint' },
             text = { 'cspell', 'codespell' },
+            typescript = { 'eslint_d' },
+            yaml = { 'yamllint' },
             -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
-            ['_'] = { 'cspell', 'codespell' },
-        },
-    },
-    
+            ['_'] = { 'cspell', 'codespell' }, -- fallback
+
+            css = { 'stylelint' },
+            scss = { 'stylelint' },
+            less = { 'stylelint' },
+        }
+    end,
 }

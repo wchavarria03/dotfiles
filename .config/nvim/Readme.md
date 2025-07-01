@@ -198,3 +198,6 @@ UI editor enhancements and configurations.
 ### colorscheme.lua
 
 - Configuration for color schemes.
+
+## LSP Image reference
+![Mason/Nvim Setup Screenshot](images/nvim-mason-setup.png)

@@ -1,3 +1,41 @@
+-- Installed lsps
+
+-- -- Core languages
+-- 'bashls', -- Bash
+-- 'gopls', -- Go
+-- 'jsonls', -- JSON
+-- 'lua_ls', -- Lua
+-- 'ts_ls', -- TypeScript/JavaScript
+
+-- -- Web development
+-- 'html', -- HTML
+-- 'cssls', -- CSS
+-- 'emmet_ls', -- Emmet
+
+-- -- Infrastructure & DevOps
+-- 'dockerls', -- Docker
+-- 'docker_compose_language_service', -- Docker Compose
+
+-- -- Documentation
+-- 'marksman', -- Markdown
+
+-- -- Configuration files
+-- 'taplo', -- TOML
+
+-- -- Specialized
+-- 'solidity_ls', -- Solidity
+-- 'ruby_lsp', -- Ruby
+--
+-- 'biome', -- biome (javascript/typescript)
+-- 'pyright', -- pyright (python)
+-- 'golangci_lint_ls', -- biome (javascript/typescript) and golangci-lint
+-- 'terraform_ls',          -- terraform
+
+-- -- Linters
+-- -- rubocoop
+-- -- ruff
+-- -- tflint  -- (terraform linter)
+
 return {
     {
         'williamboman/mason.nvim',
@@ -9,41 +47,4 @@ return {
             },
         },
     },
-    {
-        'williamboman/mason-lspconfig.nvim',
-        dependencies = { 'williamboman/mason.nvim' },
-        config = function()
-            require('mason-lspconfig').setup {
-                ensure_installed = {
-                    -- Core languages
-                    'bashls',                    -- Bash
-                    'gopls',                     -- Go
-                    'jsonls',                    -- JSON
-                    'lua_ls',                    -- Lua
-                    'ts_ls',                     -- TypeScript/JavaScript
-                    'yamlls',                    -- YAML
-
-                    -- Web development
-                    'html',                      -- HTML
-                    'cssls',                     -- CSS
-                    'emmet_ls',                  -- Emmet
-
-                    -- Infrastructure & DevOps
-                    'dockerls',                  -- Docker
-                    'docker_compose_language_service', -- Docker Compose
-
-                    -- Documentation
-                    'marksman',                  -- Markdown
-
-                    -- Configuration files
-                    'taplo',                     -- TOML
-                    -- Specialized
-                    
-                    'solidity_ls',               -- Solidity
-                    'ruby_lsp',                  -- Ruby
-                },
-                automatic_installation = true,
-            }
-        end
-    }
 }
