@@ -9,7 +9,7 @@ local function avante_ask_prompt(prompt_func)
     local prompts = require 'config.avante-prompts'
     local prompt = prompt_func(prompts)
     if prompt then
-        avante.ask({ question = prompt })
+        avante.ask { question = prompt }
     end
 end
 
@@ -18,45 +18,51 @@ return {
     event = 'VeryLazy', -- Load after other plugins are ready
     cmd = { 'Avante', 'AvanteAsk', 'AvanteDiff' }, -- Command triggers
     keys = {
-        -- Add key triggers for common avante actions
-        { '<leader>aa', '<cmd>Avante<cr>', desc = 'Open Avante' },
-        { '<leader>aq', '<cmd>AvanteAsk<cr>', desc = 'Avante Ask' },
-        -- Custom prompts using separate prompts file
         {
-            '<leader>ac',
+            '<leader>aC',
             function()
-                avante_ask_prompt(function(prompts) return prompts.generate_commit_message() end)
+                avante_ask_prompt(function(prompts)
+                    return prompts.generate_commit_message()
+                end)
             end,
             desc = 'Generate Commit Message',
         },
         {
-            '<leader>ap',
+            '<leader>aP',
             function()
-                avante_ask_prompt(function(prompts) return prompts.list_pending_prs() end)
+                avante_ask_prompt(function(prompts)
+                    return prompts.list_pending_prs()
+                end)
             end,
             desc = 'List PRs for Review',
         },
+        -- {
+        --     '<leader>ar',
+        --     function()
+        --         avante_ask_prompt(function(prompts)
+        --             return prompts.review_current_file()
+        --         end)
+        --     end,
+        --     desc = 'Review Current File',
+        -- },
         {
-            '<leader>ar',
+            '<leader>aE',
             function()
-                avante_ask_prompt(function(prompts) return prompts.review_current_file() end)
-            end,
-            desc = 'Review Current File',
-        },
-        {
-            '<leader>ae',
-            function()
-                avante_ask_prompt(function(prompts) return prompts.explain_code() end)
+                avante_ask_prompt(function(prompts)
+                    return prompts.explain_code()
+                end)
             end,
             desc = 'Explain Code',
         },
-        {
-            '<leader>as',
-            function()
-                avante_ask_prompt(function(prompts) return prompts.general_status() end)
-            end,
-            desc = 'General Status Report',
-        },
+        -- {
+        --     '<leader>as',
+        --     function()
+        --         avante_ask_prompt(function(prompts)
+        --             return prompts.general_status()
+        --         end)
+        --     end,
+        --     desc = 'General Status Report',
+        -- },
     },
     version = '*',
     opts = {
@@ -69,16 +75,6 @@ return {
         cursor_applying_provider = nil, -- The provider used in the applying phase of Cursor Planning Mode, defaults to nil, when nil uses Config.provider as the provider for the applying phase
         file_selector = {
             provider = 'snacks',
-        },
-        providers = {
-            claude = {
-                endpoint = 'https://api.anthropic.com',
-                model = 'claude-3-5-sonnet-20241022',
-                extra_request_body = {
-                    temperature = 0.75,
-                    max_tokens = 4096,
-                },
-            },
         },
         behaviour = {
             auto_suggestions = true,
@@ -154,7 +150,6 @@ return {
             sidebar_header = {
                 enabled = true, -- true, false to enable/disable the header
                 align = 'center', -- left, center, right for title
-                rounded = true,
             },
             input = {
                 prefix = '> ',
@@ -228,6 +223,23 @@ return {
         --- The below dependencies are optional,
         'nvim-tree/nvim-web-devicons',
         'zbirenbaum/copilot.lua', -- for providers='copilot'
+        {
+            -- support for image pasting
+            'HakonHarnes/img-clip.nvim',
+            event = 'VeryLazy',
+            opts = {
+                -- recommended settings
+                default = {
+                    embed_image_as_base64 = false,
+                    prompt_for_file_name = false,
+                    drag_and_drop = {
+                        insert_mode = true,
+                    },
+                    -- required for Windows users
+                    use_absolute_path = true,
+                },
+            },
+        },
         'MeanderingProgrammer/render-markdown.nvim',
     },
 }
