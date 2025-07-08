@@ -76,6 +76,11 @@ return {
         file_selector = {
             provider = 'snacks',
         },
+        providers = {
+            copilot = {
+                model = 'claude-3.7-sonnet',
+            },
+        },
         behaviour = {
             auto_suggestions = true,
             auto_set_highlight_group = true,
