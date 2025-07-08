@@ -1,10 +1,38 @@
 # Editor config
 font-family = JetBrains Mono NL
-theme = catppuccin-macchiato
+
+# Custom Catppuccin Macchiato colors matching Neovim overrides
+background = #0b0b12
+foreground = #C1C9E6
+
+# Color palette matching your Neovim overrides
+# ANSI colors 0-15 using palette syntax
+palette = 0=#191926
+palette = 1=#E66767
+palette = 2=#70CF67
+palette = 3=#FACA64
+palette = 4=#00BFFF
+palette = 5=#AD6FF7
+palette = 6=#4CD4BD
+palette = 7=#C1C9E6
+palette = 8=#464957
+palette = 9=#F29D9D
+palette = 10=#70CF67
+palette = 11=#FAB770
+palette = 12=#61BDFF
+palette = 13=#FF8F40
+palette = 14=#00BBCC
+palette = 15=#A3AAC2
+
+# Cursor and selection colors
+cursor-color = #00BFFF
+cursor-text = #C1C9E6
+selection-background = #464957
+selection-foreground = #C1C9E6
 
 macos-titlebar-style = tabs
 
-split-divider-color = #CBA6F7
+split-divider-color = #AD6FF7
 
 keybind = super+ctrl+k=goto_split:up
 keybind = super+ctrl+j=goto_split:down
