@@ -6,6 +6,8 @@ return {
             options = {
                 theme = 'auto',
                 globalstatus = true,
+                section_separators = { left = '', right = '' },
+                component_separators = { left = '', right = '' },
             },
             sections = {
                 lualine_a = { 'mode' },
@@ -14,7 +16,8 @@ return {
                     { 'filename', path = 1 },
                 },
                 lualine_x = {
-                    { require('config.lualine_components').copilot_status,
+                    {
+                        require('config.lualine_components').copilot_status,
                         cond = function()
                             return package.loaded['copilot'] ~= nil
                         end,
@@ -23,10 +26,16 @@ return {
                     { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
                 },
                 lualine_y = {
-                    { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
+                    { 'progress' },
                 },
                 lualine_z = {
-                    { 'location', padding = { left = 0, right = 1 } },
+                    { 'location', separator = '' },
+                    {
+                        function()
+                            return ''
+                        end,
+                        padding = { left = 0, right = 1 },
+                    },
                 },
             },
             inactive_sections = {

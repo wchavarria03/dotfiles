@@ -1,14 +1,20 @@
 return {
     'b0o/incline.nvim',
+    event = 'BufReadPre',
     config = function()
         local helpers = require 'incline.helpers'
         local devicons = require 'nvim-web-devicons'
 
         require('incline').setup {
+            highlight = {
+                groups = {
+                    InclineNormal = { default = true, group = 'lualine_a_normal' },
+                    InclineNormalNC = { default = true, group = 'Comment' },
+                },
+            },
 
             window = {
-                padding = 0,
-                margin = { horizontal = 0 },
+                margin = { vertical = 0, horizontal = 1 },
             },
 
             render = function(props)
@@ -16,18 +22,17 @@ return {
                 if filename == '' then
                     filename = '[No Name]'
                 end
-                local ft_icon, ft_color = devicons.get_icon_color(filename)
-                local modified = vim.bo[props.buf].modified
-                return {
-                    ft_icon and { ' ', ft_icon, ' ', guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or '',
-                    ' ',
-                    { filename, gui = modified and 'bold,italic' or 'bold' },
-                    ' ',
-                    guibg = '#44406e',
-                }
+                local icon, color = devicons.get_icon_color(filename)
+                -- local modified = vim.bo[props.buf].modified
+                -- return {
+                --     ft_icon and { ' ', ft_icon, ' ', guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or '',
+                --     ' ',
+                --     { filename, gui = modified and 'bold,italic' or 'bold' },
+                --     ' ',
+                --     guibg = '#44406e',
+                -- }
+                return { { icon, guifg = color }, { icon and ' ' or '' }, { filename } }
             end,
         }
     end,
-    -- Optional: Lazy load Incline
-    event = 'VeryLazy',
 }
