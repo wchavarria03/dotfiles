@@ -1,8 +1,8 @@
 return {
     'tris203/precognition.nvim',
-    --event = "VeryLazy",
+    event = 'VeryLazy',
     opts = {
-        -- startVisible = true,
+        startVisible = false,
         -- showBlankVirtLine = true,
         -- highlightColor = { link = "Comment" },
         -- hints = {
@@ -27,4 +27,20 @@ return {
         --     "startify",
         -- },
     },
+    config = function(_, opts)
+        require('precognition').setup(opts)
+
+        require('snacks')
+            .toggle({
+                name = 'Precognition',
+                get = function()
+                    return not vim.g.precognition
+                end,
+                set = function(state)
+                    vim.g.precognition = not state
+                    require('precognition').toggle(state)
+                end,
+            })
+            :map '<leader>tP'
+    end,
 }
