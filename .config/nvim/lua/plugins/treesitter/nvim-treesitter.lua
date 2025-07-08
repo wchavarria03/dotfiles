@@ -17,7 +17,7 @@ return {
         indent = { enable = true },
         ensure_installed = {
             'bash',
-            
+
             'diff',
             'css',
             'csv',
@@ -61,6 +61,7 @@ return {
             'regex',
             'ruby',
             'scss',
+            'solidity',
             'terraform',
             'toml',
             'tsx',
