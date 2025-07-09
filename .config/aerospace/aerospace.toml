@@ -75,7 +75,8 @@ tell application "WezTerm"
 end tell'
 '''
 
-ctrl-shift-alt-cmd-1 = 'exec-and-forget ~/personal/dotfiles/.config/aerospace/open_notes.sh'
+# Open notes in dedicated workspace
+alt-p = ['workspace p', 'exec-and-forget ~/personal/dotfiles/.config/aerospace/open_notes.sh']
 # ctrl-shift-t = 'workspace 5'
 # ctrl-shift-cmd-1 = 'move-node-to-workspace 1'
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
@@ -110,7 +111,6 @@ alt-c = 'workspace c'
 alt-d = 'workspace d'
 alt-i = 'workspace i'
 alt-m = 'workspace m'
-alt-o = 'workspace n'
 alt-s = 'workspace s'
 alt-t = 'workspace t'
 
@@ -126,7 +126,6 @@ alt-shift-c = 'move-node-to-workspace c'
 alt-shift-d = 'move-node-to-workspace d'
 alt-shift-i = 'move-node-to-workspace i'
 alt-shift-m = 'move-node-to-workspace m'
-alt-shift-o = 'move-node-to-workspace n'
 alt-shift-s = 'move-node-to-workspace s'
 alt-shift-t = 'move-node-to-workspace t'
 
@@ -176,7 +175,7 @@ run = [
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
-run = 'move-node-to-workspace o'
+run = 'move-node-to-workspace p'
 
 [[on-window-detected]]
 if.app-id = 'com.sequel-ace.sequel-ace'

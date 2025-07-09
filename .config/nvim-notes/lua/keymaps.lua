@@ -1,0 +1,53 @@
+-- Keymaps for notes
+
+-- Set leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- Basic file operations
+vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = 'Save file' })
+vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = 'Quit' })
+vim.keymap.set('n', '<leader>wq', ':wq<CR>', { desc = 'Save and quit' })
+vim.keymap.set('n', '<leader>Q', ':q!<CR>', { desc = 'Quit without saving' })
+
+-- Navigation
+vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Go to left window' })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Go to lower window' })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Go to upper window' })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Go to right window' })
+
+-- Window management
+vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', { desc = 'Split vertically' })
+vim.keymap.set('n', '<leader>sh', ':split<CR>', { desc = 'Split horizontally' })
+vim.keymap.set('n', '<leader>sc', ':close<CR>', { desc = 'Close window' })
+
+-- Search and replace
+vim.keymap.set('n', '<leader>s', ':%s/', { desc = 'Search and replace' })
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search result centered' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous search result centered' })
+
+-- Text editing
+vim.keymap.set('v', 'J', ':m \'>+1<CR>gv=gv', { desc = 'Move line down' })
+vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv', { desc = 'Move line up' })
+vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Half page down centered' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Half page up centered' })
+
+-- Markdown-specific keymaps (will be set in autocmds)
+local function setup_markdown_keymaps()
+  vim.keymap.set('n', '<leader>mp', ':MarkdownPreviewToggle<CR>', { 
+    desc = 'Toggle markdown preview', 
+    buffer = true 
+  })
+  vim.keymap.set('n', '<leader>ms', ':MarkdownPreviewStop<CR>', { 
+    desc = 'Stop markdown preview', 
+    buffer = true 
+  })
+  vim.keymap.set('n', '<leader>mr', ':MarkdownPreview<CR>', { 
+    desc = 'Start markdown preview', 
+    buffer = true 
+  })
+end
+
+-- Export for use in autocmds
+_G.setup_markdown_keymaps = setup_markdown_keymaps 
