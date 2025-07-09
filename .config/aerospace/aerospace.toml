@@ -66,19 +66,12 @@ outer.right = 10
 
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-# You can uncomment the following lines to open up terminal with alt + enter shortcut (like in i3)
-alt-enter = '''exec-and-forget osascript -e '
-tell application "WezTerm"
-    do script
-    activate
-end tell'
-'''
-
 # Open notes in dedicated workspace
 alt-p = ['workspace p', 'exec-and-forget ~/personal/dotfiles/.config/aerospace/open_notes.sh']
-# ctrl-shift-t = 'workspace 5'
-# ctrl-shift-cmd-1 = 'move-node-to-workspace 1'
+
+# Open quick terminal with borders
+alt-shift-p = ['layout floating', 'exec-and-forget ~/personal/dotfiles/.config/aerospace/open_notes_quick.sh']
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
@@ -160,7 +153,7 @@ run = 'move-node-to-workspace d'
 if.window-title-regex-substring = "API Terminal"
 run = 'move-node-to-workspace a'
 
-# Layour floating fixes the issue where every tab on ghostty
+# Layout floating fixes the issue where every tab on ghostty
 # is classified as a new window by aerospace
 [[on-window-detected]]
 if.app-id = "com.mitchellh.ghostty"
@@ -168,10 +161,12 @@ run = ["layout floating", 'move-node-to-workspace t']
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
-run = [
-    #   'layout tiling',
-    'move-node-to-workspace b',
-]
+run = 'move-node-to-workspace b'
+
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+if.window-title-regex-substring = "Quick Terminal"
+run = ['layout floating', 'move-node-to-workspace current']
 
 [[on-window-detected]]
 if.app-id = 'net.kovidgoyal.kitty'
