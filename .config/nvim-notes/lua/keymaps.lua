@@ -33,6 +33,15 @@ vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Join lines' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Half page down centered' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Half page up centered' })
 
+-- Linting
+vim.keymap.set('n', '<leader>ll', ':lua require("lint").try_lint()<CR>', { desc = 'Lint current file' })
+vim.keymap.set('n', '<leader>ln', ':lua require("lint").try_lint("markdownlint")<CR>', { desc = 'Lint with markdownlint' })
+vim.keymap.set('n', '<leader>ls', ':lua require("lint").try_lint("cspell")<CR>', { desc = 'Lint with cspell' })
+
+-- Formatting
+vim.keymap.set('n', '<leader>cf', ':lua require("conform").format()<CR>', { desc = 'Format buffer' })
+vim.keymap.set('n', '<leader>cF', ':lua require("conform").format({ formatters = { "injected" } })<CR>', { desc = 'Format injected languages' })
+
 -- Markdown-specific keymaps (will be set in autocmds)
 local function setup_markdown_keymaps()
   vim.keymap.set('n', '<leader>mp', ':MarkdownPreviewToggle<CR>', { 
@@ -45,6 +54,24 @@ local function setup_markdown_keymaps()
   })
   vim.keymap.set('n', '<leader>mr', ':MarkdownPreview<CR>', { 
     desc = 'Start markdown preview', 
+    buffer = true 
+  })
+  
+  -- Table mode
+  vim.keymap.set('n', '<leader>mt', ':TableModeToggle<CR>', { 
+    desc = 'Toggle table mode', 
+    buffer = true 
+  })
+  
+  -- Generate table of contents
+  vim.keymap.set('n', '<leader>mc', ':GenTocGFM<CR>', { 
+    desc = 'Generate table of contents', 
+    buffer = true 
+  })
+  
+  -- Update table of contents
+  vim.keymap.set('n', '<leader>mu', ':UpdateToc<CR>', { 
+    desc = 'Update table of contents', 
     buffer = true 
   })
 end

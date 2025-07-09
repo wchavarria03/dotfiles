@@ -13,32 +13,26 @@ end
 -- Add lazy.nvim to runtime path
 vim.opt.rtp:prepend(lazypath)
 
--- Plugin specifications
-local plugins = {
-  -- Tokyo Night colorscheme
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.g.tokyonight_style = "storm"
-      vim.g.tokyonight_transparent = false
-      vim.g.tokyonight_terminal_colors = true
-      vim.cmd.colorscheme("tokyonight")
-    end,
+-- Setup lazy.nvim with individual plugin files
+require("lazy").setup({
+  spec = {
+    -- import your plugins
+    { import = 'plugins/colorscheme' },
+    { import = 'plugins/snacks' },
+    { import = 'plugins/snacks-git' },
+    { import = 'plugins/snacks-gitbrowser' },
+    { import = 'plugins/snacks-buffer' },
+    { import = 'plugins/snacks-input' },
+    { import = 'plugins/snacks-scope' },
+    { import = 'plugins/image' },
+    { import = 'plugins/git' },
+    { import = 'plugins/ui' },
+    { import = 'plugins/treesitter' },
+    { import = 'plugins/markdown' },
+    { import = 'plugins/editor' },
+    { import = 'plugins/linting' },
+    { import = 'plugins/formatting' },
   },
-  
-  -- Markdown preview
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
-  },
-}
-
--- Setup lazy.nvim
-require("lazy").setup(plugins, {
   root = vim.fn.stdpath("data") .. "/lazy",
   lockfile = vim.fn.stdpath("data") .. "/lazy/lazy-lock.json",
 }) 
