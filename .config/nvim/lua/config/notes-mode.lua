@@ -1,9 +1,9 @@
 -- Notes mode specific configurations
 -- This file is loaded when vim.g.nvim_mode == "notes"
 
-print 'Notes mode'
+print('Notes mode')
 -- Note-specific options that override main nvim config
-vim.o.colorcolumn = '80' -- Show column guide for notes
+vim.o.colorcolumn = "80" -- Show column guide for notes
 vim.o.title = true -- Show title
 vim.o.titlestring = '%t - Notes' -- Custom title format for notes
 
@@ -68,12 +68,7 @@ vim.keymap.set('n', '<leader>nq', 'i> <Esc>', { desc = 'Quote Block' })
 vim.keymap.set('n', '<leader>nhr', 'i---<CR>', { desc = 'Horizontal Rule' })
 
 -- Note navigation
-vim.keymap.set(
-    'n',
-    '<leader>no',
-    '<cmd>e ~/Library/Mobile\\ Documents/com~apple~CloudDocs/notes/<cr>',
-    { desc = 'Open notes folder' }
-)
+vim.keymap.set('n', '<leader>no', '<cmd>e ~/Library/Mobile\\ Documents/com~apple~CloudDocs/notes/<cr>', { desc = 'Open notes folder' })
 
 -- Zen mode for focused writing
 vim.keymap.set('n', '<leader>nz', '<cmd>ZenMode<cr>', { desc = 'Toggle zen mode' })
@@ -101,13 +96,13 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
         vim.opt_local.softtabstop = 2
         vim.opt_local.shiftwidth = 2
         vim.opt_local.expandtab = true
-
+        
         -- Note-specific text wrapping
         vim.opt_local.wrap = true
         vim.opt_local.linebreak = true
         vim.opt_local.breakindent = true
         vim.opt_local.showbreak = '↪ '
-
+        
         -- Note-specific spell checking
         vim.opt_local.spell = true
         vim.opt_local.conceallevel = 2
@@ -123,5 +118,4 @@ vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
             vim.cmd 'silent! write'
         end
     end,
-})
-
+}) 
