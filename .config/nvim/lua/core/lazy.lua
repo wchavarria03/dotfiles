@@ -18,7 +18,30 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
 
+-- Build plugin spec based on mode
+local plugin_spec = {
+    -- import your plugins
+    { import = 'plugins/ai' },
+    { import = 'plugins/coding' },
+    { import = 'plugins/editor' },
+    { import = 'plugins/formatting' },
+    { import = 'plugins/languages' },
+    { import = 'plugins/linting' },
+    { import = 'plugins/lsp' },
+    { import = 'plugins/snacks' },
+    { import = 'plugins/treesitter' },
+    { import = 'plugins/ui' },
+    { import = 'plugins/util' },
+    { import = 'plugins' },
+}
+
+-- Add notes-specific plugins when in notes mode
+-- if vim.g.nvim_mode == "notes" then
+--     table.insert(plugin_spec, { import = 'plugins/notes' })
+-- end
+
 require('lazy').setup {
+    -- spec = plugin_spec,
     spec = {
         -- import your plugins
         { import = 'plugins/ai' },
@@ -51,7 +74,7 @@ require('lazy').setup {
         rtp = {
             disabled_plugins = {
                 'gzip', -- Handles reading/writing of .gz files directly in Neovim.
-                'netrwPlugin', -- Core plugin that enables the Netrw file browser 
+                'netrwPlugin', -- Core plugin that enables the Netrw file browser
                 'netrwSettings', -- Netrw config and handlers
                 'netrwFileHandlers', -- Netrw config and handlers
                 'rplugin', -- Loads remote plugins defined in rplugin.vim (typically used by Vimscript remote plugins or older RPC plugins
@@ -68,7 +91,7 @@ require('lazy').setup {
         },
         cache = {
             enabled = true,
-            path = vim.fn.stdpath("cache") .. "/lazy/cache",
+            path = vim.fn.stdpath 'cache' .. '/lazy/cache',
             -- After one hour, Neovim will clean up the cache directory
             ttl = 60 * 60 * 24, -- 1 day
         },
