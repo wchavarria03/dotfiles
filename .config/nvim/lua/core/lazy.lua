@@ -36,27 +36,12 @@ local plugin_spec = {
 }
 
 -- Add notes-specific plugins when in notes mode
--- if vim.g.nvim_mode == "notes" then
---     table.insert(plugin_spec, { import = 'plugins/notes' })
--- end
+if vim.g.nvim_mode == 'notes' then
+    table.insert(plugin_spec, { import = 'plugins/notes' })
+end
 
 require('lazy').setup {
-    -- spec = plugin_spec,
-    spec = {
-        -- import your plugins
-        { import = 'plugins/ai' },
-        { import = 'plugins/coding' },
-        { import = 'plugins/editor' },
-        { import = 'plugins/formatting' },
-        { import = 'plugins/languages' },
-        { import = 'plugins/linting' },
-        { import = 'plugins/lsp' },
-        { import = 'plugins/snacks' },
-        { import = 'plugins/treesitter' },
-        { import = 'plugins/ui' },
-        { import = 'plugins/util' },
-        { import = 'plugins' },
-    },
+    spec = plugin_spec,
     -- dev = { "~/work", "~/personal" },
     rocks = {
         enabled = false,

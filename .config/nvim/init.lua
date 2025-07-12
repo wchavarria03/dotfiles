@@ -8,10 +8,9 @@ require 'config.keymaps'
 require 'config.autocommands'
 
 -- Load mode-specific config
--- if vim.g.nvim_mode == "notes" then
---     require 'config.notes-mode'
--- end
+if vim.g.nvim_mode == 'notes' then
+    require 'config.notes-mode'
+end
 
 require 'core.lazy'
 require 'core.lsp'
-
