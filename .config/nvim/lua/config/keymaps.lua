@@ -122,13 +122,6 @@ vim.schedule(function()
             })
             :map '<leader>th'
     end
-
-    -- highlights under cursor
-    vim.keymap.set('n', '<leader>ui', vim.show_pos, { desc = 'Inspect Pos' })
-    vim.keymap.set('n', '<leader>uI', function()
-        vim.treesitter.inspect_tree()
-        vim.api.nvim_input 'I'
-    end, { desc = 'Inspect Tree' })
 end)
 
 -- -- Clear search and close snippet
@@ -146,3 +139,46 @@ end)
 
 -- Save/Write file
 -- vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+
+-- Markdown mappings
+vim.keymap.set('i', '<C-b>', '****<Left><Left>', { desc = 'Bold Text' })
+vim.keymap.set('i', '<C-i>', '**<Left>', { desc = 'Italic Text' })
+vim.keymap.set('i', '<C-k>', '`<Left>', { desc = 'Inline Code' })
+vim.keymap.set('i', '<C-l>', '[]()<Left><Left><Left>', { desc = 'Link' })
+vim.keymap.set('i', '<C-u>', '~~<Left>', { desc = 'Strikethrough' })
+
+-- Visual mode markdown formatting (wrap selected text)
+vim.keymap.set('v', '<C-b>', 'c****<Esc>P', { desc = 'Bold Selected Text' })
+vim.keymap.set('v', '<C-i>', 'c**<Esc>P', { desc = 'Italic Selected Text' })
+vim.keymap.set('v', '<C-k>', 'c`<Esc>P', { desc = 'Inline Code Selected Text' })
+vim.keymap.set('v', '<C-u>', 'c~~<Esc>P', { desc = 'Strikethrough Selected Text' })
+
+-- Quick list items
+vim.keymap.set('i', '<C-o>', '- ', { desc = 'Unordered List Item' })
+vim.keymap.set('i', '<C-n>', '1. ', { desc = 'Ordered List Item' })
+
+-- Note-specific keymaps using leader>n prefix
+vim.keymap.set('n', '<leader>nh1', 'i# <Esc>', { desc = 'Header 1' })
+vim.keymap.set('n', '<leader>nh2', 'i## <Esc>', { desc = 'Header 2' })
+vim.keymap.set('n', '<leader>nh3', 'i### <Esc>', { desc = 'Header 3' })
+vim.keymap.set('n', '<leader>nh4', 'i#### <Esc>', { desc = 'Header 4' })
+
+-- Quick todo items
+vim.keymap.set('n', '<leader>ntt', 'i- [ ] <Esc>', { desc = 'Add Todo Item' })
+vim.keymap.set('n', '<leader>ntd', 'i- [x] <Esc>', { desc = 'Add Done Item' })
+
+-- Quick code blocks
+vim.keymap.set('n', '<leader>ncb', 'i```<CR><CR>```<Up>', { desc = 'Code Block' })
+vim.keymap.set('n', '<leader>nci', 'i`<Esc>', { desc = 'Inline Code' })
+
+-- Quick quotes
+vim.keymap.set('n', '<leader>nq', 'i> <Esc>', { desc = 'Quote Block' })
+
+-- Quick horizontal rule
+vim.keymap.set('n', '<leader>nhr', 'i---<CR>', { desc = 'Horizontal Rule' })
+
+-- Note navigation
+vim.keymap.set('n', '<leader>no', '<cmd>e ~/Library/Mobile\\ Documents/com~apple~CloudDocs/notes/<cr>', { desc = 'Open notes folder' })
+
+-- Zen mode for focused writing
+vim.keymap.set('n', '<leader>nz', '<cmd>ZenMode<cr>', { desc = 'Toggle zen mode' })

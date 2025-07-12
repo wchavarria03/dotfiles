@@ -3,6 +3,7 @@ return {
   event = "VeryLazy",
   opts = {
     preset = "helix",
+    plugins = { spelling = true },
     defaults = {},
     spec = {
       {
@@ -19,9 +20,13 @@ return {
         { "<leader>f", group = "find/file" },
         { "<leader>g", group = "git" },
         { "<leader>gh", group = "hunks" },
+        { "<leader>i", group = "image" },
+        { "<leader>l", group = "lsp" },
+        { "<leader>m", group = "markdown" },
+        { "<leader>n", group = "notes", icon = { icon = "📝", color = "yellow" } },
+        -- { "<leader>nt", group = "todos", icon = { icon = "󰅚", color = "red" } },
         { "<leader>q", group = "quit/session" },
         { "<leader>r", group = "restart" },
-        { "<leader>l", group = "lsp" },
         { "<leader>s", group = "search" },
         { "<leader>t", group = "toggle" },
         { "<leader>tg", group = "git", icon = { icon = "󰙵 ", color = "cyan" } },
@@ -35,8 +40,6 @@ return {
           end,
         },
         { "<leader>x", group = "iagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
-        { "[", group = "prev" },
-        { "]", group = "next" },
         { "[", group = "prev" },
         { "]", group = "next" },
         { "g", group = "goto" },
