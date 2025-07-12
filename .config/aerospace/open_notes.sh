@@ -16,4 +16,5 @@ if pgrep -f "kitty.*notes_dedicated" > /dev/null; then
 fi
 
 # Use the same shell configuration as kitty.conf to ensure consistent environment
-kitty --single-instance --instance-group=notes_dedicated zsh --login -c "export PATH=\"/opt/homebrew/bin:\$PATH\" && export NVIM_APPNAME=nvim-notes && source \"\$HOME/.config/zsh/.zshrc\" && cd \"\$HOME/Library/Mobile Documents/com~apple~CloudDocs/notes\" && nvim todos.md" &
+# Now using consolidated nvim config with notes mode
+kitty --single-instance --instance-group=notes_dedicated zsh --login -c "export PATH=\"/opt/homebrew/bin:\$PATH\" && export NVIM_MODE=notes && source \"\$HOME/.config/zsh/.zshrc\" && cd \"\$HOME/Library/Mobile Documents/com~apple~CloudDocs/notes\" && nvim todos.md" &
