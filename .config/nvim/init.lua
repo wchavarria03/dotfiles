@@ -2,6 +2,13 @@
 -- Can be set via environment variable NVIM_MODE or defaults to "full"
 -- vim.g.nvim_mode = vim.env.NVIM_MODE or "full"
 
+-- Set the mode: "full" for development, "notes" for note-taking
+-- Can be set via environment variable NVIM_MODE or defaults to "full"
+vim.g.nvim_mode = vim.env.NVIM_MODE or "full"
+
+-- Set leader key
+vim.g.mapleader = ','
+
 -- Load shared config
 require 'config.options'
 require 'config.keymaps'

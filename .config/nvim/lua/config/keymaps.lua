@@ -140,22 +140,22 @@ end)
 -- Save/Write file
 -- vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
--- Markdown mappings
-vim.keymap.set('i', '<C-b>', '****<Left><Left>', { desc = 'Bold Text' })
-vim.keymap.set('i', '<C-i>', '**<Left>', { desc = 'Italic Text' })
-vim.keymap.set('i', '<C-k>', '`<Left>', { desc = 'Inline Code' })
-vim.keymap.set('i', '<C-l>', '[]()<Left><Left><Left>', { desc = 'Link' })
-vim.keymap.set('i', '<C-u>', '~~<Left>', { desc = 'Strikethrough' })
+-- Markdown formatting (using leader>n prefix)
+vim.keymap.set('i', '<leader>nb', '****<Left><Left>', { desc = 'Bold Text' })
+vim.keymap.set('i', '<leader>ni', '**<Left>', { desc = 'Italic Text' })
+vim.keymap.set('i', '<leader>nk', '`<Left>', { desc = 'Inline Code' })
+vim.keymap.set('i', '<leader>na', '[]()<Left><Left><Left>', { desc = 'Link' })
+vim.keymap.set('i', '<leader>ns', '~~<Left>', { desc = 'Strikethrough' })
 
 -- Visual mode markdown formatting (wrap selected text)
-vim.keymap.set('v', '<C-b>', 'c****<Esc>P', { desc = 'Bold Selected Text' })
-vim.keymap.set('v', '<C-i>', 'c**<Esc>P', { desc = 'Italic Selected Text' })
-vim.keymap.set('v', '<C-k>', 'c`<Esc>P', { desc = 'Inline Code Selected Text' })
-vim.keymap.set('v', '<C-u>', 'c~~<Esc>P', { desc = 'Strikethrough Selected Text' })
+vim.keymap.set('v', '<leader>nb', 'c****<Esc>P', { desc = 'Bold Selected Text' })
+vim.keymap.set('v', '<leader>ni', 'c**<Esc>P', { desc = 'Italic Selected Text' })
+vim.keymap.set('v', '<leader>nk', 'c`<Esc>P', { desc = 'Inline Code Selected Text' })
+vim.keymap.set('v', '<leader>ns', 'c~~<Esc>P', { desc = 'Strikethrough Selected Text' })
 
--- Quick list items
-vim.keymap.set('i', '<C-o>', '- ', { desc = 'Unordered List Item' })
-vim.keymap.set('i', '<C-n>', '1. ', { desc = 'Ordered List Item' })
+-- Quick list items (using leader>n prefix)
+vim.keymap.set('i', '<leader>nl', '- ', { desc = 'Unordered List Item' })
+vim.keymap.set('i', '<leader>n1', '1. ', { desc = 'Ordered List Item' })
 
 -- Note-specific keymaps using leader>n prefix
 vim.keymap.set('n', '<leader>nh1', 'i# <Esc>', { desc = 'Header 1' })
