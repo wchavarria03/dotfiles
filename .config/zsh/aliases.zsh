@@ -10,8 +10,8 @@ alias vim='nvim -w ~/.vimlog "$@"'
 
 # Define a function for the alias
 lst() {
-  local level=${1:-2}  # Use the provided level or default to 2 if not provided
-  eza -aT --icons -I 'node_modules|gems|images|.git|media' --level $level
+    local level=${1:-2} # Use the provided level or default to 2 if not provided
+    eza -aT --icons -I 'node_modules|gems|images|.git|media' --level $level
 }
 
 alias l='eza -lah'
@@ -37,6 +37,9 @@ alias term_api='open -na Ghostty.app --args --title="API Terminal"'
 alias term_db='open -na Ghostty.app --args --title="DB Terminal"'
 
 alias pyp='pip install -r requirements.txt --index-url https://${PYPI_USERNAME}:${PYPI_PASSWORD}@pypi.ltvops.com/simple'
+
+# Execute the ai-rules-link executable
+alias ai-rules-link="$HOME/personal/ai-rules-link/ai-rules-link"
 
 # GIT ALIASES -----------------------------------------------------------------
 alias gc='git commit'
@@ -84,15 +87,14 @@ function take {
     cd $1
 }
 
-mff ()
-{
-    local curr_branch=`git-current-branch`
+mff() {
+    local curr_branch=$(git-current-branch)
     gco master
     ff
     gco $curr_branch
 }
 
-dclear () {
+dclear() {
     docker ps -a -q | xargs docker kill -f
     docker ps -a -q | xargs docker rm -f
     docker images | grep "api\|none" | awk '{print $3}' | xargs docker rmi -f
@@ -101,11 +103,10 @@ dclear () {
 
 alias docker-clear=dclear
 
-
-dreset () {
+dreset() {
     dclear
     docker images -q | xargs docker rmi -f
-    docker volume rm $(docker volume ls |awk '{print $2}')
+    docker volume rm $(docker volume ls | awk '{print $2}')
     rm -rf ~/Library/Containers/com.docker.docker/Data/*
     docker system prune -a
 }
