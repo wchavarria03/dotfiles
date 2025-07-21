@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Set up PATH to include common locations for binaries
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 # Check if Kitty is installed
 if ! command -v kitty &>/dev/null; then
   echo "Kitty is not installed or not in the PATH."
@@ -17,4 +20,6 @@ fi
 
 # Use the same shell configuration as kitty.conf to ensure consistent environment
 # Now using consolidated nvim config with notes mode
-kitty --single-instance --instance-group=notes_dedicated zsh --login -c "export PATH=\"/opt/homebrew/bin:\$PATH\" && export NVIM_MODE=notes && source \"\$HOME/.config/zsh/.zshrc\" && cd \"\$HOME/Library/Mobile Documents/com~apple~CloudDocs/notes\" && nvim todos.md" &
+
+# Launch kitty with explicit environment and shell setup
+kitty --single-instance --instance-group=notes_dedicated zsh --login -c "export NVIM_MODE=notes && source \"\$HOME/.config/zsh/.zshrc\" && cd \"\$HOME/Library/Mobile Documents/com~apple~CloudDocs/notes\" && nvim todos.md" &
