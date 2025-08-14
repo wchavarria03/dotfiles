@@ -59,3 +59,6 @@ autoload -Uz compinit
 compinit
 
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+
+# CursorCli required
+export PATH="$HOME/.local/bin:$PATH"
