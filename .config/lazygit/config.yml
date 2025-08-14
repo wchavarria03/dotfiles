@@ -1,3 +1,5 @@
 os:
   editPreset: "vscode"
+git:
+  overrideGpg: true
 promptToReturnFromSubprocess: false
