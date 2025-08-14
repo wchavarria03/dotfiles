@@ -9,13 +9,13 @@ When asked to create a pull request, you should follow these steps:
 
 1. **Determine target repository and branch**:
    - Always open PR from `origin` (your fork) to `upstream` (main repository)
-   - If no target branch is specified, default to `main` 
+   - If no target branch is specified, default to `main`
    - If target branch is specified (e.g., `staging`, `develop`), use that branch
    - Use git remote to identify: `origin` = your fork, `upstream` = main repo
 
 2. **PR title format**:
 ```
-[ticket_number]: <description> 
+[ticket_number]: <description>
 ```
 
 3. **Check for PR template**:
