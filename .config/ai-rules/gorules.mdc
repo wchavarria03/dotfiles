@@ -11,3 +11,4 @@ alwaysApply: true
 3.  **Formatting:** All code must be formatted with `gofmt` or `goimports`.
 4.  **Modules:** Be mindful of the `go.mod` file for dependencies and module paths.
 5.  **Concurrency:** When suggesting concurrent code, use channels and goroutines safely and explain potential race conditions.
+6.  **Tests:** Use gomega and ginkgo for testing. Ensure tests are comprehensive and cover edge cases.
