@@ -35,7 +35,7 @@ install_brew_packages() {
         brave-browser
         dbeaver-community
         discord
-        docker
+        podman
         ghostty
         gnupg
         insomnia
