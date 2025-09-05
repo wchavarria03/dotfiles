@@ -69,7 +69,7 @@ return {
         {
             "<leader>ff",
             function()
-                require("snacks").picker.smart()
+                require('snacks').picker.files { cwd = vim.fn.getcwd() }
             end,
             desc = "Find Files Smart",
         },
