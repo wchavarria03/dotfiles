@@ -1,7 +1,7 @@
 #ALIASES ---------------------------------------------------------------------
-alias d=docker
-alias dc="docker compose"
-alias dkill="pgrep \"Docker\" | xargs kill -9"
+alias d=podman
+alias dc="podman compose"
+alias dkill="pgrep \"podman\" | xargs kill -9"
 alias hcat='highlight -O ansi'
 
 alias v='nvim -w ~/.vimlog "$@"'
@@ -95,20 +95,20 @@ mff() {
 }
 
 dclear() {
-    docker ps -a -q | xargs docker kill -f
-    docker ps -a -q | xargs docker rm -f
-    docker images | grep "api\|none" | awk '{print $3}' | xargs docker rmi -f
-    docker volume prune -f
+    podman ps -a -q | xargs podman kill -f
+    podman ps -a -q | xargs podman rm -f
+    podman images | grep "api\|none" | awk '{print $3}' | xargs podman rmi -f
+    podman volume prune -f
 }
 
-alias docker-clear=dclear
+alias podman-clear=dclear
 
 dreset() {
     dclear
-    docker images -q | xargs docker rmi -f
-    docker volume rm $(docker volume ls | awk '{print $2}')
+    podman images -q | xargs podman rmi -f
+    podman volume rm $(podman volume ls | awk '{print $2}')
     rm -rf ~/Library/Containers/com.docker.docker/Data/*
-    docker system prune -a
+    podman system prune -a
 }
 
 PERSONALSECRETS="$SECRETSREPO/personal-secrets.zsh"
