@@ -52,335 +52,336 @@ return {
 
         -- Picker commands
         {
-            "<leader>/",
+            '<leader>/',
             function()
-                require("snacks").picker.grep({ hidden = true })
+                require('snacks').picker.grep { hidden = true }
             end,
-            desc = "Grep",
+            desc = 'Grep',
         },
         {
-            "<leader>:",
+            '<leader>:',
             function()
-                require("snacks").picker.command_history()
+                require('snacks').picker.command_history()
             end,
-            desc = "Command History",
+            desc = 'Command History',
         },
         -- find
         {
-            "<leader>ff",
+            '<leader>ff',
             function()
                 require('snacks').picker.files { cwd = vim.fn.getcwd() }
             end,
-            desc = "Find Files Smart",
+            desc = 'Find Files (Current Dir)',
         },
         {
-            "<leader>fb",
+            '<leader>fb',
             function()
-                require("snacks").picker.buffers()
+                require('snacks').picker.buffers()
             end,
-            desc = "Buffers",
+            desc = 'Buffers',
         },
         {
-            "<leader>fc",
+            '<leader>fc',
             function()
-                require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
+                require('snacks').picker.files { cwd = vim.fn.stdpath 'config' }
             end,
-            desc = "Find Files Config",
+            desc = 'Find Files Config',
         },
         {
-            "<leader>fg",
+            '<leader>fg',
             function()
-                require("snacks").picker.git_files()
+                require('snacks').picker.git_files()
             end,
-            desc = "Find Files Git",
+            desc = 'Find Files Git',
         },
         {
-            "<leader>fp",
+            '<leader>fp',
             function()
-                require("snacks").picker.projects({
-                    dev = { "~/work", "~/personal" },
-                })
+                require('snacks').picker.projects {
+                    dev = { '~/work', '~/personal' },
+                }
             end,
-            desc = "Projects",
+            desc = 'Projects',
         },
         {
-            "<leader>fr",
+            '<leader>fr',
             function()
-                require("snacks").picker.recent()
+                require('snacks').picker.recent()
             end,
-            desc = "Recent",
+            desc = 'Recent',
         },
         -- Grep
         {
-            "<leader>sb",
+            '<leader>sb',
             function()
-                require("snacks").picker.lines()
+                require('snacks').picker.lines()
             end,
-            desc = "Search Buffer Lines",
+            desc = 'Search Buffer Lines',
         },
         {
-            "<leader>sB",
+            '<leader>sB',
             function()
-                require("snacks").picker.grep_buffers()
+                require('snacks').picker.grep_buffers()
             end,
-            desc = "Search Open Buffers",
+            desc = 'Search Open Buffers',
         },
         {
-            "<leader>sn",
+            '<leader>sn',
             function()
-                require("snacks").picker.notifications()
+                require('snacks').picker.notifications()
             end,
-            desc = "Search Notification History",
+            desc = 'Search Notification History',
         },
         {
-            "<leader>sw",
+            '<leader>sw',
             function()
-                require("snacks").picker.grep_word()
+                require('snacks').picker.grep_word()
             end,
-            desc = "Visual selection or word",
-            mode = { "n", "x" },
+            desc = 'Visual selection or word',
+            mode = { 'n', 'x' },
         },
         -- search
         {
             '<leader>s"',
             function()
-                require("snacks").picker.registers()
+                require('snacks').picker.registers()
             end,
-            desc = "Registers",
+            desc = 'Registers',
         },
         {
-            "<leader>s/",
+            '<leader>s/',
             function()
-                require("snacks").picker.search_history()
+                require('snacks').picker.search_history()
             end,
-            desc = "Search History",
+            desc = 'Search History',
         },
         {
-            "<leader>sa",
+            '<leader>sa',
             function()
-                require("snacks").picker.autocmds()
+                require('snacks').picker.autocmds()
             end,
-            desc = "Autocmds",
+            desc = 'Autocmds',
         },
         {
-            "<leader>sc",
+            '<leader>sc',
             function()
-                require("snacks").picker.command_history()
+                require('snacks').picker.command_history()
             end,
-            desc = "Command History",
+            desc = 'Command History',
         },
         {
-            "<leader>sC",
+            '<leader>sC',
             function()
-                require("snacks").picker.commands()
+                require('snacks').picker.commands()
             end,
-            desc = "Commands",
+            desc = 'Commands',
         },
         {
-            "<leader>sd",
+            '<leader>sd',
             function()
-                require("snacks").picker.diagnostics()
+                require('snacks').picker.diagnostics()
             end,
-            desc = "Diagnostics",
+            desc = 'Diagnostics',
         },
         {
-            "<leader>sD",
+            '<leader>sD',
             function()
-                require("snacks").picker.diagnostics_buffer()
+                require('snacks').picker.diagnostics_buffer()
             end,
-            desc = "Buffer Diagnostics",
+            desc = 'Buffer Diagnostics',
         },
         {
-            "<leader>sh",
+            '<leader>sh',
             function()
-                require("snacks").picker.help()
+                require('snacks').picker.help()
             end,
-            desc = "Help Pages",
+            desc = 'Help Pages',
         },
         {
-            "<leader>sH",
+            '<leader>sH',
             function()
-                require("snacks").picker.highlights()
+                require('snacks').picker.highlights()
             end,
-            desc = "Highlights",
+            desc = 'Highlights',
         },
         {
-            "<leader>si",
+            '<leader>si',
             function()
-                require("snacks").picker.icons()
+                require('snacks').picker.icons()
             end,
-            desc = "Icons",
+            desc = 'Icons',
         },
         {
-            "<leader>sj",
+            '<leader>sj',
             function()
-                require("snacks").picker.jumps()
+                require('snacks').picker.jumps()
             end,
-            desc = "Jumps",
+            desc = 'Jumps',
         },
         {
-            "<leader>sk",
+            '<leader>sk',
             function()
-                require("snacks").picker.keymaps()
+                require('snacks').picker.keymaps()
             end,
-            desc = "Keymaps",
+            desc = 'Keymaps',
         },
         {
-            "<leader>sl",
+            '<leader>sl',
             function()
-                require("snacks").picker.loclist()
+                require('snacks').picker.loclist()
             end,
-            desc = "Location List",
+            desc = 'Location List',
         },
         {
-            "<leader>sm",
+            '<leader>sm',
             function()
-                require("snacks").picker.marks()
+                require('snacks').picker.marks()
             end,
-            desc = "Marks",
+            desc = 'Marks',
         },
         {
-            "<leader>sM",
+            '<leader>sM',
             function()
-                require("snacks").picker.man()
+                require('snacks').picker.man()
             end,
-            desc = "Man Pages",
+            desc = 'Man Pages',
         },
         {
-            "<leader>sp",
+            '<leader>sp',
             function()
-                require("snacks").picker.lazy()
+                require('snacks').picker.lazy()
             end,
-            desc = "Search for Plugin Spec",
+            desc = 'Search for Plugin Spec',
         },
         {
-            "<leader>sq",
+            '<leader>sq',
             function()
-                require("snacks").picker.qflist()
+                require('snacks').picker.qflist()
             end,
-            desc = "Quickfix List",
+            desc = 'Quickfix List',
         },
         {
-            "<leader>sr",
+            '<leader>sr',
             function()
-                require("snacks").picker.resume()
+                require('snacks').picker.resume()
             end,
-            desc = "Resume Last Picker",
+            desc = 'Resume Last Picker',
         },
         {
-            "<leader>su",
+            '<leader>su',
             function()
-                require("snacks").picker.undo()
+                require('snacks').picker.undo()
             end,
-            desc = "Undo Tree",
+            desc = 'Undo Tree',
         },
         {
-            "<leader>ss",
+            '<leader>ss',
             function()
-                require("snacks").picker.lsp_symbols()
+                require('snacks').picker.lsp_symbols()
             end,
-            desc = "LSP Symbols",
+            desc = 'LSP Symbols',
         },
         {
-            "<leader>sS",
+            '<leader>sS',
             function()
-                require("snacks").picker.lsp_workspace_symbols()
+                require('snacks').picker.lsp_workspace_symbols()
             end,
-            desc = "LSP Workspace Symbols",
+            desc = 'LSP Workspace Symbols',
         },
         {
-            "<leader>st",
+            '<leader>st',
             function()
-                require("snacks").picker.colorschemes()
+                require('snacks').picker.colorschemes()
             end,
-            desc = "Colorschemes",
+            desc = 'Colorschemes',
         },
         -- Git
         {
-            "<leader>go",
+            '<leader>go',
             function()
-                require("snacks").lazygit()
+                require('snacks').lazygit()
             end,
-            desc = "Git Lazy Git (open)",
+            desc = 'Git Lazy Git (open)',
         },
         {
-            "<leader>gl",
+            '<leader>gl',
             function()
-                require("snacks").lazygit.log()
+                require('snacks').lazygit.log()
             end,
-            desc = "Git Log",
+            desc = 'Git Log',
         },
         {
-            "<leader>gB",
+            '<leader>gB',
             function()
-                require("snacks").gitbrowse()
+                require('snacks').gitbrowse()
             end,
-            desc = "Git Browse (open)",
+            desc = 'Git Browse (open)',
         },
         {
-            "<leader>gY",
+            '<leader>gY',
             function()
-                require("snacks").gitbrowse({
+                require('snacks').gitbrowse {
                     open = function(url)
-                        vim.fn.setreg("+", url)
+                        vim.fn.setreg('+', url)
                     end,
                     notify = false,
-                })
+                }
             end,
-            desc = "Git Browse (copy)",
+            desc = 'Git Browse (copy)',
         },
         {
-            "<leader>gb",
+            '<leader>gb',
             function()
-                require("snacks").picker.git_branches()
+                require('snacks').picker.git_branches()
             end,
-            desc = "Git Branches",
+            desc = 'Git Branches',
         },
         {
-            "<leader>gL",
+            '<leader>gL',
             function()
-                require("snacks").picker.git_log()
+                require('snacks').picker.git_log()
             end,
-            desc = "Git Log",
+            desc = 'Git Log',
         },
         {
-            "<leader>gll",
+            '<leader>gll',
             function()
-                require("snacks").picker.git_log_line()
+                require('snacks').picker.git_log_line()
             end,
-            desc = "Git Log Line",
+            desc = 'Git Log Line',
         },
         {
-            "<leader>gs",
+            '<leader>gs',
             function()
-                require("snacks").picker.git_status()
+                require('snacks').picker.git_status()
             end,
-            desc = "Git Status",
+            desc = 'Git Status',
         },
         {
-            "<leader>gS",
+            '<leader>gS',
             function()
-                require("snacks").picker.git_stash()
+                require('snacks').picker.git_stash()
             end,
-            desc = "Git Stash",
+            desc = 'Git Stash',
         },
         {
-            "<leader>gd",
+            '<leader>gd',
             function()
-                require("snacks").picker.git_diff()
+                require('snacks').picker.git_diff()
             end,
-            desc = "Git Diff",
+            desc = 'Git Diff',
         },
         {
-            "<leader>gD",
+            '<leader>gD',
             function()
-                require("snacks").picker.git_log_file()
+                require('snacks').picker.git_log_file()
             end,
-            desc = "Git Log File",
+            desc = 'Git Log File',
         },
     },
     config = function(_, opts)
-        require("snacks").setup(opts)
-        vim.ui.input = require("snacks").input
+        require('snacks').setup(opts)
+        vim.ui.input = require('snacks').input
     end,
-} 
+}
+
