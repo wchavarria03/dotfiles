@@ -13,6 +13,8 @@ setup_mac_config() {
 
   # Show hidden files on finder
   defaults write com.apple.Finder AppleShowAllFiles -bool YES
+  # TODO: Test this other way
+  defaults write com.apple.finder AppleShowAllFiles true
 
   # Require password as soon as screensaver or sleep mode starts
   defaults write com.apple.screensaver askForPassword -int 1

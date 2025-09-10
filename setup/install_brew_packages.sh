@@ -33,9 +33,9 @@ install_brew_packages() {
         1password
         1password-cli
         brave-browser
+        cursor
         dbeaver-community
         discord
-        podman
         ghostty
         gnupg
         insomnia
