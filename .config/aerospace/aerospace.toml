@@ -176,6 +176,10 @@ run = 'move-node-to-workspace d'
 if.app-id = 'com.insomnia.app'
 run = 'move-node-to-workspace a'
 
+[[on-window-detected]]
+if.app-id = 'com.usebruno.app'
+run = 'move-node-to-workspace a'
+
 # Cursor IDE
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
