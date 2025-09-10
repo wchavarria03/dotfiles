@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# Function to check if a Brew package is instal
-led
+# Function to check if a Brew package is installed
 is_brew_package_installed() {
     local package_name="$1"
     brew list "$package_name" &>/dev/null
