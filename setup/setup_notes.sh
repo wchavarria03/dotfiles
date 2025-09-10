@@ -10,7 +10,7 @@ setup_notes() {
         git clone https://github.com/wchavarria03/notes "$NOTES_PATH"
     else
         echo "${COLOR_GREEN}-- Updating notes repo...${COLOR_REST}"
-        cd "$NOTES_PATH/notes"
+        cd "$NOTES_PATH"
         git pull
         cd - >/dev/null # Return to the original directory, suppressing output
     fi
