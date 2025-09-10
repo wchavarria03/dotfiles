@@ -5,7 +5,7 @@ setup_dotfiles() {
   if [ ! -d ~/personal/dotfiles/ ]
   then
     echo "${COLOR_GREEN}-- Cloning dotfiles repo...${COLOR_REST}"
-    git clone https://github.com/wchavarria03/dotfiles ~/personal
+    git clone https://github.com/wchavarria03/dotfiles ~/personal/dotfiles
   else
     echo "${COLOR_GREEN}- Updating dotfiles repo...${COLOR_REST}"
     cd ~/personal/dotfiles
