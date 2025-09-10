@@ -11,6 +11,7 @@ is_brew_package_installed() {
 install_brew_packages() {
     echo "${COLOR_GREEN}-- Installing tap formulae${COLOR_RESET}"
     brew tap FelixKratz/formulae ## For borders
+    brew tap nikitabobko/tap
 
     local packages=(
         asdf
@@ -39,7 +40,6 @@ install_brew_packages() {
         gnupg
         insomnia
         kitty
-        raycast
         sequel-ace
         slack
 
