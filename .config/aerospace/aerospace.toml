@@ -5,9 +5,9 @@
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    # JankyBorders has a built-in detection of already running process,
-    # so it won't be run twice on AeroSpace restart
-    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
+  # JankyBorders has a built-in detection of already running process,
+  # so it won't be run twice on AeroSpace restart
+  'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0',
 ]
 
 # Start AeroSpace at login
@@ -63,7 +63,10 @@ outer.right = 10
 alt-p = ['workspace p', 'exec-and-forget ~/.config/aerospace/open_notes.sh']
 
 # Open quick terminal with borders
-alt-shift-p = ['layout floating', 'exec-and-forget ~/.config/aerospace/open_notes_quick.sh']
+alt-shift-p = [
+  'layout floating',
+  'exec-and-forget ~/.config/aerospace/open_notes_quick.sh',
+]
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
@@ -188,8 +191,8 @@ run = 'move-node-to-workspace 1'
 esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = [
-    'layout floating tiling',
-    'mode main',
+  'layout floating tiling',
+  'mode main',
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
 
