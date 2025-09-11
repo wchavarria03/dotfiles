@@ -13,7 +13,7 @@
 # - https://news.ycombinator.com/item?id=8402079
 # - http://notes.jerzygangi.com/the-best-pgp-tutorial-for-mac-os-x-ever/
 
-# Define colors for better output formatting
+# Define colors for better output formattingdont 
 COLOR_RESET=$(tput sgr0)
 COLOR_GREEN=$(tput setaf 2)
 
@@ -51,22 +51,23 @@ main() {
 
   echo " "
   echo "${COLOR_GREEN}******** Stage 3 - Setup Config Repos ********${COLOR_RESET}"
-  echo "${COLOR_GREEN}- Setup SECRETS repo${COLOR_REST}"
+  echo "${COLOR_GREEN}- Setup SECRETS repo${COLOR_RESET}"
   source setup_secrets.sh
   setup_secrets
 
-  echo "${COLOR_GREEN}- Setup DOTFILES repo${COLOR_REST}"
+  echo "${COLOR_GREEN}- Setup DOTFILES repo${COLOR_RESET}"
   source setup_dotfiles.sh
   setup_dotfiles
 
-  echo "${COLOR_GREEN}- Setup NOTES repo${COLOR_REST}"
+  echo "${COLOR_GREEN}- Setup NOTES repo${COLOR_RESET}"
   source setup_notes.sh
   setup_notes
 
   echo " "
   echo "${COLOR_GREEN}******** Stage 4 - Configure MAC ********${COLOR_RESET}"
-  echo ${COLOR_GREEN}"- Configuring MAC defaults..${COLOR_REST}"
+  echo "${COLOR_GREEN}- Configuring MAC defaults..${COLOR_RESET}"
   source setup_mac_config.sh
+  setup_mac_config
 
   echo "${COLOR_GREEN}******** Stage 5 - Complete Installation ********${COLOR_RESET}"
   echo "${COLOR_GREEN} - OSX setup completed.${COLOR_RESET}"
