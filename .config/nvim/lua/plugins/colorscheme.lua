@@ -1,4 +1,4 @@
-local colorsConfigs = require 'config.colorschema-overrides'
+local colorsConfigs = require 'utils.colorschema-overrides'
 
 return {
     -- Full mode colorscheme (catppuccin)

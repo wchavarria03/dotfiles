@@ -9,14 +9,14 @@ vim.g.nvim_mode = vim.env.NVIM_MODE or "full"
 -- Set leader key
 vim.g.mapleader = ','
 
--- Load shared config
-require 'config.options'
-require 'config.keymaps'
-require 'config.autocommands'
+-- Load core configuration
+require 'core.options'
+require 'core.keymaps'
+require 'core.autocommands'
 
 -- Load mode-specific config
 if vim.g.nvim_mode == 'notes' then
-    require 'config.notes-mode'
+    require 'modes.notes'
 end
 
 require 'core.lazy'

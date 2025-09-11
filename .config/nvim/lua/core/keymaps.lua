@@ -140,6 +140,9 @@ end)
 -- Save/Write file
 -- vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
+-- Load notes functions
+local notes = require('utils.notes')
+
 -- Markdown formatting (using leader>n prefix)
 vim.keymap.set('i', '<leader>nb', '****<Left><Left>', { desc = 'Bold Text' })
 vim.keymap.set('i', '<leader>ni', '**<Left>', { desc = 'Italic Text' })
@@ -148,37 +151,37 @@ vim.keymap.set('i', '<leader>na', '[]()<Left><Left><Left>', { desc = 'Link' })
 vim.keymap.set('i', '<leader>ns', '~~<Left>', { desc = 'Strikethrough' })
 
 -- Visual mode markdown formatting (wrap selected text)
-vim.keymap.set('v', '<leader>nb', 'c****<Esc>P', { desc = 'Bold Selected Text' })
-vim.keymap.set('v', '<leader>ni', 'c**<Esc>P', { desc = 'Italic Selected Text' })
-vim.keymap.set('v', '<leader>nk', 'c`<Esc>P', { desc = 'Inline Code Selected Text' })
-vim.keymap.set('v', '<leader>ns', 'c~~<Esc>P', { desc = 'Strikethrough Selected Text' })
+vim.keymap.set('v', '<leader>nb', notes.format_bold, { desc = 'Bold Selected Text' })
+vim.keymap.set('v', '<leader>ni', notes.format_italic, { desc = 'Italic Selected Text' })
+vim.keymap.set('v', '<leader>nk', notes.format_code, { desc = 'Inline Code Selected Text' })
+vim.keymap.set('v', '<leader>ns', notes.format_strikethrough, { desc = 'Strikethrough Selected Text' })
 
 -- Quick list items (using leader>n prefix)
-vim.keymap.set('i', '<leader>nl', '- ', { desc = 'Unordered List Item' })
-vim.keymap.set('i', '<leader>n1', '1. ', { desc = 'Ordered List Item' })
+vim.keymap.set('i', '<leader>nl', notes.insert_unordered_list, { desc = 'Unordered List Item' })
+vim.keymap.set('i', '<leader>n1', notes.insert_ordered_list, { desc = 'Ordered List Item' })
 
 -- Note-specific keymaps using leader>n prefix
-vim.keymap.set('n', '<leader>nh1', 'i# <Esc>', { desc = 'Header 1' })
-vim.keymap.set('n', '<leader>nh2', 'i## <Esc>', { desc = 'Header 2' })
-vim.keymap.set('n', '<leader>nh3', 'i### <Esc>', { desc = 'Header 3' })
-vim.keymap.set('n', '<leader>nh4', 'i#### <Esc>', { desc = 'Header 4' })
+vim.keymap.set('n', '<leader>nh1', function() notes.insert_header(1) end, { desc = 'Header 1' })
+vim.keymap.set('n', '<leader>nh2', function() notes.insert_header(2) end, { desc = 'Header 2' })
+vim.keymap.set('n', '<leader>nh3', function() notes.insert_header(3) end, { desc = 'Header 3' })
+vim.keymap.set('n', '<leader>nh4', function() notes.insert_header(4) end, { desc = 'Header 4' })
 
--- Quick todo items
-vim.keymap.set('n', '<leader>ntt', 'i- [ ] <Esc>', { desc = 'Add Todo Item' })
-vim.keymap.set('n', '<leader>ntd', 'i- [x] <Esc>', { desc = 'Add Done Item' })
+-- Quick todo items (smart checkbox handling)
+vim.keymap.set('n', '<leader>ntt', notes.toggle_todo, { desc = 'Add/Toggle Todo Item' })
+vim.keymap.set('n', '<leader>ntd', notes.toggle_done, { desc = 'Add/Toggle Done Item' })
 
 -- Quick code blocks
-vim.keymap.set('n', '<leader>ncb', 'i```<CR><CR>```<Up>', { desc = 'Code Block' })
-vim.keymap.set('n', '<leader>nci', 'i`<Esc>', { desc = 'Inline Code' })
+vim.keymap.set('n', '<leader>ncb', notes.insert_code_block, { desc = 'Code Block' })
+vim.keymap.set('n', '<leader>nci', notes.insert_inline_code, { desc = 'Inline Code' })
 
 -- Quick quotes
-vim.keymap.set('n', '<leader>nq', 'i> <Esc>', { desc = 'Quote Block' })
+vim.keymap.set('n', '<leader>nq', notes.insert_quote, { desc = 'Quote Block' })
 
 -- Quick horizontal rule
-vim.keymap.set('n', '<leader>nhr', 'i---<CR>', { desc = 'Horizontal Rule' })
+vim.keymap.set('n', '<leader>nhr', notes.insert_horizontal_rule, { desc = 'Horizontal Rule' })
 
 -- Note navigation
-vim.keymap.set('n', '<leader>no', '<cmd>e ~/Library/Mobile\\ Documents/com~apple~CloudDocs/notes/<cr>', { desc = 'Open notes folder' })
+vim.keymap.set('n', '<leader>no', notes.open_notes_folder, { desc = 'Open notes folder' })
 
 -- Zen mode for focused writing
-vim.keymap.set('n', '<leader>nz', '<cmd>ZenMode<cr>', { desc = 'Toggle zen mode' })
+vim.keymap.set('n', '<leader>nz', notes.toggle_zen_mode, { desc = 'Toggle zen mode' })

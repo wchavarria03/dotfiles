@@ -17,7 +17,7 @@ return {
                 },
                 lualine_x = {
                     {
-                        require('config.lualine_components').copilot_status,
+                        require('utils.lualine_components').copilot_status,
                         cond = function()
                             return package.loaded['copilot'] ~= nil
                         end,

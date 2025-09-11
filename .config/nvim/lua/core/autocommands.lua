@@ -160,11 +160,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end, lsp_opts)
 
         lsp_opts.desc = 'Restart LSP'
-        vim.keymap.set('n', '<leader>lr', function()
-            vim.lsp.stop_client(vim.lsp.get_clients())
-            vim.cmd 'edit' -- Re-trigger LSP for current buffer
-            vim.notify('LSP restarted', vim.log.levels.INFO)
-        end, lsp_opts) -- mapping to restart lsp if necessary
+        vim.keymap.set('n', '<leader>lr', ':LspRestart<CR>', lsp_opts) -- mapping to restart lsp if necessary
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
@@ -176,13 +172,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-local function augroup_notes(name)
+local function augroup(name)
     return vim.api.nvim_create_augroup('wchavarria_notes_' .. name, { clear = true })
 end
 
 -- Enhanced markdown and text file specific settings (extends main config)
 vim.api.nvim_create_autocmd({ 'FileType' }, {
-    group = augroup_notes 'markdown_settings',
+    group = augroup 'markdown_settings',
     pattern = { 'markdown', 'md', 'txt', 'text', 'gitcommit', 'plaintex', 'typst' },
     desc = 'Enhanced settings for markdown and text files in notes',
     callback = function()
@@ -191,13 +187,13 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
         vim.opt_local.softtabstop = 2
         vim.opt_local.shiftwidth = 2
         vim.opt_local.expandtab = true
-
+        
         -- Note-specific text wrapping
         vim.opt_local.wrap = true
         vim.opt_local.linebreak = true
         vim.opt_local.breakindent = true
         vim.opt_local.showbreak = '↪ '
-
+        
         -- Note-specific spell checking
         vim.opt_local.spell = true
         vim.opt_local.conceallevel = 2
@@ -206,11 +202,11 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 
 -- Auto-save notes on text changes
 vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
-    group = augroup_notes 'auto_save',
+    group = augroup 'auto_save',
     pattern = { '*.md', '*.txt', '*.markdown' },
     callback = function()
         if vim.bo.modified and vim.bo.buftype == '' then
             vim.cmd 'silent! write'
         end
     end,
-})
+}) 
