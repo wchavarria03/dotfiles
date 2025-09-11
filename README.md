@@ -96,8 +96,6 @@ $ asdf plugin add python https://github.com/asdf-community/asdf-python.git
 
 $ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
-$ asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
-
 $ asdf install # installs everything listed on the .tools-versions
 
 ```
@@ -109,8 +107,8 @@ $ mkdir -p ~/.docker/completions
 $ docker completion zsh > ~/.docker/completions/_docker
 ```
 
-
 ## Ruftop for cargo and mason package installs
+
 ```
 $ rustup default stable
 
@@ -138,8 +136,8 @@ $ rustup-init
 
 2. Copy `cursor/keybindings.json` and `cursor/settings.json` into the editor configs files.
 
-
 ## Brave / Browser
+
 - Sync brave with other Devices including extensions.
 
 ## TODOS / Improvements

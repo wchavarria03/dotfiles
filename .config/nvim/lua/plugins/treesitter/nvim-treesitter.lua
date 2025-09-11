@@ -59,7 +59,6 @@ return {
             'python',
             'query',
             'regex',
-            'ruby',
             'scss',
             'solidity',
             'terraform',

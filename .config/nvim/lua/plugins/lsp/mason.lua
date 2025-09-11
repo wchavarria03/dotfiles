@@ -24,7 +24,6 @@
 
 -- -- Specialized
 -- 'solidity_ls', -- Solidity
--- 'ruby_lsp', -- Ruby
 --
 -- 'biome', -- biome (javascript/typescript)
 -- 'pyright', -- pyright (python)
@@ -32,7 +31,6 @@
 -- 'terraform_ls',          -- terraform
 
 -- -- Linters
--- -- rubocoop
 -- -- ruff
 -- -- tflint  -- (terraform linter)
 

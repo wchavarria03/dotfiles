@@ -70,7 +70,6 @@ return {
                 terraform = { 'terraform_fmt' },
 
                 -- Specialized
-                ruby = { 'rubocop' },
                 solidity = { 'prettierd' },
 
                 -- Configuration files

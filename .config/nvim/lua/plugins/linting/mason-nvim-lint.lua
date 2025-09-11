@@ -25,7 +25,6 @@ return {
             'golangci-lint',
             'inko', -- Not available in Mason
             'janet', -- Not available in Mason
-            'ruby', -- Use rubocop instead
         },
         automatic_installation = true,
     },
