@@ -4,18 +4,18 @@
 setup_notes() {
     NOTES_PATH=~/Library/Mobile\ Documents/com~apple~CloudDocs/notes
     echo "---"
-    echo $NOTES_PATH
+    echo "$NOTES_PATH"
     if [ ! -d "$NOTES_PATH" ]; then
         echo "${COLOR_GREEN}-- Cloning notes repo...${COLOR_REST}"
         git clone https://github.com/wchavarria03/notes "$NOTES_PATH"
     else
         echo "${COLOR_GREEN}-- Updating notes repo...${COLOR_REST}"
-        cd "$NOTES_PATH"
+        cd "$NOTES_PATH" || exit
         git pull
-        cd - >/dev/null # Return to the original directory, suppressing output
+        cd - >/dev/null || exit  # Return to the original directory, suppressing output
     fi
 
-    if [ ! -d "~/personal/notes" ]; then
+    if [ ! -d "$HOME/personal/notes" ]; then
         echo "${COLOR_GREEN}-- Creating notes repo symblink ...${COLOR_REST}"
         create_symlink "$NOTES_PATH" ~/personal/notes
     else
