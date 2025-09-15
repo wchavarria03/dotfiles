@@ -1,7 +1,7 @@
 # A minimal left prompt
 # format = """$directory$character"""
 
-palette = "catppuccin_mocha"
+palette = "custom_catppuccin"
 
 command_timeout = 1200
 
@@ -30,6 +30,9 @@ success_symbol = "[❯](blue)"
 error_symbol = "[❯](red)"
 vicmd_symbol = "[❮](green)"
 
+[git_branch]
+style = "purple"
+
 [aws]
 symbol = " "
 
@@ -42,31 +45,31 @@ symbol = "  "
 [python]
 symbol = " "
 
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
-
+[palettes.custom_catppuccin]
+rosewater = "#F29D9D"
+flamingo = "#F29D9D"
+pink = "#F29D9D"
+purple = "#AD6FF7"
+mauve = "#AD6FF7"
+red = "#E66767"
+maroon = "#E66767"
+peach = "#FAB770"
+yellow = "#FACA64"
+green = "#70CF67"
+teal = "#4CD4BD"
+sky = "#00BBCC"
+sapphire = "#61BDFF"
+blue = "#00BFFF"
+lavender = "#C1C9E6"
+text = "#C1C9E6"
+subtext1 = "#A3AAC2"
+subtext0 = "#A3AAC2"
+overlay2 = "#464957"
+overlay1 = "#464957"
+overlay0 = "#464957"
+surface2 = "#464957"
+surface1 = "#191926"
+surface0 = "#191926"
+base = "#0b0b12"       # Your background color
+mantle = "#0b0b12"
+crust = "#191926"
