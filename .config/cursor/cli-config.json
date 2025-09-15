@@ -1,7 +1,17 @@
 {
+  "permissions": {
+    "allow": [
+      "Shell(ls)",
+      "Shell(git log)"
+    ],
+    "deny": []
+  },
   "version": 1,
   "editor": {
     "vimMode": true
+  },
+  "display": {
+    "showLineNumbers": true
   },
   "model": {
     "modelId": "claude-4-sonnet",
@@ -14,15 +24,9 @@
     ]
   },
   "hasChangedDefaultModel": true,
-  "permissions": {
-    "allow": [
-      "Shell(ls)"
-    ],
-    "deny": []
-  },
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1755132542913
+    "updatedAt": 1757936362115
   }
 }
