@@ -13,6 +13,10 @@ after-startup-command = [
 # Start AeroSpace at login
 start-at-login = true
 
+# Default layout
+# default-root-container-layout = 'tiles'
+# default-root-container-orientation = 'horizontal'
+
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
@@ -149,11 +153,9 @@ run = 'move-node-to-workspace d'
 if.window-title-regex-substring = "API Terminal"
 run = 'move-node-to-workspace a'
 
-# Layout floating fixes the issue where every tab on ghostty
-# is classified as a new window by aerospace
 [[on-window-detected]]
-if.app-id = "com.mitchellh.ghostty"
-run = ["layout floating", 'move-node-to-workspace t']
+if.app-id = "com.github.wez.wezterm"
+run = 'move-node-to-workspace t'
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
