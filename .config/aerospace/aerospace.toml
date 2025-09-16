@@ -63,9 +63,6 @@ outer.right = 10
 
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
-# Open notes in dedicated workspace
-alt-p = ['workspace p', 'exec-and-forget ~/.config/aerospace/open_notes.sh']
-
 # Open quick terminal with borders
 alt-shift-p = [
   'layout floating',
@@ -104,6 +101,7 @@ alt-c = 'workspace c'
 alt-d = ['workspace d', 'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/open_db_terminal.sh']
 alt-i = 'workspace i'
 alt-m = 'workspace m'
+alt-p = ['workspace p', 'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/open_notes_terminal.sh']
 alt-s = 'workspace s'
 alt-t = 'workspace t'
 
@@ -154,21 +152,20 @@ if.window-title-regex-substring = "API Terminal"
 run = 'move-node-to-workspace a'
 
 [[on-window-detected]]
+if.window-title-regex-substring = "Notes Terminal"
+run = 'move-node-to-workspace p'
+
+[[on-window-detected]]
+if.window-title-regex-substring = "Quick Notes"
+run = ['layout floating', 'move-node-to-workspace current']
+
+[[on-window-detected]]
 if.app-id = "com.github.wez.wezterm"
 run = 'move-node-to-workspace t'
 
 [[on-window-detected]]
 if.app-id = 'com.brave.Browser'
 run = 'move-node-to-workspace b'
-
-[[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
-if.window-title-regex-substring = "Quick Terminal"
-run = ['layout floating', 'move-node-to-workspace current']
-
-[[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
-run = 'move-node-to-workspace p'
 
 [[on-window-detected]]
 if.app-id = 'com.sequel-ace.sequel-ace'
