@@ -4,8 +4,10 @@ local module = {}
 
 function module.apply_to_config(config)
 	config.use_fancy_tab_bar = false
+	config.tab_bar_at_bottom = true
 	config.show_new_tab_button_in_tab_bar = false
 	config.show_tab_index_in_tab_bar = true
+	config.hide_tab_bar_if_only_one_tab = false
 
 	-- Equivalent to POSIX basename(3)
 	-- Given "/foo/bar" returns "bar"
@@ -18,15 +20,15 @@ function module.apply_to_config(config)
 	local HALF_CIRCLE_RIGHT = wezterm.nerdfonts.ple_right_half_circle_thick -- md_circle_half_full
 
 	wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-		-- TODO: Get those values from the config theme, instead of hardcoding them
-		local background = "#121212"
-		local index_foreground = "#1C1B19"
-		local index_background = "#94e2d5"
-		local title_background = "#313244"
-		local title_foreground = "#bac2de"
+		-- Using your custom color scheme colors
+		local background = "#0b0b12" -- Your background color
+		local index_foreground = "#0b0b12" -- Dark text for contrast
+		local index_background = "#00BFFF" -- Blue from your color scheme (inactive)
+		local title_background = "#191926" -- Slightly lighter background
+		local title_foreground = "#C1C9E6" -- Your foreground color
 
 		if tab.is_active then
-			index_background = "#cba6f7"
+			index_background = "#AD6FF7" -- Magenta from your color scheme (active)
 		end
 
 		local process_name = tab.active_pane.foreground_process_name
