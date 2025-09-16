@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Check if Notes Terminal is already running
-if pgrep -f "notes_terminal.sh" > /dev/null; then
+# Check if Notes Terminal is already running (exact script name)
+if pgrep -fx "/bin/bash /Users/wchavarria/personal/dotfiles/.config/aerospace/notes_terminal.sh" > /dev/null; then
     echo "Notes Terminal is already running in workspace 'p'"
     echo "Switch to workspace 'p' to access it"
     exit 0

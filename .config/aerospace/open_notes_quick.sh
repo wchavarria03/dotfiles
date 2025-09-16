@@ -2,8 +2,8 @@
 
 # Quick Notes Terminal - Using the same approach as DB terminal
 
-# Check if Quick Notes Terminal is already running
-if pgrep -f "quick_notes_terminal.sh" > /dev/null; then
+# Check if Quick Notes Terminal is already running (exact script name)
+if pgrep -fx "/bin/bash /Users/wchavarria/personal/dotfiles/.config/aerospace/quick_notes_terminal.sh" > /dev/null; then
     echo "Quick Notes is already open"
     
     # Find the WezTerm window running Quick Notes
