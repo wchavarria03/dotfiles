@@ -1,9 +1,19 @@
-[[database]]
-Name = 'cattle-management-local'
-Provider = 'postgres'
-DBName = 'cattle_management_db'
-URL = 'postgresql://postgres:@0.0.0.0:5432/cattle_management_db?sslmode=disable'
+ConfigFile = '/Users/wchavarria/.config/lazysql/config.toml'
+
 [application]
 DefaultPageSize = 20
 DisableSidebar = false
 SidebarOverlay = false
+MaxQueryHistoryPerConnection = 100
+
+[[database]]
+Name = 'cattle-management-local'
+URL = 'postgresql://postgres:@0.0.0.0:5432/cattle_management_db?sslmode=disable'
+Provider = 'postgres'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'cattle_management_db'
+URLParams = ''
+Commands = []
