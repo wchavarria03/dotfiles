@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # API Terminal using shared utilities
+# shellcheck source=./terminal_utils.sh
 source "$(dirname "$0")/terminal_utils.sh"
 
 # Setup this terminal instance
 setup_terminal_instance "api" "API Terminal"
-cd ~/personal/my-collections/
+cd ~/personal/my-collections/ || exit 1
 
 # Last collection management
 LAST_COLLECTION_FILE="/tmp/api_terminal_last_collection_$$"
@@ -27,12 +28,12 @@ show_collection_selection() {
     echo "🚀 API Terminal - POSTING Collections"
     echo ""
     echo "Available collections:"
-    ls -1 | grep -v "^\." | nl -w2 -s". "
+    printf '%s\n' */ | sed 's|/$||' | nl -w2 -s". "
     echo ""
     
     if command -v fzf >/dev/null 2>&1; then
         echo "Select with fzf (Ctrl+C to cancel, Enter for llm-service):"
-        collection=$(ls -1 | grep -v "^\." | fzf --height=10 --prompt="Collection: " --header="arrows=navigate, Enter=select, Ctrl+C=cancel" 2>/dev/null)
+        collection=$(printf '%s\n' */ | sed 's|/$||' | fzf --height=10 --prompt="Collection: " --header="arrows=navigate, Enter=select, Ctrl+C=cancel" 2>/dev/null)
         
         if [ -n "$collection" ]; then
             save_last_collection "$collection"
@@ -41,7 +42,7 @@ show_collection_selection() {
             posting --collection ~/personal/my-collections/$collection
         fi
     else
-        read -p "Enter collection number/name (Enter for llm-service, 'x' to cancel): " choice
+        read -r -p "Enter collection number/name (Enter for llm-service, 'x' to cancel): " choice
         
         if [ "$choice" = "x" ] || [ "$choice" = "X" ]; then
             return
@@ -51,7 +52,7 @@ show_collection_selection() {
             echo "Using default llm-service collection"
             posting --collection ~/personal/my-collections/llm-service
         elif [[ "$choice" =~ ^[0-9]+$ ]]; then
-            collection=$(ls -1 | grep -v "^\." | sed -n "${choice}p")
+            collection=$(printf '%s\n' */ | sed 's|/$||' | sed -n "${choice}p")
             if [ -n "$collection" ]; then
                 save_last_collection "$collection"
                 clear
@@ -76,7 +77,7 @@ show_collection_selection() {
 commit_collections() {
     clear
     echo "💾 Saving and committing collections to GitHub..."
-    cd ~/personal/my-collections/
+    cd ~/personal/my-collections/ || return
     
     if git diff --quiet && git diff --cached --quiet; then
         echo "✅ No changes to commit"
@@ -95,7 +96,7 @@ commit_collections() {
     
     echo ""
     echo "Press Enter to continue..."
-    read
+    read -r
 }
 
 # Main menu loop
@@ -135,11 +136,19 @@ while true; do
             fi
             ;;
         n)
+            if [ -n "$LAST_COLLECTION" ]; then
+                # Expand the path and escape properly for the new instance
+                collection_path="/Users/wchavarria/personal/my-collections/$LAST_COLLECTION"
+                return_command="posting --collection \"$collection_path\""
+            else
+                return_command=""
+            fi
+            
             open_new_instance \
                 "/Users/wchavarria/personal/dotfiles/.config/aerospace/api_terminal.sh" \
                 "api_terminal.sh" \
                 "API Terminal" \
-                "if [ -n \"$LAST_COLLECTION\" ]; then launch_app 'POSTING' 'posting' 'Install posting' '--collection ~/personal/my-collections/$LAST_COLLECTION'; fi"
+                "$return_command"
             ;;
         s)
             commit_collections

@@ -12,6 +12,7 @@ setup_terminal_instance() {
     printf "\033]0;%s ($$)\007" "$title"
     
     # Create unique temp file for this instance (if needed)
+    # shellcheck disable=SC2034  # TERMINAL_ID may be used in sourcing scripts
     TERMINAL_ID="${terminal_type}_terminal_$$_$(date +%s)"
     
     # Cleanup function
@@ -172,7 +173,7 @@ launch_app() {
     local app_command="$2"
     local install_instructions="$3"
     shift 3
-    local app_args="$@"
+    local app_args="$*"
     
     clear
     echo "Launching $app_name..."

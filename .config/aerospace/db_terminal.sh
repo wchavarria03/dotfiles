@@ -1,11 +1,12 @@
 #!/bin/bash
 
 # DB Terminal using shared utilities
+# shellcheck source=./terminal_utils.sh
 source "$(dirname "$0")/terminal_utils.sh"
 
 # Setup this terminal instance
 setup_terminal_instance "db" "DB Terminal"
-cd ~
+cd ~ || exit 1
 
 # Launch LazySQL immediately on startup
 clear
