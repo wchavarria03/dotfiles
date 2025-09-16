@@ -7,6 +7,16 @@ function module.apply_to_config(config)
 
 	config.keys = {
 		{
+			key = "d",
+			mods = "CMD|SHIFT",
+			action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+		},
+		{
+			key = "d", 
+			mods = "CMD",
+			action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+		},
+		{
 			key = "\\",
 			mods = "LEADER",
 			action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
@@ -16,6 +26,12 @@ function module.apply_to_config(config)
 			mods = "LEADER",
 			action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 		},
+		{
+			key = "Enter",
+			mods = "CMD|SHIFT", 
+			action = wezterm.action.TogglePaneZoomState,
+		},
+		-- Keep leader-based zoom as alternative
 		{
 			key = "m",
 			mods = "LEADER",

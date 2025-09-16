@@ -18,7 +18,6 @@ function module.apply_to_config(config)
 	
 	-- Smart splits implementation that works with Neovim
 	local smart_splits_keys = {
-		-- Smart navigation: if in vim, send vim commands, otherwise navigate panes
 		{
 			key = "h",
 			mods = "CTRL",
