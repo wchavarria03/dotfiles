@@ -36,16 +36,19 @@ install_brew_packages() {
         cursor
         dbeaver-community
         discord
-        ghostty
         gnupg
         insomnia
         kitty
+        podman
         sequel-ace
         slack
+        wezterm
 
         # CLI apps
         gh
         lazygit
+        lazysql
+        posting
 
         ## Desktop Manager
         aerospace
