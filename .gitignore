@@ -24,3 +24,4 @@ scripts
 # Swift Package Manager (machine-specific symlinks and cache)
 .config/swiftpm/
 .config/zsh/.zhistory
+.config/containers/
