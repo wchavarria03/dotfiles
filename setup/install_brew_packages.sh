@@ -45,6 +45,7 @@ install_brew_packages() {
         wezterm
 
         # CLI apps
+        gemini-cli
         gh
         lazygit
         lazysql
