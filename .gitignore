@@ -25,3 +25,6 @@ scripts
 .config/swiftpm/
 .config/zsh/.zhistory
 .config/containers/
+.gemini/google_accounts.json
+.gemini/oauth_creds.json
+.gemini/tmp/

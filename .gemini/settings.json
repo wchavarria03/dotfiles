@@ -1,14 +1,21 @@
 {
-  "theme": "GitHub",
-  "selectedAuthType": "oauth-personal",
   "mcpServers": {
-    "context7": {
+    "sequential-thinking": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ]
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
     }
   },
-  "preferredEditor": "cursor"
+  "general": {
+    "preferredEditor": "cursor",
+    "vimMode": true
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "ui": {
+    "theme": "GitHub"
+  }
 }
+
