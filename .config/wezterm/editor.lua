@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local module = {}
 
 function module.apply_to_config(config)
-	config.font = wezterm.font("JetBrains Mono NL", { weight = "Regular" })
+	config.font = wezterm.font("JetBrains Mono", { weight = "Regular", stretch = "Normal", style = "Normal" })
 	config.font_size = 14
 
 	config.window_padding = { left = 20, right = 20, top = 20, bottom = 10 }
