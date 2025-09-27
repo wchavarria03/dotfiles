@@ -2,3 +2,8 @@ nodejs 24.3.0
 python 3.12.5
 golang 1.24.1
 rust 1.82.0
+scarb 2.12.2
+starknet-foundry 0.48.1
+cairo-coverage 0.5.0
+cairo-profiler 0.9.0
+starknet-devnet 0.4.3

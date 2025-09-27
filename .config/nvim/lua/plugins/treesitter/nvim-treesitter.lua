@@ -44,6 +44,7 @@ return {
             'ninja',
             'rst',
 
+            'cairo',
             'html',
             'javascript',
             'jsdoc',
