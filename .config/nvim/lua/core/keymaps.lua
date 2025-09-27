@@ -185,3 +185,12 @@ vim.keymap.set('n', '<leader>no', notes.open_notes_folder, { desc = 'Open notes 
 
 -- Zen mode for focused writing
 vim.keymap.set('n', '<leader>nz', notes.toggle_zen_mode, { desc = 'Toggle zen mode' })
+
+-- Colorscheme switching for different workflows
+vim.keymap.set('n', '<leader>tc', function()
+    if vim.g.colors_name == 'catppuccin-macchiato' then
+        vim.cmd('colorscheme tokyonight-night')
+    else
+        vim.cmd('colorscheme catppuccin-macchiato')
+    end
+end, { desc = 'Toggle colorscheme (catppuccin/tokyonight)' })

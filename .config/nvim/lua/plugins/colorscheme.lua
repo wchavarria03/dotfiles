@@ -1,15 +1,12 @@
 local colorsConfigs = require 'utils.colorschema-overrides'
 
 return {
-    -- Full mode colorscheme (catppuccin)
+    -- Primary colorscheme (catppuccin)
     {
         'catppuccin/nvim',
         name = 'catppuccin',
         lazy = false, -- Load immediately for better UX
         priority = 1000, -- Load early
-        cond = function()
-            return vim.g.nvim_mode ~= 'notes'
-        end,
         opts = function()
             math.randomseed(os.time())
             local randomIndex = math.random(#colorsConfigs)
@@ -21,15 +18,11 @@ return {
             vim.cmd.colorscheme 'catppuccin-macchiato'
         end,
     },
-    -- Notes mode colorscheme (tokyonight)
+    -- Alternative colorscheme (tokyonight) - available for manual switching
     {
         'folke/tokyonight.nvim',
         name = 'tokyonight',
-        lazy = false, -- Load immediately for better UX
-        priority = 1000, -- Load early
-        cond = function()
-            return vim.g.nvim_mode == 'notes'
-        end,
+        lazy = true, -- Load only when needed
         opts = {
             style = 'night', -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
             light_style = 'day', -- The theme is used when the background is set to light

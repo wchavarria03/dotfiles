@@ -18,7 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
 
--- Build plugin spec based on mode
 local plugin_spec = {
     -- import your plugins
     { import = 'plugins/ai' },
@@ -34,11 +33,6 @@ local plugin_spec = {
     { import = 'plugins/util' },
     { import = 'plugins' },
 }
-
--- Add notes-specific plugins when in notes mode
-if vim.g.nvim_mode == 'notes' then
-    table.insert(plugin_spec, { import = 'plugins/notes' })
-end
 
 require('lazy').setup {
     spec = plugin_spec,

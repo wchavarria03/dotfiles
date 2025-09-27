@@ -172,10 +172,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-local function augroup(name)
-    return vim.api.nvim_create_augroup('wchavarria_notes_' .. name, { clear = true })
-end
-
 -- Enhanced markdown and text file specific settings (extends main config)
 vim.api.nvim_create_autocmd({ 'FileType' }, {
     group = augroup 'markdown_settings',
