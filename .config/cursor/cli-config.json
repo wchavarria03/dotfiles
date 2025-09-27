@@ -8,25 +8,28 @@
   },
   "version": 1,
   "editor": {
-    "vimMode": true
+    "vimMode": true,
+    "defaultBehavior": "agent"
   },
   "display": {
     "showLineNumbers": true
   },
   "model": {
-    "modelId": "claude-4-sonnet",
-    "displayModelId": "sonnet-4",
-    "displayName": "Claude 4 Sonnet",
-    "displayNameShort": "Sonnet 4",
+    "modelId": "default",
+    "displayModelId": "auto",
+    "displayName": "Auto",
+    "displayNameShort": "Auto",
     "aliases": [
-      "sonnet",
-      "sonnet-4"
+      "auto"
     ]
   },
   "hasChangedDefaultModel": true,
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1757936362115
+    "updatedAt": 1758715161923
+  },
+  "network": {
+    "useHttp1ForAgent": false
   }
 }
