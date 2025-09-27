@@ -45,7 +45,6 @@ bindkey '^[[B' history-search-forward
 bindkey '˙' backward-word # ⌥ + h  [skip word backward]
 bindkey '¬' forward-word  # ⌥ + j [skip word forward]
 
-############
 ### ASDF ###
 ############
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
@@ -54,16 +53,16 @@ fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 . ~/.asdf/plugins/golang/set-env.zsh
 export PATH="$PATH:$(go env GOBIN)"
 
-# Initialize brew completions
+### Initialize brew completions ###
 autoload -Uz compinit
 compinit
 
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 
-# CursorCli required
+### CursorCli required ###
 export PATH="$HOME/.local/bin:$PATH"
 
-# Carapace
+### Carapace ###
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
