@@ -63,12 +63,6 @@ outer.right = 10
 
 # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
 
-# Open quick notes terminal (floating, workspace-agnostic)
-alt-shift-n = [
-  'layout floating',
-  'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/open_notes_quick.sh',
-]
-
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
@@ -95,15 +89,28 @@ alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
-alt-a = ['workspace a', 'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/open_api_terminal.sh']
+alt-a = [
+  'workspace a',
+  'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_api_terminal.sh',
+]
 alt-b = 'workspace b'
 alt-c = 'workspace c'
-alt-d = ['workspace d', 'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/open_db_terminal.sh']
+alt-d = [
+  'workspace d',
+  'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_db_terminal.sh',
+]
 alt-i = 'workspace i'
 alt-m = 'workspace m'
-alt-p = ['workspace p', 'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/open_notes_terminal.sh']
+alt-p = [
+  'workspace p',
+  'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_notes_terminal.sh',
+]
 alt-s = 'workspace s'
 alt-t = 'workspace t'
+alt-shift-n = [
+  'layout floating',
+  'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_notes_quick.sh',
+]
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -158,6 +165,7 @@ run = 'move-node-to-workspace p'
 
 [[on-window-detected]]
 if.app-id = "com.github.wez.wezterm"
+if.window-title-regex-substring = "^(?!.*(?:API Terminal|DB Terminal|Notes Terminal)).*"
 run = 'move-node-to-workspace t'
 
 [[on-window-detected]]

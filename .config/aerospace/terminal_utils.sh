@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 # Terminal Utils Library
 # Shared functionality for API and DB terminals

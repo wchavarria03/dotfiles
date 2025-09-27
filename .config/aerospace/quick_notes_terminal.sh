@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 # Quick Notes Terminal Script - similar to db_terminal.sh approach
 
@@ -19,7 +19,7 @@ printf '\033]0;Quick Notes Terminal\007'
 
 # Change to notes directory and open the quick notes file
 cd "$NOTES_DIR" || exit 1
-export NVIM_MODE=notes
+# Notes mode functionality now integrated into main Neovim config
 
 echo '📝 Quick Notes - Opening iCloud synced notes...'
 nvim "$QUICK_NOTES_FILE"
