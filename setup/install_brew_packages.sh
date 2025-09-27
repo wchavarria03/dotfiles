@@ -45,6 +45,7 @@ install_brew_packages() {
         wezterm
 
         # CLI apps
+        carapace
         gemini-cli
         gh
         lazygit
