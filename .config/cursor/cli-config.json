@@ -1,9 +1,6 @@
 {
   "permissions": {
-    "allow": [
-      "Shell(ls)",
-      "Shell(git log)"
-    ],
+    "allow": ["Shell(ls)", "Shell(git log)"],
     "deny": []
   },
   "version": 1,
@@ -19,9 +16,7 @@
     "displayModelId": "auto",
     "displayName": "Auto",
     "displayNameShort": "Auto",
-    "aliases": [
-      "auto"
-    ]
+    "aliases": ["auto"]
   },
   "hasChangedDefaultModel": true,
   "privacyCache": {

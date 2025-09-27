@@ -22,9 +22,9 @@ export VISUAL="nvim"
 
 # ZSH
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export HISTFILE="$ZDOTDIR/.zhistory"                    # History filepath
-export HISTSIZE=1000                                    # Maximum events for internal history
-export SAVEHIST=999                                     # Maximum events in history file
+export HISTFILE="$ZDOTDIR/.zhistory" # History filepath
+export HISTSIZE=1000                 # Maximum events for internal history
+export SAVEHIST=999                  # Maximum events in history file
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
