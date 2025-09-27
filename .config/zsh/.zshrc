@@ -46,7 +46,6 @@ bindkey '˙' backward-word # ⌥ + h  [skip word backward]
 bindkey '¬' forward-word  # ⌥ + j [skip word forward]
 
 ### ASDF ###
-############
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 # append completions to fpath
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)

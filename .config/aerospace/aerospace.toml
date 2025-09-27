@@ -66,7 +66,7 @@ outer.right = 10
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
-alt-shift-space = 'layout floating tiling' # Toggle floating/tiling layout
+alt-shift-space = 'layout floating tiling'         # Toggle floating/tiling layout
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
 alt-h = 'focus left'
@@ -233,6 +233,8 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [mode.resize.binding]
 esc = ['reload-config', 'mode main']
+enter = ['reload-config', 'mode main']
+q = ['reload-config', 'mode main']
 
 # Smart resize (recommended)
 minus = 'resize smart -50'
