@@ -1,23 +1,3 @@
-vim.lsp.enable 'bash_ls'
-vim.lsp.enable 'biome_ls'
-vim.lsp.enable 'cairo_ls'
-vim.lsp.enable 'docker_compose_ls'
-vim.lsp.enable 'docker_ls'
-vim.lsp.enable 'golangci_lint_ls'
-vim.lsp.enable 'gopls'
-vim.lsp.enable 'html_ls'
-vim.lsp.enable 'json_ls'
-vim.lsp.enable 'lua_ls'
-vim.lsp.enable 'marksman'
-vim.lsp.enable 'pyright'
-vim.lsp.enable 'ruff'
-vim.lsp.enable 'solidity_ls'
-vim.lsp.enable 'stylelint_lsp'
-vim.lsp.enable 'taplo_ls'
-vim.lsp.enable 'terraform_ls'
-vim.lsp.enable 'tflint'
-vim.lsp.enable 'yaml_ls'
-
 -- Only configure LSP if blink.cmp is available
 local ok, blink_cmp = pcall(require, 'blink.cmp')
 if ok then
