@@ -1,6 +1,6 @@
 #ALIASES ---------------------------------------------------------------------
-alias d=podman
-alias dc="podman compose"
+alias p=podman
+alias pc="podman compose"
 alias dkill="pgrep \"podman\" | xargs kill -9"
 alias hcat='highlight -O ansi'
 
