@@ -1,4 +1,4 @@
--- Template prompts for Avante
+-- Template prompts
 local M = {}
 
 -- Custom prompt template
@@ -17,4 +17,5 @@ Example:
 ]]
 end
 
-return M 
+return M
+

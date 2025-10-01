@@ -1,17 +1,10 @@
--- Code analysis Avante prompts
+-- Code analysis prompts
 local M = {}
-local helpers = require('config.avante.helpers')
+local helpers = require 'config.prompts.helpers'
 
 -- Review current file prompt
 function M.review_current_file()
-    local current_file, file_content = helpers.get_current_file_content()
-    
-    return string.format([[
-Please review the following code file: %s
-
-Code content:
-%s
-
+    return string.format [[
 Please provide a code review focusing on:
 1. Code quality and best practices
 2. Potential bugs or issues
@@ -20,14 +13,15 @@ Please provide a code review focusing on:
 5. Suggestions for improvement
 
 Be constructive and specific in your feedback.
-]], current_file, file_content)
+]]
 end
 
 -- Explain code prompt
 function M.explain_code()
     local current_file, file_content = helpers.get_current_file_content()
-    
-    return string.format([[
+
+    return string.format(
+        [[
 Please explain the following code file: %s
 
 Code content:
@@ -40,7 +34,10 @@ Please provide a clear explanation of:
 4. Any important patterns or concepts used
 
 Make it easy to understand for someone new to this codebase.
-]], current_file, file_content)
+]],
+        current_file,
+        file_content
+    )
 end
 
-return M 
+return M

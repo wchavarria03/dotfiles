@@ -1,6 +1,6 @@
--- Git-related Avante prompts
+-- Git-related prompts
 local M = {}
-local helpers = require('config.avante.helpers')
+local helpers = require 'config.prompts.helpers'
 
 -- Generate commit message prompt
 function M.generate_commit_message()
@@ -9,8 +9,9 @@ function M.generate_commit_message()
         vim.notify(error_msg, vim.log.levels.WARN)
         return
     end
-    
-    return string.format([[
+
+    return string.format(
+        [[
 Generate a conventional commit message for the following staged changes.
 
 Git diff of staged changes:
@@ -24,7 +25,10 @@ Please follow the conventional commit format:
 - If breaking change, add ! after type and include BREAKING CHANGE: in body
 
 Return only the commit message, no explanations.
-]], staged_diff)
+]],
+        staged_diff
+    )
 end
 
-return M 
+return M
+

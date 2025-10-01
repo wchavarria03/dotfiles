@@ -6,11 +6,6 @@ return {
     build = 'npm install -g mcp-hub@latest', -- Installs `mcp-hub` node binary globally
     config = function()
         require('mcphub').setup {
-            extensions = {
-                avante = {
-                    make_slash_commands = true, -- make /slash commands from MCP server prompts
-                },
-            },
             auto_approve = function(params)
                 -- Auto-approve GitHub issue reading
                 if params.server_name == 'github' and params.tool_name == 'get_issue' then

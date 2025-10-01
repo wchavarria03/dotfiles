@@ -7,13 +7,13 @@ return {
             width = 'block',
             right_pad = 1,
         },
-        file_types = { 'markdown', 'Avante' },
+        file_types = { 'markdown' },
         completions = {
             blink = { enabled = true },
         },
         latex = { enabled = false },
     },
-    ft = { 'markdown', 'Avante' },
+    ft = { 'markdown' },
     config = function(_, opts)
         require('render-markdown').setup(opts)
         require('snacks')
