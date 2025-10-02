@@ -17,6 +17,7 @@ scripts
 .config/zsh/.zcompcache
 .config/github-copilot/*
 .config/configstore/
+.config/lazysql/history/
 
 # Cursor AI chat history (personal conversations)
 .config/cursor/chats/
