@@ -17,3 +17,15 @@ Port = ''
 DBName = 'cattle_management_db'
 URLParams = ''
 Commands = []
+
+[[database]]
+Name = 'peer-list-review-server-local'
+URL = 'mysql://root:password@127.0.0.1:3308/peer-list-review-database'
+Provider = 'mysql'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'peer-list-review-database'
+URLParams = ''
+Commands = []
