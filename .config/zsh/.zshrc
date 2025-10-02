@@ -68,3 +68,6 @@ source <(carapace _carapace)
 
 ### rust language ###
 . "$HOME/.cargo/env"
+
+### uv python
+. "$HOME/.config/local/share/../bin/env"
