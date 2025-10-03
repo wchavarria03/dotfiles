@@ -12,6 +12,14 @@ return {
         suggestion = {
             enabled = false, -- Keep disabled to prevent duplicate suggestions
         },
+        nes = {
+            enabled = true,
+            keymap = {
+                accept_and_goto = '<leader>p',
+                accept = false,
+                dismiss = '<Esc>',
+            },
+        },
         filetypes = {
             yaml = true,
             markdown = true,
