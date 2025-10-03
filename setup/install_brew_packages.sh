@@ -24,6 +24,7 @@ install_brew_packages() {
         luarocks #lua linter and development
         neovim
         ripgrep
+        tree-sitter-cli
         rustup # install rust top to get cargo and be able to install some mason lsp with mason
         starship
         zoxide
