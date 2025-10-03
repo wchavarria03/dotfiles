@@ -94,17 +94,17 @@ mff() {
     gco $curr_branch
 }
 
-dclear() {
+pdclear() {
     podman ps -a -q | xargs podman kill -f
     podman ps -a -q | xargs podman rm -f
     podman images | grep "api\|none" | awk '{print $3}' | xargs podman rmi -f
     podman volume prune -f
 }
 
-alias podman-clear=dclear
+alias podman-clear=pdclear
 
 dreset() {
-    dclear
+    pdclear
     podman images -q | xargs podman rmi -f
     podman volume rm $(podman volume ls | awk '{print $2}')
     rm -rf ~/Library/Containers/com.docker.docker/Data/*
