@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Check if API Terminal is already running - if so, focus it
-if pgrep -f "api_terminal.sh" > /dev/null 2>&1; then
+if pgrep -f "bash.*api_terminal.sh" > /dev/null 2>&1; then
     # Focus the existing API Terminal
     /Applications/WezTerm.app/Contents/MacOS/wezterm cli list --format json 2>/dev/null | \
     python3 -c "
