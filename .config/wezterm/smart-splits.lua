@@ -6,16 +6,12 @@ local module = {}
 local function is_vim_process(pane)
 	-- Check if the current pane is running vim/nvim
 	local process_name = pane:get_foreground_process_name()
-	return process_name and (
-		process_name:find("n?vim") or 
-		process_name:find("nvim") or 
-		process_name:find("vim")
-	)
+	return process_name and (process_name:find("n?vim") or process_name:find("nvim") or process_name:find("vim"))
 end
 
 function module.apply_to_config(config)
 	local act = wezterm.action
-	
+
 	-- Smart splits implementation that works with Neovim
 	local smart_splits_keys = {
 		{
@@ -64,17 +60,17 @@ function module.apply_to_config(config)
 				end
 			end),
 		},
-		
+
 		-- Pane resizing (Alt + hjkl)
 		{ key = "h", mods = "ALT", action = act.AdjustPaneSize({ "Left", 3 }) },
 		{ key = "j", mods = "ALT", action = act.AdjustPaneSize({ "Down", 3 }) },
 		{ key = "k", mods = "ALT", action = act.AdjustPaneSize({ "Up", 3 }) },
 		{ key = "l", mods = "ALT", action = act.AdjustPaneSize({ "Right", 3 }) },
 	}
-	
+
 	-- Ensure keys table exists
 	config.keys = config.keys or {}
-	
+
 	-- Add smart splits keys to existing keys
 	for _, key in ipairs(smart_splits_keys) do
 		table.insert(config.keys, key)

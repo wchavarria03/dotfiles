@@ -7,19 +7,19 @@ function module.apply_to_config(config)
 		-- Background and foreground
 		background = "#0b0b12",
 		foreground = "#C1C9E6",
-		
+
 		-- Cursor colors
 		cursor_bg = "#00BFFF",
 		cursor_fg = "#C1C9E6",
 		cursor_border = "#00BFFF",
-		
+
 		-- Selection colors
 		selection_bg = "#464957",
 		selection_fg = "#C1C9E6",
-		
+
 		-- Split divider color
 		split = "#AD6FF7",
-		
+
 		-- Tab bar colors to blend with background
 		tab_bar = {
 			background = "#0b0b12",
@@ -32,7 +32,7 @@ function module.apply_to_config(config)
 				fg_color = "#A3AAC2",
 			},
 		},
-		
+
 		ansi = {
 			"#191926", -- black (palette 0)
 			"#E66767", -- red (palette 1)
