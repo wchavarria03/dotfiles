@@ -39,4 +39,7 @@ return {
             },
         },
     },
+    dependencies = {
+        'copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
+    },
 }
