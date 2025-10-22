@@ -17,6 +17,7 @@ return {
         indent = { enable = true },
         ensure_installed = {
             'bash',
+            'beancount',
 
             'diff',
             'css',

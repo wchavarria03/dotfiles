@@ -36,6 +36,8 @@ return {
             'terraformls', -- terraform
             'cairo_ls', -- cairo
 
+            'beancount',
+
             -- Linters
             -- ruff
             -- tflint  -- (terraform linter)

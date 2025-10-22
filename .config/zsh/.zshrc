@@ -74,3 +74,4 @@ source <(carapace _carapace)
 
 ### uv python
 . "$HOME/.config/local/share/../bin/env"
+export PATH="/Users/wchavarria/.config/local/share/../bin:$PATH"
