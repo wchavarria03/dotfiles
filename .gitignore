@@ -31,3 +31,6 @@ scripts
 .gemini/google_accounts.json
 .gemini/oauth_creds.json
 .gemini/tmp/
+
+## Ignore nvim nightly build packages
+nvim-macos-arm64
