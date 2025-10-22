@@ -28,6 +28,7 @@ return {
             enabled = true,
             timeout = 3000,
         },
+        zen = {},
     },
     keys = {
         -- Buffer management
@@ -377,6 +378,13 @@ return {
                 require('snacks').picker.git_log_file()
             end,
             desc = 'Git Log File',
+        },
+        {
+            '<leader>z',
+            function()
+                require('snacks').zen()
+            end,
+            desc = 'Zen Mode',
         },
     },
     config = function(_, opts)
