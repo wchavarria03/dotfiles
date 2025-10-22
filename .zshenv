@@ -8,6 +8,7 @@ export WORKSPACE_WORK="$HOME/work"
 export SECRETSREPO="$HOME/personal/secrets"
 export DOTFILES="$HOME/personal/dotfiles"
 export NOTES_DIR="$HOME/personal/notes"
+export MY_COLLECTIONS="$HOME/personal/my-collections"
 
 [ -f "$DOTFILES/install_config" ] && source "$DOTFILES/install_config"
 
