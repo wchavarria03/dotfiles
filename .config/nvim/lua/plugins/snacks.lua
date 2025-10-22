@@ -129,7 +129,60 @@ return {
         {
             '<leader>sn',
             function()
-                require('snacks').picker.notifications()
+                require('snacks').picker.notifications {
+                    confirm = function(picker, item)
+                        -- Close the picker
+                        picker:close()
+
+                        -- Get notification details - try different possible structures
+                        local notif = item.item or item
+                        local msg = notif.msg or notif.message or vim.inspect(notif)
+                        local title = notif.title or 'Notification'
+                        local level = notif.level or 'info'
+
+                        -- Create buffer content
+                        local lines = vim.split(msg, '\n')
+                        local content = {
+                            string.format('%s [%s]', title, level:upper()),
+                            string.rep('─', 60),
+                            '',
+                        }
+                        vim.list_extend(content, lines)
+
+                        -- Create floating window
+                        local buf = vim.api.nvim_create_buf(false, true)
+                        vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
+                        vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
+                        vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+                        vim.api.nvim_buf_set_option(buf, 'filetype', 'markdown')
+                        vim.api.nvim_buf_set_option(buf, 'modifiable', false)
+
+                        -- Calculate window size
+                        local width = math.min(100, vim.o.columns - 10)
+                        local height = math.min(30, #content + 2)
+
+                        -- Create floating window
+                        vim.schedule(function()
+                            local win = vim.api.nvim_open_win(buf, true, {
+                                relative = 'editor',
+                                width = width,
+                                height = height,
+                                col = math.floor((vim.o.columns - width) / 2),
+                                row = math.floor((vim.o.lines - height) / 2),
+                                style = 'minimal',
+                                border = 'rounded',
+                                title = ' Notification ',
+                                title_pos = 'center',
+                            })
+
+                            -- Add keymaps to close the window
+                            local close_opts = { noremap = true, silent = true, buffer = buf }
+                            vim.keymap.set('n', 'q', '<cmd>close<cr>', close_opts)
+                            vim.keymap.set('n', '<Esc>', '<cmd>close<cr>', close_opts)
+                            vim.keymap.set('n', '<CR>', '<cmd>close<cr>', close_opts)
+                        end)
+                    end,
+                }
             end,
             desc = 'Search Notification History',
         },
@@ -190,6 +243,23 @@ return {
                 require('snacks').picker.diagnostics_buffer()
             end,
             desc = 'Buffer Diagnostics',
+        },
+        {
+            '<leader>sm',
+            function()
+                -- Open messages in a new buffer
+                local messages = vim.fn.execute 'messages'
+                local buf = vim.api.nvim_create_buf(false, true)
+                vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(messages, '\n'))
+                vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
+                vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+                vim.api.nvim_buf_set_option(buf, 'filetype', 'messages')
+                vim.api.nvim_set_current_buf(buf)
+                vim.api.nvim_buf_set_name(buf, 'Messages')
+                -- Enable text selection and copying
+                vim.api.nvim_buf_set_keymap(buf, 'n', 'q', ':bd<CR>', { noremap = true, silent = true })
+            end,
+            desc = 'Show Messages (full)',
         },
         {
             '<leader>sh',
