@@ -30,6 +30,9 @@ alias h='history'
 alias zn="$DOTFILES/scripts/note.sh"
 # alias notes="$DOTFILES/scripts/notes.sh"
 
+# AWS Profile Switcher
+source "$HOME/personal/scripts/awsp/awsp_alias.zsh"
+
 # Opens a API Terminal
 alias term_api='open -na Ghostty.app --args --title="API Terminal"'
 
