@@ -74,6 +74,14 @@ return {
 
                 -- Configuration files
                 toml = { 'taplo' },
+                http = { 'kulala' },
+            },
+            formatters = {
+                kulala = {
+                    command = 'kulala-fmt',
+                    args = { 'format', '$FILENAME' },
+                    stdin = false,
+                },
             },
         }
         vim.g.autoformat = true
