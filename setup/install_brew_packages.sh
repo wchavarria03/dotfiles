@@ -15,6 +15,7 @@ install_brew_packages() {
 
     local packages=(
         asdf
+        awscli
         bash
         direnv
         eza
