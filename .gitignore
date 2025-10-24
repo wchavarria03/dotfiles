@@ -32,5 +32,10 @@ scripts
 .gemini/oauth_creds.json
 .gemini/tmp/
 
+.cargo/registry/
+.cargo/git/
+.cargo/*-cache
+.cargo/*-cache-*
+
 ## Ignore nvim nightly build packages
 nvim-macos-arm64
