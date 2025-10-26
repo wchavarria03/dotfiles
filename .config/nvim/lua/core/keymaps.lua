@@ -7,21 +7,13 @@ vim.keymap.set({ 'n', 'x' }, '<Up>', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up',
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line up', noremap = true, silent = true })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line down', noremap = true, silent = true })
 
--- Buffers navigation
-vim.keymap.set('n', '<C-k>', '<C-w><up>', { desc = 'Move Up', expr = true, silent = true })
-vim.keymap.set('n', '<C-h>', '<C-w><left>', { desc = 'Move Left', expr = true, silent = true })
-
 -- Avoid Arrow Keys
 vim.keymap.set('', '<up>', '<nop>', { desc = 'Global: Arrow up disabled' })
 vim.keymap.set('', '<down>', '<nop>', { desc = 'Global: Arrow down disabled' })
 vim.keymap.set('', '<left>', '<nop>', { desc = 'Global: Arrow left disabled' })
 vim.keymap.set('', '<right>', '<nop>', { desc = 'Global: Arrow right disabled' })
 
--- Navigation
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Global: Move Left Window' })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Global: Move Right Window' })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Global: Move Up Window' })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Global: Move Down Window' })
+-- Note: Window navigation (<C-h/j/k/l>) is handled by smart-splits plugin
 
 -- Escape mapping
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Global: Escape' })
