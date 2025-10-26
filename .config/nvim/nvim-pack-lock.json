@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "cloak.nvim": {
+      "rev": "648aca6",
+      "src": "https://github.com/laytan/cloak.nvim"
+    },
     "conform.nvim": {
       "rev": "9fd3d5e",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -20,9 +24,17 @@
       "rev": "20ad441",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "hardtime.nvim": {
+      "rev": "b4e4319",
+      "src": "https://github.com/m4xshen/hardtime.nvim"
+    },
     "incline.nvim": {
       "rev": "0fd2d5a",
       "src": "https://github.com/b0o/incline.nvim"
+    },
+    "kulala.nvim": {
+      "rev": "183bf44",
+      "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "mason-lspconfig.nvim": {
       "rev": "2304ff6",
@@ -51,6 +63,14 @@
     "nvim-lspconfig": {
       "rev": "e5c61b0",
       "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "plenary.nvim": {
+      "rev": "b9fd522",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "precognition.nvim": {
+      "rev": "2aae268",
+      "src": "https://github.com/tris203/precognition.nvim"
     },
     "render-markdown.nvim": {
       "rev": "bfd67f1",

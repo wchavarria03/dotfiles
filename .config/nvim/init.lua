@@ -24,6 +24,9 @@ require 'plugins.linting.setup'
 -- Formating
 require 'plugins.formatting.conform-nvim'
 
+-- Utils
+require 'plugins.utils.setup'
+
 -- Languages
 require 'plugins.languages.setup'
 
