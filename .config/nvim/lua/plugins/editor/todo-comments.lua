@@ -1,8 +1,6 @@
-return {
-    'folke/todo-comments.nvim',
-    cmd = { 'TodoTrouble' },
-    event = { 'VeryLazy' },
-    opts = {},
+vim.pack.add { 'https://github.com/folke/todo-comments.nvim' }
+
+require('todo-comments').setup {
     keys = {
         {
             ']t',

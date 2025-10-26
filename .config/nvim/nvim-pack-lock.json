@@ -1,8 +1,36 @@
 {
   "plugins": {
+    "flash.nvim": {
+      "rev": "3be9bf7",
+      "src": "https://github.com/folke/flash.nvim"
+    },
+    "gitsigns.nvim": {
+      "rev": "20ad441",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
+    "incline.nvim": {
+      "rev": "0fd2d5a",
+      "src": "https://github.com/b0o/incline.nvim"
+    },
+    "mini.nvim": {
+      "rev": "cf32454",
+      "src": "https://github.com/echasnovski/mini.nvim"
+    },
     "nvim": {
       "rev": "af58927",
       "src": "https://github.com/catppuccin/nvim"
     },
+    "todo-comments.nvim": {
+      "rev": "19d461d",
+      "src": "https://github.com/folke/todo-comments.nvim"
+    },
+    "trouble.nvim": {
+      "rev": "c098362",
+      "src": "https://github.com/folke/trouble.nvim"
+    },
+    "which-key.nvim": {
+      "rev": "b4177e3",
+      "src": "https://github.com/folke/which-key.nvim"
+    }
   }
 }

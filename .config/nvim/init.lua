@@ -8,4 +8,8 @@ require 'core.autocommands'
 
 -- General
 require 'plugins.colorscheme'
+
+-- Editor
+require 'plugins.editor.setup'
+
 require 'core.lsp'
