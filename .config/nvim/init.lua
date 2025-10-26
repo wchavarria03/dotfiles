@@ -18,6 +18,9 @@ require 'plugins.lsp.setup'
 -- AI
 require 'plugins.ai.setup'
 
+-- Linting
+require 'plugins.linting.setup'
+
 -- Formating
 require 'plugins.formatting.conform-nvim'
 
