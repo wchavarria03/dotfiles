@@ -45,7 +45,6 @@ vim.keymap.set('v', '>', '>gv', { desc = 'Indent', noremap = true, silent = true
 -- Windows
 vim.keymap.set('n', '<C-->', ':vsplit<CR>', { desc = 'Global: Window Split Vert' })
 vim.keymap.set('n', '<C-\\>', ':split<CR>', { desc = 'Global: Window Split Hori' })
-vim.keymap.set('n', '<C-\\>', ':split<CR>', { desc = 'Global: Window Split Hori' })
 
 -- Resize window using <ctrl> arrow keys
 vim.keymap.set('n', '<C->', '<cmd>resize +5<cr>', { desc = 'Global: Increase Window Height' })
