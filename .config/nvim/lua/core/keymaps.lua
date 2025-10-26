@@ -46,12 +46,6 @@ vim.keymap.set('v', '>', '>gv', { desc = 'Indent', noremap = true, silent = true
 vim.keymap.set('n', '<C-->', ':vsplit<CR>', { desc = 'Global: Window Split Vert' })
 vim.keymap.set('n', '<C-\\>', ':split<CR>', { desc = 'Global: Window Split Hori' })
 
--- Resize window using <ctrl> arrow keys
-vim.keymap.set('n', '<C->', '<cmd>resize +5<cr>', { desc = 'Global: Increase Window Height' })
-vim.keymap.set('n', '<C->', '<cmd>resize -5<cr>', { desc = 'Global: Decrease Window Height' })
-vim.keymap.set('n', '<C-<>', '<cmd>vertical resize -5<cr>', { desc = 'Global: Decrease Window Width' })
-vim.keymap.set('n', '<C->>', '<cmd>vertical resize +5<cr>', { desc = 'Global: Increase Window Width' })
-
 vim.keymap.set(
     'n',
     '<leader>ur',
