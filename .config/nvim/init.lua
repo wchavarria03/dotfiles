@@ -12,4 +12,7 @@ require 'plugins.colorscheme'
 -- Editor
 require 'plugins.editor.setup'
 
+-- AI
+require 'plugins.ai.setup'
+
 require 'core.lsp'

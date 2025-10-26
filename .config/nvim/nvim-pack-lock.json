@@ -1,5 +1,13 @@
 {
   "plugins": {
+    "copilot-lsp": {
+      "rev": "a80e0c1",
+      "src": "https://github.com/copilotlsp-nvim/copilot-lsp"
+    },
+    "copilot.lua": {
+      "rev": "3123983",
+      "src": "https://github.com/zbirenbaum/copilot.lua"
+    },
     "flash.nvim": {
       "rev": "3be9bf7",
       "src": "https://github.com/folke/flash.nvim"
