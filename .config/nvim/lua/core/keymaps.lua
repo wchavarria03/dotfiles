@@ -55,7 +55,7 @@ vim.keymap.set('n', '<C->>', '<cmd>vertical resize +5<cr>', { desc = 'Global: In
 
 vim.keymap.set(
     'n',
-    '<leader>tr',
+    '<leader>ur',
     '<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>',
     { desc = 'Redraw / Clear hlsearch / Diff Update' }
 )
