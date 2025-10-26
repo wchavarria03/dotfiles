@@ -6,4 +6,6 @@ require 'core.options'
 require 'core.keymaps'
 require 'core.autocommands'
 
+-- General
+require 'plugins.colorscheme'
 require 'core.lsp'

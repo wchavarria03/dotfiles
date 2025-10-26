@@ -1,55 +1,71 @@
 local colorsConfigs = require 'utils.colorschema-overrides'
 
-return {
-    -- Primary colorscheme (catppuccin)
-    {
-        'catppuccin/nvim',
-        name = 'catppuccin',
-        lazy = false, -- Load immediately for better UX
-        priority = 1000, -- Load early
-        opts = function()
-            math.randomseed(os.time())
-            local randomIndex = math.random(#colorsConfigs)
+vim.pack.add { 'https://github.com/catppuccin/nvim' }
 
-            return colorsConfigs[randomIndex]
-        end,
-        config = function(_, opts)
-            require('catppuccin').setup(opts)
-            vim.cmd.colorscheme 'catppuccin-macchiato'
+require('catppuccin').setup {
+    highlight_overrides = {
+        all = function(colors)
+            return {
+                CurSearch = { bg = colors.sky },
+                IncSearch = { bg = colors.sky },
+                CursorLineNr = { fg = colors.blue, style = { 'bold' } },
+                DashboardFooter = { fg = colors.overlay0 },
+                TreesitterContextBottom = { style = {} },
+                WinSeparator = { fg = colors.overlay0, style = { 'bold' } },
+                ['@markup.italic'] = { fg = colors.blue, style = { 'italic' } },
+                ['@markup.strong'] = { fg = colors.blue, style = { 'bold' } },
+                Headline = { style = { 'bold' } },
+                Headline1 = { fg = colors.blue, style = { 'bold' } },
+                Headline2 = { fg = colors.pink, style = { 'bold' } },
+                Headline3 = { fg = colors.lavender, style = { 'bold' } },
+                Headline4 = { fg = colors.green, style = { 'bold' } },
+                Headline5 = { fg = colors.peach, style = { 'bold' } },
+                Headline6 = { fg = colors.flamingo, style = { 'bold' } },
+                rainbow1 = { fg = colors.blue, style = { 'bold' } },
+                rainbow2 = { fg = colors.pink, style = { 'bold' } },
+                rainbow3 = { fg = colors.lavender, style = { 'bold' } },
+                rainbow4 = { fg = colors.green, style = { 'bold' } },
+                rainbow5 = { fg = colors.peach, style = { 'bold' } },
+                rainbow6 = { fg = colors.flamingo, style = { 'bold' } },
+            }
         end,
     },
-    -- Alternative colorscheme (tokyonight) - available for manual switching
-    {
-        'folke/tokyonight.nvim',
-        name = 'tokyonight',
-        lazy = true, -- Load only when needed
-        opts = {
-            style = 'night', -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-            light_style = 'day', -- The theme is used when the background is set to light
-            transparent = false, -- Enable this to disable setting the background color
-            terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-            styles = {
-                -- Style to be applied to different syntax groups
-                -- Value is any valid attr-list value for `:help nvim_set_hl`
-                comments = { italic = false },
-                keywords = { italic = false },
-                functions = {},
-                variables = {},
-                -- Background styles. Can be "dark", "transparent" or "normal"
-                sidebars = 'dark', -- style for sidebars, see below
-                floats = 'dark', -- style for floating windows
-            },
-            sidebars = { 'qf', 'help' }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-            day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
-            hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
-            dim_inactive = false, -- dims inactive windows
-            lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
-            on_colors = function(colors) end, -- Override colors
-            on_highlights = function(hl, c) end, -- Override highlight groups
+    color_overrides = {
+        macchiato = {
+            rosewater = '#F5B8AB',
+            flamingo = '#F29D9D',
+            pink = '#AD6FF7',
+            mauve = '#FF8F40',
+            red = '#E66767',
+            maroon = '#EB788B',
+            peach = '#FAB770',
+            yellow = '#FACA64',
+            green = '#70CF67',
+            teal = '#4CD4BD',
+            sky = '#61BDFF',
+            sapphire = '#4BA8FA',
+            blue = '#00BFFF',
+            lavender = '#00BBCC',
+            text = '#C1C9E6',
+            subtext1 = '#A3AAC2',
+            subtext0 = '#8E94AB',
+            overlay2 = '#7D8296',
+            overlay1 = '#676B80',
+            overlay0 = '#464957',
+            surface2 = '#3A3D4A',
+            surface1 = '#2F313D',
+            surface0 = '#1D1E29',
+            base = '#0b0b12',
+            mantle = '#11111a',
+            crust = '#191926',
         },
-        config = function(_, opts)
-            require('tokyonight').setup(opts)
-            vim.cmd.colorscheme 'tokyonight'
-        end,
+    },
+    integrations = {
+        telescope = {
+            enabled = true,
+            style = 'nvchad',
+        },
     },
 }
+
+vim.cmd.colorscheme 'catppuccin-macchiato'
