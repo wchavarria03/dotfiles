@@ -13,11 +13,9 @@ vim.o.smartindent = true -- Insert indents automatically
 vim.o.swapfile = false -- Don't use swapfile
 vim.o.undofile = true
 vim.o.undolevels = 5000
-vim.o.undodir = vim.fn.stdpath('data') .. '/undodir' -- Set undo directory
 
 vim.o.ignorecase = true -- ignore case letters when search
 vim.o.smartcase = true -- Don't ignore case with capitals
-vim.o.inccommand = 'nosplit' -- preview incremental substitute
 
 vim.o.termguicolors = true -- True color support
 vim.o.scrolloff = 4 -- Lines of context
@@ -50,8 +48,6 @@ vim.o.ruler = false -- Disable the default ruler
 vim.o.showmode = false -- Don't show mode since we have a statusline
 vim.o.sidescrolloff = 8 -- Columns of context
 vim.o.spell = true
-vim.o.spelllang = 'en'
-vim.o.splitbelow = true -- Put new windows below current
 vim.o.splitkeep = 'screen'
 vim.o.timeoutlen = 300 -- Lower than default (1000) to quickly trigger which-key
 vim.o.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
@@ -64,11 +60,7 @@ vim.o.list = true -- Show some invisible characters
 
 -- Performance optimizations
 vim.o.lazyredraw = true -- Don't redraw while executing macros
-vim.o.hidden = true -- Hide buffers instead of closing them
-vim.o.backup = false -- Don't create backup files
 vim.o.writebackup = false -- Don't create backup files
 vim.o.history = 1000 -- Increase command history
-vim.o.shada = '!,\'1000,<50,s10,h' -- Increase shada history
+vim.o.shada = "!,'1000,<50,s10,h" -- Increase shada history
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions' -- Session options
-vim.o.viewoptions = 'cursor,folds,slash,unix' -- View options
-vim.o.viminfo = '!,\'1000,<50,s10,h' -- Viminfo options
