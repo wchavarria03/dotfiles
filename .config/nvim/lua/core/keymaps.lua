@@ -69,7 +69,10 @@ vim.schedule(function()
         snacks.toggle.diagnostics():map '<leader>td'
         snacks.toggle.line_number():map '<leader>tl'
         snacks.toggle
-            .option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = 'Conceal Level' })
+            .option(
+                'conceallevel',
+                { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = 'Conceal Level' }
+            )
             :map '<leader>tc'
         snacks.toggle.treesitter():map '<leader>tT'
         snacks.toggle.dim():map '<leader>tD'
@@ -141,7 +144,7 @@ end)
 -- vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
 -- Load notes functions
-local notes = require('utils.notes')
+local notes = require 'utils.notes'
 
 -- Markdown formatting (using leader>n prefix)
 vim.keymap.set('i', '<leader>nb', '****<Left><Left>', { desc = 'Bold Text' })
@@ -161,10 +164,18 @@ vim.keymap.set('i', '<leader>nl', notes.insert_unordered_list, { desc = 'Unorder
 vim.keymap.set('i', '<leader>n1', notes.insert_ordered_list, { desc = 'Ordered List Item' })
 
 -- Note-specific keymaps using leader>n prefix
-vim.keymap.set('n', '<leader>nh1', function() notes.insert_header(1) end, { desc = 'Header 1' })
-vim.keymap.set('n', '<leader>nh2', function() notes.insert_header(2) end, { desc = 'Header 2' })
-vim.keymap.set('n', '<leader>nh3', function() notes.insert_header(3) end, { desc = 'Header 3' })
-vim.keymap.set('n', '<leader>nh4', function() notes.insert_header(4) end, { desc = 'Header 4' })
+vim.keymap.set('n', '<leader>nh1', function()
+    notes.insert_header(1)
+end, { desc = 'Header 1' })
+vim.keymap.set('n', '<leader>nh2', function()
+    notes.insert_header(2)
+end, { desc = 'Header 2' })
+vim.keymap.set('n', '<leader>nh3', function()
+    notes.insert_header(3)
+end, { desc = 'Header 3' })
+vim.keymap.set('n', '<leader>nh4', function()
+    notes.insert_header(4)
+end, { desc = 'Header 4' })
 
 -- Quick todo items (smart checkbox handling)
 vim.keymap.set('n', '<leader>ntt', notes.toggle_todo, { desc = 'Add/Toggle Todo Item' })
@@ -186,8 +197,8 @@ vim.keymap.set('n', '<leader>no', notes.open_notes_folder, { desc = 'Open notes 
 -- Colorscheme switching for different workflows
 vim.keymap.set('n', '<leader>tc', function()
     if vim.g.colors_name == 'catppuccin-macchiato' then
-        vim.cmd('colorscheme tokyonight-night')
+        vim.cmd 'colorscheme tokyonight-night'
     else
-        vim.cmd('colorscheme catppuccin-macchiato')
+        vim.cmd 'colorscheme catppuccin-macchiato'
     end
 end, { desc = 'Toggle colorscheme (catppuccin/tokyonight)' })
