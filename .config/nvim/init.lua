@@ -24,6 +24,9 @@ require 'plugins.linting.setup'
 -- Formating
 require 'plugins.formatting.conform-nvim'
 
+-- UI
+require 'plugins.ui.lualine'
+
 -- Treesitter
 require 'plugins.treesitter.treesitter'
 

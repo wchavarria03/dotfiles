@@ -36,6 +36,10 @@
       "rev": "183bf44",
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
+    "lualine.nvim": {
+      "rev": "3946f01",
+      "src": "http://github.com/nvim-lualine/lualine.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "2304ff6",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
