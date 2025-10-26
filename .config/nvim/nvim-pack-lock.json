@@ -52,6 +52,10 @@
       "rev": "e5c61b0",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
+    "render-markdown.nvim": {
+      "rev": "bfd67f1",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
     "todo-comments.nvim": {
       "rev": "19d461d",
       "src": "https://github.com/folke/todo-comments.nvim"
