@@ -15,4 +15,7 @@ require 'plugins.editor.setup'
 -- AI
 require 'plugins.ai.setup'
 
+-- Formating
+require 'plugins.formatting.conform-nvim'
+
 require 'core.lsp'

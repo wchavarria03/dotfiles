@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "conform.nvim": {
+      "rev": "9fd3d5e",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
     "copilot-lsp": {
       "rev": "a80e0c1",
       "src": "https://github.com/copilotlsp-nvim/copilot-lsp"
