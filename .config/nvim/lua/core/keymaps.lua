@@ -120,7 +120,7 @@ vim.schedule(function()
                     vim.g.hardtime = not vim.g.hardtime
                 end,
             })
-            :map '<leader>th'
+            :map '<leader>tH'
     end
 end)
 
