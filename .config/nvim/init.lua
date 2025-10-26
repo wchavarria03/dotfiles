@@ -36,6 +36,7 @@ require 'plugins.treesitter.treesitter'
 
 -- Utils
 require 'plugins.utils.setup'
+pcall(require, 'undotree')
 
 -- Languages
 require 'plugins.languages.setup'
