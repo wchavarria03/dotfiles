@@ -15,19 +15,19 @@
     "showLineNumbers": true
   },
   "model": {
-    "modelId": "default",
-    "displayModelId": "auto",
-    "displayName": "Auto",
-    "displayNameShort": "Auto",
+    "modelId": "claude-4.5-sonnet",
+    "displayModelId": "sonnet-4.5",
+    "displayName": "Claude 4.5 Sonnet",
+    "displayNameShort": "Sonnet 4.5",
     "aliases": [
-      "auto"
+      "sonnet-4.5"
     ]
   },
   "hasChangedDefaultModel": true,
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1759364735071
+    "updatedAt": 1761437996566
   },
   "network": {
     "useHttp1ForAgent": false
