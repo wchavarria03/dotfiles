@@ -24,6 +24,14 @@
       "rev": "0fd2d5a",
       "src": "https://github.com/b0o/incline.nvim"
     },
+    "mason-lspconfig.nvim": {
+      "rev": "2304ff6",
+      "src": "https://github.com/mason-org/mason-lspconfig.nvim"
+    },
+    "mason.nvim": {
+      "rev": "ad7146a",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
     "mini.nvim": {
       "rev": "cf32454",
       "src": "https://github.com/echasnovski/mini.nvim"
@@ -31,6 +39,10 @@
     "nvim": {
       "rev": "af58927",
       "src": "https://github.com/catppuccin/nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "e5c61b0",
+      "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "todo-comments.nvim": {
       "rev": "19d461d",
