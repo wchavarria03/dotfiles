@@ -41,4 +41,3 @@ pcall(require, 'undotree')
 -- Languages
 require 'plugins.languages.setup'
 
-require 'core.lsp'
