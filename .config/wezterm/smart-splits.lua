@@ -61,11 +61,12 @@ function module.apply_to_config(config)
 			end),
 		},
 
-		-- Pane resizing (Alt + hjkl)
-		{ key = "h", mods = "ALT", action = act.AdjustPaneSize({ "Left", 3 }) },
-		{ key = "j", mods = "ALT", action = act.AdjustPaneSize({ "Down", 3 }) },
-		{ key = "k", mods = "ALT", action = act.AdjustPaneSize({ "Up", 3 }) },
-		{ key = "l", mods = "ALT", action = act.AdjustPaneSize({ "Right", 3 }) },
+		-- Pane resizing (Ctrl+Shift+hjkl)
+		-- These work in both vim and non-vim panes since vim uses different keys (<leader>r+hjkl)
+		{ key = "h", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Left", 3 }) },
+		{ key = "j", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Down", 3 }) },
+		{ key = "k", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Up", 3 }) },
+		{ key = "l", mods = "CTRL|SHIFT", action = act.AdjustPaneSize({ "Right", 3 }) },
 	}
 
 	-- Ensure keys table exists
