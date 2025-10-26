@@ -8,6 +8,7 @@ require 'core.autocommands'
 
 -- General
 require 'plugins.colorscheme'
+require 'plugins.snacks'
 
 -- Editor
 require 'plugins.editor.setup'

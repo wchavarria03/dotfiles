@@ -89,6 +89,10 @@
       "rev": "9a26145",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
+    "snacks.nvim": {
+      "rev": "f27b8b3",
+      "src": "https://github.com/folke/snacks.nvim"
+    },
     "todo-comments.nvim": {
       "rev": "19d461d",
       "src": "https://github.com/folke/todo-comments.nvim"
