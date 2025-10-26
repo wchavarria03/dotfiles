@@ -1,7 +1,7 @@
 {
   "plugins": {
     "SchemaStore.nvim": {
-      "rev": "54994d5",
+      "rev": "4341619",
       "src": "https://github.com/b0o/SchemaStore.nvim"
     },
     "blink-cmp-copilot": {
@@ -9,7 +9,7 @@
       "src": "https://github.com/giuxtaposition/blink-cmp-copilot"
     },
     "blink.cmp": {
-      "rev": "8743384",
+      "rev": "327fff9",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
@@ -26,7 +26,7 @@
       "src": "https://github.com/copilotlsp-nvim/copilot-lsp"
     },
     "copilot.lua": {
-      "rev": "3123983",
+      "rev": "7fe314f",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "flash.nvim": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/b0o/incline.nvim"
     },
     "kulala.nvim": {
-      "rev": "183bf44",
+      "rev": "9a9308b",
       "src": "https://github.com/mistweaverco/kulala.nvim"
     },
     "lualine.nvim": {
@@ -54,7 +54,7 @@
       "src": "http://github.com/nvim-lualine/lualine.nvim"
     },
     "mason-lspconfig.nvim": {
-      "rev": "2304ff6",
+      "rev": "1d77bd8",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
     },
     "mason-nvim-lint": {
@@ -66,11 +66,11 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "cf32454",
+      "rev": "d1a9158",
       "src": "https://github.com/echasnovski/mini.nvim"
     },
     "nvim": {
-      "rev": "af58927",
+      "rev": "8c4125e",
       "src": "https://github.com/catppuccin/nvim"
     },
     "nvim-lint": {
@@ -78,16 +78,16 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "e5c61b0",
+      "rev": "a9b2fb5",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter": {
-      "rev": "30c466ad",
+      "rev": "738d9ced",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
     "nvim-web-devicons": {
-      "rev": "b8221e4",
+      "rev": "8dcb311",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "plenary.nvim": {
@@ -103,19 +103,23 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "smart-splits.nvim": {
-      "rev": "9a26145",
+      "rev": "6c7c64b",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
     },
     "snacks.nvim": {
-      "rev": "f27b8b3",
+      "rev": "ecde81f",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "todo-comments.nvim": {
       "rev": "19d461d",
       "src": "https://github.com/folke/todo-comments.nvim"
     },
+    "tokyonight.nvim": {
+      "rev": "4fe1b0c",
+      "src": "https://github.com/folke/tokyonight.nvim"
+    },
     "trouble.nvim": {
-      "rev": "c098362",
+      "rev": "76030c5",
       "src": "https://github.com/folke/trouble.nvim"
     },
     "which-key.nvim": {
