@@ -1,5 +1,18 @@
 {
   "plugins": {
+    "SchemaStore.nvim": {
+      "rev": "54994d5",
+      "src": "https://github.com/b0o/SchemaStore.nvim"
+    },
+    "blink-cmp-copilot": {
+      "rev": "439cff7",
+      "src": "https://github.com/giuxtaposition/blink-cmp-copilot"
+    },
+    "blink.cmp": {
+      "rev": "8743384",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "1.0.0 - 2.0.0"
+    },
     "cloak.nvim": {
       "rev": "648aca6",
       "src": "https://github.com/laytan/cloak.nvim"
@@ -72,6 +85,10 @@
       "rev": "30c466ad",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
+    },
+    "nvim-web-devicons": {
+      "rev": "b8221e4",
+      "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "plenary.nvim": {
       "rev": "b9fd522",

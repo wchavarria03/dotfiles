@@ -162,13 +162,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         lsp_opts.desc = 'Restart LSP'
         vim.keymap.set('n', '<leader>lr', ':LspRestart<CR>', lsp_opts) -- mapping to restart lsp if necessary
 
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            lsp_opts.desc = '[T]oggle Inlay [H]ints'
-            vim.keymap.set('n', '<leader>th', function()
-                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, lsp_opts)
-        end
+        -- Note: Inlay hints toggle is handled globally by Snacks in keymaps.lua (<leader>th)
     end,
 })
 
@@ -221,4 +215,3 @@ vim.api.nvim_create_autocmd('LspProgress', {
         })
     end,
 })
-

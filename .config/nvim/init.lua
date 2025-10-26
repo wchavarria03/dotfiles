@@ -19,6 +19,9 @@ require 'plugins.lsp.setup'
 -- AI
 require 'plugins.ai.setup'
 
+-- Coding
+require 'plugins.coding.setup'
+
 -- Linting
 require 'plugins.linting.setup'
 
