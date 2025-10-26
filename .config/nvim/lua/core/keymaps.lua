@@ -183,9 +183,6 @@ vim.keymap.set('n', '<leader>nhr', notes.insert_horizontal_rule, { desc = 'Horiz
 -- Note navigation
 vim.keymap.set('n', '<leader>no', notes.open_notes_folder, { desc = 'Open notes folder' })
 
--- Zen mode for focused writing
-vim.keymap.set('n', '<leader>nz', notes.toggle_zen_mode, { desc = 'Toggle zen mode' })
-
 -- Colorscheme switching for different workflows
 vim.keymap.set('n', '<leader>tc', function()
     if vim.g.colors_name == 'catppuccin-macchiato' then
