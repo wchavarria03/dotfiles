@@ -9,7 +9,7 @@ source "$(dirname "$0")/terminal_utils.sh"
 
 # Setup this terminal instance
 setup_terminal_instance "api" "API Terminal"
-cd ~/personal/my-collections/ || exit 1
+cd ~/personal/my-api-collections/ || exit 1
 
 # Last collection management
 LAST_COLLECTION_FILE="/tmp/api_terminal_last_collection_$$"
@@ -42,7 +42,7 @@ save_last_env() {
 # Environment selection function
 select_environment() {
     local collection="$1"
-    local collection_path="$HOME/personal/my-collections/$collection"
+    local collection_path="$HOME/personal/my-api-collections/$collection"
 
     # Find all .env files in the collection directory
     local env_files=()
@@ -119,7 +119,7 @@ select_environment() {
 build_posting_command() {
     local collection="$1"
     local env="$2"
-    local collection_path="$HOME/personal/my-collections/$collection"
+    local collection_path="$HOME/personal/my-api-collections/$collection"
 
     if [ "$env" = "none" ] || [ -z "$env" ]; then
         echo "uvx posting --collection $collection_path"
@@ -198,7 +198,7 @@ show_collection_selection() {
 commit_collections() {
     clear
     echo "💾 Saving and committing collections to GitHub..."
-    cd ~/personal/my-collections/ || return
+    cd ~/personal/my-api-collections/ || return
     
     if git diff --quiet && git diff --cached --quiet; then
         echo "✅ No changes to commit"
@@ -268,7 +268,7 @@ while true; do
         n)
             if [ -n "$LAST_COLLECTION" ]; then
                 # Expand the path and escape properly for the new instance
-                collection_path="/Users/wchavarria/personal/my-collections/$LAST_COLLECTION"
+                collection_path="/Users/wchavarria/personal/my-api-collections/$LAST_COLLECTION"
                 if [ -n "$LAST_ENV" ] && [ "$LAST_ENV" != "none" ]; then
                     return_command="uvx posting --collection \"$collection_path\" --env \"$collection_path/${LAST_ENV}.env\""
                 else

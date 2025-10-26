@@ -64,8 +64,8 @@ main() {
   setup_notes
 
   echo "${COLOR_GREEN}- Setup COLLECTIONS repo${COLOR_RESET}"
-  source setup_collections.sh
-  setup_collections
+  source setup_api_collections.sh
+  setup_api_collections
 
   echo " "
   echo "${COLOR_GREEN}******** Stage 4 - Configure MAC ********${COLOR_RESET}"
