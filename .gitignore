@@ -34,6 +34,7 @@ scripts
 
 .cargo/registry/
 .cargo/git/
+.cargo/bin/
 .cargo/*-cache
 .cargo/*-cache-*
 
