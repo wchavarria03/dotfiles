@@ -27,18 +27,17 @@ vim.api.nvim_create_autocmd('PackChanged', {
 vim.pack.add {
     {
         src = 'https://github.com/nvim-treesitter/nvim-treesitter',
-        version = 'main',
     },
 }
 
--- Load the plugin immediately (treesitter does NOT support lazy-loading)
+-- Load the plugin immediately
 vim.cmd 'packadd nvim-treesitter'
 
 -- ----------------------------------------------------------------------------
 -- Plugin Setup
 -- ----------------------------------------------------------------------------
 
-require('nvim-treesitter').setup {
+require('nvim-treesitter.configs').setup {
     highlight = { enable = true },
     indent = { enable = true },
     ensure_installed = {
@@ -108,7 +107,7 @@ require('nvim-treesitter').setup {
         },
     },
     -- Performance optimizations
-    sync_install = false,
+    sync_install = true,
     auto_install = true,
     ignore_install = {},
 }
