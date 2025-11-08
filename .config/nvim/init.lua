@@ -39,7 +39,6 @@ require 'plugins.formatting.conform-nvim'
 require 'plugins.ui.lualine'
 
 -- Additional Utils (non-core utilities)
-require 'plugins.utils.kulala'
 require 'plugins.utils.cloak'
 require 'plugins.utils.smart-splits'
 require 'plugins.utils.hardtime'
@@ -49,3 +48,5 @@ pcall(require, 'undotree')
 
 -- Languages (render-markdown depends on treesitter)
 require 'plugins.languages.setup'
+
+require 'plugins.utils.kulala'

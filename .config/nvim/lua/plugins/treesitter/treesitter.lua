@@ -27,6 +27,7 @@ vim.api.nvim_create_autocmd('PackChanged', {
 vim.pack.add {
     {
         src = 'https://github.com/nvim-treesitter/nvim-treesitter',
+        checkout = 'main',
     },
 }
 
@@ -37,77 +38,87 @@ vim.cmd 'packadd nvim-treesitter'
 -- Plugin Setup
 -- ----------------------------------------------------------------------------
 
-require('nvim-treesitter.configs').setup {
-    highlight = { enable = true },
-    indent = { enable = true },
-    ensure_installed = {
-        'bash',
-        'beancount',
-
-        'diff',
-        'css',
-        'csv',
-        'dockerfile',
-
-        -- Git
-        'git_config',
-        'git_rebase',
-        'gitattributes',
-        'gitcommit',
-        'gitignore',
-
-        -- Go
-        'go',
-        'gomod',
-        'gosum',
-        'gotmpl',
-        'gowork',
-
-        --JSON
-        'json5',
-
-        -- Python
-        'ninja',
-        'rst',
-
-        'cairo',
-        'html',
-        'javascript',
-        'jsdoc',
-        'jsonc',
-        'lua',
-        'luadoc',
-        'luap',
-        'make',
-        'markdown',
-        'markdown_inline',
-        'nginx',
-        'printf',
-        'python',
-        'query',
-        'regex',
-        'scss',
-        'solidity',
-        'terraform',
-        'toml',
-        'tsx',
-        'typescript',
-        'vim',
-        'vimdoc',
-        'xml',
-        'yaml',
-    },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = '<C-space>',
-            node_incremental = '<C-space>',
-            scope_incremental = false,
-            node_decremental = '<bs>',
-        },
-    },
-    -- Performance optimizations
-    sync_install = true,
-    auto_install = true,
-    ignore_install = {},
+-- The main branch has a simpler API - just install parsers
+local parsers_to_install = {
+    'bash',
+    'beancount',
+    'diff',
+    'css',
+    'csv',
+    'dockerfile',
+    -- Git
+    'git_config',
+    'git_rebase',
+    'gitattributes',
+    'gitcommit',
+    'gitignore',
+    -- Go
+    'go',
+    'gomod',
+    'gosum',
+    'gotmpl',
+    'gowork',
+    --JSON
+    'json5',
+    -- Python
+    'ninja',
+    'rst',
+    'cairo',
+    'html',
+    'javascript',
+    'jsdoc',
+    'jsonc',
+    'lua',
+    'luadoc',
+    'luap',
+    'make',
+    'markdown',
+    'markdown_inline',
+    'nginx',
+    'printf',
+    'python',
+    'query',
+    'regex',
+    'scss',
+    'solidity',
+    'terraform',
+    'toml',
+    'tsx',
+    'typescript',
+    'vim',
+    'vimdoc',
+    'xml',
+    'yaml',
 }
+
+-- Install parsers using TSInstall command
+-- The main branch uses a simpler API - parsers are installed via commands
+vim.schedule(function()
+    for _, parser in ipairs(parsers_to_install) do
+        if not vim.treesitter.language.get_lang(parser) then
+            vim.cmd('TSInstall ' .. parser)
+        end
+    end
+end)
+
+-- Enable treesitter highlighting for all filetypes
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = '*',
+    callback = function()
+        pcall(vim.treesitter.start)
+    end,
+})
+
+-- Enable incremental selection keymaps
+vim.keymap.set('n', '<C-space>', function()
+    vim.cmd('normal! v')
+    require('nvim-treesitter.incremental_selection').node_incremental()
+end, { desc = 'Init treesitter selection' })
+
+vim.keymap.set('v', '<C-space>', function()
+    require('nvim-treesitter.incremental_selection').node_incremental()
+end, { desc = 'Increment treesitter selection' })
+
+vim.keymap.set('v', '<bs>', function()
+    require('nvim-treesitter.incremental_selection').node_decremental()
+end, { desc = 'Decrement treesitter selection' })

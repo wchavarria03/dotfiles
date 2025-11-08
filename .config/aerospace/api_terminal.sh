@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Ensure uvx is available in PATH
-export PATH="$HOME/.config/local/bin:$PATH"
-
 # API Terminal using shared utilities
 # shellcheck source=./terminal_utils.sh
 source "$(dirname "$0")/terminal_utils.sh"
@@ -19,119 +16,16 @@ if [ -f "$LAST_COLLECTION_FILE" ]; then
     LAST_COLLECTION=$(cat "$LAST_COLLECTION_FILE")
 fi
 
-# Last environment management
-LAST_ENV_FILE="/tmp/api_terminal_last_env_$$"
-LAST_ENV=""
-
-if [ -f "$LAST_ENV_FILE" ]; then
-    LAST_ENV=$(cat "$LAST_ENV_FILE")
-fi
-
 # Save last selected collection
 save_last_collection() {
     echo "$1" > "$LAST_COLLECTION_FILE"
     LAST_COLLECTION="$1"
 }
 
-# Save last selected environment
-save_last_env() {
-    echo "$1" > "$LAST_ENV_FILE"
-    LAST_ENV="$1"
-}
-
-# Environment selection function
-select_environment() {
-    local collection="$1"
-    local collection_path="$HOME/personal/my-api-collections/$collection"
-
-    # Find all .env files in the collection directory
-    local env_files=()
-    while IFS= read -r -d '' file; do
-        env_files+=("$(basename "$file")")
-    done < <(find "$collection_path" -maxdepth 1 -name "*.env" -print0 2>/dev/null)
-
-    # Count env files
-    local env_count=${#env_files[@]}
-
-    # No env files found
-    if [ "$env_count" -eq 0 ]; then
-        echo "none"
-        return
-    fi
-
-    # Only one env file - auto-select it
-    if [ "$env_count" -eq 1 ]; then
-        local env_name="${env_files[0]%.env}"  # Remove .env extension
-        echo "$env_name"
-        return
-    fi
-
-    # Multiple env files - let user choose
-    echo "" >&2
-
-    # Build list of available env names
-    local env_names=""
-    for env_file in "${env_files[@]}"; do
-        if [ -z "$env_names" ]; then
-            env_names="${env_file%.env}"
-        else
-            env_names="$env_names, ${env_file%.env}"
-        fi
-    done
-
-    echo "🌍 Available environments: $env_names" >&2
-    echo "" >&2
-
-    local i=1
-    for env_file in "${env_files[@]}"; do
-        echo "  $i) ${env_file%.env}" >&2
-        ((i++))
-    done
-    echo "  $i) none (no environment file)" >&2
-
-    echo "" >&2
-    read -r -p "Choose environment (1-$i): " env_choice
-
-    # Handle numeric choice
-    if [[ "$env_choice" =~ ^[0-9]+$ ]]; then
-        if [ "$env_choice" -eq "$i" ]; then
-            echo "none"
-        elif [ "$env_choice" -gt 0 ] && [ "$env_choice" -lt "$i" ]; then
-            local selected_env="${env_files[$((env_choice-1))]}"
-            echo "${selected_env%.env}"
-        else
-            echo "none"
-        fi
-    else
-        # Try to match by name
-        for env_file in "${env_files[@]}"; do
-            local env_name="${env_file%.env}"
-            if [[ "${env_choice,,}" == "${env_name,,}" ]]; then
-                echo "$env_name"
-                return
-            fi
-        done
-        echo "none"
-    fi
-}
-
-# Build posting command with optional env
-build_posting_command() {
-    local collection="$1"
-    local env="$2"
-    local collection_path="$HOME/personal/my-api-collections/$collection"
-
-    if [ "$env" = "none" ] || [ -z "$env" ]; then
-        echo "uvx posting --collection $collection_path"
-    else
-        echo "uvx posting --collection $collection_path --env $collection_path/${env}.env"
-    fi
-}
-
 # Collection selection function
 show_collection_selection() {
     clear
-    echo "🚀 API Terminal - POSTING Collections"
+    echo "🚀 API Terminal - Kulala.nvim Collections"
     echo ""
     echo "Available collections:"
     printf '%s\n' */ | sed 's|/$||' | nl -w2 -s". "
@@ -143,16 +37,10 @@ show_collection_selection() {
 
         if [ -n "$collection" ]; then
             save_last_collection "$collection"
-            env=$(select_environment "$collection")
-            save_last_env "$env"
             clear
-            if [ "$env" = "none" ]; then
-                echo "Loading collection: $collection (no env)"
-            else
-                echo "Loading collection: $collection (env: $env)"
-            fi
-            posting_cmd=$(build_posting_command "$collection" "$env")
-            eval "$posting_cmd"
+            echo "Opening collection: $collection"
+            cd ~/personal/my-api-collections/"$collection" || return
+            nvim .
         fi
     else
         read -r -p "Enter collection number/name ('x' to cancel): " choice
@@ -163,16 +51,10 @@ show_collection_selection() {
             collection=$(printf '%s\n' */ | sed 's|/$||' | sed -n "${choice}p")
             if [ -n "$collection" ]; then
                 save_last_collection "$collection"
-                env=$(select_environment "$collection")
-                save_last_env "$env"
                 clear
-                if [ "$env" = "none" ]; then
-                    echo "Loading collection: $collection (no env)"
-                else
-                    echo "Loading collection: $collection (env: $env)"
-                fi
-                posting_cmd=$(build_posting_command "$collection" "$env")
-                eval "$posting_cmd"
+                echo "Opening collection: $collection"
+                cd ~/personal/my-api-collections/"$collection" || return
+                nvim .
             else
                 echo "Invalid choice number"
                 sleep 1
@@ -180,18 +62,20 @@ show_collection_selection() {
             fi
         else
             save_last_collection "$choice"
-            env=$(select_environment "$choice")
-            save_last_env "$env"
             clear
-            if [ "$env" = "none" ]; then
-                echo "Loading collection: $choice (no env)"
-            else
-                echo "Loading collection: $choice (env: $env)"
-            fi
-            posting_cmd=$(build_posting_command "$choice" "$env")
-            eval "$posting_cmd"
+            echo "Opening collection: $choice"
+            cd ~/personal/my-api-collections/"$choice" || return
+            nvim .
         fi
     fi
+}
+
+# Open nvim in the root collections folder
+open_collections_root() {
+    clear
+    echo "Opening API collections root..."
+    cd ~/personal/my-api-collections/ || return
+    nvim .
 }
 
 # Commit collections changes
@@ -223,18 +107,14 @@ commit_collections() {
 # Main menu loop
 while true; do
     # Build menu options dynamically
-    menu_options=("c) Choose a collection")
-    valid_choices="cnq"
-    prompt="Choice (c/n/s/q): "
+    menu_options=("c) Choose a collection" "r) Open collections root")
+    valid_choices="crnsq"
+    prompt="Choice (c/r/n/s/q): "
     
     if [ -n "$LAST_COLLECTION" ]; then
-        if [ -n "$LAST_ENV" ] && [ "$LAST_ENV" != "none" ]; then
-            menu_options+=("l) Use last collection ($LAST_COLLECTION - env: $LAST_ENV)")
-        else
-            menu_options+=("l) Use last collection ($LAST_COLLECTION - no env)")
-        fi
-        valid_choices="clnq"
-        prompt="Choice (c/l/n/s/q): "
+        menu_options+=("l) Use last collection ($LAST_COLLECTION)")
+        valid_choices="clrnsq"
+        prompt="Choice (c/l/r/n/s/q): "
     fi
     
     menu_options+=("n) Open new API terminal instance")
@@ -253,36 +133,23 @@ while true; do
         c)
             show_collection_selection
             ;;
+        r)
+            open_collections_root
+            ;;
         l)
             if [ -n "$LAST_COLLECTION" ]; then
                 clear
-                if [ "$LAST_ENV" = "none" ] || [ -z "$LAST_ENV" ]; then
-                    echo "Using last collection: $LAST_COLLECTION (no env)"
-                else
-                    echo "Using last collection: $LAST_COLLECTION (env: $LAST_ENV)"
-                fi
-                posting_cmd=$(build_posting_command "$LAST_COLLECTION" "$LAST_ENV")
-                eval "$posting_cmd"
+                echo "Using last collection: $LAST_COLLECTION"
+                cd ~/personal/my-api-collections/"$LAST_COLLECTION" || continue
+                nvim .
             fi
             ;;
         n)
-            if [ -n "$LAST_COLLECTION" ]; then
-                # Expand the path and escape properly for the new instance
-                collection_path="/Users/wchavarria/personal/my-api-collections/$LAST_COLLECTION"
-                if [ -n "$LAST_ENV" ] && [ "$LAST_ENV" != "none" ]; then
-                    return_command="uvx posting --collection \"$collection_path\" --env \"$collection_path/${LAST_ENV}.env\""
-                else
-                    return_command="uvx posting --collection \"$collection_path\""
-                fi
-            else
-                return_command=""
-            fi
-
             open_new_instance \
                 "/Users/wchavarria/personal/dotfiles/.config/aerospace/api_terminal.sh" \
                 "api_terminal.sh" \
                 "API Terminal" \
-                "$return_command"
+                ""
             ;;
         s)
             commit_collections

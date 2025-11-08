@@ -4,11 +4,11 @@
     "host": "https://github.com",
     "login": "wchavarria03"
   },
-  "theme": "auto",
   "logged_in_users": [
     {
       "host": "https://github.com",
       "login": "wchavarria03"
     }
-  ]
+  ],
+  "theme": "auto"
 }

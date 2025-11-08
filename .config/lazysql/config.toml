@@ -29,3 +29,15 @@ Port = ''
 DBName = 'peer-list-review-database'
 URLParams = ''
 Commands = []
+
+[[database]]
+Name = 'genealogy-ingestion-local'
+URL = 'mysql://root:password@127.0.0.1:3306/genealogy_ingestion'
+Provider = 'mysql'
+Username = 'root'
+Password = 'password'
+Hostname = '127.0.0.1'
+Port = '3306'
+DBName = 'genealogy_ingestion'
+URLParams = ''
+Commands = []

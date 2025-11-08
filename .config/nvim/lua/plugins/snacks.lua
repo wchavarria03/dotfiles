@@ -13,6 +13,8 @@ snacks.setup {
     statuscolumn = { enabled = true },
     words = { enabled = true },
     picker = {
+        gh_issue = {},
+        gh_pr = {},
         matcher = {
             frecency = true,
         },
@@ -194,6 +196,10 @@ end, { desc = 'Search Notification History' })
 --         desc = 'Buffer Diagnostics',
 --     },
 
+vim.keymap.set('n', '<leader>sd', function()
+    require('snacks').picker.diagnostics()
+end, { desc = 'Diagnostics' })
+
 vim.keymap.set('n', '<leader>sm', function()
     -- Open messages in a new buffer
     local messages = vim.fn.execute 'messages'
@@ -321,6 +327,22 @@ vim.keymap.set('n', '<leader>gY', function()
         notify = false,
     }
 end, { desc = 'Git Browse (copy)' })
+
+vim.keymap.set('n', '<leader>gi', function()
+    require('snacks').gh.issue()
+end, { desc = 'Git Open Issues' })
+
+vim.keymap.set('n', '<leader>gI', function()
+    require('snacks').gh.issue { state = 'all' }
+end, { desc = 'Git All Issues' })
+
+vim.keymap.set('n', '<leader>gp', function()
+    require('snacks').gh.pr()
+end, { desc = 'Git PRs' })
+
+vim.keymap.set('n', '<leader>gP', function()
+    require('snacks').gh.pr { state = 'all' }
+end, { desc = 'Git All PRs' })
 
 vim.keymap.set('n', '<leader>gb', function()
     require('snacks').picker.git_branches()

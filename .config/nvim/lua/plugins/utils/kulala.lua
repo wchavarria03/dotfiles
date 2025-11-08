@@ -5,32 +5,54 @@ vim.pack.add {
 -- ft = { 'http', 'rest' },
 
 require('kulala').setup {
-    default_view = 'body',
-    global_keymaps_prefix = '<leader>R',
-    debug = false,
-    contenttypes = {
-        ['application/json'] = {
-            ft = 'json',
-            formatter = { 'jq', '.' },
-        },
-        ['application/xml'] = {
-            ft = 'xml',
-            formatter = { 'xmllint', '--format', '-' },
-        },
-        ['text/html'] = {
-            ft = 'html',
-            formatter = { 'xmllint', '--format', '--html', '-' },
-        },
+    ui = {
+        display_mode = 'split',
+    },
+    global_keymaps_prefix = '<leader>k',
+}
+
+vim.filetype.add {
+    extension = {
+        ['http'] = 'http',
     },
 }
 
--- {
---     '<leader>kr',
---     function()
---         require('kulala').run()
---     end,
---     desc = 'Kulala: Run request',
--- },
+vim.keymap.set({ 'n', 'v' }, '<leader>kr', function()
+    require('kulala').run()
+end, { desc = 'Kulala: Run request' })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>kc', function()
+    require('kulala').copy()
+end, { desc = 'Kulala: Copy as cURL' })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>ke', function()
+    require('kulala').set_selected_env()
+end, { desc = 'Kulala: Select environment' })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>kn', function()
+    require('kulala').jump_next()
+end, { desc = 'Kulala: Jump to next request' })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>kp', function()
+    require('kulala').jump_prev()
+end, { desc = 'Kulala: Jump to previous request' })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>kf', function()
+    require('kulala').search()
+end, { desc = 'Kulala: Find request' })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>kj', function()
+    require('kulala').open_cookies_jar()
+end, { desc = 'Kulala: Open cookies jar' })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>kcg', function()
+    require('kulala').scripts_clear_global()
+end, { desc = 'Kulala: Clear global variables' })
+
+vim.keymap.set({ 'n', 'v' }, '<leader>kcf', function()
+    require('kulala').clear_cached_files()
+end, { desc = 'Kulala: Clear cached files' })
+
 -- {
 --     '<leader>ki',
 --     function()
@@ -60,32 +82,11 @@ require('kulala').setup {
 --     desc = 'Kulala: Paste from cURL',
 -- },
 -- {
---     '<leader>kn',
---     function()
---         require('kulala').jump_next()
---     end,
---     desc = 'Kulala: Jump to next request',
--- },
--- {
---     '<leader>kP',
---     function()
---         require('kulala').jump_prev()
---     end,
---     desc = 'Kulala: Jump to previous request',
--- },
--- {
 --     '<leader>ks',
 --     function()
 --         require('kulala').scratchpad()
 --     end,
 --     desc = 'Kulala: Open scratchpad',
--- },
--- {
---     '<leader>ke',
---     function()
---         require('kulala').set_selected_env()
---     end,
---     desc = 'Kulala: Select environment',
 -- },
 -- {
 --     '<leader>km',

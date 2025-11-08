@@ -37,7 +37,8 @@ require('mason-lspconfig').setup {
         'solidity_ls', -- Solidity
 
         'biome', -- biome (javascript/typescript)
-        'pyright', -- pyright (python)
+        -- 'pyright', -- pyright (python)
+        'basedpyright',
         'golangci_lint_ls', -- biome (javascript/typescript) and golangci-lint
         'terraformls', -- terraform
         'cairo_ls', -- cairo
@@ -73,6 +74,39 @@ vim.lsp.config('lua_ls', {
             diagnostics = {
                 globals = { 'vim' }, -- Recognize 'vim' as a global variable
             },
+        },
+    },
+})
+
+local function get_python_path()
+    local cwd = vim.fn.getcwd()
+    local venv_path = cwd .. '/.venv/bin/python'
+
+    -- Check if .venv exists
+    if vim.fn.filereadable(venv_path) == 1 then
+        return venv_path
+    end
+
+    -- Fallback to system Python
+    return vim.fn.exepath 'python3' or 'python'
+end
+
+vim.lsp.config('basedpyright', {
+    before_init = function(_, config)
+        config.settings.python.pythonPath = get_python_path()
+    end,
+    settings = {
+        basedpyright = {
+            analysis = {
+                typeCheckingMode = 'basic', -- or "standard" or "strict"
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = 'workspace',
+                autoImportCompletions = true,
+            },
+        },
+        python = {
+            pythonPath = vim.fn.getcwd() .. '/.venv/bin/python',
         },
     },
 })

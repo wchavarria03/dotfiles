@@ -7,7 +7,7 @@ A well-organized Neovim configuration focused on productivity, with special emph
 - **Organized Structure**: Clean, modular configuration that's easy to maintain and extend
 - **Notes Mode**: Dedicated mode for note-taking with comprehensive markdown support
 - **Smart Keymaps**: Intuitive keybindings organized by functionality
-- **Plugin Management**: Lazy.nvim for fast startup and efficient plugin loading
+- **Plugin Management**: Native vim.pack for efficient plugin loading
 - **LSP Support**: Full language server protocol support for code intelligence
 - **Modern UI**: Enhanced user interface with status lines, icons, and visual improvements
 
@@ -165,9 +165,9 @@ The leader key is set to `,` (comma).
 
 ### Core Plugins
 
-- **Lazy.nvim** - Plugin manager
+- **vim.pack** - Native plugin manager
 - **Which-key** - Keybinding discovery
-- **Telescope** - Fuzzy finder
+- **Snacks.nvim** - Picker and utilities
 - **Treesitter** - Syntax highlighting
 
 ### Notes & Markdown
