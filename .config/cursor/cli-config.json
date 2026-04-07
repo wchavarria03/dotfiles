@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Shell(ls)",
-      "Shell(git log)"
+      "Shell(git log)",
+      "Shell(cd)",
+      "Shell(git show)",
+      "Shell(grep)",
+      "Shell(echo)"
     ],
     "deny": []
   },
@@ -12,24 +16,51 @@
     "defaultBehavior": "agent"
   },
   "display": {
-    "showLineNumbers": true
+    "showLineNumbers": true,
+    "showThinkingBlocks": false,
+    "showStatusIndicators": false
   },
   "model": {
-    "modelId": "claude-4.5-sonnet",
-    "displayModelId": "sonnet-4.5",
-    "displayName": "Claude 4.5 Sonnet",
-    "displayNameShort": "Sonnet 4.5",
-    "aliases": [
-      "sonnet-4.5"
-    ]
+    "modelId": "composer-1.5",
+    "displayModelId": "composer-1.5",
+    "displayName": "Composer 1.5",
+    "displayNameShort": "Composer 1.5",
+    "aliases": [],
+    "maxMode": false
   },
   "hasChangedDefaultModel": true,
+  "maxMode": false,
+  "modelParameters": {
+    "default": [],
+    "composer-1.5": []
+  },
+  "selectedModel": {
+    "modelId": "composer-1.5",
+    "parameters": []
+  },
   "privacyCache": {
     "ghostMode": true,
     "privacyMode": 2,
-    "updatedAt": 1761437996566
+    "updatedAt": 1775502668478
+  },
+  "authInfo": {
+    "email": "wchavarria@ltvco.com",
+    "displayName": "Walter Chavarria",
+    "teamId": 1927465,
+    "teamName": "ltvco",
+    "userId": 187953905,
+    "authId": "auth0|user_01JRE2MNPEAFX28SF846PBA4GQ"
   },
   "network": {
     "useHttp1ForAgent": false
+  },
+  "approvalMode": "allowlist",
+  "sandbox": {
+    "mode": "disabled",
+    "networkAccess": "user_config_with_defaults"
+  },
+  "attribution": {
+    "attributeCommitsToAgent": true,
+    "attributePRsToAgent": true
   }
 }
