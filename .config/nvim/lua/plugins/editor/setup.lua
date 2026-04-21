@@ -11,3 +11,5 @@ require 'plugins.editor.todo-comments'
 require 'plugins.editor.trouble'
 
 require 'plugins.editor.which-key'
+
+require 'plugins.editor.dadbod'

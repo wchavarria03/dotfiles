@@ -64,6 +64,9 @@ export PATH="$HOME/.local/bin:$PATH"
 ### Mason (Neovim) ###
 export PATH="$DOTFILES/.config/local/share/nvim/mason/bin:$PATH"
 
+### MySQL client (for dadbod) ###
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
 ### Carapace ###
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
