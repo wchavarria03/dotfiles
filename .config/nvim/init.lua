@@ -1,6 +1,13 @@
 -- Set leader key
 vim.g.mapleader = ','
 
+-- Luarocks path (required for image.nvim magick dependency)
+package.path = package.path
+    .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share/lua/5.1/?.lua'
+    .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/share/lua/5.1/?/init.lua'
+package.cpath = package.cpath
+    .. ';' .. vim.fn.expand '$HOME' .. '/.luarocks/lib/lua/5.1/?.so'
+
 -- Load core configuration
 require 'core.options'
 require 'core.keymaps'
