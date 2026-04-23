@@ -21,8 +21,11 @@ install_brew_packages() {
         eza
         fzf
         git
+        git-lfs
         glow # markdown previewer
+        imagemagick # required for image.nvim inline image rendering
         luarocks #lua linter and development
+        mysql-client # required for dadbod mysql connections
         neovim
         ripgrep
         tree-sitter-cli
@@ -51,7 +54,6 @@ install_brew_packages() {
         gemini-cli
         gh
         lazygit
-        lazysql
         posting
 
         ## Desktop Manager
