@@ -13,3 +13,5 @@ require 'plugins.editor.trouble'
 require 'plugins.editor.which-key'
 
 require 'plugins.editor.dadbod'
+
+require 'plugins.editor.diffview'
