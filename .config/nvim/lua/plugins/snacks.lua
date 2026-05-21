@@ -117,10 +117,10 @@ function M.setup()
                 -- Create floating window
                 local buf = vim.api.nvim_create_buf(false, true)
                 vim.api.nvim_buf_set_lines(buf, 0, -1, false, content)
-                vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
-                vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
-                vim.api.nvim_buf_set_option(buf, 'filetype', 'markdown')
-                vim.api.nvim_buf_set_option(buf, 'modifiable', false)
+                vim.bo[buf].buftype = 'nofile'
+                vim.bo[buf].bufhidden = 'wipe'
+                vim.bo[buf].filetype = 'markdown'
+                vim.bo[buf].modifiable = false
 
                 -- Calculate window size
                 local width = math.min(100, vim.o.columns - 10)
@@ -150,57 +150,6 @@ function M.setup()
         }
     end, { desc = 'Search Notification History' })
 
-    --     -- search
-    --     {
-    --         '<leader>s"',
-    --         function()
-    --             require('snacks').picker.registers()
-    --         end,
-    --         desc = 'Registers',
-    --     },
-    --     {
-    --         '<leader>s/',
-    --         function()
-    --             require('snacks').picker.search_history()
-    --         end,
-    --         desc = 'Search History',
-    --     },
-    --     {
-    --         '<leader>sa',
-    --         function()
-    --             require('snacks').picker.autocmds()
-    --         end,
-    --         desc = 'Autocmds',
-    --     },
-    --     {
-    --         '<leader>sc',
-    --         function()
-    --             require('snacks').picker.command_history()
-    --         end,
-    --         desc = 'Command History',
-    --     },
-    --     {
-    --         '<leader>sC',
-    --         function()
-    --             require('snacks').picker.commands()
-    --         end,
-    --         desc = 'Commands',
-    --     },
-    --     {
-    --         '<leader>sd',
-    --         function()
-    --             require('snacks').picker.diagnostics()
-    --         end,
-    --         desc = 'Diagnostics',
-    --     },
-    --     {
-    --         '<leader>sD',
-    --         function()
-    --             require('snacks').picker.diagnostics_buffer()
-    --         end,
-    --         desc = 'Buffer Diagnostics',
-    --     },
-
     vim.keymap.set('n', '<leader>sd', function()
         require('snacks').picker.diagnostics()
     end, { desc = 'Diagnostics' })
@@ -210,108 +159,16 @@ function M.setup()
         local messages = vim.fn.execute 'messages'
         local buf = vim.api.nvim_create_buf(false, true)
         vim.api.nvim_buf_set_lines(buf, 0, -1, false, vim.split(messages, '\n'))
-        vim.api.nvim_buf_set_option(buf, 'buftype', 'nofile')
-        vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
-        vim.api.nvim_buf_set_option(buf, 'filetype', 'messages')
+        vim.bo[buf].buftype = 'nofile'
+        vim.bo[buf].bufhidden = 'wipe'
+        vim.bo[buf].filetype = 'messages'
         vim.api.nvim_set_current_buf(buf)
         vim.api.nvim_buf_set_name(buf, 'Messages')
         -- Enable text selection and copying
         vim.api.nvim_buf_set_keymap(buf, 'n', 'q', ':bd<CR>', { noremap = true, silent = true })
     end, { desc = 'Show Messages (full)' })
 
-    --     {
-    --         '<leader>sh',
-    --         function()
-    --             require('snacks').picker.help()
-    --         end,
-    --         desc = 'Help Pages',
-    --     },
-    --     {
-    --         '<leader>sH',
-    --         function()
-    --             require('snacks').picker.highlights()
-    --         end,
-    --         desc = 'Highlights',
-    --     },
-    --     {
-    --         '<leader>sj',
-    --         function()
-    --             require('snacks').picker.jumps()
-    --         end,
-    --         desc = 'Jumps',
-    --     },
-    --     {
-    --         '<leader>sk',
-    --         function()
-    --             require('snacks').picker.keymaps()
-    --         end,
-    --         desc = 'Keymaps',
-    --     },
-    --     {
-    --         '<leader>sl',
-    --         function()
-    --             require('snacks').picker.loclist()
-    --         end,
-    --         desc = 'Location List',
-    --     },
-    --     {
-    --         '<leader>sm',
-    --         function()
-    --             require('snacks').picker.marks()
-    --         end,
-    --         desc = 'Marks',
-    --     },
-    --     {
-    --         '<leader>sM',
-    --         function()
-    --             require('snacks').picker.man()
-    --         end,
-    --         desc = 'Man Pages',
-    --     },
-    --     {
-    --         '<leader>sp',
-    --         function()
-    --             require('snacks').picker.lazy()
-    --         end,
-    --         desc = 'Search for Plugin Spec',
-    --     },
-    --     {
-    --         '<leader>sq',
-    --         function()
-    --             require('snacks').picker.qflist()
-    --         end,
-    --         desc = 'Quickfix List',
-    --     },
-    --     {
-    --         '<leader>sr',
-    --         function()
-    --             require('snacks').picker.resume()
-    --         end,
-    --         desc = 'Resume Last Picker',
-    --     },
-    --     {
-    --         '<leader>su',
-    --         function()
-    --             require('snacks').picker.undo()
-    --         end,
-    --         desc = 'Undo Tree',
-    --     },
-    --     {
-    --         '<leader>ss',
-    --         function()
-    --             require('snacks').picker.lsp_symbols()
-    --         end,
-    --         desc = 'LSP Symbols',
-    --     },
-    --     {
-    --         '<leader>sS',
-    --         function()
-    --             require('snacks').picker.lsp_workspace_symbols()
-    --         end,
-    --         desc = 'LSP Workspace Symbols',
-    --     },
-
-    --     -- Git
+    -- Git
     vim.keymap.set('n', '<leader>go', function()
         snacks.lazygit()
     end, { desc = 'Git Lazy Git (open)' })
@@ -383,7 +240,9 @@ function M.setup()
     snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>tL'
     snacks.toggle.diagnostics():map '<leader>td'
     snacks.toggle.line_number():map '<leader>tl'
-    snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = 'Conceal Level' }):map '<leader>tc'
+    snacks.toggle
+        .option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = 'Conceal Level' })
+        :map '<leader>tc'
     snacks.toggle.treesitter():map '<leader>tT'
     snacks.toggle.dim():map '<leader>tD'
     snacks.toggle.animate():map '<leader>ta'

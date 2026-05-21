@@ -43,15 +43,22 @@ vim.api.nvim_create_autocmd({ 'VimResized' }, {
     end,
 })
 
--- Fix conceallevel for markdown, gitcommit and txt filetypes
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-    group = vim.api.nvim_create_augroup('edit_text', { clear = true }),
-    pattern = { 'gitcommit', 'markdown', 'txt', 'text', 'plaintex', 'typst' },
-    desc = 'Enable spell checking and text wrapping for certain filetypes',
+-- Text file settings: wrapping, spell, indentation, conceallevel
+vim.api.nvim_create_autocmd('FileType', {
+    group = augroup 'edit_text',
+    pattern = { 'gitcommit', 'markdown', 'md', 'txt', 'text', 'plaintex', 'typst' },
+    desc = 'Enable spell checking, text wrapping and indentation for text filetypes',
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
         vim.opt_local.conceallevel = 2
+        vim.opt_local.linebreak = true
+        vim.opt_local.breakindent = true
+        vim.opt_local.showbreak = '↪ '
+        vim.opt_local.tabstop = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.expandtab = true
     end,
 })
 
@@ -173,30 +180,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', '<leader>lr', ':LspRestart<CR>', lsp_opts) -- mapping to restart lsp if necessary
 
         -- Note: Inlay hints toggle is handled globally by Snacks in keymaps.lua (<leader>th)
-    end,
-})
-
--- Enhanced markdown and text file specific settings (extends main config)
-vim.api.nvim_create_autocmd({ 'FileType' }, {
-    group = augroup 'markdown_settings',
-    pattern = { 'markdown', 'md', 'txt', 'text', 'gitcommit', 'plaintex', 'typst' },
-    desc = 'Enhanced settings for markdown and text files in notes',
-    callback = function()
-        -- Note-specific indentation (2 spaces for markdown)
-        vim.opt_local.tabstop = 2
-        vim.opt_local.softtabstop = 2
-        vim.opt_local.shiftwidth = 2
-        vim.opt_local.expandtab = true
-
-        -- Note-specific text wrapping
-        vim.opt_local.wrap = true
-        vim.opt_local.linebreak = true
-        vim.opt_local.breakindent = true
-        vim.opt_local.showbreak = '↪ '
-
-        -- Note-specific spell checking
-        vim.opt_local.spell = true
-        vim.opt_local.conceallevel = 2
     end,
 })
 

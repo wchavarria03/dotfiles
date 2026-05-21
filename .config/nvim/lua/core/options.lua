@@ -60,7 +60,6 @@ vim.o.winminwidth = 5 -- Minimum window width
 vim.o.list = true -- Show some invisible characters
 
 -- Performance optimizations
-vim.o.lazyredraw = true -- Don't redraw while executing macros
 vim.o.writebackup = false -- Don't create backup files
 vim.o.history = 1000 -- Increase command history
 vim.o.shada = "!,'1000,<50,s10,h" -- Increase shada history
