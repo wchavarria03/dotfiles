@@ -55,16 +55,18 @@ function M.setup()
         require('conform').format { formatters = { 'injected' }, timeout_ms = 3000 }
     end, { desc = 'Format Injected Langs' })
 
-    require('snacks').toggle.new({
-        id = 'Format on Save',
-        name = 'Format on Save',
-        get = function()
-            return vim.g.autoformat
-        end,
-        set = function()
-            vim.g.autoformat = not vim.g.autoformat
-        end,
-    }):map '<leader>tf'
+    require('snacks').toggle
+        .new({
+            id = 'Format on Save',
+            name = 'Format on Save',
+            get = function()
+                return vim.g.autoformat
+            end,
+            set = function()
+                vim.g.autoformat = not vim.g.autoformat
+            end,
+        })
+        :map '<leader>tf'
 end
 
 return M

@@ -16,7 +16,12 @@ function M.setup()
     end, { desc = 'Previous Todo Comment' })
 
     vim.keymap.set('n', '<leader>xt', '<cmd>Trouble todo toggle<cr>', { desc = 'Todo (Trouble)' })
-    vim.keymap.set('n', '<leader>xT', '<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>', { desc = 'Todo/Fix/Fixme (Trouble)' })
+    vim.keymap.set(
+        'n',
+        '<leader>xT',
+        '<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>',
+        { desc = 'Todo/Fix/Fixme (Trouble)' }
+    )
 
     vim.keymap.set('n', '<leader>st', function()
         require('snacks').picker.todo_comments()

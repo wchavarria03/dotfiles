@@ -1,7 +1,7 @@
 local M = {}
 
 M.plugins = {
-    'https://github.com/catppuccin/nvim'
+    'https://github.com/catppuccin/nvim',
 }
 
 function M.setup()

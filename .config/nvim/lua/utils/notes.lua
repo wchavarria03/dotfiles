@@ -127,4 +127,3 @@ function M.toggle_zen_mode()
 end
 
 return M
-

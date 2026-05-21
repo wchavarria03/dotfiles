@@ -4,7 +4,6 @@ M.plugins = {
     'https://github.com/sindrets/diffview.nvim',
 }
 
-
 function M.setup()
     -- Detach LSP from diffview virtual buffers after setup is complete to avoid
     -- a race condition in _changetracking.lua when diffview renders its panels

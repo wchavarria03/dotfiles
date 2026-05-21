@@ -29,16 +29,16 @@ function M.setup()
     end, { desc = 'Toggle Explorer Directory' })
 
     -- mini.ai
-    local ai = require('mini.ai')
+    local ai = require 'mini.ai'
     require('mini.ai').setup {
         n_lines = 500,
         custom_textobjects = {
-            o = ai.gen_spec.treesitter({
+            o = ai.gen_spec.treesitter {
                 a = { '@block.outer', '@conditional.outer', '@loop.outer' },
                 i = { '@block.inner', '@conditional.inner', '@loop.inner' },
-            }),
-            f = ai.gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
-            c = ai.gen_spec.treesitter({ a = '@class.outer', i = '@class.inner' }),
+            },
+            f = ai.gen_spec.treesitter { a = '@function.outer', i = '@function.inner' },
+            c = ai.gen_spec.treesitter { a = '@class.outer', i = '@class.inner' },
             t = { '<([%p%w]-)%f[^<%w][^<>]->.-</%1>', '^<.->().*()</[^/]->$' },
             d = { '%f[%d]%d+' },
             e = {
@@ -46,7 +46,7 @@ function M.setup()
                 '^().*()$',
             },
             u = ai.gen_spec.function_call(),
-            U = ai.gen_spec.function_call({ name_pattern = '[%w_]' }),
+            U = ai.gen_spec.function_call { name_pattern = '[%w_]' },
         },
     }
 
@@ -69,15 +69,17 @@ function M.setup()
     -- mini.surround
     require('mini.surround').setup {}
 
-    require('snacks').toggle({
-        name = 'Mini Pairs',
-        get = function()
-            return not vim.g.minipairs_disable
-        end,
-        set = function(state)
-            vim.g.minipairs_disable = not state
-        end,
-    }):map '<leader>tp'
+    require('snacks')
+        .toggle({
+            name = 'Mini Pairs',
+            get = function()
+                return not vim.g.minipairs_disable
+            end,
+            set = function(state)
+                vim.g.minipairs_disable = not state
+            end,
+        })
+        :map '<leader>tp'
 end
 
 return M

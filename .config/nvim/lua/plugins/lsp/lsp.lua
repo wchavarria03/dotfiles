@@ -6,20 +6,19 @@ M.plugins = {
 }
 
 function M.setup()
-
-	require("fidget").setup({
-		progress = {
-			display = {
-				progress_icon = { pattern = "meter", period = 1 },
-				progress_style = "Comment",
-				group_style = "Title",
-				icon_style = "Question",
-			},
-		},
-		notification = {
-			window = { winblend = 0 },
-		},
-	})
+    require('fidget').setup {
+        progress = {
+            display = {
+                progress_icon = { pattern = 'meter', period = 1 },
+                progress_style = 'Comment',
+                group_style = 'Title',
+                icon_style = 'Question',
+            },
+        },
+        notification = {
+            window = { winblend = 0 },
+        },
+    }
 
     local utils = require 'plugins.lsp.utils'
 
@@ -83,7 +82,6 @@ function M.setup()
             },
         },
     })
-
 end
 
 return M

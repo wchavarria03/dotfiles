@@ -5,4 +5,3 @@ return {
     notes = require 'utils.notes',
     -- Add other utility modules here as they're created
 }
-

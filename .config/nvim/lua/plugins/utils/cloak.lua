@@ -35,7 +35,7 @@ function M.setup()
     }
 
     require('snacks')
-        .toggle {
+        .toggle({
             name = 'Cloak',
             get = function()
                 return vim.b.cloak_enabled
@@ -43,7 +43,7 @@ function M.setup()
             set = function(state)
                 require('cloak').toggle(state)
             end,
-        }
+        })
         :map '<leader>tC'
 end
 

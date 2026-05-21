@@ -19,7 +19,7 @@ function M.setup()
     }
 
     require('snacks')
-        .toggle {
+        .toggle({
             name = 'Render Markdown',
             get = function()
                 return require('render-markdown.state').enabled
@@ -32,7 +32,7 @@ function M.setup()
                     m.disable()
                 end
             end,
-        }
+        })
         :map '<leader>tm'
 end
 

@@ -53,7 +53,6 @@ function M.setup()
             -- tflint  -- (terraform linter)
         },
     }
-
 end
 
 return M

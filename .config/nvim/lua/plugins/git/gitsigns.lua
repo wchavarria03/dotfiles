@@ -98,7 +98,6 @@ function M.setup()
             })
             :map '<leader>tb'
     end
-
 end
 
 return M
