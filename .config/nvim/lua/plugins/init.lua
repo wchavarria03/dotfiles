@@ -23,12 +23,15 @@ load(specs, 'plugins.ui.lualine')
 -- Editor
 load(specs, 'plugins.editor.flash')
 load(specs, 'plugins.editor.todo-comments')
+load(specs, 'plugins.editor.ts-comments')
+load(specs, 'plugins.editor.yanky')
 load(specs, 'plugins.editor.mini')
 load(specs, 'plugins.editor.smart-splits')
 load(specs, 'plugins.editor.undo-tree')
 
 -- LSP
 load(specs, 'plugins.lsp.mason')
+load(specs, 'plugins.lsp.lazydev')
 load(specs, 'plugins.lsp.lsp')
 
 -- Linting
@@ -64,8 +67,6 @@ load(specs, 'plugins.ai.copilot-ls')
 
 -- Completion
 load(specs, 'plugins.completion.blink')
-load(specs, 'plugins.completion.ts-comments')
-load(specs, 'plugins.completion.yanky')
 
 local all_plugins = {}
 for _, spec in ipairs(specs) do

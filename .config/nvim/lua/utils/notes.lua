@@ -118,7 +118,7 @@ end
 
 -- Notes folder function
 function M.open_notes_folder()
-    vim.cmd 'e ~/Library/Mobile\\ Documents/com~apple~CloudDocs/notes/'
+    vim.cmd 'e ~/personal/notes'
 end
 
 -- Zen mode function

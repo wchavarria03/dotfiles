@@ -26,15 +26,6 @@ function M.setup()
     utils.set_lsp_capabilities()
     utils.set_diagnostic_config()
 
-    vim.keymap.set('n', '<leader>ln', function()
-        utils.print_active_lsp_names(0)
-    end, { desc = 'Show LSP Names' })
-
-    vim.keymap.set('n', '<leader>li', function()
-        utils.print_detailed_lsp_info(0)
-    end, { desc = 'Show Detailed LSP Info' })
-
-
     vim.lsp.config('jsonls', {
         settings = {
             json = {
@@ -55,9 +46,7 @@ function M.setup()
     vim.lsp.config('lua_ls', {
         settings = {
             Lua = {
-                diagnostics = {
-                    globals = { 'vim' }, -- Recognize 'vim' as a global variable
-                },
+                workspace = { checkThirdParty = false },
             },
         },
     })

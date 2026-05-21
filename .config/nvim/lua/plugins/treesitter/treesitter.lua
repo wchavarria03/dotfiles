@@ -14,7 +14,7 @@ function M.setup()
         'bash', 'beancount', 'cairo', 'css', 'csv', 'diff', 'dockerfile',
         'git_config', 'git_rebase', 'gitattributes', 'gitcommit', 'gitignore',
         'go', 'gomod', 'gosum', 'gotmpl', 'gowork',
-        'html', 'javascript', 'jsdoc', 'json5', 'jsonc',
+        'html', 'javascript', 'jsdoc', 'json', 'json5',
         'lua', 'luadoc', 'luap',
         'make', 'markdown', 'markdown_inline', 'nginx', 'ninja',
         'printf', 'python', 'query', 'regex', 'rst',

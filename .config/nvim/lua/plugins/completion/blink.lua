@@ -35,8 +35,13 @@ function M.setup()
         },
 
         sources = {
-            default = { 'copilot', 'lsp', 'path', 'buffer' },
+            default = { 'lazydev', 'copilot', 'lsp', 'path', 'buffer' },
             providers = {
+                lazydev = {
+                    name = 'LazyDev',
+                    module = 'lazydev.integrations.blink',
+                    score_offset = 100,
+                },
                 copilot = {
                     name = 'copilot',
                     module = 'blink-cmp-copilot',
