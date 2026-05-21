@@ -376,6 +376,22 @@ function M.setup()
     vim.keymap.set('n', '<leader>gD', function()
         require('snacks').picker.git_log_file()
     end, { desc = 'Git Log File' })
+
+    -- Toggles
+    snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>ts'
+    snacks.toggle.option('wrap', { name = 'Wrap' }):map '<leader>tw'
+    snacks.toggle.option('relativenumber', { name = 'Relative Number' }):map '<leader>tL'
+    snacks.toggle.diagnostics():map '<leader>td'
+    snacks.toggle.line_number():map '<leader>tl'
+    snacks.toggle.option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2, name = 'Conceal Level' }):map '<leader>tc'
+    snacks.toggle.treesitter():map '<leader>tT'
+    snacks.toggle.dim():map '<leader>tD'
+    snacks.toggle.animate():map '<leader>ta'
+    snacks.toggle.indent():map '<leader>ti'
+    snacks.toggle.scroll():map '<leader>tS'
+    snacks.toggle.inlay_hints():map '<leader>th'
+    snacks.toggle.zoom():map '<leader>tZ'
+    snacks.toggle.zen():map '<leader>tz'
 end
 
 return M
