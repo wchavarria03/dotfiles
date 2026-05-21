@@ -179,6 +179,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         lsp_opts.desc = 'Restart LSP'
         vim.keymap.set('n', '<leader>lr', ':LspRestart<CR>', lsp_opts) -- mapping to restart lsp if necessary
 
+        -- Enable document color highlights if the server supports it (e.g. cssls, tailwindcss)
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.supports_method 'textDocument/documentColor' then
+            vim.lsp.document_color.enable(true, event.buf)
+        end
+
         -- Note: Inlay hints toggle is handled globally by Snacks in keymaps.lua (<leader>th)
     end,
 })
