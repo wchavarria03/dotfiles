@@ -2,6 +2,16 @@ local function augroup(name)
     return vim.api.nvim_create_augroup('wchavarria_nvim_' .. name, { clear = true })
 end
 
+local _boot_time = vim.uv.hrtime()
+vim.api.nvim_create_autocmd('VimEnter', {
+    desc = 'Capture startup time',
+    group = augroup 'startup_time',
+    once = true,
+    callback = function()
+        vim.g._startup_ms = math.floor((vim.uv.hrtime() - _boot_time) / 1e6)
+    end,
+})
+
 -- Don't auto commenting new lines
 vim.cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
 
@@ -213,5 +223,58 @@ vim.api.nvim_create_autocmd('LspProgress', {
                     or spinner[math.floor(vim.uv.hrtime() / (1e6 * 80)) % #spinner + 1]
             end,
         })
+    end,
+})
+
+local pack_changed_hooks = {
+    ['blink.cmp'] = function(data)
+        if not data.active then
+            pcall(vim.cmd.packadd, 'blink.lib')
+            pcall(vim.cmd.packadd, 'blink.cmp')
+        end
+        vim.fn.jobstart({ 'cargo', 'build', '--release' }, {
+            cwd = data.path,
+            on_exit = function(_, code)
+                if code ~= 0 then
+                    vim.schedule(function()
+                        vim.notify('blink.cmp: cargo build failed (exit ' .. code .. ')', vim.log.levels.WARN)
+                    end)
+                end
+            end,
+        })
+    end,
+    ['markdown-preview.nvim'] = function(data)
+        if not data.active then
+            pcall(vim.cmd.packadd, 'markdown-preview.nvim')
+        end
+        vim.fn['mkdp#util#install_sync']()
+    end,
+    ['nvim-treesitter'] = function()
+        vim.notify('Updating treesitter parsers...', vim.log.levels.INFO)
+        vim.cmd 'TSUpdate'
+    end,
+}
+
+vim.api.nvim_create_autocmd('PackChanged', {
+    desc = 'Run plugin post-install steps',
+    group = augroup 'pack_changed',
+    callback = function(ev)
+        local data = ev.data or {}
+        if data.kind ~= 'install' and data.kind ~= 'update' then
+            return
+        end
+
+        local spec = data.spec or {}
+        local hook = pack_changed_hooks[spec.name]
+        if hook == nil then
+            return
+        end
+
+        local ok, err = pcall(hook, data)
+        if not ok then
+            vim.schedule(function()
+                vim.notify(spec.name .. ' post-install step failed:\n' .. tostring(err), vim.log.levels.WARN)
+            end)
+        end
     end,
 })

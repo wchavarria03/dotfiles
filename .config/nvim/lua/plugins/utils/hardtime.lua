@@ -1,8 +1,13 @@
-vim.pack.add {
+local M = {}
+
+M.plugins = {
     'https://github.com/m4xshen/hardtime.nvim',
 }
 
--- dependencies = { 'MunifTanjim/nui.nvim' },
+function M.setup()
+    -- dependencies = { 'MunifTanjim/nui.nvim' },
+    require('hardtime').setup {}
+    vim.g.hardtime = true
+end
 
-require('hardtime').setup {}
-vim.g.hardtime = true
+return M
