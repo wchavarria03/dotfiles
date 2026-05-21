@@ -45,6 +45,11 @@ vim.keymap.set(
     { desc = 'Redraw / Clear hlsearch / Diff Update' }
 )
 
+-- Pack management
+vim.keymap.set('n', '<leader>pu', '<Cmd>PackUpdate<CR>', { desc = 'Pack update' })
+vim.keymap.set('n', '<leader>pl', '<Cmd>PackList<CR>', { desc = 'Pack list' })
+vim.keymap.set('n', '<leader>pc', '<Cmd>PackClean<CR>', { desc = 'Pack clean' })
+
 
 -- Load notes functions
 local notes = require 'utils.notes'
