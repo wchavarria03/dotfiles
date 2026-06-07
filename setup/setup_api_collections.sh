@@ -5,7 +5,7 @@ setup_api_collections() {
   if [ ! -d ~/personal/my-api-collections/ ]
   then
     echo "${COLOR_GREEN}-- Cloning collections repo...${COLOR_REST}"
-    git clone https://github.com/wchavarria03/my-api-collections ~/personal/my-api-collections
+    git clone git@github.com:wchavarria03/my-api-collections.git ~/personal/my-api-collections
   else
     echo "${COLOR_GREEN}-- Updating collections repo...${COLOR_REST}"
     cd ~/personal/my-api-collections

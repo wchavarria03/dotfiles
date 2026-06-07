@@ -6,7 +6,7 @@ setup_notes() {
 
     if [ ! -d "$NOTES_PATH" ]; then
         echo "${COLOR_GREEN}-- Cloning notes repo...${COLOR_REST}"
-        git clone https://github.com/wchavarria03/notes "$NOTES_PATH"
+        git clone git@github.com:wchavarria03/notes.git "$NOTES_PATH"
         cd "$NOTES_PATH" || exit
         git lfs install
         git lfs pull
