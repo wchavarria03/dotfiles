@@ -2,3 +2,5 @@
 .DS_Store
 .idea
 .cursor
+
+**/.claude/settings.local.json
