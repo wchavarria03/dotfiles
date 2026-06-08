@@ -5,14 +5,14 @@ setup_notes() {
     NOTES_PATH=~/personal/notes
 
     if [ ! -d "$NOTES_PATH" ]; then
-        echo "${COLOR_GREEN}-- Cloning notes repo...${COLOR_REST}"
+        echo "${COLOR_GREEN}-- Cloning notes repo...${COLOR_RESET}"
         git clone git@github.com:wchavarria03/notes.git "$NOTES_PATH"
         cd "$NOTES_PATH" || exit
         git lfs install
         git lfs pull
         cd - >/dev/null || exit
     else
-        echo "${COLOR_GREEN}-- Updating notes repo...${COLOR_REST}"
+        echo "${COLOR_GREEN}-- Updating notes repo...${COLOR_RESET}"
         cd "$NOTES_PATH" || exit
         git pull
         cd - >/dev/null || exit

@@ -4,10 +4,10 @@
 setup_dotfiles() {
   if [ ! -d ~/personal/dotfiles/ ]
   then
-    echo "${COLOR_GREEN}-- Cloning dotfiles repo...${COLOR_REST}"
+    echo "${COLOR_GREEN}-- Cloning dotfiles repo...${COLOR_RESET}"
     git clone git@github.com:wchavarria03/dotfiles.git ~/personal/dotfiles
   else
-    echo "${COLOR_GREEN}- Updating dotfiles repo...${COLOR_REST}"
+    echo "${COLOR_GREEN}- Updating dotfiles repo...${COLOR_RESET}"
     cd ~/personal/dotfiles || exit
     git pull
     cd - > /dev/null || exit  # Return to the original directory, suppressing output

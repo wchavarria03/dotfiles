@@ -9,10 +9,10 @@ install_and_update_homebrew() {
         echo "${COLOR_GREEN}-- Homebrew already installed.${COLOR_RESET}"
     fi
 
-    echo "${COLOR_GREEN}-- Updating homebrew...${COLOR_REST}"
+    echo "${COLOR_GREEN}-- Updating homebrew...${COLOR_RESET}"
     brew update
 
-    echo "${COLOR_GREEN}-- Upgrading homebrew...${COLOR_REST}"
+    echo "${COLOR_GREEN}-- Upgrading homebrew...${COLOR_RESET}"
     brew upgrade
 }
 

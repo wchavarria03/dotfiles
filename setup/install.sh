@@ -13,7 +13,7 @@
 # - https://news.ycombinator.com/item?id=8402079
 # - http://notes.jerzygangi.com/the-best-pgp-tutorial-for-mac-os-x-ever/
 
-# Define colors for better output formattingdont 
+# Define colors for better output formatting
 COLOR_RESET=$(tput sgr0)
 COLOR_GREEN=$(tput setaf 2)
 

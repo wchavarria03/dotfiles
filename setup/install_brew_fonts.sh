@@ -7,7 +7,7 @@ install_brew_fonts() {
   )
 
   for font in "${fonts[@]}"; do
-    if brew info "$font" &>/dev/null; then
+    if brew list --cask "$font" &>/dev/null; then
       echo "${COLOR_GREEN}-- $font already installed.${COLOR_RESET}"
     else
       echo "${COLOR_GREEN}-- Installing $font...${COLOR_RESET}"

@@ -4,13 +4,13 @@
 setup_secrets() {
   if [ ! -d ~/personal/secrets/ ]
   then
-    echo "${COLOR_GREEN}-- Cloning secrets repo...${COLOR_REST}"
+    echo "${COLOR_GREEN}-- Cloning secrets repo...${COLOR_RESET}"
     git clone git@github.com:wchavarria03/secrets.git ~/personal/secrets
   else
-    echo "${COLOR_GREEN}-- Updating secrets repo...${COLOR_REST}"
-    cd ~/personal/secrets
+    echo "${COLOR_GREEN}-- Updating secrets repo...${COLOR_RESET}"
+    cd ~/personal/secrets || exit
     git pull
-    cd - > /dev/null  # Return to the original directory, suppressing output
+    cd - > /dev/null || exit  # Return to the original directory, suppressing output
   fi
 }
 
