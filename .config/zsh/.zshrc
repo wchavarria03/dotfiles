@@ -71,6 +71,7 @@ export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' format $'\e[2;37mCompleting %d\e[m'
 source <(carapace _carapace)
+compdef v=nvim # bridge 'v' alias to nvim completions so carapace doesn't error
 
 ### rust language ###
 . "$HOME/.cargo/env"
