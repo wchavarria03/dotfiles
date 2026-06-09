@@ -16,6 +16,12 @@ config.window_padding = {
 config.enable_tab_bar = false
 config.native_macos_fullscreen_mode = false
 
+-- Lock the window title so aerospace can always identify this window,
+-- regardless of what nvim or the shell sets.
+wezterm.on("format-window-title", function()
+	return "Quick Notes Terminal"
+end)
+
 -- Font optimization for readability
 config.font_size = 14
 
