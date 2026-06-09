@@ -21,6 +21,7 @@ load(specs, 'plugins.ui.incline')
 load(specs, 'plugins.ui.lualine')
 
 -- Editor
+load(specs, 'plugins.editor.dadbod')
 load(specs, 'plugins.editor.flash')
 load(specs, 'plugins.editor.todo-comments')
 load(specs, 'plugins.editor.ts-comments')
