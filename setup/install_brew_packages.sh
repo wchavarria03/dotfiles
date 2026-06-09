@@ -65,6 +65,12 @@ install_brew_packages() {
         wezterm
     )
 
+    local work_formulae=()
+
+    local personal_formulae=(
+        opencode
+    )
+
     local work_casks=(
         claude-code
     )
@@ -91,13 +97,25 @@ install_brew_packages() {
         fi
     done
 
-    echo "${COLOR_GREEN}-- Installing ${DEVICE_TYPE} casks${COLOR_RESET}"
+    echo "${COLOR_GREEN}-- Installing ${DEVICE_TYPE} packages${COLOR_RESET}"
+    local device_formulae=()
     local device_casks=()
     if [ "$DEVICE_TYPE" = "work" ]; then
+        device_formulae=("${work_formulae[@]}")
         device_casks=("${work_casks[@]}")
     else
+        device_formulae=("${personal_formulae[@]}")
         device_casks=("${personal_casks[@]}")
     fi
+
+    for formula in "${device_formulae[@]}"; do
+        if ! is_brew_formula_installed "$formula"; then
+            echo "Installing $formula..."
+            brew install "$formula"
+        else
+            echo "$formula is already installed."
+        fi
+    done
 
     for cask in "${device_casks[@]}"; do
         if ! is_brew_cask_installed "$cask"; then
