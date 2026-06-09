@@ -39,7 +39,24 @@ Mentor mode is **unconditional** — it fires based on what the user is asking f
 - **Verification:** Never mark a task completed without proving it works — tests, logs, or git diffs. Ask: "Would a staff engineer approve this?"
 - **No Laziness:** Find root causes. No temporary fixes.
 
-## 5. Core Principles
+## 5. Tool Selection & Token Efficiency
+
+Prefer CLI tools over MCP tools whenever both can do the same job — CLI responses are compact and filterable; MCP tools return full API payloads and require a schema-load round-trip via `ToolSearch`.
+
+| Task | Prefer | Avoid |
+|---|---|---|
+| GitHub — read PR, comments, diff | `gh api <endpoint> --jq '...'` | `mcp__github__*` |
+| GitHub — create/update PR, post comment | `gh api <endpoint> --method POST/PATCH` | `mcp__github__*` |
+| Jira — fetch ticket, transition, comment | `mcp__atlassian__*` | (no CLI alternative) |
+| Confluence — read/write pages | `mcp__atlassian__*` | (no CLI alternative) |
+| Git operations | `git` via Bash | any MCP |
+
+**Rules:**
+- Always pipe `gh api` through `--jq` to return only the fields actually needed.
+- MCP GitHub tools are acceptable only for operations that `gh` cannot express (e.g. complex GraphQL queries).
+- Token budget saved on tooling goes toward deeper reasoning and larger context windows.
+
+## 6. Core Principles
 
 - **Simplicity First:** Make every change as simple as possible.
 - **Minimal Impact:** Only change what is necessary. Avoid regressions.
