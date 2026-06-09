@@ -3,7 +3,7 @@
 # Function to install brew fonts
 install_brew_fonts() {
   local fonts=(
-    font-jetbrains-mono
+    font-jetbrains-mono-nerd-font # includes nerd font icons used in wezterm tabbar
   )
 
   for font in "${fonts[@]}"; do
