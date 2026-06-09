@@ -4,6 +4,8 @@ general_packages() {
     echo "${COLOR_GREEN}-- Installing taps${COLOR_RESET}"
     brew tap FelixKratz/formulae ## For borders
     brew tap nikitabobko/tap
+    brew trust FelixKratz/formulae 2>/dev/null || true
+    brew trust nikitabobko/tap 2>/dev/null || true
 
     local formulae=(
         asdf

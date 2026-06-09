@@ -25,3 +25,7 @@ create_folders() {
 
     run_for_device general_folders work_folders personal_folders
 }
+
+create_folders_clean_up() {
+    echo "${COLOR_GREEN}Create folders clean up - coming feature...${COLOR_RESET}"
+}

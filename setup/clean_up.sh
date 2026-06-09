@@ -47,6 +47,12 @@ clean_up() {
   source setup_dotfiles.sh
   setup_dotfiles_clean_up
 
+  source setup_notes.sh
+  setup_notes_clean_up
+
+  source setup_api_collections.sh
+  setup_api_collections_clean_up
+
   source setup_mac_config.sh
   setup_mac_config_clean_up
 
