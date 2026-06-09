@@ -21,24 +21,18 @@ ensure_device_type() {
     echo ""
 }
 
-# Sources the device-specific script (devices/work.sh or devices/personal.sh).
-# Must be called after ensure_device_type.
-# Device scripts must implement: install_device_packages(), setup_device_config()
-load_device_script() {
-    local script_dir
-    script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-    local device_script="${script_dir}/devices/${DEVICE_TYPE}.sh"
-
-    if [ ! -f "$device_script" ]; then
-        echo "ERROR: No device script found for '${DEVICE_TYPE}' at ${device_script}"
-        exit 1
+# Calls $1 (general) always, then $2 (work) or $3 (personal) based on DEVICE_TYPE.
+# Usage: run_for_device general_fn work_fn personal_fn
+run_for_device() {
+    "$1"
+    if [ "$DEVICE_TYPE" = "work" ]; then
+        "$2"
+    else
+        "$3"
     fi
-
-    # shellcheck disable=SC1090
-    source "$device_script"
 }
 
-# ── Brew helpers ────────────────────────────────────────────────────────────
+# ── Brew helpers ─────────────────────────────────────────────────────────────
 
 is_brew_formula_installed() {
     brew list --formula "$1" &>/dev/null

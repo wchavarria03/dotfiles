@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 
-install_brew_packages() {
-    # shellcheck source=helpers.sh
-    source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
-    ensure_device_type
-    load_device_script
-
+general_packages() {
     echo "${COLOR_GREEN}-- Installing taps${COLOR_RESET}"
     brew tap FelixKratz/formulae ## For borders
     brew tap nikitabobko/tap
@@ -62,8 +57,26 @@ install_brew_packages() {
 
     echo "${COLOR_GREEN}-- Installing casks${COLOR_RESET}"
     brew_install_casks "${casks[@]}"
+}
 
-    install_device_packages
+work_packages() {
+    echo "${COLOR_GREEN}-- Installing work packages${COLOR_RESET}"
+    brew_install_casks \
+        claude-code
+}
+
+personal_packages() {
+    echo "${COLOR_GREEN}-- Installing personal packages${COLOR_RESET}"
+    brew_install_formulae \
+        opencode
+}
+
+install_brew_packages() {
+    # shellcheck source=helpers.sh
+    source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
+    ensure_device_type
+
+    run_for_device general_packages work_packages personal_packages
 
     echo "${COLOR_GREEN}-- Cleaning up Brew...${COLOR_RESET}"
     brew cleanup

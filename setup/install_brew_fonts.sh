@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 
-install_brew_fonts() {
-    # shellcheck source=helpers.sh
-    source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
-    ensure_device_type
-    load_device_script
-
+general_fonts() {
     local fonts=(
         font-jetbrains-mono-nerd-font # includes nerd font icons used in wezterm tabbar
     )
@@ -18,8 +13,22 @@ install_brew_fonts() {
             brew install --cask "$font"
         fi
     done
+}
 
-    install_device_fonts
+work_fonts() {
+    : # no work-specific fonts yet
+}
+
+personal_fonts() {
+    : # no personal-specific fonts yet
+}
+
+install_brew_fonts() {
+    # shellcheck source=helpers.sh
+    source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
+    ensure_device_type
+
+    run_for_device general_fonts work_fonts personal_fonts
 }
 
 install_brew_fonts_clean_up() {

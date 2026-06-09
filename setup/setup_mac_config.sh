@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# Function to setup mac config
-setup_mac_config() {
+general_mac_config() {
   # Check if running on Apple Silicon for potential optimizations
   if [[ $(uname -m) == "arm64" ]]; then
     echo "Detected Apple Silicon Mac - optimizing configurations..."
@@ -184,12 +183,6 @@ setup_mac_config() {
   defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false  # Disable scroll animations
   defaults write NSGlobalDomain NSDocumentRevisionsWindowTransformAnimation -bool false  # Disable document animations
 
-  # shellcheck source=helpers.sh
-  source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
-  ensure_device_type
-  load_device_script
-  setup_device_config
-
   # Restart all affected services at once
   echo "Applying all config changes..."
   for app in "Dock" "Finder" "SystemUIServer" "Mail" "Activity Monitor" "Console" "Terminal"; do
@@ -199,6 +192,22 @@ setup_mac_config() {
   echo "Note: Some changes may require a logout/login or restart to take full effect."
 }
 
+work_mac_config() {
+    : # no work-specific mac config yet
+}
+
+personal_mac_config() {
+    : # no personal-specific mac config yet
+}
+
+setup_mac_config() {
+    # shellcheck source=helpers.sh
+    source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
+    ensure_device_type
+
+    run_for_device general_mac_config work_mac_config personal_mac_config
+}
+
 setup_mac_config_clean_up() {
-  echo "${COLOR_GREEN}Setup mac config clean up - coming feature...${COLOR_RESET}"
+    echo "${COLOR_GREEN}Setup mac config clean up - coming feature...${COLOR_RESET}"
 }

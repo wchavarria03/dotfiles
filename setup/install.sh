@@ -33,7 +33,6 @@ main() {
 
   source helpers.sh
   ensure_device_type
-  load_device_script
 
   echo " "
   echo "${COLOR_GREEN}******** Stage 2 - Prep folders and brew ********${COLOR_RESET}"
