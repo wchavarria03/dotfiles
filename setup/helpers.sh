@@ -20,3 +20,52 @@ ensure_device_type() {
     echo "${COLOR_GREEN}-- Device type set to: ${DEVICE_TYPE}${COLOR_RESET}"
     echo ""
 }
+
+# Sources the device-specific script (devices/work.sh or devices/personal.sh).
+# Must be called after ensure_device_type.
+# Device scripts must implement: install_device_packages(), setup_device_config()
+load_device_script() {
+    local script_dir
+    script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    local device_script="${script_dir}/devices/${DEVICE_TYPE}.sh"
+
+    if [ ! -f "$device_script" ]; then
+        echo "ERROR: No device script found for '${DEVICE_TYPE}' at ${device_script}"
+        exit 1
+    fi
+
+    # shellcheck disable=SC1090
+    source "$device_script"
+}
+
+# ── Brew helpers ────────────────────────────────────────────────────────────
+
+is_brew_formula_installed() {
+    brew list --formula "$1" &>/dev/null
+}
+
+is_brew_cask_installed() {
+    brew list --cask "$1" &>/dev/null
+}
+
+brew_install_formulae() {
+    for formula in "$@"; do
+        if ! is_brew_formula_installed "$formula"; then
+            echo "Installing $formula..."
+            brew install "$formula"
+        else
+            echo "$formula is already installed."
+        fi
+    done
+}
+
+brew_install_casks() {
+    for cask in "$@"; do
+        if ! is_brew_cask_installed "$cask"; then
+            echo "Installing $cask..."
+            brew install --cask "$cask"
+        else
+            echo "$cask is already installed."
+        fi
+    done
+}

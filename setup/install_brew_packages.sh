@@ -1,20 +1,12 @@
 #!/usr/bin/env bash
 
-is_brew_formula_installed() {
-    brew list --formula "$1" &>/dev/null
-}
-
-is_brew_cask_installed() {
-    brew list --cask "$1" &>/dev/null
-}
-
-# Function to install or update Brew packages
 install_brew_packages() {
     # shellcheck source=helpers.sh
     source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
     ensure_device_type
+    load_device_script
 
-    echo "${COLOR_GREEN}-- Installing tap formulae${COLOR_RESET}"
+    echo "${COLOR_GREEN}-- Installing taps${COLOR_RESET}"
     brew tap FelixKratz/formulae ## For borders
     brew tap nikitabobko/tap
 
@@ -65,66 +57,13 @@ install_brew_packages() {
         wezterm
     )
 
-    local work_formulae=()
-
-    local personal_formulae=(
-        opencode
-    )
-
-    local work_casks=(
-        claude-code
-    )
-
-    local personal_casks=()
-
     echo "${COLOR_GREEN}-- Installing formulae${COLOR_RESET}"
-    for formula in "${formulae[@]}"; do
-        if ! is_brew_formula_installed "$formula"; then
-            echo "Installing $formula..."
-            brew install "$formula"
-        else
-            echo "$formula is already installed."
-        fi
-    done
+    brew_install_formulae "${formulae[@]}"
 
     echo "${COLOR_GREEN}-- Installing casks${COLOR_RESET}"
-    for cask in "${casks[@]}"; do
-        if ! is_brew_cask_installed "$cask"; then
-            echo "Installing $cask..."
-            brew install --cask "$cask"
-        else
-            echo "$cask is already installed."
-        fi
-    done
+    brew_install_casks "${casks[@]}"
 
-    echo "${COLOR_GREEN}-- Installing ${DEVICE_TYPE} packages${COLOR_RESET}"
-    local device_formulae=()
-    local device_casks=()
-    if [ "$DEVICE_TYPE" = "work" ]; then
-        device_formulae=("${work_formulae[@]}")
-        device_casks=("${work_casks[@]}")
-    else
-        device_formulae=("${personal_formulae[@]}")
-        device_casks=("${personal_casks[@]}")
-    fi
-
-    for formula in "${device_formulae[@]}"; do
-        if ! is_brew_formula_installed "$formula"; then
-            echo "Installing $formula..."
-            brew install "$formula"
-        else
-            echo "$formula is already installed."
-        fi
-    done
-
-    for cask in "${device_casks[@]}"; do
-        if ! is_brew_cask_installed "$cask"; then
-            echo "Installing $cask..."
-            brew install --cask "$cask"
-        else
-            echo "$cask is already installed."
-        fi
-    done
+    install_device_packages
 
     echo "${COLOR_GREEN}-- Cleaning up Brew...${COLOR_RESET}"
     brew cleanup

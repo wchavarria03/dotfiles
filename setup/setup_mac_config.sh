@@ -184,6 +184,12 @@ setup_mac_config() {
   defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false  # Disable scroll animations
   defaults write NSGlobalDomain NSDocumentRevisionsWindowTransformAnimation -bool false  # Disable document animations
 
+  # shellcheck source=helpers.sh
+  source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
+  ensure_device_type
+  load_device_script
+  setup_device_config
+
   # Restart all affected services at once
   echo "Applying all config changes..."
   for app in "Dock" "Finder" "SystemUIServer" "Mail" "Activity Monitor" "Console" "Terminal"; do
