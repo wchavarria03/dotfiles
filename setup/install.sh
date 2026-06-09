@@ -31,6 +31,9 @@ main() {
     echo "${COLOR_GREEN}- Making $file executable...${COLOR_RESET}"
   done
 
+  source helpers.sh
+  ensure_device_type
+
   echo " "
   echo "${COLOR_GREEN}******** Stage 2 - Prep folders and brew ********${COLOR_RESET}"
   echo "${COLOR_GREEN}- Create folders${COLOR_RESET}"

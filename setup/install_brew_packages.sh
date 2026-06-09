@@ -10,6 +10,10 @@ is_brew_cask_installed() {
 
 # Function to install or update Brew packages
 install_brew_packages() {
+    # shellcheck source=helpers.sh
+    source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
+    ensure_device_type
+
     echo "${COLOR_GREEN}-- Installing tap formulae${COLOR_RESET}"
     brew tap FelixKratz/formulae ## For borders
     brew tap nikitabobko/tap
@@ -52,7 +56,6 @@ install_brew_packages() {
         1password-cli
         aerospace # requires nikitabobko/tap
         brave-browser
-        # claude-code  # work machine only
         cursor
         dbeaver-community
         discord
@@ -61,6 +64,12 @@ install_brew_packages() {
         sequel-ace
         wezterm
     )
+
+    local work_casks=(
+        claude-code
+    )
+
+    local personal_casks=()
 
     echo "${COLOR_GREEN}-- Installing formulae${COLOR_RESET}"
     for formula in "${formulae[@]}"; do
@@ -74,6 +83,23 @@ install_brew_packages() {
 
     echo "${COLOR_GREEN}-- Installing casks${COLOR_RESET}"
     for cask in "${casks[@]}"; do
+        if ! is_brew_cask_installed "$cask"; then
+            echo "Installing $cask..."
+            brew install --cask "$cask"
+        else
+            echo "$cask is already installed."
+        fi
+    done
+
+    echo "${COLOR_GREEN}-- Installing ${DEVICE_TYPE} casks${COLOR_RESET}"
+    local device_casks=()
+    if [ "$DEVICE_TYPE" = "work" ]; then
+        device_casks=("${work_casks[@]}")
+    else
+        device_casks=("${personal_casks[@]}")
+    fi
+
+    for cask in "${device_casks[@]}"; do
         if ! is_brew_cask_installed "$cask"; then
             echo "Installing $cask..."
             brew install --cask "$cask"
