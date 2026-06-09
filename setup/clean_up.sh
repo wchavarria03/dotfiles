@@ -35,6 +35,12 @@ clean_up() {
   source install_brew_fonts.sh
   install_brew_fonts_clean_up
 
+  source setup_asdf.sh
+  setup_asdf_clean_up
+
+  source setup_stow.sh
+  setup_stow_clean_up
+
   source setup_secrets.sh
   setup_secrets_clean_up
 

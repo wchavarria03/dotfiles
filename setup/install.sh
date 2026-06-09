@@ -49,23 +49,38 @@ main() {
   source install_brew_fonts.sh
   install_brew_fonts
 
+  echo "${COLOR_GREEN}- Setup asdf plugins and tool versions${COLOR_RESET}"
+  source setup_asdf.sh
+  setup_asdf
+
   echo " "
   echo "${COLOR_GREEN}******** Stage 3 - Setup Config Repos ********${COLOR_RESET}"
-  echo "${COLOR_GREEN}- Setup SECRETS repo${COLOR_RESET}"
-  source setup_secrets.sh
-  setup_secrets
 
-  echo "${COLOR_GREEN}- Setup DOTFILES repo${COLOR_RESET}"
-  source setup_dotfiles.sh
-  setup_dotfiles
+  echo "${COLOR_GREEN}- Checking SSH access to GitHub...${COLOR_RESET}"
+  if ! ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+    echo "WARNING: SSH key not configured for GitHub. Skipping repo clones."
+    echo "Set up SSH keys and re-run to complete Stage 3."
+  else
+    echo "${COLOR_GREEN}- Setup SECRETS repo${COLOR_RESET}"
+    source setup_secrets.sh
+    setup_secrets
 
-  echo "${COLOR_GREEN}- Setup NOTES repo${COLOR_RESET}"
-  source setup_notes.sh
-  setup_notes
+    echo "${COLOR_GREEN}- Setup DOTFILES repo${COLOR_RESET}"
+    source setup_dotfiles.sh
+    setup_dotfiles
 
-  echo "${COLOR_GREEN}- Setup COLLECTIONS repo${COLOR_RESET}"
-  source setup_api_collections.sh
-  setup_api_collections
+    echo "${COLOR_GREEN}- Setup NOTES repo${COLOR_RESET}"
+    source setup_notes.sh
+    setup_notes
+
+    echo "${COLOR_GREEN}- Setup COLLECTIONS repo${COLOR_RESET}"
+    source setup_api_collections.sh
+    setup_api_collections
+
+    echo "${COLOR_GREEN}- Symlinking dotfiles with stow${COLOR_RESET}"
+    source setup_stow.sh
+    setup_stow
+  fi
 
   echo " "
   echo "${COLOR_GREEN}******** Stage 4 - Configure MAC ********${COLOR_RESET}"
