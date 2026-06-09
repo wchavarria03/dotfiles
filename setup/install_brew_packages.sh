@@ -18,7 +18,6 @@ general_packages() {
         docker-completion
         eza
         fzf
-        gemini-cli
         gh
         git-lfs
         glow # markdown previewer
@@ -45,10 +44,6 @@ general_packages() {
         1password-cli
         aerospace # requires nikitabobko/tap
         brave-browser
-        cursor
-        dbeaver-community
-        discord
-        insomnia
         obsidian
         sequel-ace
         wezterm
@@ -70,7 +65,11 @@ work_packages() {
 personal_packages() {
     echo "${COLOR_GREEN}-- Installing personal packages${COLOR_RESET}"
     brew_install_formulae \
+        gemini-cli \
         opencode
+    brew_install_casks \
+        dbeaver-community \
+        discord
 }
 
 install_brew_packages() {
