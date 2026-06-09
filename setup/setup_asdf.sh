@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-setup_asdf() {
+general_asdf() {
     # Source asdf so it's available in this shell session
     if [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]; then
         # shellcheck disable=SC1090
@@ -26,6 +26,22 @@ setup_asdf() {
     cd ~/personal/dotfiles || exit
     asdf install
     cd - > /dev/null || exit
+}
+
+work_asdf() {
+    : # no work-specific asdf plugins yet
+}
+
+personal_asdf() {
+    : # no personal-specific asdf plugins yet
+}
+
+setup_asdf() {
+    # shellcheck source=helpers.sh
+    source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
+    ensure_device_type
+
+    run_for_device general_asdf work_asdf personal_asdf
 }
 
 setup_asdf_clean_up() {
