@@ -5,3 +5,4 @@
 .gitconfig.local
 
 **/.claude/settings.local.json
+.codegraph/
