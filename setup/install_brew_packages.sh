@@ -15,11 +15,11 @@ general_packages() {
         borders # requires FelixKratz/formulae tap
         carapace
         direnv
-        docker-completion
         eza
         fzf
         gh
         git-lfs
+        go
         glow # markdown previewer
         gnupg
         imagemagick # required for image.nvim inline image rendering
@@ -65,7 +65,6 @@ work_packages() {
 personal_packages() {
     echo "${COLOR_GREEN}-- Installing personal packages${COLOR_RESET}"
     brew_install_formulae \
-        gemini-cli \
         opencode
     brew_install_casks \
         dbeaver-community \
