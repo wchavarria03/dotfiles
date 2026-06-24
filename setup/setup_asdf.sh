@@ -10,7 +10,7 @@ general_asdf() {
         return 1
     fi
 
-    local plugins=(nodejs python rust) # golang managed by brew to align with golangci-lint
+    local plugins=(nodejs python golang rust)
 
     echo "${COLOR_GREEN}-- Adding asdf plugins${COLOR_RESET}"
     for plugin in "${plugins[@]}"; do

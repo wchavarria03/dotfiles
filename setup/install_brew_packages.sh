@@ -19,7 +19,6 @@ general_packages() {
         fzf
         gh
         git-lfs
-        go
         glow # markdown previewer
         gnupg
         imagemagick # required for image.nvim inline image rendering
