@@ -253,6 +253,10 @@ on-mode-changed = []
     run = 'move-node-to-workspace p'
 
 [[on-window-detected]]
+    if.app-id = "md.obsidian"
+    run = 'move-node-to-workspace p'
+
+[[on-window-detected]]
     if.app-id = "com.github.wez.wezterm"
     if.window-title-regex-substring = "^(?!.*(?:API Terminal|DB Terminal|Notes Terminal)).*"
     run = 'move-node-to-workspace t'
@@ -301,5 +305,19 @@ on-mode-changed = []
     run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-    if.app-id = 'com.google.GeminiMacOS'
+    if.app-id = 'com.anthropic.claudefordesktop'
     run = 'move-node-to-workspace g'
+
+[[on-window-detected]]
+    if.app-id = 'com.obsproject.obs-studio'
+    run = 'move-node-to-workspace o'
+
+# Force GIMP to use floating layout because its multi-window panels break strict tiling
+[[on-window-detected]]
+    if.app-id = 'org.gimp.gimp-2.10'
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.Music'
+    run = 'move-node-to-workspace 5'
+
