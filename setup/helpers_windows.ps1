@@ -15,7 +15,7 @@ function Ensure-OsType {
     switch ($choice) {
         "1" { $script:OS_TYPE = "mac" }
         "2" { $script:OS_TYPE = "windows" }
-        default { Write-Error "Invalid choice — expected 1 or 2."; exit 1 }
+        Default { throw "Invalid choice - expected 1 or 2." }
     }
     Write-Host "-- OS type set to: $($script:OS_TYPE)" -ForegroundColor Green
     Write-Host ""
@@ -47,7 +47,7 @@ function Ensure-DeviceType {
     switch ($choice) {
         "1" { $script:DEVICE_TYPE = "personal" }
         "2" { $script:DEVICE_TYPE = "work" }
-        default { Write-Error "Invalid choice — expected 1 or 2."; exit 1 }
+        Default { throw "Invalid choice - expected 1 or 2." }
     }
     Write-Host "-- Device type set to: $($script:DEVICE_TYPE)" -ForegroundColor Green
     Write-Host ""
