@@ -21,7 +21,6 @@ function Ensure-OsType {
     Write-Host ""
 }
 
-# Run $General always, then $Mac or $Windows based on OS type
 function Invoke-ForOs {
     param(
         [scriptblock]$General,
@@ -53,7 +52,6 @@ function Ensure-DeviceType {
     Write-Host ""
 }
 
-# Run $General always, then $Work or $Personal based on device type
 function Invoke-ForDevice {
     param(
         [scriptblock]$General,
@@ -67,8 +65,6 @@ function Invoke-ForDevice {
         & $Personal
     }
 }
-
-# ── Winget helpers ────────────────────────────────────────────────────────────
 
 function Is-WingetPackageInstalled {
     param([string]$PackageId)
@@ -88,15 +84,15 @@ function Winget-Install {
     }
 }
 
-# ── Symlink helper ────────────────────────────────────────────────────────────
-
-# Creates a symlink at $Link pointing to $Target.
-# Requires the script to run as Administrator (for mklink on Windows).
 function New-Symlink {
     param(
-        [string]$Target,  # source file in dotfiles repo
-        [string]$Link     # destination path (e.g. $HOME\.gitconfig)
+        [string]$Target,
+        [string]$Link
     )
+
+    if (-not $Link) {
+        throw "New-Symlink: Link parameter is null or empty."
+    }
 
     if (Test-Path $Link) {
         $item = Get-Item $Link -Force
@@ -104,7 +100,7 @@ function New-Symlink {
             Write-Host "Symlink already exists: $Link" -ForegroundColor Green
             return
         } else {
-            Write-Warning "File exists at $Link — skipping (not a symlink). Remove it manually to re-link."
+            Write-Warning "File exists at $Link - skipping. Remove it manually to re-link."
             return
         }
     }
