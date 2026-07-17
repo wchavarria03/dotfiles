@@ -119,7 +119,7 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\personal\dotfiles\setup\
 | Stage | Description |
 |-------|-------------|
 | 1 | Loads helpers, prompts for device type |
-| 2 | Installs Git via winget, checks SSH access, clones dotfiles and notes repos, symlinks `.gitconfig`, `.gitignore_global`, and nvim config |
+| 2 | Installs Git via winget, checks SSH access, clones dotfiles/notes/secrets repos, symlinks `.gitconfig`, `.gitignore_global`, and nvim config |
 | 3 | Installs WezTerm via winget, symlinks the whole `.config/wezterm` directory from dotfiles, installs the JetBrainsMono Nerd Font |
 | 4 | Installs Starship via winget, symlinks `starship.toml`, adds init to PowerShell profile |
 | 5 | Installs GlazeWM via winget, symlinks `.config/glazewm/config.yaml` |

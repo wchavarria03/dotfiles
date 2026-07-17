@@ -44,6 +44,15 @@ function Setup-Git {
         git -C $notesPath pull
     }
 
+    $secretsPath = "$personalPath\secrets"
+    if (-not (Test-Path $secretsPath)) {
+        Write-Host "Cloning secrets repo..." -ForegroundColor Green
+        git clone git@github.com:wchavarria03/secrets.git $secretsPath
+    } else {
+        Write-Host "Updating secrets repo..." -ForegroundColor Green
+        git -C $secretsPath pull
+    }
+
     $gitconfigSrc = "$dotfilesPath\.gitconfig"
     if (Test-Path $gitconfigSrc) {
         $gitconfigLink = "$env:USERPROFILE\.gitconfig"
