@@ -7,7 +7,7 @@ function Setup-Wezterm {
     # Install WezTerm
     Winget-Install @("wez.wezterm")
 
-    $dotfilesPath = "$HOME\personal\dotfiles"
+    $dotfilesPath = "$env:USERPROFILE\personal\dotfiles"
 
     if (-not (Test-Path $dotfilesPath)) {
         Write-Warning "Dotfiles repo not found at $dotfilesPath — run Setup-Git first."
@@ -31,8 +31,8 @@ function Setup-Wezterm {
 
     # Symlink to the location WezTerm expects on Windows
     if ($weztermSrc -like "*\.wezterm.lua") {
-        New-Symlink -Target $weztermSrc -Link "$HOME\.wezterm.lua"
+        New-Symlink -Target $weztermSrc -Link "$env:USERPROFILE\.wezterm.lua"
     } else {
-        New-Symlink -Target $weztermSrc -Link "$HOME\.config\wezterm\wezterm.lua"
+        New-Symlink -Target $weztermSrc -Link "$env:USERPROFILE\.config\wezterm\wezterm.lua"
     }
 }

@@ -11,12 +11,12 @@ function Setup-Starship {
     $env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine") + ";" +
                 [System.Environment]::GetEnvironmentVariable("Path", "User")
 
-    $dotfilesPath = "$HOME\personal\dotfiles"
+    $dotfilesPath = "$env:USERPROFILE\personal\dotfiles"
 
     # ── Symlink starship config ───────────────────────────────────────────────
     $starshipSrc = "$dotfilesPath\.config\starship.toml"
     if (Test-Path $starshipSrc) {
-        New-Symlink -Target $starshipSrc -Link "$HOME\.config\starship.toml"
+        New-Symlink -Target $starshipSrc -Link "$env:USERPROFILE\.config\starship.toml"
     } else {
         Write-Warning "starship.toml not found in dotfiles at $starshipSrc — skipping symlink."
     }
@@ -24,15 +24,16 @@ function Setup-Starship {
     # ── Add init to PowerShell profile ───────────────────────────────────────
     $initLine = 'Invoke-Expression (&starship init powershell)'
 
-    if (-not (Test-Path $PROFILE)) {
-        New-Item -ItemType File -Path $PROFILE -Force | Out-Null
-        Write-Host "Created PowerShell profile at $PROFILE" -ForegroundColor Green
+    $profilePath = $PROFILE
+    if (-not (Test-Path $profilePath)) {
+        New-Item -ItemType File -Path $profilePath -Force | Out-Null
+        Write-Host "Created PowerShell profile at $profilePath" -ForegroundColor Green
     }
 
-    $profileContent = Get-Content $PROFILE -Raw -ErrorAction SilentlyContinue
+    $profileContent = Get-Content $profilePath -Raw -ErrorAction SilentlyContinue
     if ($profileContent -notmatch [regex]::Escape($initLine)) {
-        Add-Content -Path $PROFILE -Value "`n$initLine"
-        Write-Host "Added Starship init to $PROFILE" -ForegroundColor Green
+        Add-Content -Path $profilePath -Value "`n$initLine"
+        Write-Host "Added Starship init to $profilePath" -ForegroundColor Green
     } else {
         Write-Host "Starship init already in profile — skipping." -ForegroundColor Green
     }
