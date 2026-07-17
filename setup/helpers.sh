@@ -1,5 +1,37 @@
 #!/usr/bin/env bash
 
+# Prompts for OS type if OS_TYPE is not already set.
+# Safe to call multiple times — only prompts once per session.
+ensure_os_type() {
+    if [ -n "$OS_TYPE" ]; then
+        return 0
+    fi
+
+    echo ""
+    echo "Which OS?"
+    echo "  1) mac"
+    echo "  2) windows"
+    read -rp "> " choice
+    case "$choice" in
+        1) export OS_TYPE="mac" ;;
+        2) export OS_TYPE="windows" ;;
+        *) echo "Invalid choice — expected 1 or 2."; exit 1 ;;
+    esac
+    echo "${COLOR_GREEN}-- OS type set to: ${OS_TYPE}${COLOR_RESET}"
+    echo ""
+}
+
+# Calls $1 (general) always, then $2 (mac) or $3 (windows) based on OS_TYPE.
+# Usage: run_for_os general_fn mac_fn windows_fn
+run_for_os() {
+    "$1"
+    if [ "$OS_TYPE" = "mac" ]; then
+        "$2"
+    else
+        "$3"
+    fi
+}
+
 # Prompts for device type if DEVICE_TYPE is not already set.
 # Safe to call multiple times — only prompts once per session.
 ensure_device_type() {

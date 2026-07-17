@@ -1,7 +1,40 @@
 # helpers_windows.ps1
 # Windows equivalents of helpers.sh
 
+$script:OS_TYPE = $null
 $script:DEVICE_TYPE = $null
+
+function Ensure-OsType {
+    if ($script:OS_TYPE) { return }
+
+    Write-Host ""
+    Write-Host "Which OS?"
+    Write-Host "  1) mac"
+    Write-Host "  2) windows"
+    $choice = Read-Host "> "
+    switch ($choice) {
+        "1" { $script:OS_TYPE = "mac" }
+        "2" { $script:OS_TYPE = "windows" }
+        default { Write-Error "Invalid choice — expected 1 or 2."; exit 1 }
+    }
+    Write-Host "-- OS type set to: $($script:OS_TYPE)" -ForegroundColor Green
+    Write-Host ""
+}
+
+# Run $General always, then $Mac or $Windows based on OS type
+function Invoke-ForOs {
+    param(
+        [scriptblock]$General,
+        [scriptblock]$Mac,
+        [scriptblock]$Windows
+    )
+    & $General
+    if ($script:OS_TYPE -eq "mac") {
+        & $Mac
+    } else {
+        & $Windows
+    }
+}
 
 function Ensure-DeviceType {
     if ($script:DEVICE_TYPE) { return }

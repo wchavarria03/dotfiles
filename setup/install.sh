@@ -32,6 +32,7 @@ main() {
   done
 
   source helpers.sh
+  ensure_os_type
   ensure_device_type
 
   echo " "
