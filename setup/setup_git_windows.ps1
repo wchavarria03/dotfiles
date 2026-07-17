@@ -44,6 +44,23 @@ function Setup-Git {
         git -C $notesPath pull
     }
 
+    # Streaming folders - personal streaming PC only (needs a D: drive with
+    # the Streaming folder layout). Assets symlinks to the notes repo (single
+    # source of truth for GIMP .xcf sources); Exports is a real, unsynced
+    # folder for disposable one-off renders - mirrors create_folders.sh /
+    # setup_notes.sh on the Mac side.
+    if (Test-Path "D:\") {
+        New-Symlink -Target "$notesPath\attachments\streaming" -Link "D:\Streaming\Assets"
+
+        $exportsPath = "D:\Streaming\Exports"
+        if (-not (Test-Path $exportsPath)) {
+            New-Item -ItemType Directory -Path $exportsPath -Force | Out-Null
+            Write-Host "-- Created folder: $exportsPath" -ForegroundColor Green
+        }
+    } else {
+        Write-Host "No D: drive found - skipping streaming folders." -ForegroundColor Yellow
+    }
+
     $secretsPath = "$personalPath\secrets"
     if (-not (Test-Path $secretsPath)) {
         Write-Host "Cloning secrets repo..." -ForegroundColor Green

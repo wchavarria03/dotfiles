@@ -15,7 +15,13 @@ work_folders() {
 }
 
 personal_folders() {
-    : # no personal-specific folders yet
+    local folders=(~/Documents/Streaming/Exports)
+    for folder in "${folders[@]}"; do
+        if [[ ! -d "$folder" ]]; then
+            mkdir -p "$folder"
+            echo "${COLOR_GREEN}-- Created folder: $folder${COLOR_RESET}"
+        fi
+    done
 }
 
 create_folders() {
