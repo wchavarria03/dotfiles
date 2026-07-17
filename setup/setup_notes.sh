@@ -18,12 +18,16 @@ setup_notes() {
         cd - >/dev/null || exit
     fi
 
-    link_streaming_assets
+    if [[ "$DEVICE_TYPE" == "personal" ]]; then
+        link_streaming_assets
+    fi
 }
 
 # Symlinks the streaming assets folder from the notes repo into ~/Documents/Streaming.
 # Keeps the notes repo as the single source of truth — GIMP/OBS point at the
 # symlink, not a separate copy that can drift out of sync.
+# Personal-only (gated by caller) — this is a personal streaming PC concern,
+# not something a work machine needs.
 link_streaming_assets() {
     local link=~/Documents/Streaming/Assets
     local target="$NOTES_PATH/attachments/streaming"
