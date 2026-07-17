@@ -32,7 +32,6 @@ function main {
     Write-Stage "Stage 1 - Load helpers"
     . "$PSScriptRoot\helpers_windows.ps1"
     Ensure-OsType
-    Ensure-DeviceType
 
     # ── Stage 2 - Git + Dotfiles ──────────────────────────────────────────────
     Write-Stage "Stage 2 - Git and Dotfiles"
