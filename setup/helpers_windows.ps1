@@ -68,8 +68,11 @@ function Invoke-ForDevice {
 
 function Is-WingetPackageInstalled {
     param([string]$PackageId)
-    $result = winget list --id $PackageId --accept-source-agreements 2>&1
-    return $result -match $PackageId
+    $result = & {
+        $ErrorActionPreference = "Continue"
+        winget list --id $PackageId --accept-source-agreements 2>&1
+    } | Out-String
+    return $result -match [regex]::Escape($PackageId)
 }
 
 function Winget-Install {

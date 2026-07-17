@@ -119,9 +119,12 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\personal\dotfiles\setup\
 | Stage | Description |
 |-------|-------------|
 | 1 | Loads helpers, prompts for device type |
-| 2 | Installs Git via winget, checks SSH access, clones dotfiles repo, symlinks `.gitconfig` and `.gitignore_global` |
-| 3 | Installs WezTerm via winget, symlinks wezterm config from dotfiles |
+| 2 | Installs Git via winget, checks SSH access, clones dotfiles and notes repos, symlinks `.gitconfig`, `.gitignore_global`, and nvim config |
+| 3 | Installs WezTerm via winget, symlinks the whole `.config/wezterm` directory from dotfiles, installs the JetBrainsMono Nerd Font |
 | 4 | Installs Starship via winget, symlinks `starship.toml`, adds init to PowerShell profile |
+| 5 | Installs GlazeWM via winget, symlinks `.config/glazewm/config.yaml` |
+| 6 | Installs zoxide via winget, adds init to PowerShell profile |
+| 7 | Installs extras with no dotfiles-managed config: ripgrep, fzf, imagemagick, glow, PowerToys, Brave |
 
 ### Scripts
 
@@ -129,12 +132,18 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\personal\dotfiles\setup\
 |------|---------|
 | `install.ps1` | Entry point |
 | `helpers_windows.ps1` | Device type prompt, `Winget-Install`, `New-Symlink` helpers |
-| `setup_git_windows.ps1` | Git install, dotfiles clone, git config symlinks |
-| `setup_wezterm_windows.ps1` | WezTerm install and config symlink |
+| `setup_git_windows.ps1` | Git install, dotfiles/notes clone, git config and nvim symlinks |
+| `setup_wezterm_windows.ps1` | WezTerm install and config directory symlink |
 | `setup_starship_windows.ps1` | Starship install, config symlink, PowerShell profile init |
+| `setup_glazewm_windows.ps1` | GlazeWM install and config symlink |
+| `setup_zoxide_windows.ps1` | zoxide install, PowerShell profile init |
+| `setup_extras_windows.ps1` | ripgrep, fzf, imagemagick, glow, PowerToys, Brave |
 
 ### Notes
 
-- Symlinks are created with `New-Item -ItemType SymbolicLink`, which requires Administrator privileges.
+- Symlinks are created with `New-Item -ItemType SymbolicLink`, which requires Administrator privileges — run the install command from an elevated Command Prompt (or an admin Run dialog/shortcut). `powershell -ExecutionPolicy Bypass -File ...` does **not** self-elevate; it only bypasses the script execution policy, not `#Requires -RunAsAdministrator`.
+- `%USERPROFILE%` in the commands above is `cmd.exe` syntax. It's expanded by Command Prompt before `powershell.exe` ever sees it, so paste these into Command Prompt (or a shortcut's Target field), not directly into an already-open PowerShell window — there it'd need to be `$env:USERPROFILE` instead.
 - If your `.gitconfig` is nested inside the dotfiles repo (e.g. under a `git/` subdirectory), update `$gitconfigSrc` in `setup_git_windows.ps1`.
-- WezTerm config is detected automatically from either `~/.wezterm.lua` or `~/.config/wezterm/wezterm.lua` in the dotfiles repo.
+- WezTerm config is detected automatically from either `~/.wezterm.lua` or `~/.config/wezterm/wezterm.lua` in the dotfiles repo. Since `wezterm.lua` `require()`s sibling modules (`colors.lua`, `keys.lua`, etc.), the whole `.config/wezterm` directory is symlinked, not just the one file.
+- `.ps1` files in this repo must not contain non-ASCII characters (em dashes, curly quotes) inside string literals — files have no BOM, so Windows PowerShell 5.1 reads them via the system ANSI codepage, and an em dash can get misread as a string-terminating curly quote, breaking the parser.
+- GlazeWM's `window_rules` in `.config/glazewm/config.yaml` match by process name — verify exact `.exe` names via Task Manager's Details tab for apps not yet confirmed (see comments in the file).

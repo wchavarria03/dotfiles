@@ -1,0 +1,276 @@
+# GlazeWM config - Windows analog of .config/aerospace/aerospace.toml
+# Docs: https://github.com/glzr-io/glazewm
+# Default load path: %USERPROFILE%\.glzr\glazewm\config.yaml (symlinked there
+# by setup/setup_glazewm_windows.ps1)
+
+general:
+  startup_commands: []
+  shutdown_commands: []
+  config_reload_commands: []
+  focus_follows_cursor: false
+  toggle_workspace_on_refocus: true
+  hide_method: 'cloak'
+  show_all_in_taskbar: false
+
+# Matches aerospace's [gaps] block (10px on every side).
+gaps:
+  scale_with_dpi: true
+  inner_gap: '10px'
+  outer_gap:
+    top: '10px'
+    right: '10px'
+    bottom: '10px'
+    left: '10px'
+
+window_effects:
+  focused_window:
+    border:
+      enabled: true
+      color: '#e1e3e4'
+    hide_title_bar:
+      enabled: false
+    corner_style:
+      enabled: false
+      style: 'square'
+    transparency:
+      enabled: false
+      opacity: '95%'
+  other_windows:
+    border:
+      enabled: true
+      color: '#494d64'
+    hide_title_bar:
+      enabled: false
+    corner_style:
+      enabled: false
+      style: 'square'
+    transparency:
+      enabled: false
+      opacity: '0%'
+
+window_behavior:
+  initial_state: 'tiling'
+  state_defaults:
+    floating:
+      centered: true
+      shown_on_top: false
+    fullscreen:
+      maximized: false
+      shown_on_top: false
+
+# Full set of workspace names referenced across aerospace.toml's keybindings
+# and on-window-detected rules, including the "scratch" workspace used by
+# quick_terminal.lua / launch_notes_quick.sh for the floating notes scratchpad.
+workspaces:
+  - name: '1'
+  - name: '2'
+  - name: '3'
+  - name: '4'
+  - name: '5'
+  - name: 'a'
+  - name: 'b'
+  - name: 'c'
+  - name: 'd'
+  - name: 'g'
+  - name: 'i'
+  - name: 'm'
+  - name: 'o'
+  - name: 'p'
+  - name: 's'
+  - name: 't'
+  - name: 'scratch'
+
+window_rules:
+  # ── Confident matches (process names verified or well-known) ────────────
+  - commands: ['move --workspace s']
+    match:
+      - window_process: { equals: 'slack' }
+
+  - commands: ['move --workspace b']
+    match:
+      - window_process: { equals: 'brave' }
+
+  - commands: ['move --workspace 3']
+    match:
+      - window_process: { equals: 'Telegram' }
+      - window_process: { equals: 'Discord' }
+
+  - commands: ['move --workspace i']
+    match:
+      - window_process: { equals: 'Cursor' }
+
+  - commands: ['move --workspace a']
+    match:
+      - window_process: { equals: 'Insomnia' }
+      - window_process: { equals: 'bruno' }
+      # wezterm windows explicitly titled "API Terminal" (see terminal_utils.sh)
+      - window_process: { equals: 'wezterm-gui' }
+        window_title: { regex: 'API Terminal' }
+
+  - commands: ['move --workspace d']
+    match:
+      - window_process: { equals: 'Docker Desktop' } # TODO: verify exact process name in Task Manager
+      - window_process: { equals: 'wezterm-gui' }
+        window_title: { regex: 'DB Terminal' }
+
+  - commands: ['move --workspace p']
+    match:
+      - window_process: { equals: 'Obsidian' }
+      - window_process: { equals: 'wezterm-gui' }
+        window_title: { regex: '^Notes Terminal' }
+
+  - commands: ['move --workspace g']
+    match:
+      - window_process: { equals: 'claude' }
+
+  - commands: ['move --workspace o']
+    match:
+      - window_process: { equals: 'obs64' }
+
+  - commands: ['move --workspace 4', 'set-floating']
+    match:
+      - window_process: { equals: 'gimp-3' }
+
+  # Default/untagged wezterm windows go to 't', same as aerospace's catch-all
+  # rule (excludes windows already claimed by title above).
+  - commands: ['move --workspace t']
+    match:
+      - window_process: { equals: 'wezterm-gui' }
+        window_title: { not_regex: 'API Terminal|DB Terminal|Notes Terminal' }
+
+binding_modes:
+  # Mirrors aerospace's [mode.resize.binding].
+  - name: 'resize'
+    keybindings:
+      - commands: ['resize --width -2%']
+        bindings: ['h']
+      - commands: ['resize --width +2%']
+        bindings: ['l']
+      - commands: ['resize --height +2%']
+        bindings: ['j']
+      - commands: ['resize --height -2%']
+        bindings: ['k']
+      - commands: ['wm-disable-binding-mode --name resize']
+        bindings: ['escape', 'enter', 'alt+r']
+
+keybindings:
+  # ── Focus / move (aerospace's vim-style hjkl bindings) ──────────────────
+  - commands: ['focus --direction left']
+    bindings: ['alt+h']
+  - commands: ['focus --direction right']
+    bindings: ['alt+l']
+  - commands: ['focus --direction up']
+    bindings: ['alt+k']
+  - commands: ['focus --direction down']
+    bindings: ['alt+j']
+
+  - commands: ['move --direction left']
+    bindings: ['alt+shift+h']
+  - commands: ['move --direction right']
+    bindings: ['alt+shift+l']
+  - commands: ['move --direction up']
+    bindings: ['alt+shift+k']
+  - commands: ['move --direction down']
+    bindings: ['alt+shift+j']
+
+  # ── Layout ────────────────────────────────────────────────────────────
+  # aerospace: alt-slash = 'layout tiles horizontal vertical'
+  - commands: ['toggle-tiling-direction']
+    bindings: ['alt+slash']
+  # aerospace: alt-shift-space = 'layout floating tiling' (toggle)
+  - commands: ['toggle-floating --centered']
+    bindings: ['alt+shift+space']
+  # aerospace: alt-shift-f = 'fullscreen'
+  - commands: ['toggle-fullscreen']
+    bindings: ['alt+shift+f']
+  # NOTE: aerospace's alt-comma ('accordion' layout) has no GlazeWM equivalent
+  # - GlazeWM only supports tiling/floating/fullscreen, not accordion/stacked.
+
+  # ── Resize mode (aerospace: alt-r = 'mode resize') ──────────────────────
+  - commands: ['wm-enable-binding-mode --name resize']
+    bindings: ['alt+r']
+
+  # ── Workspaces (numbers) ────────────────────────────────────────────────
+  - commands: ['focus --workspace 1']
+    bindings: ['alt+1']
+  - commands: ['focus --workspace 2']
+    bindings: ['alt+2']
+  - commands: ['focus --workspace 3']
+    bindings: ['alt+3']
+  - commands: ['focus --workspace 4']
+    bindings: ['alt+4']
+  - commands: ['focus --workspace 5']
+    bindings: ['alt+5']
+
+  - commands: ['move --workspace 1', 'focus --workspace 1']
+    bindings: ['alt+shift+1']
+  - commands: ['move --workspace 2', 'focus --workspace 2']
+    bindings: ['alt+shift+2']
+  - commands: ['move --workspace 3', 'focus --workspace 3']
+    bindings: ['alt+shift+3']
+  - commands: ['move --workspace 4', 'focus --workspace 4']
+    bindings: ['alt+shift+4']
+  - commands: ['move --workspace 5', 'focus --workspace 5']
+    bindings: ['alt+shift+5']
+
+  # ── Workspaces (letters) ─────────────────────────────────────────────────
+  # NOTE: aerospace's alt-a/alt-d/alt-p also launched a terminal script
+  # (launch_api_terminal.sh / launch_db_terminal.sh / launch_notes_terminal.sh).
+  # Those scripts use zsh + python3 + macOS-only wezterm/osascript paths and
+  # haven't been ported to Windows yet - these bindings only switch workspace.
+  - commands: ['focus --workspace a']
+    bindings: ['alt+a']
+  - commands: ['focus --workspace b']
+    bindings: ['alt+b']
+  - commands: ['focus --workspace c']
+    bindings: ['alt+c']
+  - commands: ['focus --workspace d']
+    bindings: ['alt+d']
+  - commands: ['focus --workspace g']
+    bindings: ['alt+g']
+  - commands: ['focus --workspace i']
+    bindings: ['alt+i']
+  - commands: ['focus --workspace m']
+    bindings: ['alt+m']
+  - commands: ['focus --workspace p']
+    bindings: ['alt+p']
+  - commands: ['focus --workspace s']
+    bindings: ['alt+s']
+  - commands: ['focus --workspace t']
+    bindings: ['alt+t']
+
+  - commands: ['move --workspace a', 'focus --workspace a']
+    bindings: ['alt+shift+a']
+  - commands: ['move --workspace b', 'focus --workspace b']
+    bindings: ['alt+shift+b']
+  - commands: ['move --workspace c', 'focus --workspace c']
+    bindings: ['alt+shift+c']
+  - commands: ['move --workspace d', 'focus --workspace d']
+    bindings: ['alt+shift+d']
+  - commands: ['move --workspace g', 'focus --workspace g']
+    bindings: ['alt+shift+g']
+  - commands: ['move --workspace i', 'focus --workspace i']
+    bindings: ['alt+shift+i']
+  - commands: ['move --workspace m', 'focus --workspace m']
+    bindings: ['alt+shift+m']
+  - commands: ['move --workspace p', 'focus --workspace p']
+    bindings: ['alt+shift+p']
+  - commands: ['move --workspace s', 'focus --workspace s']
+    bindings: ['alt+shift+s']
+  - commands: ['move --workspace t', 'focus --workspace t']
+    bindings: ['alt+shift+t']
+
+  # ── Workspace history ────────────────────────────────────────────────────
+  # aerospace: alt-tab = 'workspace-back-and-forth'
+  - commands: ['focus --recent-workspace']
+    bindings: ['alt+tab']
+  # aerospace's alt-shift-tab ('move-workspace-to-monitor --wrap-around next')
+  # has no direction-agnostic equivalent in GlazeWM (it only supports
+  # move-workspace --direction left/right/up/down) - not ported, needs your
+  # monitor layout to pick a direction.
+
+  # ── Misc ─────────────────────────────────────────────────────────────────
+  - commands: ['wm-reload-config']
+    bindings: ['alt+shift+r']
+  - commands: ['close']
+    bindings: ['alt+shift+q']

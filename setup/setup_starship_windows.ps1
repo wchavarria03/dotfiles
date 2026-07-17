@@ -18,7 +18,7 @@ function Setup-Starship {
     if (Test-Path $starshipSrc) {
         New-Symlink -Target $starshipSrc -Link "$env:USERPROFILE\.config\starship.toml"
     } else {
-        Write-Warning "starship.toml not found in dotfiles at $starshipSrc — skipping symlink."
+        Write-Warning "starship.toml not found in dotfiles at $starshipSrc - skipping symlink."
     }
 
     # ── Add init to PowerShell profile ───────────────────────────────────────
@@ -35,6 +35,6 @@ function Setup-Starship {
         Add-Content -Path $profilePath -Value "`n$initLine"
         Write-Host "Added Starship init to $profilePath" -ForegroundColor Green
     } else {
-        Write-Host "Starship init already in profile — skipping." -ForegroundColor Green
+        Write-Host "Starship init already in profile - skipping." -ForegroundColor Green
     }
 }
