@@ -62,10 +62,6 @@ load(specs, 'plugins.languages.obsidian')
 load(specs, 'plugins.languages.image')
 load(specs, 'plugins.languages.markdown-preview-nvim')
 
--- AI
-load(specs, 'plugins.ai.copilot')
-load(specs, 'plugins.ai.copilot-ls')
-
 -- Completion
 load(specs, 'plugins.completion.blink')
 

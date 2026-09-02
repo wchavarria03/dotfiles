@@ -46,18 +46,19 @@ public_fn() {
 
 **Scripts that follow this pattern:**
 
-| Script | Customizable via |
-|---|---|
-| `install_brew_packages.sh` | `general/work/personal_packages()` |
-| `install_brew_fonts.sh` | `general/work/personal_fonts()` |
-| `setup_mac_config.sh` | `general/work/personal_mac_config()` |
-| `setup_asdf.sh` | `general/work/personal_asdf()` |
-| `create_folders.sh` | `general/work/personal_folders()` |
+| Script                     | Customizable via                          |
+| -------------------------- | ----------------------------------------- |
+| `install_brew_packages.sh` | `general/work/personal_packages()`        |
+| `install_brew_fonts.sh`    | `general/work/personal_fonts()`           |
+| `setup_mac_config.sh`      | `general/work/personal_mac_config()`      |
+| `setup_asdf.sh`            | `general/work/personal_asdf()`            |
+| `create_folders.sh`        | `general/work/personal_folders()`         |
 | `setup_api_collections.sh` | `general/work/personal_api_collections()` |
 
 To add a device-specific package, font, folder, or config — open the relevant script and edit the `work_*` or `personal_*` function. No other files need to change.
 
 **Current device extras:**
+
 - `work`: `claude-code`
 - `personal`: `opencode`
 
@@ -144,12 +145,12 @@ The script will prompt for device type (`personal` or `work`) on first run and e
 
 **What the script does:**
 
-| Stage | Steps |
-|---|---|
-| 1 | Makes all scripts executable, prompts for device type |
-| 2 | Creates folders, installs Homebrew packages + fonts, sets up asdf plugins and tool versions |
-| 3 | Checks SSH access, clones/pulls secrets, dotfiles, notes, and API collections repos, runs `stow` |
-| 4 | Applies macOS system defaults |
+| Stage | Steps                                                                                            |
+| ----- | ------------------------------------------------------------------------------------------------ |
+| 1     | Makes all scripts executable, prompts for device type                                            |
+| 2     | Creates folders, installs Homebrew packages + fonts, sets up asdf plugins and tool versions      |
+| 3     | Checks SSH access, clones/pulls secrets, dotfiles, notes, and API collections repos, runs `stow` |
+| 4     | Applies macOS system defaults                                                                    |
 
 If SSH isn't configured when Stage 3 runs, it prints a warning and skips repo cloning — re-run the script after setting up SSH keys.
 
@@ -169,15 +170,11 @@ If SSH isn't configured when Stage 3 runs, it prints a warning and skips repo cl
 1. **Restart** to ensure all macOS defaults take effect
 2. **Enable AeroSpace** window manager
 3. **Open Neovim** — plugins install automatically on first launch
-4. **Authenticate GitHub Copilot** in Neovim:
-   ```vim
-   :Copilot auth
-   ```
-5. **Disable press-and-hold in Cursor** for key repeat:
+4. **Disable press-and-hold in Cursor** for key repeat:
    ```bash
    defaults write com.todesktop.230313mzl4w4u92 ApplePressAndHoldEnabled -bool false
    ```
-6. **Connect Calendar** to email and configure Dock
+5. **Connect Calendar** to email and configure Dock
 
 ---
 
@@ -208,21 +205,26 @@ brew completions link
 ## Troubleshooting
 
 **Homebrew failures**
+
 - Ensure stable internet connection
 - For Apple Silicon: verify `eval "$(/opt/homebrew/bin/brew shellenv)"` ran before the script
 
 **SSH / repo cloning skipped**
+
 - The install script checks SSH access before Stage 3 and skips with a clear message if keys aren't configured
 - Set up keys (Phase 3) and re-run `./install.sh`
 
 **Stow conflicts**
+
 - Run `make unstow` then `make stow` to re-apply symlinks
 - Resolve conflicts manually if a file already exists at the target path
 
 **Script errors**
+
 - Each script can be run individually from the `setup/` directory
 - If `DEVICE_TYPE` isn't set, the script will prompt before continuing
 
 **Apple Silicon notes**
+
 - Homebrew installs to `/opt/homebrew` — PATH must be configured before any brew commands
 - Native ARM binaries are used by default; Rosetta 2 is only needed for specific apps

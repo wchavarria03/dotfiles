@@ -5,7 +5,6 @@ M.plugins = {
         src = 'https://github.com/saghen/blink.cmp',
         version = vim.version.range '1.*',
     },
-    'https://github.com/giuxtaposition/blink-cmp-copilot',
 }
 
 function M.setup()
@@ -35,18 +34,12 @@ function M.setup()
         },
 
         sources = {
-            default = { 'lazydev', 'copilot', 'lsp', 'path', 'buffer' },
+            default = { 'lazydev', 'lsp', 'path', 'buffer' },
             providers = {
                 lazydev = {
                     name = 'LazyDev',
                     module = 'lazydev.integrations.blink',
                     score_offset = 100,
-                },
-                copilot = {
-                    name = 'copilot',
-                    module = 'blink-cmp-copilot',
-                    score_offset = 100,
-                    async = true,
                 },
             },
         },

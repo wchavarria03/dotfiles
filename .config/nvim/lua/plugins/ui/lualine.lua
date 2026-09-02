@@ -19,12 +19,6 @@ function M.setup()
                 { 'filename', path = 1 },
             },
             lualine_x = {
-                {
-                    require('utils.lualine_components').copilot_status,
-                    cond = function()
-                        return package.loaded['copilot'] ~= nil
-                    end,
-                },
                 { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
             },
             lualine_y = {

@@ -17,7 +17,6 @@ function M.setup()
             'jsonls', -- JSON
             'lua_ls', -- Lua
             'ts_ls', -- TypeScript/JavaScript
-            'copilot',
 
             -- Web development
             'html', -- HTML

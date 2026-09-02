@@ -41,7 +41,7 @@ A well-organized Neovim configuration focused on productivity, with special emph
 │   │   └── prompts /            # Pormpts configs
 │   │
 │   └── plugins/                 # Plugin configurations
-│       ├── ai/                 # AI plugins (Copilot, etc.)
+│       ├── ai/                 # AI plugin
 │       ├── coding/             # Coding enhancements
 │       ├── editor/             # Editor plugins
 │       ├── formatting/         # Code formatting
@@ -229,4 +229,3 @@ This configuration is designed to be modular and extensible. Feel free to:
 ## License
 
 This configuration is provided as-is for personal use and learning.
-

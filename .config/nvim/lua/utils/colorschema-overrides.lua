@@ -5,7 +5,6 @@ local catppuccin_overrides_list = {
     --     integrations = {
     --         blink_cmp = true,
     --         bufferline = true,
-    --         copilot_vim = true,
     --         flash = true,
     --         fzf = true,
     --         gitsigns = true,

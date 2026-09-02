@@ -15,8 +15,6 @@ scripts
 .config/zsh/.zsh_sessions
 .config/zsh/.zcompdump
 .config/zsh/.zcompcache
-.config/github-copilot/*
-.config/.copilot/logs
 .config/configstore/
 .config/lazysql/history/
 
