@@ -75,3 +75,7 @@ compdef v=nvim # bridge 'v' alias to nvim completions so carapace doesn't error
 
 ### rust language ###
 . "$HOME/.cargo/env"
+
+
+### DirEnv ###
+eval "$(direnv hook zsh)"
