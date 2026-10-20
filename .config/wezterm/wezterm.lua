@@ -3,7 +3,8 @@ local colors = require("colors")
 local tabbar = require("tabbar")
 local keys = require("keys")
 local editor = require("editor")
-local smart_splits = require("smart-splits")
+-- local smart_splits = require("smart-splits") -- old hand-rolled config, kept for rollback
+local smart_splits = wezterm.plugin.require("https://github.com/smart-splits-nvim/backend-wezterm")
 local bootstrap = require("bootstrap")
 
 local config = wezterm.config_builder()
