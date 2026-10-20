@@ -1,0 +1,5 @@
+# Applied only under ~/work/ (see includeIf in .gitconfig).
+# Same helper as gitconfig.personal; direnv decides which $GITHUB_PAT it serves per directory.
+[credential "https://github.com"]
+    helper =
+    helper = !~/personal/dotfiles/.config/git/git-credential-pat

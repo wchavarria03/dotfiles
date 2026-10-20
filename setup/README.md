@@ -147,3 +147,31 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\personal\dotfiles\setup\
 - WezTerm config is detected automatically from either `~/.wezterm.lua` or `~/.config/wezterm/wezterm.lua` in the dotfiles repo. Since `wezterm.lua` `require()`s sibling modules (`colors.lua`, `keys.lua`, etc.), the whole `.config/wezterm` directory is symlinked, not just the one file.
 - `.ps1` files in this repo must not contain non-ASCII characters (em dashes, curly quotes) inside string literals — files have no BOM, so Windows PowerShell 5.1 reads them via the system ANSI codepage, and an em dash can get misread as a string-terminating curly quote, breaking the parser.
 - GlazeWM's `window_rules` in `.config/glazewm/config.yaml` match by process name — verify exact `.exe` names via Task Manager's Details tab for apps not yet confirmed (see comments in the file).
+
+## GitHub auth (PAT via direnv)
+
+Cloning during install uses SSH (the key listed under Prerequisites). Day-to-day, HTTPS remotes under `~/personal/` authenticate with a PAT from `$GITHUB_PAT`, served by `.config/git/git-credential-pat` (wired in through `includeIf` blocks in `~/.gitconfig.local`, macOS only). Repos under `~/work/` do the same with a separate PAT (`gitconfig.work`). SSH remotes (`git@github.com:...`) ignore all of this and use the SSH key. Other directories are unaffected.
+
+### Prerequisites (macOS)
+
+- 1Password desktop app with **Settings > Developer > Integrate with 1Password CLI** enabled.
+- Both 1Password accounts added to the app (`op account list` shows `my.1password.com` and `ltvco.1password.com`).
+- `direnv`, `1password-cli` and `stow` are installed by `install_brew_packages.sh`, and the direnv hook (`eval "$(direnv hook zsh)"`) is already in the tracked `.zshrc`.
+
+### On each machine
+
+1. Run `stow . -t ~/` from the dotfiles repo (`install.sh` does this). `setup_stow.sh` also adds the `includeIf` blocks to `~/.gitconfig.local`, creates the two `.envrc` files if missing, and runs `direnv allow`. Nothing is overwritten.
+2. The `.envrc` files (never commit them) each read their own 1Password account, so `op` must be signed in to both:
+   - `~/personal/.envrc`: `export GITHUB_PAT=$(op read --account my.1password.com "op://Private/GitHub PAT - Personal/token")`
+   - `~/work/.envrc`: `export GITHUB_PAT=$(op read --account ltvco.1password.com "op://Employee/Github PAT - LTV/token")`
+3. Remote URLs must be plain `https://github.com/<owner>/<repo>.git` (HTTPS) or `git@github.com:<owner>/<repo>.git` (SSH), with no token embedded, and no `url.*.insteadOf` rules carrying tokens.
+4. Verify: `git ls-remote origin HEAD` inside a repo under `~/personal/` and one under `~/work/`.
+
+### Windows
+
+Windows keeps Git Credential Manager over HTTPS for `notes` and `streaming`, with no direnv or `op`. The PAT setup above is not applied there because it lives in `~/.gitconfig.local`, which the Windows setup doesn't create.
+
+### Token notes
+
+- Fine-grained PATs work over HTTPS only. They expire (1 year max), so note the expiry date in the 1Password item. They cannot access GitHub Packages or `ghcr.io`; that needs a classic token with `read:packages`.
+- The work token needs `ltvco` as resource owner, org approval/SSO authorization, and Contents access to each repo it must reach, including private Go modules.

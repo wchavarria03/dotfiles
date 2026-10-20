@@ -1,0 +1,5 @@
+# Applied only under ~/personal/ (see includeIf in .gitconfig).
+# The empty `helper =` resets the list so osxkeychain can't serve a stale credential.
+[credential "https://github.com"]
+    helper =
+    helper = !~/personal/dotfiles/.config/git/git-credential-pat
