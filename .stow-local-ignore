@@ -7,3 +7,4 @@ setup
 .config/zsh/.zcompdump
 .DS_Store
 cursor
+.githooks

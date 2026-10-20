@@ -14,13 +14,20 @@ setup_stow() {
     ensure_gitconfig_local_signing
     ensure_gitconfig_local_github_auth
     ensure_github_envrc
+    ensure_git_hooks_path
+}
+
+# Repo-local (not --global) so only this repo runs the gitleaks pre-commit hook.
+ensure_git_hooks_path() {
+    git -C ~/personal/dotfiles config core.hooksPath .githooks
+    echo "${COLOR_GREEN}-- Git hooks enabled (.githooks).${COLOR_RESET}"
 }
 
 # The tracked .gitconfig is OS-portable (no Mac-only paths), so commit
 # signing (1Password SSH-sign) lives in a tracked-but-included file instead.
-# ~/.gitconfig.local itself stays real and untracked (personal-secrets.zsh
-# writes secrets there), so this only ensures it has an [include] pointing
-# at the tracked signing config — safe to run multiple times.
+# ~/.gitconfig.local itself stays real and untracked (machine-local config,
+# never tokens), so this only ensures it has an [include] pointing at the
+# tracked signing config — safe to run multiple times.
 ensure_gitconfig_local_signing() {
     local signing_include="~/personal/dotfiles/.config/git/gitconfig.mac.signing"
     local local_config="$HOME/.gitconfig.local"

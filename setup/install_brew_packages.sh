@@ -24,6 +24,7 @@ general_packages() {
         gh
         git # required by Doom Emacs
         git-lfs
+        gitleaks # secret scanning in .githooks/pre-commit
         glow # markdown previewer
         gnupg
         imagemagick # required for image.nvim inline image rendering
