@@ -38,3 +38,4 @@ scripts
 
 ## Ignore nvim nightly build packages
 nvim-macos-arm64
+.config/carapace/bridge/zsh/.zcompdump_capture*
