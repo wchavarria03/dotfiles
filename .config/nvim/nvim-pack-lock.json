@@ -133,10 +133,6 @@
       "rev": "bd67efe",
       "src": "https://github.com/folke/trouble.nvim"
     },
-    "ts-comments.nvim": {
-      "rev": "a59d6092213447450191122c9346f309161504cb",
-      "src": "https://github.com/folke/ts-comments.nvim"
-    },
     "vim-dadbod": {
       "rev": "6d1d41da4873a445c5605f2005ad2c68c99d8770",
       "src": "https://github.com/tpope/vim-dadbod"
