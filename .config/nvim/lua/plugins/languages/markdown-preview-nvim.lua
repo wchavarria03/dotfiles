@@ -2,11 +2,11 @@ local M = {}
 
 M.plugins = {
     'https://github.com/selimacerbas/live-server.nvim',
-    'https://github.com/selimacerbas/markdown-preview.nvim',
+    'https://github.com/selimacerbas/mdkite.nvim',
 }
 
 function M.setup()
-    require('markdown_preview').setup {
+    require('mdkite').setup {
         mkit = {},
         katex = {},
         uml = {},
