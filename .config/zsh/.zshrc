@@ -79,3 +79,8 @@ compdef v=nvim # bridge 'v' alias to nvim completions so carapace doesn't error
 
 ### DirEnv ###
 eval "$(direnv hook zsh)"
+
+### PATH dedupe (keeps nested shells identical; Doom compares PATH) ###
+typeset -U path
+# cargo/carapace only prepend when missing, so their order drifts in nested shells; pin it
+path=("$HOME/.cargo/bin" "$XDG_CONFIG_HOME/carapace/bin" $path)
