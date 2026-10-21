@@ -3,6 +3,7 @@
 general_fonts() {
     local fonts=(
         font-jetbrains-mono-nerd-font # includes nerd font icons used in wezterm tabbar
+        font-symbols-only-nerd-font # icon font Doom Emacs (nerd-icons) looks for by name
     )
 
     for font in "${fonts[@]}"; do

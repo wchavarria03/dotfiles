@@ -124,5 +124,5 @@ if [ -f "$JOBSECRETS" ]; then
     source "$JOBSECRETS"
 fi
 
-# Doom Emacs lives outside the default init dir so plain `emacs` stays vanilla
-alias demacs='emacs --init-directory "$XDG_CONFIG_HOME/doom-emacs"'
+# Doom lives at the default ~/.config/emacs; vanilla is opt-in via --init-directory
+alias vemacs='emacs --init-directory "$XDG_CONFIG_HOME/emacs-vanilla"'

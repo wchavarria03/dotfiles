@@ -42,9 +42,9 @@ nvim-macos-arm64
 .config/github-copilot/
 
 # Doom Emacs framework clone (user config lives in .config/doom)
-.config/doom-emacs/
+.config/emacs/
 
-# Vanilla Emacs generated files (config lives in .config/emacs/init.el)
-.config/emacs/*
-!.config/emacs/init.el
-!.config/emacs/early-init.el
+# Vanilla Emacs generated files (config lives in .config/emacs-vanilla/init.el)
+.config/emacs-vanilla/*
+!.config/emacs-vanilla/init.el
+!.config/emacs-vanilla/early-init.el

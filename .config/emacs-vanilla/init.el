@@ -46,7 +46,6 @@
 ;; leader or `C-c <letter>'; never rebind `C-g'.
 ;; WezTerm owns `C-h/j/k/l' (smart-splits) in terminal Emacs, so don't rebind
 ;; them. Use `C-w h/j/k/l' (evil) for windows and `F1' for help.
-(keymap-global-set "C-c f" #'find-file)
 
 ;; Leader: SPC in normal and motion states (evil's `,' is already repeat-find).
 (evil-set-leader '(normal motion) (kbd "SPC"))
