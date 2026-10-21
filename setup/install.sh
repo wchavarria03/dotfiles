@@ -86,6 +86,10 @@ main() {
     setup_stow
   fi
 
+  echo "${COLOR_GREEN}- Setup Doom Emacs${COLOR_RESET}"
+  source setup_doom.sh
+  setup_doom
+
   echo " "
   echo "${COLOR_GREEN}******** Stage 4 - Configure MAC ********${COLOR_RESET}"
   echo "${COLOR_GREEN}- Configuring MAC defaults..${COLOR_RESET}"

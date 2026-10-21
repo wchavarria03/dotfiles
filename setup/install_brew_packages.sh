@@ -14,10 +14,14 @@ general_packages() {
         bash-completion
         borders # requires FelixKratz/formulae tap
         carapace
+        coreutils # required by Doom Emacs (gls)
         direnv
+        emacs
         eza
+        fd # required by Doom Emacs
         fzf
         gh
+        git # required by Doom Emacs
         git-lfs
         glow # markdown previewer
         gnupg

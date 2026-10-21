@@ -40,3 +40,6 @@ scripts
 nvim-macos-arm64
 .config/carapace/bridge/zsh/.zcompdump_capture*
 .config/github-copilot/
+
+# Doom Emacs framework clone (user config lives in .config/doom)
+.config/emacs/

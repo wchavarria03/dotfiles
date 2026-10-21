@@ -33,3 +33,6 @@ setopt hist_verify
 
 # OTHER
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
+
+# Doom Emacs CLI
+export PATH="$XDG_CONFIG_HOME/emacs/bin:$PATH"
