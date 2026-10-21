@@ -52,34 +52,6 @@ function module.apply_to_config(config)
 			mods = "LEADER",
 			action = wezterm.action.ShowLauncherArgs({ flags = "FUZZY|WORKSPACES" }),
 		},
-		-- Send a literal Ctrl+a to the program: press the leader twice.
-		{
-			key = "a",
-			mods = "LEADER|CTRL",
-			action = wezterm.action.SendKey({ key = "a", mods = "CTRL" }),
-		},
-		-- Pane navigation: LEADER + h/j/k/l. Works in every pane, including Emacs,
-		-- because WezTerm consumes the leader before the program sees a key.
-		{
-			key = "h",
-			mods = "LEADER",
-			action = wezterm.action.ActivatePaneDirection("Left"),
-		},
-		{
-			key = "j",
-			mods = "LEADER",
-			action = wezterm.action.ActivatePaneDirection("Down"),
-		},
-		{
-			key = "l",
-			mods = "LEADER",
-			action = wezterm.action.ActivatePaneDirection("Right"),
-		},
-		{
-			key = "k",
-			mods = "LEADER",
-			action = wezterm.action.ActivatePaneDirection("Up"),
-		},
 	}
 end
 
