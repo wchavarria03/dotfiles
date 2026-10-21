@@ -123,3 +123,6 @@ JOBSECRETS="$SECRETSREPO/job-secrets.zsh"
 if [ -f "$JOBSECRETS" ]; then
     source "$JOBSECRETS"
 fi
+
+# Doom Emacs lives outside the default init dir so plain `emacs` stays vanilla
+alias demacs='emacs --init-directory "$XDG_CONFIG_HOME/doom-emacs"'

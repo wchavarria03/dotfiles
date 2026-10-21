@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Clones the Doom framework to ~/.config/emacs (gitignored). User config lives in
+# Clones the Doom framework to ~/.config/doom-emacs (gitignored). User config lives in
 # ~/.config/doom (tracked, stowed). Runs after brew so git/emacs/fd/rg exist.
 setup_doom() {
-    local doom_dir="$HOME/.config/emacs"
+    local doom_dir="$HOME/.config/doom-emacs"
 
     if [ -d "$doom_dir" ]; then
         echo "${COLOR_GREEN}-- Doom already cloned. Run 'doom sync' after config changes.${COLOR_RESET}"

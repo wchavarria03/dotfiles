@@ -19,6 +19,7 @@ general_packages() {
         emacs
         eza
         fd # required by Doom Emacs
+        fontconfig # lets doom doctor detect fonts
         fzf
         gh
         git # required by Doom Emacs
@@ -28,6 +29,7 @@ general_packages() {
         imagemagick # required for image.nvim inline image rendering
         jq
         lazygit
+        markdown # compiler for Doom :lang markdown preview
         luarocks # lua linter and development
         mysql-client # required for dadbod mysql connections
         neovim
