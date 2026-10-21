@@ -43,3 +43,8 @@ nvim-macos-arm64
 
 # Doom Emacs framework clone (user config lives in .config/doom)
 .config/doom-emacs/
+
+# Vanilla Emacs generated files (config lives in .config/emacs/init.el)
+.config/emacs/*
+!.config/emacs/init.el
+!.config/emacs/early-init.el
