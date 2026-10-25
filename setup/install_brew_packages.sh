@@ -4,8 +4,10 @@ general_packages() {
     echo "${COLOR_GREEN}-- Installing taps${COLOR_RESET}"
     brew tap FelixKratz/formulae ## For borders
     brew tap nikitabobko/tap
+    brew tap d12frosted/emacs-plus
     brew trust FelixKratz/formulae 2>/dev/null || true
     brew trust nikitabobko/tap 2>/dev/null || true
+    brew trust d12frosted/emacs-plus 2>/dev/null || true
 
     local formulae=(
         asdf
@@ -16,7 +18,6 @@ general_packages() {
         carapace
         coreutils # required by Doom Emacs (gls)
         direnv
-        emacs
         eza
         fd # required by Doom Emacs
         fontconfig # lets doom doctor detect fonts
@@ -50,6 +51,7 @@ general_packages() {
         1password-cli
         aerospace # requires nikitabobko/tap
         brave-browser
+        emacs-plus-app # requires d12frosted/emacs-plus tap
         obsidian
         sequel-ace
         wezterm
