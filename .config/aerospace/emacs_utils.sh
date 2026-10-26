@@ -18,6 +18,10 @@ for e in /opt/homebrew/bin/emacs /usr/local/bin/emacs \
 done
 
 LOCK_ROOT="${TMPDIR:-/tmp}"
+LAUNCH_LOCK=""
+# Script-level trap: in zsh an EXIT trap set inside a function fires when the
+# function returns, which would release the launch lock too early.
+trap '[[ -n $LAUNCH_LOCK ]] && rmdir "$LAUNCH_LOCK" 2>/dev/null' EXIT
 
 # Start the named daemon unless it already answers. If another launcher is
 # starting it, wait for that (up to 30 s) instead of starting a second one.
@@ -37,7 +41,7 @@ take_launch_lock() {
     local lock="$LOCK_ROOT/emacs-launch-$1.lock"
     find "$lock" -maxdepth 0 -mmin +1 -exec rmdir {} \; 2>/dev/null
     mkdir "$lock" 2>/dev/null || return 1
-    trap "rmdir '$lock' 2>/dev/null" EXIT
+    LAUNCH_LOCK=$lock
 }
 
 # True if daemon $1 already has a GUI frame (the capture frame doesn't count).
