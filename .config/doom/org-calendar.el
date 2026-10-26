@@ -78,6 +78,12 @@ NAME: shown in the agenda and the toggle. TAG: file name and agenda tag
   (my/gcal-ensure-files)
   (my/agenda-refresh-files))
 
+;; Ask for the GPG passphrase (for the saved Google login) in the minibuffer:
+;; the daemon can't show gpg's own pinentry window ("epg-error Encrypt failed").
+;; Set after epg loads, otherwise its default (nil) wins.
+(after! epg
+  (setq epg-pinentry-mode 'loopback))
+
 (use-package! org-gcal
   :after org
   :commands (org-gcal-sync org-gcal-fetch org-gcal-post-at-point org-gcal-delete-at-point)
@@ -89,10 +95,7 @@ NAME: shown in the agenda and the toggle. TAG: file name and agenda tag
         org-gcal-recurring-events-mode 'nested   ; instances under their series
         org-gcal-update-cancelled-events-with-todo t   ; cancelled -> CANCELLED
         org-gcal-remove-api-cancelled-events t   ; deleted in Google -> removed here, no prompt
-        plstore-cache-passphrase-for-symmetric-encryption t
-        ;; Ask for the GPG passphrase in the minibuffer: the daemon can't show
-        ;; gpg's own pinentry window ("epg-error Encrypt failed").
-        epg-pinentry-mode 'loopback)
+        plstore-cache-passphrase-for-symmetric-encryption t)
   (if (file-exists-p my/gcal-secrets)
       (load my/gcal-secrets nil t)
     (message "org-gcal: %s not found, calendar sync is off" my/gcal-secrets))
