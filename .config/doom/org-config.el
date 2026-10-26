@@ -60,7 +60,14 @@
            :prepend nil)
           ("i" "Idea" entry (file+headline "ideas_todos.org" "Ideas")
            ,(concat "* %? :" my/area-prompt ":idea:\n:PROPERTIES:\n:CREATED: %u\n:END:")
-           :prepend nil))))
+           :prepend nil)
+          ;; One entry per day, under a date tree in Meals Log.
+          ("m" "Meals" entry (file+olp+datetree "meals_log.org" "Log")
+           "* Meals\n- Pre breakfast: %?\n- Breakfast: \n- Morning snack: \n- Lunch: \n- Afternoon snack: \n- Dinner: \n"))))
+
+(defun my/template (name)
+  "Path of capture template NAME in the notes repo's templates/ folder."
+  (expand-file-name (concat "../templates/" name) org-directory))
 
 (after! org-roam
   (setq org-roam-node-display-template
@@ -96,14 +103,44 @@
           ;; Title = the event, e.g. "ZRL R2 Points Race Watopia"; the date is
           ;; prefixed to the title and the file name, like the existing clip notes.
           ("c" "streaming-clip-log" plain
-           (file ,(expand-file-name "../templates/streaming-clip-log.org" org-directory))
+           (file ,(my/template "streaming-clip-log.org"))
            :target (file+head "%<%Y_%m_%d>_${slug}.org"
                               ,(concat ":PROPERTIES:\n:DATE: %<%Y-%m-%d>\n:EVENT: ${title}\n"
                                        ":EVENT_TYPE: %^{Event type|race|training|ftp-test|meetup|outdoor}\n"
                                        ":STATUS: to-cut\n:TYPE: clip-log\n:END:\n"
                                        "#+title: %<%Y-%m-%d> — ${title}\n"
                                        "#+filetags: :streaming:clips:wallyrides:log:\n\n"))
+           :unnarrowed t)
+          ;; The title prompt is ignored: the note is named after the ISO week.
+          ("w" "streaming-weekly-review" plain
+           (file ,(my/template "streaming-weekly-review.org"))
+           :target (file+head "%<%G_w%V>.org"
+                              ,(concat ":PROPERTIES:\n:TYPE: weekly-review\n:WEEK: %<%G-W%V>\n"
+                                       ":DATE: %<%Y-%m-%d>\n:END:\n"
+                                       "#+title: %<%G-W%V>\n"
+                                       "#+filetags: :streaming:weekly_review:log:\n\n"))
+           :unnarrowed t)
+          ;; Meeting / check-in. Title = what it's about; the date is prefixed.
+          ("k" "check-in" plain
+           (file ,(my/template "check-in.org"))
+           :target (file+head "%<%Y_%m_%d>_${slug}.org"
+                              ,(concat "#+title: %<%Y-%m-%d> — ${title}\n"
+                                       "#+filetags: :" my/area-prompt ":log:meeting:\n\n"))
+           :unnarrowed t)
+          ("b" "book" plain
+           (file ,(my/template "book.org"))
+           :target (file+head "${slug}.org"
+                              ,(concat ":PROPERTIES:\n:AUTHOR: %^{Author}\n"
+                                       ":STARTED: %<%Y-%m-%d>\n:FINISHED:\n:END:\n"
+                                       (my/roam-head "research:book:")))
            :unnarrowed t)))
+
+  ;; Daily notes: SPC n r d t (today), SPC n r d d (pick a date).
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default" entry "* %<%H:%M> %?"
+           :target (file+head+olp "%<%Y-%m-%d>.org"
+                                  "#+title: %<%Y-%m-%d>\n#+filetags: :log:daily:\n\n* Learned today\n- \n\n* Notes\n"
+                                  ("Notes")))))
   (org-roam-db-autosync-mode))
 
 (use-package! org-roam-ui
