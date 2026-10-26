@@ -81,6 +81,7 @@ NAME: shown in the agenda and the toggle. TAG: file name and agenda tag
 ;; Ask for the GPG passphrase (for the saved Google login) in the minibuffer:
 ;; the daemon can't show gpg's own pinentry window ("epg-error Encrypt failed").
 ;; Set after epg loads, otherwise its default (nil) wins.
+(setq epg-pinentry-mode 'loopback)   ; epg's defvar keeps a value set before it loads
 (after! epg
   (setq epg-pinentry-mode 'loopback))
 
