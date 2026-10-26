@@ -55,3 +55,6 @@
 (package! catppuccin-theme)
 
 (package! makefile-executor)
+
+(package! websocket)
+(package! org-roam-ui)
