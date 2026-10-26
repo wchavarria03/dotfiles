@@ -92,6 +92,17 @@
           ("i" "idea" plain
            "Part of %?.\n\n* Idea\n"
            :target (file+head "${slug}.org" ,(my/roam-head "idea:not_started:"))
+           :unnarrowed t)
+          ;; Title = the event, e.g. "ZRL R2 Points Race Watopia"; the date is
+          ;; prefixed to the title and the file name, like the existing clip notes.
+          ("c" "streaming-clip-log" plain
+           (file ,(expand-file-name "../templates/streaming-clip-log.org" org-directory))
+           :target (file+head "%<%Y_%m_%d>_${slug}.org"
+                              ,(concat ":PROPERTIES:\n:DATE: %<%Y-%m-%d>\n:EVENT: ${title}\n"
+                                       ":EVENT_TYPE: %^{Event type|race|training|ftp-test|meetup|outdoor}\n"
+                                       ":STATUS: to-cut\n:TYPE: clip-log\n:END:\n"
+                                       "#+title: %<%Y-%m-%d> — ${title}\n"
+                                       "#+filetags: :streaming:clips:wallyrides:log:\n\n"))
            :unnarrowed t)))
   (org-roam-db-autosync-mode))
 
