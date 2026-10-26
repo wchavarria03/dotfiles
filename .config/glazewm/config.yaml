@@ -113,10 +113,13 @@ window_rules:
       - window_process: { equals: 'wezterm-gui' }
         window_title: { regex: 'DB Terminal' }
 
+  # Notes Emacs, same as aerospace: frames titled "Notes Emacs — <buffer>"
+  # (frame-title-format in .config/doom/config.el). TODO: port the macOS
+  # launcher (emacs_utils.sh) so alt+p starts/focuses it on Windows too.
   - commands: ['move --workspace p']
     match:
-      - window_process: { equals: 'wezterm-gui' }
-        window_title: { regex: '^Notes Terminal' }
+      - window_process: { equals: 'emacs' }
+        window_title: { regex: '^Notes Emacs' }
 
   - commands: ['move --workspace g']
     match:
