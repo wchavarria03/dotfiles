@@ -138,7 +138,7 @@ window_rules:
   - commands: ['move --workspace t']
     match:
       - window_process: { equals: 'wezterm-gui' }
-        window_title: { not_regex: 'API Terminal|DB Terminal|Notes Terminal' }
+        window_title: { not_regex: 'API Terminal|DB Terminal' }
 
 binding_modes:
   # Mirrors aerospace's [mode.resize.binding].

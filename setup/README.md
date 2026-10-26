@@ -137,7 +137,7 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\personal\dotfiles\setup\
 | `setup_starship_windows.ps1` | Starship install, config symlink, PowerShell profile init |
 | `setup_glazewm_windows.ps1` | GlazeWM install and config symlink |
 | `setup_zoxide_windows.ps1` | zoxide install, PowerShell profile init |
-| `setup_extras_windows.ps1` | ripgrep, fzf, imagemagick, glow, PowerToys, Brave |
+| `setup_extras_windows.ps1` | ripgrep, fzf, imagemagick, glow, Emacs, PowerToys, Brave |
 
 ### Notes
 
