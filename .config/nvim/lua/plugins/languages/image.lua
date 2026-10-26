@@ -10,7 +10,7 @@ function M.setup()
         integrations = {
             markdown = {
                 enabled = true,
-                filetypes = { 'markdown', 'obsidian' },
+                filetypes = { 'markdown' },
                 resolve_image_path = function(document_path, image_path, fallback)
                     local vault = vim.fn.expand '~/personal/notes'
                     local attachment = vault .. '/attachments/' .. image_path

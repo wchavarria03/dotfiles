@@ -50,7 +50,7 @@ automatically-unhide-macos-hidden-apps = true
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3", "t", "b", "p", "scratch"]
+persistent-workspaces = ["1", "2", "3", "t", "b", "p"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -144,6 +144,10 @@ on-mode-changed = []
     ]
     alt-b = 'workspace b'
     alt-c = 'workspace c'
+    alt-e = [
+        'workspace e',
+        'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_code_emacs.sh',
+    ]
     alt-d = [
         'workspace d',
         'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_db_terminal.sh',
@@ -153,11 +157,11 @@ on-mode-changed = []
     alt-m = 'workspace m'
     alt-p = [
         'workspace p',
-        'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_notes_terminal.sh',
+        'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_notes_emacs.sh',
     ]
     alt-s = 'workspace s'
     alt-t = 'workspace t'
-    alt-shift-n = 'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_notes_quick.sh'
+    alt-shift-n = 'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_notes_capture.sh'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = 'move-node-to-workspace 1'
@@ -169,6 +173,7 @@ on-mode-changed = []
     alt-shift-b = 'move-node-to-workspace b'
     alt-shift-c = 'move-node-to-workspace c'
     alt-shift-d = 'move-node-to-workspace d'
+    alt-shift-e = 'move-node-to-workspace e'
     alt-shift-g = 'move-node-to-workspace g'
     alt-shift-i = 'move-node-to-workspace i'
     alt-shift-m = 'move-node-to-workspace m'
@@ -248,17 +253,25 @@ on-mode-changed = []
     if.window-title-regex-substring = "API Terminal"
     run = 'move-node-to-workspace a'
 
+# Emacs: two daemons, routed by frame title (see emacs_utils.sh).
+# The capture frame floats on whatever workspace is focused.
 [[on-window-detected]]
-    if.window-title-regex-substring = "^Notes Terminal"
+    if.app-id = 'org.gnu.Emacs'
+    if.window-title-regex-substring = "^doom-capture"
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'org.gnu.Emacs'
+    if.window-title-regex-substring = "^Notes Emacs"
     run = 'move-node-to-workspace p'
 
 [[on-window-detected]]
-    if.app-id = "md.obsidian"
-    run = 'move-node-to-workspace p'
+    if.app-id = 'org.gnu.Emacs'
+    run = 'move-node-to-workspace e'
 
 [[on-window-detected]]
     if.app-id = "com.github.wez.wezterm"
-    if.window-title-regex-substring = "^(?!.*(?:API Terminal|DB Terminal|Notes Terminal)).*"
+    if.window-title-regex-substring = "^(?!.*(?:API Terminal|DB Terminal)).*"
     run = 'move-node-to-workspace t'
 
 [[on-window-detected]]

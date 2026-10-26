@@ -50,6 +50,18 @@
   "Header for a new note: title plus the area prompt and KIND-TAGS."
   (concat "#+title: ${title}\n#+filetags: :" my/area-prompt ":" kind-tags "\n\n"))
 
+;;; Quick capture (alt-shift-n) --------------------------------------------
+;; Goes to the ideas inbox, in the format ideas_inbox.org describes.
+
+(after! org
+  (setq org-capture-templates
+        `(("t" "TODO" entry (file+headline "ideas_todos.org" "TODOs")
+           ,(concat "* TODO %? :" my/area-prompt ":\n:PROPERTIES:\n:CREATED: %u\n:END:")
+           :prepend nil)
+          ("i" "Idea" entry (file+headline "ideas_todos.org" "Ideas")
+           ,(concat "* %? :" my/area-prompt ":idea:\n:PROPERTIES:\n:CREATED: %u\n:END:")
+           :prepend nil))))
+
 (after! org-roam
   (setq org-roam-node-display-template
         (concat "${title:*} " (propertize "${tags:30}" 'face 'org-tag))

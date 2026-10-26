@@ -132,6 +132,17 @@
 ;;   echo 'source .venv/bin/activate' > .envrc && direnv allow
 
 ;;; ------------------------------------------------------------------
+;;; Frame titles: "Notes Emacs" / "Code Emacs" per daemon, so aerospace can
+;;; route frames (see .config/aerospace/emacs_utils.sh).
+;;; ------------------------------------------------------------------
+(setq frame-title-format
+      '((:eval (pcase (bound-and-true-p server-name)
+                 ("notes" "Notes Emacs")
+                 ("code" "Code Emacs")
+                 (_ "Emacs")))
+        " — %b"))
+
+;;; ------------------------------------------------------------------
 ;;; Notes: org, org-roam, agenda, capture templates (see org-config.el)
 ;;; ------------------------------------------------------------------
 (load! "org-config")

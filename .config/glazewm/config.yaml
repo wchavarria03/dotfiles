@@ -59,8 +59,8 @@ window_behavior:
       shown_on_top: false
 
 # Full set of workspace names referenced across aerospace.toml's keybindings
-# and on-window-detected rules, including the "scratch" workspace used by
-# quick_terminal.lua / launch_notes_quick.sh for the floating notes scratchpad.
+# and on-window-detected rules. "scratch" is Windows-only now (the macOS notes
+# scratchpad was replaced by an Emacs capture frame).
 workspaces:
   - name: '1'
   - name: '2'
@@ -115,7 +115,6 @@ window_rules:
 
   - commands: ['move --workspace p']
     match:
-      - window_process: { equals: 'Obsidian' }
       - window_process: { equals: 'wezterm-gui' }
         window_title: { regex: '^Notes Terminal' }
 
@@ -215,7 +214,7 @@ keybindings:
 
   # ── Workspaces (letters) ─────────────────────────────────────────────────
   # NOTE: aerospace's alt-a/alt-d/alt-p also launched a terminal script
-  # (launch_api_terminal.sh / launch_db_terminal.sh / launch_notes_terminal.sh).
+  # (launch_api_terminal.sh / launch_db_terminal.sh; alt-p now opens notes Emacs).
   # Those scripts use zsh + python3 + macOS-only wezterm/osascript paths and
   # haven't been ported to Windows yet - these bindings only switch workspace.
   - commands: ['focus --workspace a']

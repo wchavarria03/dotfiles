@@ -57,7 +57,6 @@ load(specs, 'plugins.utils.precognition')
 -- Languages
 load(specs, 'plugins.treesitter.treesitter')
 load(specs, 'plugins.languages.render-markdown-nvim')
-load(specs, 'plugins.languages.obsidian')
 load(specs, 'plugins.languages.image')
 load(specs, 'plugins.languages.markdown-preview-nvim')
 
