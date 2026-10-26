@@ -46,11 +46,16 @@ bindkey '˙' backward-word # ⌥ + h  [skip word backward]
 bindkey '¬' forward-word  # ⌥ + j [skip word forward]
 
 ### ASDF ###
+# . ~/.asdf/plugins/golang/set-env.zsh
+# export PATH="$PATH:$(go env GOBIN)"
+
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 # append completions to fpath
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-. ~/.asdf/plugins/golang/set-env.zsh
-export PATH="$PATH:$(go env GOBIN)"
+
+### Go tools / Doom / Mason ###
+export GOBIN="$HOME/go/bin"
+export PATH="$PATH:$GOBIN:$HOME/.config/emacs/bin:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin"
 
 ### Initialize brew completions ###
 autoload -Uz compinit

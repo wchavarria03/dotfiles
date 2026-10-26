@@ -11,11 +11,11 @@ alias vim='nvim -w ~/.vimlog "$@"'
 # Define a function for the alias
 lst() {
     local level=${1:-2} # Use the provided level or default to 2 if not provided
-    eza -aT --icons -I 'node_modules|gems|images|.git|media' --level $level
+    eza -aT --icons=auto -I 'node_modules|gems|images|.git|media' --level $level
 }
 
 alias l='eza -lah'
-alias ls='eza -lag --header --classify --no-user --no-permissions --icons' alias lst="lst"
+alias ls='eza -lag --header --classify --no-user --no-permissions --icons=auto' alias lst="lst"
 alias c='clear'
 alias trim="awk '{\$1=\$1;print}'"
 alias ..='cd ..'
@@ -27,7 +27,6 @@ alias mv='mv -i'
 alias h='history'
 
 # Set up the alias to call the function
-alias zn="$DOTFILES/scripts/note.sh"
 # alias notes="$DOTFILES/scripts/notes.sh"
 
 # AWS Profile Switcher
