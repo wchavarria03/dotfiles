@@ -14,7 +14,16 @@
 ;;        SPC o G  sync now (fetch from Google and push local edits)
 
 (defvar my/gcal-calendars
-  '(("wchavarria03@gmail.com" "Personal" "cal_personal"))
+  '(("wchavarria03@gmail.com" "Personal" "cal_personal")
+    ("49da83187c73c208919df0ff22906817fddd5bbf0efc5414302e881bed6e884f@group.calendar.google.com"
+     "Bike Stuff" "cal_bike")
+    ("anv8kapls98qnoevo0n64f7qn0@group.calendar.google.com"
+     "Dream Team Family" "cal_family")
+    ("daf51ba85f7f420ac79d4590f2860f161bb229a3766ec2eff780d9e0e464b437@group.calendar.google.com"
+     "Gym & Training" "cal_training")
+    ;; Work account: only syncs if it is shared with wchavarria03@gmail.com
+    ;; (org-gcal logs in with one Google account).
+    ("wchavarria@ltvco.com" "Work" "cal_work"))
   "Google calendars to sync, as (CALENDAR-ID NAME TAG).
 CALENDAR-ID: Google Calendar > Settings > (the calendar) > Integrate calendar.
 NAME: shown in the agenda and the toggle. TAG: file name and agenda tag
