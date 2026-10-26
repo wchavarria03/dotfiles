@@ -93,7 +93,10 @@ NAME: shown in the agenda and the toggle. TAG: file name and agenda tag
         (mapcar (lambda (cal) (cons (car cal) (my/gcal-file (nth 2 cal)))) my/gcal-calendars)
         org-gcal-up-days 30                      ; past events kept in the files
         org-gcal-down-days 90                    ; future events fetched
-        org-gcal-recurring-events-mode 'nested   ; instances under their series
+        ;; Each occurrence of a repeating event is its own top-level entry with its
+        ;; own date. ('nested would file them under the series' first event, and
+        ;; auto-archive then moves upcoming occurrences out with an old series.)
+        org-gcal-recurring-events-mode 'top-level
         org-gcal-update-cancelled-events-with-todo t   ; cancelled -> CANCELLED
         org-gcal-remove-api-cancelled-events t   ; deleted in Google -> removed here, no prompt
         plstore-cache-passphrase-for-symmetric-encryption t)
