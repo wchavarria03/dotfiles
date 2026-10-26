@@ -81,12 +81,39 @@ personal_packages() {
         discord
 }
 
+# Packages this setup used to install and no longer needs. Removed if present,
+# so re-running the setup also cleans up older machines.
+retired_packages() {
+    local formulae=(
+        pandoc # only used for the one-off Markdown -> org migration of the notes
+    )
+    local casks=(
+        obsidian # notes moved to Emacs org-roam
+    )
+
+    for formula in "${formulae[@]}"; do
+        if is_brew_formula_installed "$formula"; then
+            echo "Removing retired $formula..."
+            brew uninstall "$formula"
+        fi
+    done
+    for cask in "${casks[@]}"; do
+        if is_brew_cask_installed "$cask"; then
+            echo "Removing retired $cask..."
+            brew uninstall --cask "$cask"
+        fi
+    done
+}
+
 install_brew_packages() {
     # shellcheck source=helpers.sh
     source "$(dirname "${BASH_SOURCE[0]}")/helpers.sh"
     ensure_device_type
 
     run_for_device general_packages work_packages personal_packages
+
+    echo "${COLOR_GREEN}-- Removing retired packages${COLOR_RESET}"
+    retired_packages
 
     echo "${COLOR_GREEN}-- Cleaning up Brew...${COLOR_RESET}"
     brew cleanup
