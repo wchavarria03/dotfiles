@@ -146,3 +146,4 @@
 ;;; Notes: org, org-roam, agenda, capture templates (see org-config.el)
 ;;; ------------------------------------------------------------------
 (load! "org-config")
+(load! "org-calendar")   ; Google Calendar via org-gcal
