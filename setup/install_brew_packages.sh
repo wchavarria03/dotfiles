@@ -16,6 +16,7 @@ general_packages() {
         bash-completion
         borders # requires FelixKratz/formulae tap
         carapace
+        cmake # required to build Doom vterm (SPC o t)
         coreutils # required by Doom Emacs (gls)
         direnv
         eza
@@ -31,10 +32,12 @@ general_packages() {
         imagemagick # required for image.nvim inline image rendering
         jq
         lazygit
+        libtool # required to build Doom vterm (SPC o t)
         markdown # compiler for Doom :lang markdown preview
         luarocks # lua linter and development
         mysql-client # required for dadbod mysql connections
         neovim
+        pngpaste # clipboard screenshots for org-download-clipboard
         podman
         ripgrep
         rustup # required for cargo and some mason lsp installs
@@ -52,7 +55,6 @@ general_packages() {
         aerospace # requires nikitabobko/tap
         brave-browser
         emacs-plus-app # requires d12frosted/emacs-plus tap
-        obsidian
         sequel-ace
         wezterm
     )
