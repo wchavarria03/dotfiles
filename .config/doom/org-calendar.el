@@ -89,7 +89,10 @@ NAME: shown in the agenda and the toggle. TAG: file name and agenda tag
         org-gcal-recurring-events-mode 'nested   ; instances under their series
         org-gcal-update-cancelled-events-with-todo t   ; cancelled -> CANCELLED
         org-gcal-remove-api-cancelled-events t   ; deleted in Google -> removed here, no prompt
-        plstore-cache-passphrase-for-symmetric-encryption t)
+        plstore-cache-passphrase-for-symmetric-encryption t
+        ;; Ask for the GPG passphrase in the minibuffer: the daemon can't show
+        ;; gpg's own pinentry window ("epg-error Encrypt failed").
+        epg-pinentry-mode 'loopback)
   (if (file-exists-p my/gcal-secrets)
       (load my/gcal-secrets nil t)
     (message "org-gcal: %s not found, calendar sync is off" my/gcal-secrets))
