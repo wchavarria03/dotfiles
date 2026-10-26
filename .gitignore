@@ -48,3 +48,8 @@ nvim-macos-arm64
 .config/emacs-vanilla/*
 !.config/emacs-vanilla/init.el
 !.config/emacs-vanilla/early-init.el
+
+# 1Password app state (telemetry flag etc.) is per machine; only the SSH agent
+# config is worth porting.
+.config/1Password/*
+!.config/1Password/ssh/
