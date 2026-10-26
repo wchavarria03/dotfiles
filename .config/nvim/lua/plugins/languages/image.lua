@@ -11,14 +11,6 @@ function M.setup()
             markdown = {
                 enabled = true,
                 filetypes = { 'markdown' },
-                resolve_image_path = function(document_path, image_path, fallback)
-                    local vault = vim.fn.expand '~/personal/notes'
-                    local attachment = vault .. '/attachments/' .. image_path
-                    if vim.fn.filereadable(attachment) == 1 then
-                        return attachment
-                    end
-                    return fallback(document_path, image_path)
-                end,
             },
         },
         max_width = 80,

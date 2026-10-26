@@ -187,17 +187,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
--- Auto-save notes on text changes
-vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
-    group = augroup 'auto_save',
-    pattern = { '*.md', '*.txt', '*.markdown' },
-    callback = function()
-        if vim.bo.modified and vim.bo.buftype == '' then
-            vim.cmd 'silent! write'
-        end
-    end,
-})
-
 vim.api.nvim_create_autocmd('LspProgress', {
     ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
     callback = function(ev)

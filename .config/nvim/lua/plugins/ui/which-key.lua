@@ -29,8 +29,6 @@ function M.setup()
                 { '<leader>k', group = 'kulala/requests', icon = { icon = '󰖟 ', color = 'blue' } },
                 { '<leader>l', group = 'lsp', icon = { icon = '󰒊 ', color = 'green' } },
                 { '<leader>m', group = 'markdown', icon = { icon = '󰍔 ', color = 'blue' } },
-                { '<leader>n', group = 'notes', icon = { icon = '󰠮 ', color = 'yellow' } },
-                { '<leader>nt', group = 'todos', icon = { icon = '󰅚 ', color = 'red' } },
                 { '<leader>p', group = 'pack', icon = { icon = '󰏗 ', color = 'orange' } },
                 { '<leader>q', group = 'quit/session', icon = { icon = '󰗼 ', color = 'red' } },
                 { '<leader>r', group = 'resize', icon = { icon = '󰩨 ', color = 'grey' } },
