@@ -92,7 +92,13 @@ NAME: shown in the agenda and the toggle. TAG: file name and agenda tag
         plstore-cache-passphrase-for-symmetric-encryption t)
   (if (file-exists-p my/gcal-secrets)
       (load my/gcal-secrets nil t)
-    (message "org-gcal: %s not found, calendar sync is off" my/gcal-secrets)))
+    (message "org-gcal: %s not found, calendar sync is off" my/gcal-secrets))
+  :config
+  ;; org-gcal's login library (oauth2-auto) keeps its own copy of the client
+  ;; ID/secret; without this it can fall back to a built-in client that Google
+  ;; rejects with "Error 401: invalid_client".
+  (when (fboundp 'org-gcal-reload-client-id-secret)
+    (org-gcal-reload-client-id-secret)))
 
 (defun my/gcal-ready-p ()
   "Non-nil when credentials are set and the first login has been done."
