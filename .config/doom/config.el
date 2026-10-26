@@ -84,3 +84,12 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; List and run Makefile targets (SPC p m); picks among sub-Makefiles in monorepos.
+(use-package! makefile-executor
+  :commands (makefile-executor-execute-target
+             makefile-executor-execute-project-target
+             makefile-executor-execute-last)
+  :init
+  (map! :leader
+        :desc "Make target" "p m" #'makefile-executor-execute-project-target))
