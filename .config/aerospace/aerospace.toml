@@ -314,10 +314,6 @@ on-mode-changed = []
     run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
-    if.app-id = '*'
-    run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
     if.app-id = 'com.anthropic.claudefordesktop'
     run = 'move-node-to-workspace g'
 
@@ -334,3 +330,9 @@ on-mode-changed = []
     if.app-id = 'com.apple.Music'
     run = 'move-node-to-workspace 5'
 
+# NOTE: if.app-id is an exact match, so '*' matches no app and this rule is a
+# no-op. A real catch-all has no 'if' at all, and must stay last because
+# AeroSpace stops at the first matching rule.
+[[on-window-detected]]
+    if.app-id = '*'
+    run = 'move-node-to-workspace 1'
