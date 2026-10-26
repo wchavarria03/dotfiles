@@ -12,6 +12,8 @@
 ;;; Org ---------------------------------------------------------------------
 
 (after! org
+  ;; org-id's index of where each :ID: lives; keep it out of the notes repo.
+  (setq org-id-locations-file (expand-file-name "org-id-locations" doom-cache-dir))
   (setq org-log-done 'time
         org-agenda-files (list org-directory)
         org-todo-keywords
