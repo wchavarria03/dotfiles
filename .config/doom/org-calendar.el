@@ -11,7 +11,8 @@
 ;; (gitignored: the files are rewritten on every sync).
 ;;
 ;; Keys:  SPC o C  choose which calendars the agenda shows
-;;        SPC o G  sync now (fetch from Google and push local edits)
+;;        SPC o G  sync now (fetch and push); the first one each session asks for
+;;                 the login passphrase and starts the 15-min background fetch
 
 (defvar my/gcal-calendars
   '(("wchavarria03@gmail.com" "Personal" "cal_personal")
@@ -118,16 +119,31 @@ NAME: shown in the agenda and the toggle. TAG: file name and agenda tag
        (boundp 'oauth2-auto-plstore)
        (file-exists-p oauth2-auto-plstore)))
 
+(defvar my/gcal-timer nil
+  "Background fetch timer, started by the first manual sync of the session.")
+
 (defun my/gcal-fetch-in-background ()
-  "Timer job: pull new, changed and cancelled events. Never pushes."
-  (when (my/gcal-ready-p)
+  "Timer job: pull new, changed and cancelled events. Never pushes.
+Skips quietly while another sync is running."
+  (when (and (my/gcal-ready-p)
+             (not (bound-and-true-p org-gcal--sync-lock)))
     (org-gcal-fetch)))
 
-;; Only the notes daemon syncs on a timer (every 15 min, first run after 2 min).
-;; It skips silently until the first interactive login (SPC o G) has stored a token.
-(when (equal (daemonp) "notes")
-  (run-with-timer 120 (* 15 60) #'my/gcal-fetch-in-background))
+(defun my/gcal-sync ()
+  "Sync Google Calendar now (fetch and push local edits).
+The first run of the session asks for the login passphrase; after that a
+background fetch keeps the calendars fresh every 15 minutes (notes daemon only).
+A background timer can't ask for the passphrase itself: at login there is no
+frame to show the prompt in."
+  (interactive)
+  (require 'org-gcal)
+  (when org-gcal--sync-lock
+    (org-gcal--sync-unlock))            ; clear a lock left by a failed run
+  (org-gcal-sync)
+  (when (and (equal (daemonp) "notes") (not my/gcal-timer))
+    (setq my/gcal-timer
+          (run-with-timer (* 15 60) (* 15 60) #'my/gcal-fetch-in-background))))
 
 (map! :leader
       :desc "Toggle calendars" "o C" #'my/agenda-toggle-calendars
-      :desc "Sync Google Calendar" "o G" #'org-gcal-sync)
+      :desc "Sync Google Calendar" "o G" #'my/gcal-sync)
