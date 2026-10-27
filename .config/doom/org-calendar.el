@@ -119,6 +119,19 @@ NAME: shown in the agenda and the toggle. TAG: file name and agenda tag
        (boundp 'oauth2-auto-plstore)
        (file-exists-p oauth2-auto-plstore)))
 
+;; org-gcal fills the calendar buffers but doesn't save them. Every sync ends
+;; with `org-gcal--sync-unlock' (success or failure), so save them there.
+(defun my/gcal-save-calendar-buffers (&rest _)
+  "Save modified buffers visiting files in `my/gcal-dir'."
+  (let ((dir (file-truename my/gcal-dir)))
+    (dolist (buf (buffer-list))
+      (let ((file (buffer-file-name buf)))
+        (when (and file (buffer-modified-p buf)
+                   (string-prefix-p dir (file-truename file)))
+          (with-current-buffer buf (save-buffer)))))))
+
+(advice-add 'org-gcal--sync-unlock :after #'my/gcal-save-calendar-buffers)
+
 (defvar my/gcal-timer nil
   "Background fetch timer, started by the first manual sync of the session.")
 
