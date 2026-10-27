@@ -132,6 +132,18 @@
 ;;   echo 'source .venv/bin/activate' > .envrc && direnv allow
 
 ;;; ------------------------------------------------------------------
+;;; Spell checking (aspell): English, plus Spanish when its dictionary is
+;;; installed (check with: aspell dicts). Add a word: z g on it; ignore: z w.
+;;; ------------------------------------------------------------------
+(setq ispell-dictionary "en")
+
+(add-hook! 'spell-fu-mode-hook
+  (defun my/spell-add-spanish-h ()
+    (condition-case nil
+        (spell-fu-dictionary-add (spell-fu-get-ispell-dictionary "es"))
+      (error nil))))              ; no Spanish dictionary: English only
+
+;;; ------------------------------------------------------------------
 ;;; Frame titles: "Notes Emacs" / "Code Emacs" per daemon, so aerospace can
 ;;; route frames (see .config/aerospace/emacs_utils.sh).
 ;;; ------------------------------------------------------------------

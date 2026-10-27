@@ -11,6 +11,7 @@ general_packages() {
 
     local formulae=(
         asdf
+        aspell # spell checking in Doom Emacs (:checkers spell) and word completion
         awscli
         bash
         bash-completion
