@@ -34,6 +34,39 @@
       :n "M-k" #'org-metaup
       :n "M-j" #'org-metadown)
 
+;;; Agenda dashboard (SPC o a d) ---------------------------------------------
+;; Today's calendar and scheduled/deadline items, then NEXT and WAIT, then every
+;; open TODO grouped by area (area tags come from each note's #+filetags).
+
+(use-package! org-super-agenda
+  :after org-agenda
+  :config
+  (setq org-super-agenda-header-separator "")
+  (org-super-agenda-mode))
+
+(defvar my/agenda-areas
+  '(("Work" . "work") ("Career" . "career") ("Health" . "health")
+    ("Cycling" . "cycling") ("Streaming" . "streaming") ("Home" . "home")
+    ("Finance" . "finance") ("Dogs" . "dogs") ("Harness" . "harness"))
+  "Display order of the area groups in the dashboard: (NAME . TAG).")
+
+(after! org-agenda
+  (setq org-agenda-custom-commands
+        `(("d" "Dashboard"
+           ((agenda "" ((org-agenda-span 'day)
+                        (org-agenda-start-day nil)
+                        (org-agenda-overriding-header "Today")))
+            (todo "NEXT" ((org-agenda-overriding-header "\nNext actions")))
+            (todo "WAIT" ((org-agenda-overriding-header "\nWaiting on")))
+            (todo "TODO" ((org-agenda-overriding-header "\nOpen TODOs by area")
+                          (org-super-agenda-groups
+                           ',(append
+                              (mapcar (lambda (a) (list :name (car a) :tag (cdr a)))
+                                      my/agenda-areas)
+                              '((:name "No area" :anything t)))))))))))
+
+(map! :leader :desc "Dashboard" "o a d" (cmd! (org-agenda nil "d")))
+
 ;;; Org-roam ----------------------------------------------------------------
 
 (defvar my/area-prompt
