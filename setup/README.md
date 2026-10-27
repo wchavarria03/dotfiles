@@ -44,6 +44,7 @@ bash install.sh
 | `setup_api_collections.sh` | Clones the API collections repo |
 | `setup_stow.sh` | Symlinks dotfiles into `$HOME` via stow |
 | `setup_mac_config.sh` | Applies macOS `defaults write` settings |
+| `setup_doom.sh` | Clones Doom Emacs (or runs `doom sync` if present), then `doom env` |
 | `clean_up.sh` | Removes symlinks and cleans up |
 
 ---
