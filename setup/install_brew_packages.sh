@@ -79,7 +79,8 @@ personal_packages() {
         opencode
     brew_install_casks \
         dbeaver-community \
-        discord
+        discord \
+        tailscale # home lab remote access (nix-homelab)
 }
 
 # Packages this setup used to install and no longer needs. Removed if present,

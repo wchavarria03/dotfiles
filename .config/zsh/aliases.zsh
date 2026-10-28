@@ -125,3 +125,8 @@ fi
 
 # Doom lives at the default ~/.config/emacs; vanilla is opt-in via --init-directory
 alias vemacs='emacs --init-directory "$XDG_CONFIG_HOME/emacs-vanilla"'
+
+# Home lab (nix-homelab tower) over Tailscale — requires MagicDNS enabled
+# (https://login.tailscale.com/admin/dns) so the hostname resolves without a
+# hardcoded IP.
+alias homelab='ssh walter@nix-homelab'
