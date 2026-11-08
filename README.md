@@ -22,7 +22,7 @@ Complete guide for setting up a new macOS development environment with automated
 - [Phase 4: Run Installation Script](#phase-4-run-installation-script)
 - [Phase 5: Authentication & Security](#phase-5-authentication--security)
 - [Phase 6: Final Configuration](#phase-6-final-configuration)
-- [Emacs & Notes](#emacs--notes)
+- [Notes](#notes)
 - [Post-Setup Verification](#post-setup-verification)
 - [Troubleshooting](#troubleshooting)
 
@@ -171,7 +171,7 @@ If SSH isn't configured when Stage 3 runs, it prints a warning and skips repo cl
 1. **Restart** to ensure all macOS defaults take effect
 2. **Enable AeroSpace** window manager
 3. **Open Neovim** — plugins install automatically on first launch
-4. **Open the notes Emacs** with `alt-p` (see [Emacs & Notes](#emacs--notes))
+4. **Open the notes vault** with `alt-p` (see [Notes](#notes))
 5. **Disable press-and-hold in Cursor** for key repeat:
    ```bash
    defaults write com.todesktop.230313mzl4w4u92 ApplePressAndHoldEnabled -bool false
@@ -180,23 +180,20 @@ If SSH isn't configured when Stage 3 runs, it prints a warning and skips repo cl
 
 ---
 
-## Emacs & Notes
+## Notes
 
-Doom Emacs (GUI, `emacs-plus`) runs as two background daemons, started by the AeroSpace keys:
+Notes and code both live in the one Neovim config now (`.config/nvim`); WezTerm windows are routed to a workspace by title, no daemons involved:
 
 | Key | What |
 |-----|------|
-| `alt-p` | Notes Emacs (daemon `notes`, workspace `p`), the org-roam vault in `~/personal/notes` |
-| `alt-e` | Coding Emacs (daemon `code`, workspace `e`) |
-| `alt-shift-n` | Floating capture: TODO / idea / meals into the notes inbox |
+| `alt-p` | Notes Nvim (workspace `p`), the Markdown vault in `~/personal/notes`, via `obsidian.nvim` |
+| `alt-e` | Code Nvim (workspace `e`) |
+| `alt-shift-n` | Floating quick-capture: appends to the notes inbox (`ideas_todos.md`), `:wq` to save and close |
 
-Config: `.config/doom/` (`config.el`, `org-config.el` for notes, `org-calendar.el` for Google Calendar).
+Vault config: `.config/nvim/lua/plugins/obsidian.lua`. Launchers: `.config/aerospace/launch_notes_nvim.sh`, `launch_code_nvim.sh`, `launch_notes_capture.sh`.
 
-- **After changing the Doom config:** `doom sync` if you changed `init.el` or `packages.el`, then restart the daemon:
-  `emacsclient -s notes -e '(kill-emacs)'` (or `-s code`), then press the key again. `pkill` doesn't match these daemons.
-- **PATH for the daemons:** they don't read your shell; run `doom env` after PATH changes (new asdf version, Mason tools).
-- **Spell checking:** aspell, English plus Spanish if `aspell dicts` lists `es`. In Emacs: `z =` suggestions, `z g` add word, `z w` mark as wrong.
-- **Google Calendar (org-gcal):** credentials in `~/personal/secrets/emacs/gcal.el`; events sync into `~/personal/notes/calendar/` (gitignored). `SPC o G` once per Emacs session (asks for the login passphrase), then it refreshes every 15 min. `SPC o C` picks which calendars the agenda shows.
+- **Spell checking:** aspell, English plus Spanish if `aspell dicts` lists `es`. In Neovim: `z =` suggestions, `z g` add word, `z w` mark as wrong.
+- **Google Calendar sync:** dropped along with org-gcal (Emacs retired 2026-11-08) — no Neovim-native equivalent pursued. Check Google Calendar separately.
 
 ---
 

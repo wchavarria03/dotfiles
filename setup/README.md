@@ -44,7 +44,6 @@ bash install.sh
 | `setup_api_collections.sh` | Clones the API collections repo |
 | `setup_stow.sh` | Symlinks dotfiles into `$HOME` via stow |
 | `setup_mac_config.sh` | Applies macOS `defaults write` settings |
-| `setup_doom.sh` | Clones Doom Emacs (or runs `doom sync` if present), then `doom env` |
 | `clean_up.sh` | Removes symlinks and cleans up |
 
 ---
@@ -138,7 +137,7 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\personal\dotfiles\setup\
 | `setup_starship_windows.ps1` | Starship install, config symlink, PowerShell profile init |
 | `setup_glazewm_windows.ps1` | GlazeWM install and config symlink |
 | `setup_zoxide_windows.ps1` | zoxide install, PowerShell profile init |
-| `setup_extras_windows.ps1` | ripgrep, fzf, imagemagick, glow, Emacs, PowerToys, Brave |
+| `setup_extras_windows.ps1` | ripgrep, fzf, imagemagick, glow, PowerToys, Brave |
 
 ### Notes
 

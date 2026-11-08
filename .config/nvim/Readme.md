@@ -148,4 +148,4 @@ This configuration is designed to be modular and extensible. Feel free to:
 
 This configuration is provided as-is for personal use and learning.
 
-Notes live in Emacs (org-roam) now; see `.config/doom/org-config.el`.
+Notes live in this same Neovim config now, via `obsidian.nvim`; see `lua/plugins/obsidian.lua`.
