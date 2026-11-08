@@ -113,13 +113,14 @@ window_rules:
       - window_process: { equals: 'wezterm-gui' }
         window_title: { regex: 'DB Terminal' }
 
-  # Notes Emacs, same as aerospace: frames titled "Notes Emacs — <buffer>"
-  # (frame-title-format in .config/doom/config.el). TODO: port the macOS
-  # launcher (emacs_utils.sh) so alt+p starts/focuses it on Windows too.
+  # Notes Nvim, same as aerospace: wezterm windows titled "Notes Nvim"
+  # (see notes_nvim_terminal.sh). TODO: port the macOS launchers
+  # (launch_notes_nvim.sh / notes_nvim_terminal.sh) so alt+p starts/focuses
+  # it on Windows too -- was already a TODO before the Emacs removal.
   - commands: ['move --workspace p']
     match:
-      - window_process: { equals: 'emacs' }
-        window_title: { regex: '^Notes Emacs' }
+      - window_process: { equals: 'wezterm-gui' }
+        window_title: { regex: '^Notes Nvim' }
 
   - commands: ['move --workspace g']
     match:
