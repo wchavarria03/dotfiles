@@ -1,8 +1,9 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "cleanupPeriodDays": 14,
+  "includeGitInstructions": true,
   "permissions": {
-    "allow": [
-      "mcp__github__list_pull_requests"
-    ],
+    "allow": ["mcp__github__list_pull_requests"],
     "defaultMode": "auto"
   },
   "model": "sonnet",
@@ -33,24 +34,23 @@
   },
   "promptSuggestionEnabled": false,
   "awaySummaryEnabled": false,
+  "autoUpdatesChannel": "stable",
   "plansDirectory": "./.claude/plans",
   "tui": "default",
   "editorMode": "vim",
   "autoCompactEnabled": true,
   "showTurnDuration": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "autoMode": {
     "soft_deny": [
       "$defaults",
       "Bash(podman rm:*)",
       "Bash(podman system prune:*)",
-      "Bash(kubectl delete:*)"
+      "Bash(kubectl delete:*)",
+      "Bash(aws s3 rm:*)",
+      "Bash(aws s3api delete-bucket:*)"
     ]
-  },
-  "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "cleanupPeriodDays": 14,
-  "includeGitInstructions": true,
-  "autoUpdatesChannel": "stable",
-  "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true
+  }
 }
