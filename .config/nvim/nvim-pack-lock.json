@@ -122,7 +122,7 @@
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "smart-splits.nvim": {
-      "rev": "fdd0142633ae78b175ff29043953e701215a34dd",
+      "rev": "72d073c5a10f6aec93e7cb7f5dc450f9559ed376",
       "src": "https://github.com/smart-splits-nvim/smart-splits.nvim"
     },
     "snacks.nvim": {
