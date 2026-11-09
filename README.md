@@ -192,6 +192,8 @@ Notes and code both live in the one Neovim config now (`.config/nvim`); WezTerm 
 
 Vault config: `.config/nvim/lua/plugins/obsidian.lua`. Launchers: `.config/aerospace/launch_notes_nvim.sh`, `launch_code_nvim.sh`, `launch_notes_capture.sh`.
 
+The Obsidian GUI app (installed via brew cask, same vault path) is kept around only for its graph view — `obsidian.nvim` has no visual graph UI, so open the app whenever navigating the backlink graph matters more than editing.
+
 - **Spell checking:** aspell, English plus Spanish if `aspell dicts` lists `es`. In Neovim: `z =` suggestions, `z g` add word, `z w` mark as wrong.
 - **Google Calendar sync:** dropped along with org-gcal (Emacs retired 2026-11-08) — no Neovim-native equivalent pursued. Check Google Calendar separately.
 

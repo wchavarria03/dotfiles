@@ -73,6 +73,7 @@ personal_packages() {
     brew_install_casks \
         dbeaver-community \
         discord \
+        obsidian \
         tailscale # home lab remote access (nix-homelab)
 }
 
@@ -88,7 +89,6 @@ retired_packages() {
     )
     local casks=(
         emacs-plus-app # Doom Emacs retired, notes + code both moved to Neovim
-        obsidian # using the obsidian.nvim plugin instead of the GUI app
     )
 
     for formula in "${formulae[@]}"; do
