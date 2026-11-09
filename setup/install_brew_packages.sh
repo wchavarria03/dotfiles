@@ -84,7 +84,6 @@ retired_packages() {
         pandoc # only used for the one-off org -> Markdown migration of the notes
         cmake # was only required to build Doom's vterm
         coreutils # was only required by Doom Emacs (gls)
-        libtool # was only required to build Doom's vterm
         markdown # was only required by Doom's markdown preview
     )
     local casks=(
