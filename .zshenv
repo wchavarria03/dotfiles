@@ -33,7 +33,3 @@ setopt hist_verify
 
 # OTHER
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
-
-# Doom Emacs CLI (typeset -U keeps PATH free of duplicates when .zshenv is re-read)
-typeset -U path
-path=("$XDG_CONFIG_HOME/emacs/bin" $path)

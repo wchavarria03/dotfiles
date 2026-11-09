@@ -53,9 +53,9 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 # append completions to fpath
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 
-### Go tools / Doom / Mason ###
+### Go tools / Mason ###
 export GOBIN="$HOME/go/bin"
-export PATH="$PATH:$GOBIN:$HOME/.config/emacs/bin:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin"
+export PATH="$PATH:$GOBIN:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin"
 
 ### Initialize brew completions ###
 autoload -Uz compinit
@@ -85,7 +85,7 @@ compdef v=nvim # bridge 'v' alias to nvim completions so carapace doesn't error
 ### DirEnv ###
 eval "$(direnv hook zsh)"
 
-### PATH dedupe (keeps nested shells identical; Doom compares PATH) ###
+### PATH dedupe (keeps nested shells identical) ###
 typeset -U path
 # cargo/carapace only prepend when missing, so their order drifts in nested shells; pin it
 path=("$HOME/.cargo/bin" "$XDG_CONFIG_HOME/carapace/bin" $path)
