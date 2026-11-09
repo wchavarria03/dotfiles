@@ -63,6 +63,9 @@ load(specs, 'plugins.languages.markdown-preview-nvim')
 -- Completion
 load(specs, 'plugins.completion.blink')
 
+-- Notes
+load(specs, 'plugins.obsidian')
+
 local all_plugins = {}
 for _, spec in ipairs(specs) do
     for _, plugin in ipairs(spec.plugins or {}) do

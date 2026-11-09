@@ -4,28 +4,24 @@ general_packages() {
     echo "${COLOR_GREEN}-- Installing taps${COLOR_RESET}"
     brew tap FelixKratz/formulae ## For borders
     brew tap nikitabobko/tap
-    brew tap d12frosted/emacs-plus
     brew trust FelixKratz/formulae 2>/dev/null || true
     brew trust nikitabobko/tap 2>/dev/null || true
-    brew trust d12frosted/emacs-plus 2>/dev/null || true
 
     local formulae=(
         asdf
-        aspell # spell checking in Doom Emacs (:checkers spell) and word completion
+        aspell # word completion
         awscli
         bash
         bash-completion
         borders # requires FelixKratz/formulae tap
         carapace
-        cmake # required to build Doom vterm (SPC o t)
-        coreutils # required by Doom Emacs (gls)
         direnv
         eza
-        fd # required by Doom Emacs
-        fontconfig # lets doom doctor detect fonts
+        fd
+        fontconfig
         fzf
         gh
-        git # required by Doom Emacs
+        git
         git-lfs
         gitleaks # secret scanning in .githooks/pre-commit
         glow # markdown previewer
@@ -33,12 +29,10 @@ general_packages() {
         imagemagick # required for image.nvim inline image rendering
         jq
         lazygit
-        libtool # required to build Doom vterm (SPC o t)
-        markdown # compiler for Doom :lang markdown preview
         luarocks # lua linter and development
         mysql-client # required for dadbod mysql connections
         neovim
-        pngpaste # clipboard screenshots for org-download-clipboard
+        pngpaste # clipboard screenshots
         podman
         ripgrep
         rustup # required for cargo and some mason lsp installs
@@ -55,7 +49,6 @@ general_packages() {
         1password-cli
         aerospace # requires nikitabobko/tap
         brave-browser
-        emacs-plus-app # requires d12frosted/emacs-plus tap
         sequel-ace
         wezterm
     )
@@ -87,10 +80,15 @@ personal_packages() {
 # so re-running the setup also cleans up older machines.
 retired_packages() {
     local formulae=(
-        pandoc # only used for the one-off Markdown -> org migration of the notes
+        pandoc # only used for the one-off org -> Markdown migration of the notes
+        cmake # was only required to build Doom's vterm
+        coreutils # was only required by Doom Emacs (gls)
+        libtool # was only required to build Doom's vterm
+        markdown # was only required by Doom's markdown preview
     )
     local casks=(
-        obsidian # notes moved to Emacs org-roam
+        emacs-plus-app # Doom Emacs retired, notes + code both moved to Neovim
+        obsidian # using the obsidian.nvim plugin instead of the GUI app
     )
 
     for formula in "${formulae[@]}"; do
