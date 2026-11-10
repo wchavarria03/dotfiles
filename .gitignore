@@ -17,6 +17,7 @@ scripts
 .config/zsh/.zcompcache
 .config/configstore/
 .config/lazysql/history/
+.config/ltv-agent
 
 # Cursor AI chat history (personal conversations)
 .config/cursor/chats/
