@@ -130,4 +130,4 @@ alias homelab='mosh walter@nix-homelab'
 
 # Same, but drops straight into (or creates) the persistent tmux session
 # used for Claude Code — so a dropped connection never kills a running task.
-alias hl='mosh walter@nix-homelab -- tmux new -A -s claude'
+alias hl='mosh walter@nix-homelab -- tmux new -A -s claude -c /etc/nixos claude'
