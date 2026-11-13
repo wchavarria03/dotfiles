@@ -50,3 +50,7 @@ nvim-macos-arm64
 # herdr runtime state (per machine)
 .config/herdr/*
 !.config/herdr/config.toml
+
+# cargo install metadata (regenerated per machine)
+.cargo/.crates.toml
+.cargo/.crates2.json
