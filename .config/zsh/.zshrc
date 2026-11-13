@@ -89,3 +89,6 @@ eval "$(direnv hook zsh)"
 typeset -U path
 # cargo/carapace only prepend when missing, so their order drifts in nested shells; pin it
 path=("$HOME/.cargo/bin" "$XDG_CONFIG_HOME/carapace/bin" $path)
+
+# device-local overrides, not tracked (see ~/.gitconfig.local for git)
+[ -f "$HOME/.zshrc.local" ] && . "$HOME/.zshrc.local"
