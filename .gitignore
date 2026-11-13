@@ -48,5 +48,5 @@ nvim-macos-arm64
 !.config/1Password/ssh/
 
 # herdr runtime state (per machine)
-.config/herdr/sessions/
-.config/herdr/.plugins.lock
+.config/herdr/*
+!.config/herdr/config.toml
