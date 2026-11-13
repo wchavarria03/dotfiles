@@ -62,6 +62,8 @@ general_packages() {
 
 work_packages() {
     echo "${COLOR_GREEN}-- Installing work packages${COLOR_RESET}"
+    brew_install_formulae \
+        herdr # agent multiplexer, standalone (no manager/registration)
     brew_install_casks \
         claude-code
 }
