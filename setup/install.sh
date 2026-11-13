@@ -86,6 +86,10 @@ main() {
     setup_stow
   fi
 
+  echo "${COLOR_GREEN}- Setup HERDR integrations${COLOR_RESET}"
+  source setup_herdr.sh
+  setup_herdr
+
   echo " "
   echo "${COLOR_GREEN}******** Stage 4 - Configure MAC ********${COLOR_RESET}"
   echo "${COLOR_GREEN}- Configuring MAC defaults..${COLOR_RESET}"
