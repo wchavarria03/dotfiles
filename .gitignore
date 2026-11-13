@@ -46,3 +46,7 @@ nvim-macos-arm64
 # config is worth porting.
 .config/1Password/*
 !.config/1Password/ssh/
+
+# herdr runtime state (per machine)
+.config/herdr/sessions/
+.config/herdr/.plugins.lock
