@@ -26,6 +26,7 @@ general_packages() {
         gitleaks # secret scanning in .githooks/pre-commit
         glow # markdown previewer
         gnupg
+        herdr # agent multiplexer, standalone (no manager/registration)
         imagemagick # required for image.nvim inline image rendering
         jq
         lazygit
@@ -62,8 +63,6 @@ general_packages() {
 
 work_packages() {
     echo "${COLOR_GREEN}-- Installing work packages${COLOR_RESET}"
-    brew_install_formulae \
-        herdr # agent multiplexer, standalone (no manager/registration)
     brew_install_casks \
         claude-code
 }
