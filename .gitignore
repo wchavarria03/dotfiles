@@ -54,3 +54,6 @@ nvim-macos-arm64
 # cargo install metadata (regenerated per machine)
 .cargo/.crates.toml
 .cargo/.crates2.json
+
+# colima VM runtime state (per machine)
+.config/colima/
