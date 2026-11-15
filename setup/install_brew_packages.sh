@@ -37,6 +37,7 @@ general_packages() {
         podman
         ripgrep
         rustup # required for cargo and some mason lsp installs
+        ruff # python lint/format; not asdf-managed, see Aegis Dev Environment README section
         starship
         stow
         tree-sitter-cli

@@ -57,6 +57,10 @@ main() {
   source setup_asdf.sh
   setup_asdf
 
+  echo "${COLOR_GREEN}- Setup Aegis dev environment${COLOR_RESET}"
+  source setup_aegis_dev.sh
+  setup_aegis_dev
+
   echo " "
   echo "${COLOR_GREEN}******** Stage 3 - Setup Config Repos ********${COLOR_RESET}"
 

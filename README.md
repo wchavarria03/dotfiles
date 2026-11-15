@@ -24,6 +24,7 @@ Complete guide for setting up a new macOS development environment with automated
 - [Phase 6: Final Configuration](#phase-6-final-configuration)
 - [Notes](#notes)
 - [Post-Setup Verification](#post-setup-verification)
+- [Aegis Development Environment](#aegis-development-environment)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -149,7 +150,7 @@ The script will prompt for device type (`personal` or `work`) on first run and e
 | Stage | Steps                                                                                            |
 | ----- | ------------------------------------------------------------------------------------------------ |
 | 1     | Makes all scripts executable, prompts for device type                                            |
-| 2     | Creates folders, installs Homebrew packages + fonts, sets up asdf plugins and tool versions      |
+| 2     | Creates folders, installs Homebrew packages + fonts, sets up asdf plugins and tool versions, checks Aegis dev tooling |
 | 3     | Checks SSH access, clones/pulls secrets, dotfiles, notes, and API collections repos, runs `stow` |
 | 4     | Applies macOS system defaults                                                                    |
 
@@ -220,6 +221,41 @@ mkdir -p ~/.docker/completions
 docker completion zsh > ~/.docker/completions/_docker
 brew completions link
 ```
+
+---
+
+## Aegis Development Environment
+
+Dev environment setup for [Aegis](https://github.com/wchavarria03/aegis), provisioned by `setup/setup_aegis_dev.sh` (runs automatically in Stage 2 of `install.sh`, after asdf).
+
+**Minimum supported environment:**
+
+| Tool | Version | Source |
+|------|---------|--------|
+| macOS | current version supported by [Homebrew](https://docs.brew.sh/Installation) | manual, Phase 1 |
+| Python | 3.14.9 | pinned in `.tool-versions`, installed via asdf |
+| Git | latest via Homebrew | `install_brew_packages.sh` |
+| Package manager | Homebrew | this repo's bootstrap |
+
+**Python dependency/project workflow:** [`uv`](https://docs.astral.sh/uv/) — pinned in `.tool-versions` and installed via asdf, consistent with how this repo already manages Python/Node/Go/Rust. Aegis's own `pyproject.toml`/lockfile conventions are defined in the aegis repo itself; this repo only guarantees a pinned `uv` is present.
+
+**Formatting, linting, type-checking, tests:**
+
+| Concern | Tool | Installed via |
+|---------|------|----------------|
+| Format + lint | [`ruff`](https://docs.astral.sh/ruff/) | Homebrew (not asdf — see note below) |
+| Type-checking | [`mypy`](https://mypy-lang.org/) | `uv tool install`, via `setup_aegis_dev.sh` |
+| Tests | [`pytest`](https://docs.pytest.org/) | `uv tool install`, via `setup_aegis_dev.sh` |
+
+`ruff` stays on Homebrew rather than asdf: the [asdf-ruff](https://github.com/simhem/asdf-ruff) plugin has an unresolved macOS install-path bug ([simhem/asdf-ruff#12](https://github.com/simhem/asdf-ruff/issues/12), open since April 2025) where the binary is extracted to the wrong path on both Intel and Apple Silicon, so installs fail on exactly the platform this repo targets. Homebrew formulae float to whatever's current rather than giving an exact pin, but that's an acceptable trade here versus depending on a broken plugin — revisit if the upstream bug is fixed. `uv` has no such issue: [asdf-uv](https://github.com/asdf-community/asdf-uv) correctly handles both `arm64`/`aarch64` and `apple-darwin` and is actively maintained.
+
+`mypy` and `pytest` are installed as `uv` tools rather than asdf plugins or Homebrew formulae — they're Python-ecosystem packages, not standalone binaries, so they're best kept in sync with `uv` itself. `uv tool install` keeps them user-space with no sudo required.
+
+**Manual prerequisites / recovery:**
+
+- `setup_aegis_dev.sh` only checks for and reports missing tools (`uv`, `ruff`, `python`, `git`) — it does not install them itself. If any are missing, it prints what's missing and exits non-zero; run `setup_asdf.sh` (for `uv`) and `install_brew_packages.sh` (for `ruff`) first, then re-run `setup_aegis_dev.sh`.
+- Safe to re-run any time — checks are read-only and `uv tool install` is idempotent (no-ops if already installed at the same version).
+- If `uv tool install` fails for `mypy` or `pytest` (e.g. no network), re-run `setup_aegis_dev.sh` once connectivity is restored — nothing else in the repo depends on them being present.
 
 ---
 
