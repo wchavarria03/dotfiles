@@ -25,6 +25,7 @@ Complete guide for setting up a new macOS development environment with automated
 - [Notes](#notes)
 - [Post-Setup Verification](#post-setup-verification)
 - [Aegis Development Environment](#aegis-development-environment)
+- [Aegis Herdr Configuration](#aegis-herdr-configuration)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -256,6 +257,32 @@ Dev environment setup for [Aegis](https://github.com/wchavarria03/aegis), provis
 - `setup_aegis_dev.sh` only checks for and reports missing tools (`uv`, `ruff`, `python`, `git`) — it does not install them itself. If any are missing, it prints what's missing and exits non-zero; run `setup_asdf.sh` (for `uv`) and `install_brew_packages.sh` (for `ruff`) first, then re-run `setup_aegis_dev.sh`.
 - Safe to re-run any time — checks are read-only and `uv tool install` is idempotent (no-ops if already installed at the same version).
 - If `uv tool install` fails for `mypy` or `pytest` (e.g. no network), re-run `setup_aegis_dev.sh` once connectivity is restored — nothing else in the repo depends on them being present.
+
+---
+
+## Aegis Herdr Configuration
+
+[Herdr](https://herdr.dev) is the terminal workspace manager that keeps AI coding agent sessions (Claude Code, opencode) alive across disconnects — see [Phase 2](#phase-2-homebrew-bootstrap) for install and the [homelab remote access section](#notes) for the `hl` alias.
+
+**Portable vs. machine-specific config:**
+
+- `.config/herdr/config.toml` is tracked — it's portable: theme, UI indicators, sound/toast settings, no machine-specific paths or secrets. It's explicitly carved out of the ignore rule below.
+- Everything else under `.config/herdr/` (`.gitignore` lines for "herdr runtime state (per machine)") is untracked — sessions, sockets, and other per-machine runtime state that shouldn't follow you between machines.
+- Herdr's own config schema has no concept of machine-local overrides beyond this split (no `config.toml.local` or similar) — there was nothing else to bring in line with the `.gitconfig.local`/`.zshrc.local` convention used elsewhere in this repo, since herdr's config has no machine-specific *values* to begin with, only machine-specific *runtime state*, which is already handled by the ignore rule.
+- `setup/setup_herdr.sh` only installs agent integrations (`herdr integration install claude/opencode`) when `herdr` is present; it writes nothing into this repo and holds no config of its own.
+
+**Model/provider configuration — herdr never holds credentials:**
+
+Herdr is a terminal multiplexer, not an LLM client — its `config.toml` has no provider, model, or API-key fields (`herdr config check` validates only UI/theme/keybinding/update settings). Herdr inherits the ambient environment of whichever shell launches it rather than replacing it, and each agent it launches manages its own auth completely independently:
+
+| Agent | Where its credentials come from |
+|-------|----------------------------------|
+| Claude Code | its own `claude login` / Anthropic auth, outside this repo |
+| opencode | its own provider config (e.g. `~/.config/opencode/`), outside the files this repo tracks |
+
+This repo's existing convention for any real secret (see [Phase 3](#phase-3-ssh--repository-setup) and `setup_stow.sh`'s `ensure_github_envrc`) is: never commit a token, always resolve it from 1Password at shell-init time via `.envrc` + `op read`. If an Aegis agent backend ever needs its own API key sourced through this repo rather than through its native login flow, follow that same pattern — a `.envrc` entry reading from 1Password (`op read --account <account> "op://<vault>/<item>/token"`), never a literal key in a tracked file.
+
+**Recovery:** if `herdr config check` reports a problem, back up and reset custom keybindings with `herdr config reset-keys`, then re-run `setup/setup_herdr.sh` to reinstall agent integrations.
 
 ---
 
