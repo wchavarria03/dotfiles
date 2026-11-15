@@ -125,9 +125,7 @@ fi
 
 # Home lab (nix-homelab tower) over Tailscale — requires MagicDNS enabled
 # (https://login.tailscale.com/admin/dns) so the hostname resolves without a
-# hardcoded IP. Mosh (not ssh) so the session survives wifi switches/sleep.
-alias homelab='mosh walter@nix-homelab'
-
-# Same, but drops straight into (or creates) the persistent tmux session
-# used for Claude Code — so a dropped connection never kills a running task.
-alias hl='mosh walter@nix-homelab -- tmux new -A -s claude -c /etc/nixos claude'
+# hardcoded IP. herdr (not mosh) connects as a thin client to the persistent
+# herdr server/session on the homelab box, so a dropped connection never
+# kills a running task — reconnect picks the workspace back up as-is.
+alias hl='herdr --remote walter@nix-homelab'
