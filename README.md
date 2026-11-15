@@ -24,6 +24,7 @@ Complete guide for setting up a new macOS development environment with automated
 - [Phase 6: Final Configuration](#phase-6-final-configuration)
 - [Notes](#notes)
 - [Post-Setup Verification](#post-setup-verification)
+- [Aegis Development Environment](#aegis-development-environment)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -149,7 +150,7 @@ The script will prompt for device type (`personal` or `work`) on first run and e
 | Stage | Steps                                                                                            |
 | ----- | ------------------------------------------------------------------------------------------------ |
 | 1     | Makes all scripts executable, prompts for device type                                            |
-| 2     | Creates folders, installs Homebrew packages + fonts, sets up asdf plugins and tool versions      |
+| 2     | Creates folders, installs Homebrew packages + fonts, sets up asdf plugins and tool versions, checks Aegis dev tooling |
 | 3     | Checks SSH access, clones/pulls secrets, dotfiles, notes, and API collections repos, runs `stow` |
 | 4     | Applies macOS system defaults                                                                    |
 
@@ -220,6 +221,39 @@ mkdir -p ~/.docker/completions
 docker completion zsh > ~/.docker/completions/_docker
 brew completions link
 ```
+
+---
+
+## Aegis Development Environment
+
+Dev environment setup for [Aegis](https://github.com/wchavarria03/aegis), provisioned by `setup/setup_aegis_dev.sh` (runs automatically in Stage 2 of `install.sh`, after asdf).
+
+**Minimum supported environment:**
+
+| Tool | Version | Source |
+|------|---------|--------|
+| macOS | current version supported by [Homebrew](https://docs.brew.sh/Installation) | manual, Phase 1 |
+| Python | 3.14.9 | pinned in `.tool-versions`, installed via asdf |
+| Git | latest via Homebrew | `install_brew_packages.sh` |
+| Package manager | Homebrew | this repo's bootstrap |
+
+**Python dependency/project workflow:** [`uv`](https://docs.astral.sh/uv/) — installed via Homebrew. Aegis's own `pyproject.toml`/lockfile conventions are defined in the aegis repo itself; this repo only guarantees `uv` is present.
+
+**Formatting, linting, type-checking, tests:**
+
+| Concern | Tool | Installed via |
+|---------|------|----------------|
+| Format + lint | [`ruff`](https://docs.astral.sh/ruff/) | Homebrew |
+| Type-checking | [`mypy`](https://mypy-lang.org/) | `uv tool install`, via `setup_aegis_dev.sh` |
+| Tests | [`pytest`](https://docs.pytest.org/) | `uv tool install`, via `setup_aegis_dev.sh` |
+
+`mypy` and `pytest` are installed as `uv` tools rather than Homebrew formulae — they're Python-ecosystem tools best kept in sync with `uv`, and `uv tool install` keeps them user-space with no sudo required.
+
+**Manual prerequisites / recovery:**
+
+- `setup_aegis_dev.sh` only checks for and reports missing tools (`uv`, `ruff`, `python`, `git`) — it does not install them itself. If any are missing, it prints what's missing and exits non-zero; run `install_brew_packages.sh` and `setup_asdf.sh` first, then re-run `setup_aegis_dev.sh`.
+- Safe to re-run any time — checks are read-only and `uv tool install` is idempotent (no-ops if already installed at the same version).
+- If `uv tool install` fails for `mypy` or `pytest` (e.g. no network), re-run `setup_aegis_dev.sh` once connectivity is restored — nothing else in the repo depends on them being present.
 
 ---
 
