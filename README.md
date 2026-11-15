@@ -237,21 +237,23 @@ Dev environment setup for [Aegis](https://github.com/wchavarria03/aegis), provis
 | Git | latest via Homebrew | `install_brew_packages.sh` |
 | Package manager | Homebrew | this repo's bootstrap |
 
-**Python dependency/project workflow:** [`uv`](https://docs.astral.sh/uv/) — installed via Homebrew. Aegis's own `pyproject.toml`/lockfile conventions are defined in the aegis repo itself; this repo only guarantees `uv` is present.
+**Python dependency/project workflow:** [`uv`](https://docs.astral.sh/uv/) — pinned in `.tool-versions` and installed via asdf, consistent with how this repo already manages Python/Node/Go/Rust. Aegis's own `pyproject.toml`/lockfile conventions are defined in the aegis repo itself; this repo only guarantees a pinned `uv` is present.
 
 **Formatting, linting, type-checking, tests:**
 
 | Concern | Tool | Installed via |
 |---------|------|----------------|
-| Format + lint | [`ruff`](https://docs.astral.sh/ruff/) | Homebrew |
+| Format + lint | [`ruff`](https://docs.astral.sh/ruff/) | Homebrew (not asdf — see note below) |
 | Type-checking | [`mypy`](https://mypy-lang.org/) | `uv tool install`, via `setup_aegis_dev.sh` |
 | Tests | [`pytest`](https://docs.pytest.org/) | `uv tool install`, via `setup_aegis_dev.sh` |
 
-`mypy` and `pytest` are installed as `uv` tools rather than Homebrew formulae — they're Python-ecosystem tools best kept in sync with `uv`, and `uv tool install` keeps them user-space with no sudo required.
+`ruff` stays on Homebrew rather than asdf: the [asdf-ruff](https://github.com/simhem/asdf-ruff) plugin has an unresolved macOS install-path bug ([simhem/asdf-ruff#12](https://github.com/simhem/asdf-ruff/issues/12), open since April 2025) where the binary is extracted to the wrong path on both Intel and Apple Silicon, so installs fail on exactly the platform this repo targets. Homebrew formulae float to whatever's current rather than giving an exact pin, but that's an acceptable trade here versus depending on a broken plugin — revisit if the upstream bug is fixed. `uv` has no such issue: [asdf-uv](https://github.com/asdf-community/asdf-uv) correctly handles both `arm64`/`aarch64` and `apple-darwin` and is actively maintained.
+
+`mypy` and `pytest` are installed as `uv` tools rather than asdf plugins or Homebrew formulae — they're Python-ecosystem packages, not standalone binaries, so they're best kept in sync with `uv` itself. `uv tool install` keeps them user-space with no sudo required.
 
 **Manual prerequisites / recovery:**
 
-- `setup_aegis_dev.sh` only checks for and reports missing tools (`uv`, `ruff`, `python`, `git`) — it does not install them itself. If any are missing, it prints what's missing and exits non-zero; run `install_brew_packages.sh` and `setup_asdf.sh` first, then re-run `setup_aegis_dev.sh`.
+- `setup_aegis_dev.sh` only checks for and reports missing tools (`uv`, `ruff`, `python`, `git`) — it does not install them itself. If any are missing, it prints what's missing and exits non-zero; run `setup_asdf.sh` (for `uv`) and `install_brew_packages.sh` (for `ruff`) first, then re-run `setup_aegis_dev.sh`.
 - Safe to re-run any time — checks are read-only and `uv tool install` is idempotent (no-ops if already installed at the same version).
 - If `uv tool install` fails for `mypy` or `pytest` (e.g. no network), re-run `setup_aegis_dev.sh` once connectivity is restored — nothing else in the repo depends on them being present.
 

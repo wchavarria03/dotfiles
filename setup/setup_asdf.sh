@@ -10,7 +10,7 @@ general_asdf() {
         return 1
     fi
 
-    local plugins=(nodejs python golang rust)
+    local plugins=(nodejs python golang rust uv)
 
     echo "${COLOR_GREEN}-- Adding asdf plugins${COLOR_RESET}"
     for plugin in "${plugins[@]}"; do

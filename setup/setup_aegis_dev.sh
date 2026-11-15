@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
 # Aegis Python dev environment: verifies the tools Aegis's dev workflow
-# needs are present and reports anything missing. Installation of uv/ruff
-# itself is owned by install_brew_packages.sh — this script only checks,
-# and installs the uv-managed tools (mypy, pytest) that aren't brew
-# formulae. Never touches unrelated config; safe to re-run.
+# needs are present and reports anything missing. Installation of uv
+# (asdf, pinned in .tool-versions) and ruff (Homebrew) is owned by
+# setup_asdf.sh / install_brew_packages.sh — this script only checks,
+# and installs the uv-managed tools (mypy, pytest) that aren't asdf
+# plugins or brew formulae. Never touches unrelated config; safe to
+# re-run.
 setup_aegis_dev() {
     local missing=()
 
@@ -29,7 +31,7 @@ setup_aegis_dev() {
         for tool in "${missing[@]}"; do
             echo "   - $tool"
         done
-        echo "Run install_brew_packages.sh and setup_asdf.sh, then re-run this script."
+        echo "Run setup_asdf.sh (uv) and install_brew_packages.sh (ruff), then re-run this script."
         return 1
     fi
 
