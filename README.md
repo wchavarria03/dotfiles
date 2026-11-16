@@ -284,6 +284,14 @@ This repo's existing convention for any real secret (see [Phase 3](#phase-3-ssh-
 
 **Recovery:** if `herdr config check` reports a problem, back up and reset custom keybindings with `herdr config reset-keys`, then re-run `setup/setup_herdr.sh` to reinstall agent integrations.
 
+**`herdr-core` (`hc`) and waiting on independent peer terminals:**
+
+[`herdr-core`](https://herdr.dev) (`hc`) is the headless counterpart to the `herdr` TUI — it's what the official Herdr mobile/desktop apps talk to, and supports the same send/read delegation pattern as `herdr pane send-text`/`herdr pane read` via `hc send`/`hc read`.
+
+`hc wait <terminal>` only auto-detects "turn completed" for terminals in a true parent-child relationship (one `hc` terminal launched from within another via `hc run --bg`, waited on with `hc wait --children`). For independent peer terminals — the setup used to keep each project as its own top-level space rather than nesting everything under one parent — plain `hc wait` times out even after the agent has clearly finished responding.
+
+`bin/hc-wait-idle.sh <terminal> [quiet_seconds=2] [max_seconds=180]` works around this for any terminal, parent/child or not: it watches `hc events --terminal <t> --json`, which fires correctly regardless of relationship, and treats a quiet period (no new events for `quiet_seconds`) as "settled." Symlinked onto `PATH` via `stow` (same as everything else under `bin/`), so it's callable directly as `hc-wait-idle.sh` once stowed.
+
 ---
 
 ## Troubleshooting
