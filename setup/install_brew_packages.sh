@@ -51,6 +51,7 @@ general_packages() {
         1password-cli
         aerospace # requires nikitabobko/tap
         brave-browser
+        herdr-app # Herdr desktop GUI, Apple Silicon only (no Intel build); lets the mobile app reach this Mac and lets this Mac's GUI reach nix-homelab's herdr-core
         sequel-ace
         wezterm
     )
