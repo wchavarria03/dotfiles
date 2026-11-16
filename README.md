@@ -292,6 +292,15 @@ This repo's existing convention for any real secret (see [Phase 3](#phase-3-ssh-
 
 `bin/hc-wait-idle.sh <terminal> [quiet_seconds=2] [max_seconds=180]` works around this for any terminal, parent/child or not: it watches `hc events --terminal <t> --json`, which fires correctly regardless of relationship, and treats a quiet period (no new events for `quiet_seconds`) as "settled." Symlinked onto `PATH` via `stow` (same as everything else under `bin/`), so it's callable directly as `hc-wait-idle.sh` once stowed.
 
+**`herdr-app` (desktop GUI):**
+
+Installed by default (`brew install --cask herdr-app`, in `general_packages`'s casks — not conditional on device type). It's the desktop counterpart to the Herdr mobile app and talks to `herdr-core`, never the `herdr` TUI directly. Two uses:
+
+- Lets the mobile app reach this Mac's own `herdr-core` sessions at any time.
+- Lets this Mac's GUI act as a client to nix-homelab's `herdr-core`, over the same SSH machine registration already used for the mobile app (see [homelab remote access](#notes)).
+
+Apple Silicon only — the cask has no Intel build. This repo has no existing Mac arch-level split to match (no Intel-vs-arm64 branching anywhere in `install_brew_packages.sh`), so this is a flat addition; if an Intel Mac ever needs to run this setup, `herdr-app` will fail to install and need to be skipped or built from source.
+
 ---
 
 ## Troubleshooting
