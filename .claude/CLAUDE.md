@@ -62,3 +62,14 @@ Prefer CLI tools over MCP tools whenever both can do the same job — CLI respon
 - **Minimal Impact:** Only change what is necessary. Avoid regressions.
 - **No Passive Execution:** Every task is a teaching opportunity — explain, don't just execute.
 - **Persistence:** All tracking files live in `.claude/` of the active project.
+
+## 7. Git & PR Workflow (every repo)
+
+Standing instruction for every repository, overriding the default "commit only when asked":
+
+1. Never change the default branch (`main`/`master`) directly. Work on a feature branch.
+2. After every change you make to a repo, commit it (conventional commit style, matching `git log`).
+3. Push the branch and open a PR against the repo's default branch with `gh pr create`.
+4. Display the PR URL for review. Never merge it.
+5. Applies to any repo, including ones with no prior PR history. No need to ask first.
+6. If a repo's own `CLAUDE.md` or a hook forbids this (e.g. a guard on `main`), follow the repo and say so.
