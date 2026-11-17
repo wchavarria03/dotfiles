@@ -67,7 +67,7 @@ Prefer CLI tools over MCP tools whenever both can do the same job — CLI respon
 
 Standing instruction for every repository, overriding the default "commit only when asked":
 
-1. Never change the default branch (`main`/`master`) directly. Work on a feature branch.
+1. Never change the default branch (`main`/`master`) directly. Work on a feature branch named `<type>/<TICKET-ID>-<short-kebab-case-description>` (e.g. `feat/GDT-333-add-user-auth`). `<type>` is a conventional commit type (`feat`, `fix`, `docs`, `chore`, ...). Take the ticket ID from the current branch or the task; if there is no ticket, omit it (e.g. `docs/claude-branch-naming`).
 2. After every change you make to a repo, commit it (conventional commit style, matching `git log`).
 3. Push the branch and open a PR against the repo's default branch with `gh pr create`.
 4. Display the PR URL for review. Never merge it.
