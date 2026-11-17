@@ -63,3 +63,4 @@ nvim-macos-arm64
 !.config/herdr-app/settings.json
 !.config/herdr-app/keys.json
 !.config/herdr-app/programs.json
+.config/.android
