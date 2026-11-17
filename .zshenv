@@ -17,6 +17,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
 
+# ANDROID (see android_sdk_packages in setup/install_brew_packages.sh)
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export JAVA_HOME="/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
+
 # EDITOR
 export EDITOR="nvim"
 export VISUAL="nvim"

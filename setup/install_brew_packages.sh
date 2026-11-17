@@ -61,6 +61,19 @@ general_packages() {
 
     echo "${COLOR_GREEN}-- Installing casks${COLOR_RESET}"
     brew_install_casks "${casks[@]}"
+
+    android_sdk_packages
+}
+
+### Android SDK development ###
+# Needed to build the Android APK of Capacitor apps (e.g. pasitos).
+# Open Android Studio once after install (Standard setup) so it downloads the SDK to ~/Library/Android/sdk.
+android_sdk_packages() {
+    echo "${COLOR_GREEN}-- Installing Android SDK development packages${COLOR_RESET}"
+    brew_install_formulae \
+        openjdk@21 # Gradle 8.x needs JDK <= 24; Android Studio's bundled JDK 25 fails with "Unsupported class file major version 69"
+    brew_install_casks \
+        android-studio
 }
 
 work_packages() {
