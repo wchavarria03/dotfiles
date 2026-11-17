@@ -57,3 +57,9 @@ nvim-macos-arm64
 
 # colima VM runtime state (per machine)
 .config/colima/
+
+# herdr-app: track only user-authored config; Herdr rewrites/owns the rest
+.config/herdr-app/*
+!.config/herdr-app/settings.json
+!.config/herdr-app/keys.json
+!.config/herdr-app/programs.json
