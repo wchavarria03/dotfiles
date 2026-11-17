@@ -81,7 +81,7 @@ alias gbrr='git-branch-utils -r -b develop'
 alias gg='git branch | fzf | xargs git checkout'
 alias gup='git branch --set-upstream-to=origin/$(git-current-branch) $(git-current-branch)'
 
-alias gnext='git log --ancestry-path --format=%H ${commit}..master | tail -1 | xargs git checkout'
+alias gnext='git log --ancestry-path --format=%H ${commit}..$(git symbolic-ref --short refs/remotes/origin/HEAD | sed "s@^origin/@@") | tail -1 | xargs git checkout'
 alias gprev='git checkout HEAD^'
 
 function take {
@@ -91,7 +91,7 @@ function take {
 
 mff() {
     local curr_branch=$(git-current-branch)
-    gco master
+    gco "$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's@^origin/@@')"
     ff
     gco $curr_branch
 }
