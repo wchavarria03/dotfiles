@@ -74,3 +74,10 @@ The notes repo (`wchavarria03/notes`, plain Markdown `.md` files; Obsidian provi
 3. **Review via PR only:** Walter reviews the final note, not drafts. Don't relay proposals, local files, or intermediate states for approval. Have the notes agent finish the write and open the PR (never merged), and give Walter only the already-created PR link.
 4. **Don't over-capture:** Skip routine edits, trivial fixes, and anything already recorded in the repo's own code or git history. Capture the *why*, not the *what*.
 5. **Never include secrets** in a note.
+
+## 9. Ticket Worktrees (Herdr app)
+
+- **Every request to work on a new ticket** gets its own git worktree and its own Herdr app space, with one Claude session per worktree. Do not start the ticket in the main checkout or in another ticket's worktree. If this session is already in that ticket's worktree, do not create another. The repo's `CLAUDE.md` gives the branch name, base and worktree path.
+- **Create the worktree** with `git worktree add -b <branch> <path> <base>`, then the space with `herdr-app do space.new --name <TICKET> --folder <worktree path> --argv '["claude"]' --task "<what to do>" --focus false`. Name the space after the ticket key (e.g. `GDT-927`). Use `herdr-app ls` for space ids. Never use the `herdr` CLI (`herdr worktree`, `herdr workspace`): it was the terminal UI, now removed, and never reached the app.
+- **Once the PR is merged and the ticket is closed,** close the space (`herdr-app do space.close --id <space id> --confirmed true`; check `herdr-app commands` if the flag form is rejected), remove the worktree (`git worktree remove <path>`) and delete the branch if it is still there. Never remove a worktree that has uncommitted work, or before the merge and the close.
+- This section covers ticket work Claude starts itself. Section 7 still governs delegating to another repo's already-running session.
