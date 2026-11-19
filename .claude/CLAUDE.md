@@ -53,7 +53,7 @@ Standing instruction for every repository, overriding the default "commit only w
 4. Display the PR URL for review. Never merge it.
 5. Applies to any repo, including ones with no prior PR history. No need to ask first.
 6. If a repo's own `CLAUDE.md` or a hook forbids this (e.g. a guard on `main`), follow the repo and say so.
-7. If `gh` isn't available on the current machine, don't install or improvise tooling (no `nix run`, `brew install`, etc.). Push the branch, give the compare URL (`https://github.com/<owner>/<repo>/pull/new/<branch>`), and tell Walter `gh` is missing.
+7. If `gh` isn't available on the current machine, fall back to plain `git`: don't install or improvise tooling (no `nix run`, `brew install`, etc.). Commit and `git push -u origin <branch>`, then display the compare URL (`https://github.com/<owner>/<repo>/pull/new/<branch>`, built from `git remote get-url origin`) for Walter to open the PR himself.
 
 ## 7. Cross-Repo Work: Delegate to Herdr Sessions
 
