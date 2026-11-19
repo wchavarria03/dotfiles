@@ -53,3 +53,14 @@ Standing instruction for every repository, overriding the default "commit only w
 4. Display the PR URL for review. Never merge it.
 5. Applies to any repo, including ones with no prior PR history. No need to ask first.
 6. If a repo's own `CLAUDE.md` or a hook forbids this (e.g. a guard on `main`), follow the repo and say so.
+7. If `gh` isn't available on the current machine, fall back to plain `git`: don't install or improvise tooling (no `nix run`, `brew install`, etc.). Commit and `git push -u origin <branch>`, then display the compare URL (`https://github.com/<owner>/<repo>/pull/new/<branch>`, built from `git remote get-url origin`) for Walter to open the PR himself.
+
+## 7. Cross-Repo Work: Delegate to Herdr Sessions
+
+When asked to do something in another repo (or the task requires touching one), the work goes through a **herdr session** for that repo:
+
+1. **Check first:** Use `ListAgents` to see whether a herdr session/agent is already running for that repo (matching its name or working directory).
+2. **If one exists:** Delegate the work to it via `SendMessage` instead of working in that repo yourself. Give it a self-contained brief (goal, ticket, acceptance criteria).
+3. **If none exists:** Ask Walter to help create a herdr session for that repo (he starts it; you don't launch it yourself), then use that agent as a sub-agent / collaboration agent and delegate to it.
+4. **Report only when ready:** Don't relay intermediate chatter. Once the agent finishes, report the result: the PR link for review (if code changed) or the findings (if research only).
+5. **Be machine-agnostic:** Walter works on both a NixOS homelab and a Mac. Don't assume OS-specific paths, package managers, or installed tools; rely on what's available in the current environment.
