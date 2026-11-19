@@ -2,7 +2,7 @@
 
 ## Delegate to the notes vault
 
-Walter keeps a personal notes vault at `/home/walter/notes` on the homelab server (`github.com/wchavarria03/notes`, private, org-roam), with its own `CLAUDE.md`, skills, and a `guard-main.sh` hook that blocks AI from touching `main` there. If you're running on that server and something in this repo is worth recording in the vault, don't read its rules by hand and write there directly from this session — delegate via:
+Walter keeps a personal notes vault at `/home/walter/notes` on the homelab server (`github.com/wchavarria03/notes`, private, Markdown files with Obsidian for linking and graph view), with its own `CLAUDE.md`, skills, and a `guard-main.sh` hook that blocks AI from touching `main` there. If you're running on that server and something in this repo is worth recording in the vault, don't read its rules by hand and write there directly from this session — delegate via:
 
 ```
 /home/walter/notes/bin/capture "<what happened>"
