@@ -71,6 +71,6 @@ The notes repo (`wchavarria03/notes`, plain Markdown `.md` files; Obsidian provi
 
 1. **When to capture:** Whenever a decision is made (architecture, tooling, trade-offs, "we chose X over Y because Z"), or research produces results worth keeping (findings, comparisons, commands that worked, gotchas).
 2. **How:** If a herdr notes session is running (`ListAgents`), send it a self-contained summary via `SendMessage` (what, why, outcome, links such as PR/ticket). Otherwise, on the homelab use `/home/walter/notes/bin/capture "<what happened>"`. On any other machine, tell Walter it's worth a note and give him the summary to capture himself.
-3. **Approval:** Relay the notes agent's proposal to Walter. Only continue the write once he approves.
+3. **Review via PR only:** Walter reviews the final note, not drafts. Don't relay proposals, local files, or intermediate states for approval. Have the notes agent finish the write and open the PR (never merged), and give Walter only the already-created PR link.
 4. **Don't over-capture:** Skip routine edits, trivial fixes, and anything already recorded in the repo's own code or git history. Capture the *why*, not the *what*.
 5. **Never include secrets** in a note.
