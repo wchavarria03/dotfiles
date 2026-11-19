@@ -26,7 +26,6 @@ general_packages() {
         gitleaks # secret scanning in .githooks/pre-commit
         glow # markdown previewer
         gnupg
-        herdr # agent multiplexer, standalone (no manager/registration)
         imagemagick # required for image.nvim inline image rendering
         jq
         lazygit

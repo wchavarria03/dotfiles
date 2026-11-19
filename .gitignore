@@ -47,16 +47,15 @@ nvim-macos-arm64
 .config/1Password/*
 !.config/1Password/ssh/
 
-# herdr runtime state (per machine)
-.config/herdr/*
-!.config/herdr/config.toml
-
 # cargo install metadata (regenerated per machine)
 .cargo/.crates.toml
 .cargo/.crates2.json
 
 # colima VM runtime state (per machine)
 .config/colima/
+
+# herdr TUI is removed; ignore any leftover runtime dir so it never shows as untracked
+.config/herdr/
 
 # herdr-app: track only user-authored config; Herdr rewrites/owns the rest
 .config/herdr-app/*

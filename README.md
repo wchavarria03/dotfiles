@@ -262,18 +262,17 @@ Dev environment setup for [Aegis](https://github.com/wchavarria03/aegis), provis
 
 ## Aegis Herdr Configuration
 
-[Herdr](https://herdr.dev) is the terminal workspace manager that keeps AI coding agent sessions (Claude Code, opencode) alive across disconnects — see [Phase 2](#phase-2-homebrew-bootstrap) for install and the [homelab remote access section](#notes) for the `hl` alias.
+[Herdr](https://herdr.dev) keeps AI coding agent sessions (Claude Code, opencode) alive across disconnects. This setup uses only the desktop app (`herdr-app`, a GUI) and `herdr-core` (`hc`), the headless daemon it runs on. The `herdr` TUI is not installed: it runs its own separate session server, so workspaces created through its CLI never appear in the app.
 
 **Portable vs. machine-specific config:**
 
-- `.config/herdr/config.toml` is tracked — it's portable: theme, UI indicators, sound/toast settings, no machine-specific paths or secrets. It's explicitly carved out of the ignore rule below.
-- Everything else under `.config/herdr/` (`.gitignore` lines for "herdr runtime state (per machine)") is untracked — sessions, sockets, and other per-machine runtime state that shouldn't follow you between machines.
-- Herdr's own config schema has no concept of machine-local overrides beyond this split (no `config.toml.local` or similar) — there was nothing else to bring in line with the `.gitconfig.local`/`.zshrc.local` convention used elsewhere in this repo, since herdr's config has no machine-specific *values* to begin with, only machine-specific *runtime state*, which is already handled by the ignore rule.
-- `setup/setup_herdr.sh` only installs agent integrations (`herdr integration install claude/opencode`) when `herdr` is present; it writes nothing into this repo and holds no config of its own.
+- `.config/herdr-app/settings.json` and `keys.json` are tracked (plus `programs.json` if it ever exists). Herdr rewrites everything else in that folder on every start (shipped mods, layouts, icons, typings) or keeps per-machine state there (`view.json`, `window.json`, `shared.json`, `data/`, `telemetry/`), so the rest is ignored via `.gitignore`.
+- To customize a layout, mod or theme, clone the shipped one first (`herdr-app do layout.clone '{"name":"main","as":"my-layout"}'`), then add a `!` line for the clone to `.gitignore`.
+- `.config/herdr/` is ignored only to hide leftovers from the removed TUI.
 
-**Model/provider configuration — herdr never holds credentials:**
+**Credentials — herdr never holds them:**
 
-Herdr is a terminal multiplexer, not an LLM client — its `config.toml` has no provider, model, or API-key fields (`herdr config check` validates only UI/theme/keybinding/update settings). Herdr inherits the ambient environment of whichever shell launches it rather than replacing it, and each agent it launches manages its own auth completely independently:
+Herdr is a terminal workspace manager, not an LLM client. Panes inherit the ambient environment of the shell that launches them, and each agent manages its own auth independently:
 
 | Agent | Where its credentials come from |
 |-------|----------------------------------|
@@ -282,11 +281,9 @@ Herdr is a terminal multiplexer, not an LLM client — its `config.toml` has no 
 
 This repo's existing convention for any real secret (see [Phase 3](#phase-3-ssh--repository-setup) and `setup_stow.sh`'s `ensure_github_envrc`) is: never commit a token, always resolve it from 1Password at shell-init time via `.envrc` + `op read`. If an Aegis agent backend ever needs its own API key sourced through this repo rather than through its native login flow, follow that same pattern — a `.envrc` entry reading from 1Password (`op read --account <account> "op://<vault>/<item>/token"`), never a literal key in a tracked file.
 
-**Recovery:** if `herdr config check` reports a problem, back up and reset custom keybindings with `herdr config reset-keys`, then re-run `setup/setup_herdr.sh` to reinstall agent integrations.
-
 **`herdr-core` (`hc`) and waiting on independent peer terminals:**
 
-[`herdr-core`](https://herdr.dev) (`hc`) is the headless counterpart to the `herdr` TUI — it's what the official Herdr mobile/desktop apps talk to, and supports the same send/read delegation pattern as `herdr pane send-text`/`herdr pane read` via `hc send`/`hc read`.
+[`herdr-core`](https://herdr.dev) (`hc`) is the headless daemon the Herdr desktop and mobile apps talk to. It supports send/read delegation between terminals via `hc send`/`hc read`.
 
 `hc wait <terminal>` only auto-detects "turn completed" for terminals in a true parent-child relationship (one `hc` terminal launched from within another via `hc run --bg`, waited on with `hc wait --children`). For independent peer terminals — the setup used to keep each project as its own top-level space rather than nesting everything under one parent — plain `hc wait` times out even after the agent has clearly finished responding.
 
@@ -294,10 +291,10 @@ This repo's existing convention for any real secret (see [Phase 3](#phase-3-ssh-
 
 **`herdr-app` (desktop GUI):**
 
-Installed by default (`brew install --cask herdr-app`, in `general_packages`'s casks — not conditional on device type). It's the desktop counterpart to the Herdr mobile app and talks to `herdr-core`, never the `herdr` TUI directly. Two uses:
+Installed by default (`brew install --cask herdr-app`, in `general_packages`'s casks — not conditional on device type). It's the desktop counterpart to the Herdr mobile app and talks to `herdr-core`. Two uses:
 
 - Lets the mobile app reach this Mac's own `herdr-core` sessions at any time.
-- Lets this Mac's GUI act as a client to nix-homelab's `herdr-core`, over the same SSH machine registration already used for the mobile app (see [homelab remote access](#notes)).
+- Lets this Mac's GUI act as a client to nix-homelab's `herdr-core`, over the same SSH machine registration already used for the mobile app.
 
 Apple Silicon only — the cask has no Intel build. This repo has no existing Mac arch-level split to match (no Intel-vs-arm64 branching anywhere in `install_brew_packages.sh`), so this is a flat addition; if an Intel Mac ever needs to run this setup, `herdr-app` will fail to install and need to be skipped or built from source.
 
