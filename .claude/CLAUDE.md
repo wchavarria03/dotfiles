@@ -64,3 +64,13 @@ When asked to do something in another repo (or the task requires touching one), 
 3. **If none exists:** Ask Walter to help create a herdr session for that repo (he starts it; you don't launch it yourself), then use that agent as a sub-agent / collaboration agent and delegate to it.
 4. **Report only when ready:** Don't relay intermediate chatter. Once the agent finishes, report the result: the PR link for review (if code changed) or the findings (if research only).
 5. **Be machine-agnostic:** Walter works on both a NixOS homelab and a Mac. Don't assume OS-specific paths, package managers, or installed tools; rely on what's available in the current environment.
+
+## 8. Capture Decisions & Research in the Notes Vault
+
+The notes repo (`wchavarria03/notes`, org-roam) is Walter's centralized memory for anything that happens in his life, work, or research. Never write there directly from another repo's session; delegate.
+
+1. **When to capture:** Whenever a decision is made (architecture, tooling, trade-offs, "we chose X over Y because Z"), or research produces results worth keeping (findings, comparisons, commands that worked, gotchas).
+2. **How:** If a herdr notes session is running (`ListAgents`), send it a self-contained summary via `SendMessage` (what, why, outcome, links such as PR/ticket). Otherwise, on the homelab use `/home/walter/notes/bin/capture "<what happened>"`. On any other machine, tell Walter it's worth a note and give him the summary to capture himself.
+3. **Approval:** Relay the notes agent's proposal to Walter. Only continue the write once he approves.
+4. **Don't over-capture:** Skip routine edits, trivial fixes, and anything already recorded in the repo's own code or git history. Capture the *why*, not the *what*.
+5. **Never include secrets** in a note.
