@@ -123,9 +123,3 @@ if [ -f "$JOBSECRETS" ]; then
     source "$JOBSECRETS"
 fi
 
-# Home lab (nix-homelab tower) over Tailscale — requires MagicDNS enabled
-# (https://login.tailscale.com/admin/dns) so the hostname resolves without a
-# hardcoded IP. herdr (not mosh) connects as a thin client to the persistent
-# herdr server/session on the homelab box, so a dropped connection never
-# kills a running task — reconnect picks the workspace back up as-is.
-alias hl='herdr --remote walter@nix-homelab'
