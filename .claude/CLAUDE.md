@@ -53,3 +53,12 @@ Standing instruction for every repository, overriding the default "commit only w
 4. Display the PR URL for review. Never merge it.
 5. Applies to any repo, including ones with no prior PR history. No need to ask first.
 6. If a repo's own `CLAUDE.md` or a hook forbids this (e.g. a guard on `main`), follow the repo and say so.
+
+## 7. Cross-Repo Work: Delegate to Herdr Sessions
+
+When asked to do something in another repo (or the task requires touching one), the work goes through a **herdr session** for that repo:
+
+1. **Check first:** Use `ListAgents` to see whether a herdr session/agent is already running for that repo (matching its name or working directory).
+2. **If one exists:** Delegate the work to it via `SendMessage` instead of working in that repo yourself. Give it a self-contained brief (goal, ticket, acceptance criteria).
+3. **If none exists:** Ask Walter to help create a herdr session for that repo (suggest he start it, e.g. with `! <command>`), then use that agent as a sub-agent / collaboration agent and delegate to it.
+4. **Report only when ready:** Don't relay intermediate chatter. Once the agent finishes, report the result: the PR link for review (if code changed) or the findings (if research only).
