@@ -67,7 +67,7 @@ When asked to do something in another repo (or the task requires touching one), 
 
 ## 8. Capture Decisions & Research in the Notes Vault
 
-The notes repo (`wchavarria03/notes`, org-roam) is Walter's centralized memory for anything that happens in his life, work, or research. Never write there directly from another repo's session; delegate.
+The notes repo (`wchavarria03/notes`, plain Markdown `.md` files; Obsidian provides the bi-directional linking and graph view) is Walter's centralized memory for anything that happens in his life, work, or research. Never write there directly from another repo's session; delegate.
 
 1. **When to capture:** Whenever a decision is made (architecture, tooling, trade-offs, "we chose X over Y because Z"), or research produces results worth keeping (findings, comparisons, commands that worked, gotchas).
 2. **How:** If a herdr notes session is running (`ListAgents`), send it a self-contained summary via `SendMessage` (what, why, outcome, links such as PR/ticket). Otherwise, on the homelab use `/home/walter/notes/bin/capture "<what happened>"`. On any other machine, tell Walter it's worth a note and give him the summary to capture himself.
