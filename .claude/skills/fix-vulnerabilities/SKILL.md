@@ -11,7 +11,7 @@ Scan the current folder with grype, summarize what it found and how to fix it, t
 
 1. **Stable releases only.** Never move to an alpha, beta or release candidate (`-rc`, `-beta`, `-alpha`, `-dev`), and never to a pseudo-version of an unreleased commit (Go `v0.58.1-0.2026...`). Grype lists these next to the stable fixes; ignore them.
 2. **Never downgrade** a library, language runtime, toolchain or base image to remove a finding. Only move up from the current version.
-3. If the only fix is a pre-release or a downgrade, **leave the finding open** and report it as needing a Dismiss or Risk Registry request with a written reason. Do not hide it.
+3. If the only fix is a pre-release or a downgrade, **leave the finding open** and report it as needing a Dismiss or Risk Registry request with a written reason. Do not hide it. Draft the text; file it only as "Filing in the Security Dashboard" below says.
 4. **Minimal change.** Touch only the dependency files, toolchain pins and base images the findings need. Do not refactor.
 5. **Do not commit or push** until the user has run the tests and the linter and says so. Do not run the project's tests yourself if the project's memory or CLAUDE.md says the user runs them; build or compile only.
 
@@ -105,13 +105,29 @@ Report which of these were checked, which changed, and which need the user (shar
 Give the user a short summary, in this order:
 
 1. **Fixed**: package, from version, to version, findings cleared (id and severity). Group by package.
-2. **Not fixed**, each with the reason: only a pre-release or a downgrade fixes it, no fix exists yet, or the finding comes from a stale local artifact. For these, name the dashboard action (Dismiss or Risk Registry) and the text to put in it.
+2. **Not fixed**, each with the reason: only a pre-release or a downgrade fixes it, no fix exists yet, or the finding comes from a stale local artifact. For these, name the dashboard action (Dismiss or Risk Registry) and the text to put in it. Offer to file it through the Security Dashboard MCP; do not file unasked.
 3. **Newer stable lines**: for each main package, the newest stable major or minor, what it adds over the patch fix, and its risks. State clearly whether it was applied or is only a recommendation.
 4. **Config files checked**: the files from the table above, with what changed.
 5. **Needs the user**: findings that were in the user's list but grype does not report (often the base image), a finding list that was cut off in a screenshot, CI versions that float.
 6. **Verification**: what was built or checked, what the rescan shows, and what the user still has to run (tests, linter).
 
 Keep it to the findings and their fixes. Do not paste the whole grype table.
+
+## Filing in the Security Dashboard (MCP)
+
+The Security Dashboard MCP (`https://secops.ltvops.com/mcp`, company SSO, no API key) can file the requests that step 5 only drafts. Its tools appear as `mcp__<server>__<tool>` (for example `mcp__claude_ai_Security_Dashboard__submit_risk_registry_request`); match on the tool name. If the tools are not available or not signed in, tell the user to authenticate with `/mcp` and fall back to the text for a manual filing on the dashboard.
+
+A request is visible to SecOps and the team, so **never file on your own**. Draft the text as in step 5, then file only when the user asks, or says to file it directly. Reading is always fine.
+
+1. **Find the dashboard defect.** `search_cve` (by CVE, across repos) or `list_security_defects` (one `repo`). The `id` it returns is the `vulnerability_ids` value for every write tool. No matching defect means nothing can be filed: give the text instead.
+2. **Skip what is already filed.** Leave out any defect with `has_pending_risk_registry_request`, `has_pending_dismiss_request` or an `ooc_form`, and say so.
+3. **Pick the action.** Real risk that cannot be fixed now (no fix, only a pre-release or downgrade, upstream has no fix): `submit_risk_registry_request`. Not a real risk (false positive, not applicable, test-only): `submit_dismiss_request`. Out-of-compliance with a fix planned: `submit_ooc_form`. Never dismiss a real, unfixed vulnerability. `get_knowledge` with `community/dismissals-and-risk-registry` has the dashboard's own guidance.
+4. **Write it so SecOps can approve it.**
+   - Risk Registry: `justification` names the package, installed and fix versions, why it cannot move (rule 1 or 2), and the plan to fix, since entries expire. Add `jira_ticket_url` if there is one. One justification covers all ids, so group only findings that share a reason.
+   - Dismiss: `reason` and a specific `comment`. All ids must be the same source (Dependabot, code scanning, or secret scanning). Reasons: Grype and CodeQL `false positive`, `won't fix`, `used in tests`, `mitigated`; Dependabot `fix_started`, `inaccurate`, `no_bandwidth`, `not_used`, `tolerable_risk`.
+   - Out-of-compliance form: `reason`, `remediation_plan` and `estimated_fix_date` (YYYY-MM-DD).
+5. **Show before sending.** Print the ids, repo, reason and full text, and wait for the user's yes. Then call the tool once per confirmed request.
+6. **Report** what was filed (request, ids) and what was skipped. A request does not clear the defect until SecOps approves it; the finding stays open until then.
 
 ## Pitfalls
 
