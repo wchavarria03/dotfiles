@@ -3,7 +3,14 @@
   "cleanupPeriodDays": 14,
   "includeGitInstructions": true,
   "permissions": {
-    "allow": ["mcp__github__list_pull_requests"],
+    "allow": [
+      "mcp__github__list_pull_requests",
+      "mcp__claude_ai_Security_Dashboard__list_teams",
+      "mcp__claude_ai_Security_Dashboard__get_my_information",
+      "mcp__claude_ai_Security_Dashboard__list_security_defects",
+      "mcp__claude_ai_Security_Dashboard__search_cve",
+      "mcp__claude_ai_Security_Dashboard__get_knowledge"
+    ],
     "defaultMode": "auto"
   },
   "model": "sonnet",
