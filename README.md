@@ -26,6 +26,7 @@ Complete guide for setting up a new macOS development environment with automated
 - [Post-Setup Verification](#post-setup-verification)
 - [Aegis Development Environment](#aegis-development-environment)
 - [Aegis Herdr Configuration](#aegis-herdr-configuration)
+- [Claude Skills](#claude-skills)
 - [Troubleshooting](#troubleshooting)
 
 ---
@@ -297,6 +298,16 @@ Installed by default (`brew install --cask herdr-app`, in `general_packages`'s c
 - Lets this Mac's GUI act as a client to nix-homelab's `herdr-core`, over the same SSH machine registration already used for the mobile app.
 
 Apple Silicon only — the cask has no Intel build. This repo has no existing Mac arch-level split to match (no Intel-vs-arm64 branching anywhere in `install_brew_packages.sh`), so this is a flat addition; if an Intel Mac ever needs to run this setup, `herdr-app` will fail to install and need to be skipped or built from source.
+
+---
+
+## Claude Skills
+
+Personal Claude Code skills live in `.claude/skills/<name>/SKILL.md` in this repo, and `stow . -t ~/` links them into `~/.claude/skills/<name>`, next to the skills Claude.ai manages in `~/.claude/skills/synced/`. Only the skills tracked here are versioned; `synced/` is owned by Claude.ai and is never committed.
+
+- **New machine:** create `~/.claude/skills/` first (`mkdir -p ~/.claude/skills`), then run stow. If the folder doesn't exist, stow can link the whole directory to the repo, and `synced/` would write into it.
+- **Adding a skill:** put it under `.claude/skills/<name>/`, re-run `stow -R . -t ~/` (or `ln -s ../../personal/dotfiles/.claude/skills/<name> ~/.claude/skills/<name>`), and open a PR.
+- **Don't commit org identifiers:** this repo is public. Skills tied to one company or project (Jira site, account IDs) belong in that repo's own `.claude/skills/`, which Claude Code loads together with the personal ones.
 
 ---
 
