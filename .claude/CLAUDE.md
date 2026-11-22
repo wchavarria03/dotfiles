@@ -75,12 +75,13 @@ The notes repo (`wchavarria03/notes`, plain Markdown `.md` files; Obsidian provi
 4. **Don't over-capture:** Skip routine edits, trivial fixes, and anything already recorded in the repo's own code or git history. Capture the *why*, not the *what*.
 5. **Never include secrets** in a note.
 
-## 9. Ticket Worktrees (Herdr app)
+## 9. Feature & Ticket Worktrees (Herdr app)
 
-- **Every request to work on a new ticket** gets its own git worktree and its own Herdr app space, with one Claude session per worktree. Do not start the ticket in the main checkout or in another ticket's worktree. If this session is already in that ticket's worktree, do not create another. The repo's `CLAUDE.md` gives the branch name, base and worktree path.
-- **Create the worktree** with `git worktree add -b <branch> <path> <base>`, then the space with `herdr-app do space.new --name <TICKET> --folder <worktree path> --argv '["claude"]' --task "<what to do>" --focus false`. Name the space after the ticket key (e.g. `GDT-927`). Use `herdr-app ls` for space ids. Never use the `herdr` CLI (`herdr worktree`, `herdr workspace`): it was the terminal UI, now removed, and never reached the app.
-- **Once the PR is merged and the ticket is closed,** close the space (`herdr-app do space.close --id <space id> --confirmed true`; check `herdr-app commands` if the flag form is rejected), remove the worktree (`git worktree remove <path>`) and delete the branch if it is still there. Never remove a worktree that has uncommitted work, or before the merge and the close.
-- This section covers ticket work Claude starts itself. Section 7 still governs delegating to another repo's already-running session.
+- **Every new ticket and every new feature or change** gets its own git worktree that branches from the repo's default branch (`main`), with one Claude session per worktree. Never develop in the main checkout or inside another feature's or ticket's worktree. If this session is already in that work's worktree, do not create another. A repo's own `CLAUDE.md` may give the branch name, base and worktree path; follow it.
+- **Create the worktree:** `git fetch`, then `git worktree add -b <type>/<kebab-description> <path> origin/main` (for tickets, use the repo's branch name, e.g. `<type>/<TICKET-ID>-<description>`). Then, where `herdr-app` exists (the Mac), also open the space: `herdr-app do space.new --name <TICKET or feature name> --folder <worktree path> --argv '["claude"]' --task "<what to do>" --focus false`. Use `herdr-app ls` for space ids. On the NixOS homelab `herdr-app` does not exist and the herdr server isn't running, so plain `git worktree add` is enough. Never use the `herdr` CLI (`herdr worktree`, `herdr workspace`): it was the terminal UI, now removed, and never reached the app (see `lessons.md`).
+- **Homelab `/srv/<app>` checkouts:** the apps under `/srv` deploy automatically. `app-deploy-watcher` (`/etc/nixos/modules/app-deploy.nix`) runs `git reset --hard` to the upstream of whatever branch is checked out in `/srv/<app>` and deploys that commit. Keep the main checkout of `/srv/<app>` on `main` with no local changes, and do all work in a worktree outside that directory.
+- **Once the PR is merged** (and the ticket is closed, if there is one), close the space where one exists (`herdr-app do space.close --id <space id> --confirmed true`; check `herdr-app commands` if the flag form is rejected), remove the worktree (`git worktree remove <path>`) and delete the branch if it is still there. Never remove a worktree that has uncommitted work, or before the merge and the close.
+- This section covers work Claude starts itself. Section 7 still governs delegating to another repo's already-running session.
 
 ## 10. Delegated Tasks From Other Sessions
 
