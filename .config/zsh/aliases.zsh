@@ -40,9 +40,6 @@ alias term_db='open -na Ghostty.app --args --title="DB Terminal"'
 
 alias pyp='pip install -r requirements.txt --index-url https://${PYPI_USERNAME}:${PYPI_PASSWORD}@pypi.ltvops.com/simple'
 
-# Execute the ai-rules-link executable
-alias ai-rules-link="$HOME/personal/ai-rules-link/ai-rules-link"
-
 # GIT ALIASES -----------------------------------------------------------------
 alias gc='git commit'
 alias gco='git checkout'
