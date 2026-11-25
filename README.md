@@ -175,11 +175,7 @@ If SSH isn't configured when Stage 3 runs, it prints a warning and skips repo cl
 2. **Enable AeroSpace** window manager
 3. **Open Neovim** — plugins install automatically on first launch
 4. **Open the notes vault** with `alt-p` (see [Notes](#notes))
-5. **Disable press-and-hold in Cursor** for key repeat:
-   ```bash
-   defaults write com.todesktop.230313mzl4w4u92 ApplePressAndHoldEnabled -bool false
-   ```
-6. **Connect Calendar** to email and configure Dock
+5. **Connect Calendar** to email and configure Dock
 
 ---
 

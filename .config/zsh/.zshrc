@@ -63,9 +63,6 @@ compinit
 
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 
-### CursorCli required ###
-export PATH="$HOME/.local/bin:$PATH"
-
 ### Mason (Neovim) ###
 export PATH="$DOTFILES/.config/local/share/nvim/mason/bin:$PATH"
 
@@ -80,7 +77,6 @@ compdef v=nvim # bridge 'v' alias to nvim completions so carapace doesn't error
 
 ### rust language ###
 . "$HOME/.cargo/env"
-
 
 ### DirEnv ###
 eval "$(direnv hook zsh)"
