@@ -254,11 +254,11 @@ Apple Silicon only — the cask has no Intel build. This repo has no existing Ma
 
 ## Claude Skills
 
-Personal Claude Code skills live in `.claude/skills/<name>/SKILL.md` in this repo, and `stow . -t ~/` links them into `~/.claude/skills/<name>`, next to the skills Claude.ai manages in `~/.claude/skills/synced/`. Only the skills tracked here are versioned; `synced/` is owned by Claude.ai and is never committed.
+Claude skills are not tracked in this public repo. The company skills live in the private secrets repo (`claude/skills/<name>/`), and its `link.sh` links each one into `~/.claude/skills/<name>`, next to the skills Claude.ai manages in `~/.claude/skills/synced/`. `setup_secrets.sh` runs `link.sh` after cloning, and `link.sh` can be re-run any time.
 
-- **New machine:** create `~/.claude/skills/` first (`mkdir -p ~/.claude/skills`), then run stow. If the folder doesn't exist, stow can link the whole directory to the repo, and `synced/` would write into it.
-- **Adding a skill:** put it under `.claude/skills/<name>/`, re-run `stow -R . -t ~/` (or `ln -s ../../personal/dotfiles/.claude/skills/<name> ~/.claude/skills/<name>`), and open a PR.
-- **Don't commit org identifiers:** this repo is public. Skills tied to one company or project (Jira site, account IDs) belong in that repo's own `.claude/skills/`, which Claude Code loads together with the personal ones.
+- **Adding a skill:** put it in the secrets repo under `claude/skills/<name>/`, run `link.sh`, and open a PR there.
+- **Don't commit org identifiers here:** this repo is public. Anything tied to one company or project (Jira site, account IDs, internal URLs) belongs in the secrets repo.
+- **Different machine layout:** `CLAUDE_SKILLS_DIR` and `WORK_DIR` override the link targets (see the secrets repo README).
 
 ---
 

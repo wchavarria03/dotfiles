@@ -38,8 +38,6 @@ alias term_api='open -na Ghostty.app --args --title="API Terminal"'
 # Opens a DB Terminal
 alias term_db='open -na Ghostty.app --args --title="DB Terminal"'
 
-alias pyp='pip install -r requirements.txt --index-url https://${PYPI_USERNAME}:${PYPI_PASSWORD}@pypi.ltvops.com/simple'
-
 # GIT ALIASES -----------------------------------------------------------------
 alias gc='git commit'
 alias gco='git checkout'
@@ -110,13 +108,10 @@ dreset() {
     podman system prune -a
 }
 
-PERSONALSECRETS="$SECRETSREPO/personal-secrets.zsh"
-if [ -f "$PERSONALSECRETS" ]; then
-    source "$PERSONALSECRETS"
-fi
-
-JOBSECRETS="$SECRETSREPO/job-secrets.zsh"
-if [ -f "$JOBSECRETS" ]; then
-    source "$JOBSECRETS"
-fi
+# Private config (work aliases, lazy secret loaders) from the secrets repo. Optional, and it
+# reads no secret at shell start: see $SECRETSREPO/README.md.
+for _f in "$SECRETSREPO"/zsh/*.zsh(N); do
+    source "$_f"
+done
+unset _f
 

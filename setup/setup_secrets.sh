@@ -12,6 +12,11 @@ setup_secrets() {
     git pull
     cd - > /dev/null || exit  # Return to the original directory, suppressing output
   fi
+
+  # Link the private skills and work files into place (idempotent).
+  if [ -x ~/personal/secrets/link.sh ]; then
+    ~/personal/secrets/link.sh
+  fi
 }
 
 setup_secrets_clean_up() {

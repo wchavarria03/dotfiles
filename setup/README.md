@@ -110,7 +110,7 @@ Cloning during install uses SSH (the key listed under Prerequisites). Day-to-day
 ### Prerequisites (macOS)
 
 - 1Password desktop app with **Settings > Developer > Integrate with 1Password CLI** enabled.
-- Both 1Password accounts added to the app (`op account list` shows `my.1password.com` and `ltvco.1password.com`).
+- Your 1Password accounts added to the app (`op account list` shows them).
 - `direnv`, `1password-cli` and `stow` are installed by `install_brew_packages.sh`, and the direnv hook (`eval "$(direnv hook zsh)"`) is already in the tracked `.zshrc`.
 
 ### On each machine
@@ -118,11 +118,10 @@ Cloning during install uses SSH (the key listed under Prerequisites). Day-to-day
 1. Run `stow . -t ~/` from the dotfiles repo (`install.sh` does this). `setup_stow.sh` also adds the `includeIf` blocks to `~/.gitconfig.local`, creates the two `.envrc` files if missing, and runs `direnv allow`. Nothing is overwritten.
 2. The `.envrc` files (never commit them) name their own 1Password account and item; `git-credential-pat` reads the token when git asks, so no terminal start triggers a prompt:
    - `~/personal/.envrc`: `GITHUB_PAT_ACCOUNT=my.1password.com`, `GITHUB_PAT_REF="op://Private/GitHub PAT - Personal/token"`
-   - `~/work/.envrc`: `GITHUB_PAT_ACCOUNT=ltvco.1password.com`, `GITHUB_PAT_REF="op://Employee/Github PAT - LTV/token"`
 3. Remote URLs must be plain `https://github.com/<owner>/<repo>.git` (HTTPS) or `git@github.com:<owner>/<repo>.git` (SSH), with no token embedded, and no `url.*.insteadOf` rules carrying tokens.
 4. Verify: `git ls-remote origin HEAD` inside a repo under `~/personal/` and one under `~/work/`.
 
 ### Token notes
 
 - Fine-grained PATs work over HTTPS only. They expire (1 year max), so note the expiry date in the 1Password item. They cannot access GitHub Packages or `ghcr.io`; that needs a classic token with `read:packages`.
-- The work token needs `ltvco` as resource owner, org approval/SSO authorization, and Contents access to each repo it must reach, including private Go modules.
+- The work token needs the work org as resource owner, org approval/SSO authorization, and Contents access to each repo it must reach, including private Go modules. Its 1Password reference lives in the private secrets repo (`direnv/work.envrc`).
