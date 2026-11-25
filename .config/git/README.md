@@ -21,7 +21,7 @@ Rules:
 - Remote URLs stay plain: `https://github.com/<owner>/<repo>.git`. No token in the URL, no `url.*.insteadOf` rewrite carrying a token. Embedded credentials take priority over the helper and silently win.
 - `~/.gitconfig.local` is machine-local and untracked. Don't put tokens in it.
 - A new directory with its own token follows the same pattern: its own `.envrc`, a `gitconfig.<name>`, and an `includeIf` in `~/.gitconfig.local` (add it to `ensure_gitconfig_local_github_auth` in `setup/setup_stow.sh` too).
-- The `includeIf` blocks are deliberately not in the portable `.gitconfig`. Windows keeps Git Credential Manager; clearing the helper there would break HTTPS auth.
+- The `includeIf` blocks are deliberately not in the portable `.gitconfig`: they depend on direnv and 1Password, which the homeserver does not have, and clearing the helper there would break its HTTPS auth.
 - SSH remotes (`git@github.com:...`) ignore all of this and use your SSH key.
 
 ## Setup on a new machine

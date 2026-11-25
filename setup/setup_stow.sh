@@ -11,9 +11,12 @@ setup_stow() {
     echo "${COLOR_GREEN}-- Dotfiles symlinked via stow.${COLOR_RESET}"
     cd - > /dev/null || exit
 
-    ensure_gitconfig_local_signing
-    ensure_gitconfig_local_github_auth
-    ensure_github_envrc
+    # 1Password signing and direnv PAT helpers are macOS-only (no desktop app on the homeserver).
+    if [ "${OS_TYPE:-mac}" = "mac" ]; then
+        ensure_gitconfig_local_signing
+        ensure_gitconfig_local_github_auth
+        ensure_github_envrc
+    fi
     ensure_git_hooks_path
 }
 
@@ -42,7 +45,7 @@ ensure_gitconfig_local_signing() {
 
 # Per-directory GitHub PAT helpers are macOS-only (they need direnv + 1Password),
 # so the includeIf blocks live in ~/.gitconfig.local, not the portable .gitconfig.
-# Windows keeps Git Credential Manager. Safe to run multiple times.
+# Safe to run multiple times.
 ensure_gitconfig_local_github_auth() {
     local local_config="$HOME/.gitconfig.local"
     local dir name
