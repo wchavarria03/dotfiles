@@ -122,9 +122,8 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\personal\dotfiles\setup\
 | 2 | Installs Git via winget, checks SSH access, clones dotfiles/notes/secrets repos, symlinks `.gitconfig`, `.gitignore_global`, and nvim config |
 | 3 | Installs WezTerm via winget, symlinks the whole `.config/wezterm` directory from dotfiles, installs the JetBrainsMono Nerd Font |
 | 4 | Installs Starship via winget, symlinks `starship.toml`, adds init to PowerShell profile |
-| 5 | Installs GlazeWM via winget, symlinks `.config/glazewm/config.yaml` |
-| 6 | Installs zoxide via winget, adds init to PowerShell profile |
-| 7 | Installs extras with no dotfiles-managed config: ripgrep, fzf, imagemagick, glow, PowerToys, Brave |
+| 5 | Installs zoxide via winget, adds init to PowerShell profile |
+| 6 | Installs extras with no dotfiles-managed config: ripgrep, fzf, imagemagick, glow, PowerToys, Brave |
 
 ### Scripts
 
@@ -135,7 +134,6 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\personal\dotfiles\setup\
 | `setup_git_windows.ps1` | Git install, dotfiles/notes clone, git config and nvim symlinks |
 | `setup_wezterm_windows.ps1` | WezTerm install and config directory symlink |
 | `setup_starship_windows.ps1` | Starship install, config symlink, PowerShell profile init |
-| `setup_glazewm_windows.ps1` | GlazeWM install and config symlink |
 | `setup_zoxide_windows.ps1` | zoxide install, PowerShell profile init |
 | `setup_extras_windows.ps1` | ripgrep, fzf, imagemagick, glow, PowerToys, Brave |
 
@@ -146,7 +144,6 @@ powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\personal\dotfiles\setup\
 - If your `.gitconfig` is nested inside the dotfiles repo (e.g. under a `git/` subdirectory), update `$gitconfigSrc` in `setup_git_windows.ps1`.
 - WezTerm config is detected automatically from either `~/.wezterm.lua` or `~/.config/wezterm/wezterm.lua` in the dotfiles repo. Since `wezterm.lua` `require()`s sibling modules (`colors.lua`, `keys.lua`, etc.), the whole `.config/wezterm` directory is symlinked, not just the one file.
 - `.ps1` files in this repo must not contain non-ASCII characters (em dashes, curly quotes) inside string literals — files have no BOM, so Windows PowerShell 5.1 reads them via the system ANSI codepage, and an em dash can get misread as a string-terminating curly quote, breaking the parser.
-- GlazeWM's `window_rules` in `.config/glazewm/config.yaml` match by process name — verify exact `.exe` names via Task Manager's Details tab for apps not yet confirmed (see comments in the file).
 
 ## GitHub auth (PAT via direnv)
 
