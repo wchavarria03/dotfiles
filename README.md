@@ -14,7 +14,6 @@ Complete guide for setting up a new macOS development environment with automated
 
 ## Index
 
-- [Setup Architecture](#setup-architecture)
 - [Prerequisites](#prerequisites)
 - [Phase 1: Initial System Setup](#phase-1-initial-system-setup)
 - [Phase 2: Homebrew Bootstrap](#phase-2-homebrew-bootstrap)
@@ -28,43 +27,6 @@ Complete guide for setting up a new macOS development environment with automated
 - [Aegis Herdr Configuration](#aegis-herdr-configuration)
 - [Claude Skills](#claude-skills)
 - [Troubleshooting](#troubleshooting)
-
----
-
-## Setup Architecture
-
-The `setup/` directory follows a consistent pattern across all scripts. Each script exposes three functions and a public entry point:
-
-```bash
-general_*()   # always runs — shared across all devices
-work_*()      # runs when DEVICE_TYPE=work
-personal_*()  # runs when DEVICE_TYPE=personal
-
-public_fn() {
-    source helpers.sh && ensure_device_type
-    run_for_device general_* work_* personal_*
-}
-```
-
-`helpers.sh` provides `ensure_device_type` (prompts once if `DEVICE_TYPE` is unset) and `run_for_device` (the dispatcher). Scripts that need brew helpers (`brew_install_formulae`, `brew_install_casks`) also pull those from `helpers.sh`.
-
-**Scripts that follow this pattern:**
-
-| Script                     | Customizable via                          |
-| -------------------------- | ----------------------------------------- |
-| `install_brew_packages.sh` | `general/work/personal_packages()`        |
-| `install_brew_fonts.sh`    | `general/work/personal_fonts()`           |
-| `setup_mac_config.sh`      | `general/work/personal_mac_config()`      |
-| `setup_asdf.sh`            | `general/work/personal_asdf()`            |
-| `create_folders.sh`        | `general/work/personal_folders()`         |
-| `setup_api_collections.sh` | `general/work/personal_api_collections()` |
-
-To add a device-specific package, font, folder, or config — open the relevant script and edit the `work_*` or `personal_*` function. No other files need to change.
-
-**Current device extras:**
-
-- `work`: `claude-code`
-- `personal`: `opencode`
 
 ---
 
@@ -147,14 +109,7 @@ cd ~/personal/dotfiles/setup
 
 The script will prompt for device type (`personal` or `work`) on first run and export `DEVICE_TYPE` for all subsequent steps. Individual scripts can also be run standalone — they will prompt for device type if the variable isn't set.
 
-**What the script does:**
-
-| Stage | Steps                                                                                            |
-| ----- | ------------------------------------------------------------------------------------------------ |
-| 1     | Makes all scripts executable, prompts for device type                                            |
-| 2     | Creates folders, installs Homebrew packages + fonts, sets up asdf plugins and tool versions, checks Aegis dev tooling |
-| 3     | Checks SSH access, clones/pulls secrets, dotfiles, notes, and API collections repos, runs `stow` |
-| 4     | Applies macOS system defaults                                                                    |
+Each stage and script is described in [setup/README.md](setup/README.md), including how to add device-specific packages. The homeserver (NixOS) has its own, shorter path there.
 
 If SSH isn't configured when Stage 3 runs, it prints a warning and skips repo cloning — re-run the script after setting up SSH keys.
 
