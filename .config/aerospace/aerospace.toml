@@ -144,10 +144,7 @@ alt-a = [
 ]
 alt-b = 'workspace b'
 alt-c = 'workspace c'
-alt-d = [
-  'workspace d',
-  'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_db_terminal.sh',
-]
+alt-d = 'workspace d'
 alt-g = 'workspace g'
 alt-i = 'workspace i'
 alt-m = 'workspace m'
@@ -274,21 +271,12 @@ if.app-id = 'com.brave.Browser'
 run = 'move-node-to-workspace b'
 
 [[on-window-detected]]
-if.app-id = 'com.sequel-ace.sequel-ace'
-run = 'move-node-to-workspace d'
-
-[[on-window-detected]]
 if.app-id = 'com.insomnia.app'
 run = 'move-node-to-workspace a'
 
 [[on-window-detected]]
 if.app-id = 'com.usebruno.app'
 run = 'move-node-to-workspace a'
-
-# Cursor IDE
-[[on-window-detected]]
-if.app-id = 'com.todesktop.230313mzl4w4u92'
-run = 'move-node-to-workspace i'
 
 [[on-window-detected]]
 if.app-id = 'ru.keepcoder.Telegram'
