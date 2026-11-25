@@ -1,7 +1,3 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.docker/bin:$HOME/bin:/usr/local/bin:$PATH
-FPATH="$HOME/.docker/completions:$FPATH"
-
 #Check the architecture and set the Homebrew path accordingly
 if [[ "$(uname -m)" == "arm64" ]]; then
     # Apple Silicon
@@ -10,6 +6,25 @@ else
     # Intel
     eval "$(/usr/local/bin/brew shellenv)"
 fi
+
+### PATH: the single place PATH is set (typeset -U drops duplicates) ###
+# Order is highest priority first. cargo/carapace only prepend themselves when
+# missing, so their order drifts in nested shells; pinning them here fixes it.
+export GOBIN="$HOME/go/bin"
+typeset -U path
+path=(
+    "$HOME/.cargo/bin"
+    "$XDG_CONFIG_HOME/carapace/bin"
+    /opt/homebrew/opt/mysql-client/bin
+    "$XDG_DATA_HOME/nvim/mason/bin"
+    /opt/homebrew/opt/rustup/bin
+    "${ASDF_DATA_DIR:-$HOME/.asdf}/shims"
+    "$HOME/bin"
+    $path
+    "$ANDROID_HOME/platform-tools"
+    "$GOBIN"
+    "$HOME/.local/bin"
+)
 
 # Source plugins manually
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -28,9 +43,6 @@ source $DOTFILES/.config/zsh/aliases.zsh
 # Bash completion
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
@@ -44,29 +56,12 @@ bindkey '^[[B' history-search-forward
 bindkey '˙' backward-word # ⌥ + h  [skip word backward]
 bindkey '¬' forward-word  # ⌥ + j [skip word forward]
 
-### ASDF ###
-# . ~/.asdf/plugins/golang/set-env.zsh
-# export PATH="$PATH:$(go env GOBIN)"
-
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-# append completions to fpath
+### ASDF completions ###
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
-
-### Go tools / Mason ###
-export GOBIN="$HOME/go/bin"
-export PATH="$PATH:$GOBIN:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin"
 
 ### Initialize brew completions ###
 autoload -Uz compinit
 compinit
-
-export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
-
-### Mason (Neovim) ###
-export PATH="$DOTFILES/.config/local/share/nvim/mason/bin:$PATH"
-
-### MySQL client (for dadbod) ###
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 ### Carapace ###
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
@@ -79,11 +74,6 @@ compdef v=nvim # bridge 'v' alias to nvim completions so carapace doesn't error
 
 ### DirEnv ###
 eval "$(direnv hook zsh)"
-
-### PATH dedupe (keeps nested shells identical) ###
-typeset -U path
-# cargo/carapace only prepend when missing, so their order drifts in nested shells; pin it
-path=("$HOME/.cargo/bin" "$XDG_CONFIG_HOME/carapace/bin" $path)
 
 # device-local overrides, not tracked (see ~/.gitconfig.local for git)
 [ -f "$HOME/.zshrc.local" ] && . "$HOME/.zshrc.local"
