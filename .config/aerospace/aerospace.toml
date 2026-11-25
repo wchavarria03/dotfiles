@@ -144,7 +144,10 @@ alt-a = [
 ]
 alt-b = 'workspace b'
 alt-c = 'workspace c'
-alt-d = 'workspace d'
+alt-d = [
+  'workspace d',
+  'exec-and-forget /Users/wchavarria/personal/dotfiles/.config/aerospace/launch_db_terminal.sh',
+]
 alt-g = 'workspace g'
 alt-i = 'workspace i'
 alt-m = 'workspace m'
