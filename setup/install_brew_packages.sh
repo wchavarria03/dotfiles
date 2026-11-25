@@ -32,6 +32,7 @@ general_packages() {
         luarocks # lua linter and development
         mysql-client # required for dadbod mysql connections
         neovim
+        openspec # spec-driven development for AI coding assistants
         pngpaste # clipboard screenshots
         podman
         ripgrep
