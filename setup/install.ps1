@@ -48,18 +48,13 @@ function main {
     . "$PSScriptRoot\setup_starship_windows.ps1"
     Setup-Starship
 
-    # ── Stage 5 - GlazeWM ─────────────────────────────────────────────────────
-    Write-Stage "Stage 5 - GlazeWM"
-    . "$PSScriptRoot\setup_glazewm_windows.ps1"
-    Setup-GlazeWM
-
-    # ── Stage 6 - zoxide ──────────────────────────────────────────────────────
-    Write-Stage "Stage 6 - zoxide"
+    # ── Stage 5 - zoxide ──────────────────────────────────────────────────────
+    Write-Stage "Stage 5 - zoxide"
     . "$PSScriptRoot\setup_zoxide_windows.ps1"
     Setup-Zoxide
 
-    # ── Stage 7 - Extras (ripgrep, fzf, imagemagick, glow, PowerToys, Brave) ──
-    Write-Stage "Stage 7 - Extras"
+    # ── Stage 6 - Extras (ripgrep, fzf, imagemagick, glow, PowerToys, Brave) ──
+    Write-Stage "Stage 6 - Extras"
     . "$PSScriptRoot\setup_extras_windows.ps1"
     Setup-Extras
 

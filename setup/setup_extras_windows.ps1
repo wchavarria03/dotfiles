@@ -1,8 +1,7 @@
 # setup_extras_windows.ps1
 # Installs supporting tools with no dotfiles-managed config of their own:
 # ripgrep/fzf, imagemagick/glow, PowerToys for keyboard-driven app launching
-# (PowerToys Run) and key remapping, and Brave (referenced by the GlazeWM
-# window rule for workspace 'b').
+# (PowerToys Run) and key remapping, and Brave.
 
 . "$PSScriptRoot\helpers_windows.ps1"
 
