@@ -1,7 +1,6 @@
 .envrc
 .DS_Store
 .idea
-.cursor
 .gitconfig.local
 
 **/.claude/settings.local.json

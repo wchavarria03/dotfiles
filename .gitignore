@@ -58,7 +58,3 @@ nvim-macos-arm64
 !.config/herdr-app/programs.json
 .config/.android
 
-# gemini and cursor were removed from the configs; local leftovers (credentials,
-# chat history) stay on disk, never tracked
-.gemini/
-.config/cursor/
