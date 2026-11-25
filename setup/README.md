@@ -1,15 +1,12 @@
 # Machine Setup
 
-Bootstrap scripts for setting up a new machine (macOS or the NixOS homeserver). Idempotent — safe to run multiple times.
+Reference for the `setup/` scripts (macOS or the NixOS homeserver). Idempotent: safe to run multiple times. The step-by-step guide, including the manual parts, is the [main README](../README.md).
 
 ---
 
 ## macOS
 
-### Prerequisites
-
-- Xcode (install from the App Store first, before running the script)
-- SSH key configured for GitHub
+Prerequisites (Xcode, an SSH key for GitHub) and the manual steps before and after the script are in the [main README](../README.md#prerequisites) (Phases 1-3 and 5-6).
 
 ### Usage
 
@@ -45,6 +42,43 @@ bash install.sh
 | `setup_stow.sh` | Symlinks dotfiles into `$HOME` via stow |
 | `setup_mac_config.sh` | Applies macOS `defaults write` settings |
 | `clean_up.sh` | Removes symlinks and cleans up |
+
+---
+
+## How the scripts work
+
+The `setup/` directory follows a consistent pattern across all scripts. Each script exposes three functions and a public entry point:
+
+```bash
+general_*()   # always runs — shared across all devices
+work_*()      # runs when DEVICE_TYPE=work
+personal_*()  # runs when DEVICE_TYPE=personal
+
+public_fn() {
+    source helpers.sh && ensure_device_type
+    run_for_device general_* work_* personal_*
+}
+```
+
+`helpers.sh` provides `ensure_device_type` (prompts once if `DEVICE_TYPE` is unset) and `run_for_device` (the dispatcher). Scripts that need brew helpers (`brew_install_formulae`, `brew_install_casks`) also pull those from `helpers.sh`.
+
+**Scripts that follow this pattern:**
+
+| Script                     | Customizable via                          |
+| -------------------------- | ----------------------------------------- |
+| `install_brew_packages.sh` | `general/work/personal_packages()`        |
+| `install_brew_fonts.sh`    | `general/work/personal_fonts()`           |
+| `setup_mac_config.sh`      | `general/work/personal_mac_config()`      |
+| `setup_asdf.sh`            | `general/work/personal_asdf()`            |
+| `create_folders.sh`        | `general/work/personal_folders()`         |
+| `setup_api_collections.sh` | `general/work/personal_api_collections()` |
+
+To add a device-specific package, font, folder, or config — open the relevant script and edit the `work_*` or `personal_*` function. No other files need to change.
+
+**Current device extras:**
+
+- `work`: `claude-code`
+- `personal`: `opencode`
 
 ---
 
