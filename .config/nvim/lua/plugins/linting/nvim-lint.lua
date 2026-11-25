@@ -17,7 +17,6 @@ function M.setup()
         markdown = { 'markdownlint', 'cspell', 'codespell' },
         python = { 'ruff', 'flake8' },
         scss = { 'stylelint' },
-        solidity = { 'solhint' },
         terraform = { 'tflint' },
         text = { 'cspell', 'codespell' },
         typescript = { 'eslint_d' },
