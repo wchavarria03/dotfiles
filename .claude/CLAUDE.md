@@ -96,7 +96,7 @@ When another Claude session delegates a task to this one (a `<cross-session-mess
 
 Rules learned from corrections. They apply in every repo and agent session:
 
-- **Review comments:** reply to each one in its own thread (`gh api repos/<owner>/<repo>/pulls/<n>/comments/<id>/replies`), never one PR comment summarizing several. A finding that sits in a review body (no thread) gets its own separate comment.
+- **Review comments:** reply to each one in its own thread (`gh api repos/<owner>/<repo>/pulls/<n>/comments/<id>/replies`), never one PR comment summarizing several. A finding that sits in a review body (no thread) gets its own separate comment. When a change makes an inline comment outdated (moved line, changed value, answered question), update or delete it in the same step, in every PR of a stack, instead of leaving it for Walter to point out.
 - **Lint and test output:** read the whole output and the exit code, not only the tail. Hidden issues sit above it.
 - **Never block an agent shell:** don't run a command that reads stdin without input (a bare `cat`, `read`, an interactive prompt). It waits forever. Use the Write tool or a closed heredoc, and give background commands a way to end.
 - **No `timeout` on macOS:** use the tool's own timeout parameter instead.
