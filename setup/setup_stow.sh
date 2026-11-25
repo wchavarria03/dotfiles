@@ -75,7 +75,7 @@ write_envrc() {
     [ -e "$file" ] && return 0
     [ -d "$(dirname "$file")" ] || return 0
 
-    printf '# %s GitHub PAT, read from 1Password. Never commit.\nexport GITHUB_PAT=$(op read --account %s "%s")\n' "$label" "$account" "$ref" > "$file"
+    printf '# %s GitHub PAT reference for git-credential-pat (read from 1Password on use, not at shell start). Never commit.\nexport GITHUB_PAT_ACCOUNT=%s\nexport GITHUB_PAT_REF="%s"\n' "$label" "$account" "$ref" > "$file"
     echo "${COLOR_GREEN}-- Created $file.${COLOR_RESET}"
 }
 
