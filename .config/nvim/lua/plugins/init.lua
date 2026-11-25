@@ -27,7 +27,6 @@ load(specs, 'plugins.editor.todo-comments')
 load(specs, 'plugins.editor.yanky')
 load(specs, 'plugins.editor.mini')
 load(specs, 'plugins.editor.smart-splits')
-load(specs, 'plugins.editor.undo-tree')
 
 -- LSP
 load(specs, 'plugins.lsp.mason')
@@ -51,7 +50,6 @@ load(specs, 'plugins.git.diffview')
 -- Utils
 load(specs, 'plugins.utils.cloak')
 load(specs, 'plugins.utils.kulala')
-load(specs, 'plugins.utils.hardtime')
 load(specs, 'plugins.utils.precognition')
 
 -- Languages
