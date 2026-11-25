@@ -10,19 +10,19 @@ ensure_os_type() {
     echo ""
     echo "Which OS?"
     echo "  1) mac"
-    echo "  2) windows"
+    echo "  2) homeserver (NixOS, packages come from nix)"
     read -rp "> " choice
     case "$choice" in
         1) export OS_TYPE="mac" ;;
-        2) export OS_TYPE="windows" ;;
+        2) export OS_TYPE="homeserver" ;;
         *) echo "Invalid choice — expected 1 or 2."; exit 1 ;;
     esac
     echo "${COLOR_GREEN}-- OS type set to: ${OS_TYPE}${COLOR_RESET}"
     echo ""
 }
 
-# Calls $1 (general) always, then $2 (mac) or $3 (windows) based on OS_TYPE.
-# Usage: run_for_os general_fn mac_fn windows_fn
+# Calls $1 (general) always, then $2 (mac) or $3 (homeserver) based on OS_TYPE.
+# Usage: run_for_os general_fn mac_fn homeserver_fn
 run_for_os() {
     "$1"
     if [ "$OS_TYPE" = "mac" ]; then

@@ -1,6 +1,6 @@
 # Machine Setup
 
-Bootstrap scripts for setting up a new machine. Idempotent — safe to run multiple times.
+Bootstrap scripts for setting up a new machine (macOS or the NixOS homeserver). Idempotent — safe to run multiple times.
 
 ---
 
@@ -48,102 +48,26 @@ bash install.sh
 
 ---
 
-## Windows
+## Homeserver (NixOS)
 
-Covers Git integration and WezTerm configuration. Uses `winget` for package management and PowerShell symlinks instead of `stow`.
+Pick **2) homeserver** at the OS prompt. Packages on the homeserver come from the nix config, so this path installs nothing: no Homebrew, asdf, fonts, or macOS defaults.
 
 ### Prerequisites
 
-- Windows 10 1709+ or Windows 11 (winget required)
-- PowerShell 5.1+ or PowerShell 7+
-- Run as **Administrator** (required for creating symlinks)
-- SSH key configured for GitHub (see below)
-
-### SSH Setup
-
-SSH must be configured before running the install script — it's needed to clone the dotfiles repo.
-
-**1. Install Git** (skip if already installed):
-
-```cmd
-winget install --id Git.Git --silent --accept-package-agreements
-```
-
-Restart your terminal so `ssh-keygen` is on PATH.
-
-**2. Generate a key:**
-
-```cmd
-ssh-keygen -t ed25519 -C "your@email.com"
-```
-
-Accept the default path (`~/.ssh/id_ed25519`) and set a passphrase if desired.
-
-**3. Copy the public key:**
-
-In Command Prompt:
-```cmd
-type %USERPROFILE%\.ssh\id_ed25519.pub | clip
-```
-
-In Git Bash:
-```bash
-cat ~/.ssh/id_ed25519.pub | clip
-```
-
-**4.** Paste it at https://github.com/settings/ssh/new
-
-**5. Verify:**
-
-```cmd
-ssh -T git@github.com
-# Hi wchavarria03! You've successfully authenticated...
-```
-
-### Usage
-
-**1. Clone the dotfiles repo:**
-
-```cmd
-git clone git@github.com:wchavarria03/dotfiles.git %USERPROFILE%\personal\dotfiles
-```
-
-**2. Run the install script** from Command Prompt as Administrator:
-
-```cmd
-powershell -ExecutionPolicy Bypass -File "%USERPROFILE%\personal\dotfiles\setup\install.ps1"
-```
+- `git`, `stow` and `ssh` provided by the nix config
+- SSH key configured for GitHub
 
 ### What it does
 
 | Stage | Description |
 |-------|-------------|
-| 1 | Loads helpers, prompts for device type |
-| 2 | Installs Git via winget, checks SSH access, clones dotfiles/notes/secrets repos, symlinks `.gitconfig`, `.gitignore_global`, and nvim config |
-| 3 | Installs WezTerm via winget, symlinks the whole `.config/wezterm` directory from dotfiles, installs the JetBrainsMono Nerd Font |
-| 4 | Installs Starship via winget, symlinks `starship.toml`, adds init to PowerShell profile |
-| 5 | Installs zoxide via winget, adds init to PowerShell profile |
-| 6 | Installs extras with no dotfiles-managed config: ripgrep, fzf, imagemagick, glow, PowerToys, Brave |
+| 1 | Makes all scripts executable |
+| 2 | Creates the standard folders |
+| 3 | Clones the dotfiles repo and symlinks it via `stow`; enables the repo's git hooks |
 
-### Scripts
+Not run on the homeserver: the secrets, notes and API collections clones (the homelab keeps its own notes vault), 1Password commit signing, and the direnv PAT setup. Stow links every tracked config, including macOS-only ones such as AeroSpace, which are harmless there.
 
-| File | Purpose |
-|------|---------|
-| `install.ps1` | Entry point |
-| `helpers_windows.ps1` | Device type prompt, `Winget-Install`, `New-Symlink` helpers |
-| `setup_git_windows.ps1` | Git install, dotfiles/notes clone, git config and nvim symlinks |
-| `setup_wezterm_windows.ps1` | WezTerm install and config directory symlink |
-| `setup_starship_windows.ps1` | Starship install, config symlink, PowerShell profile init |
-| `setup_zoxide_windows.ps1` | zoxide install, PowerShell profile init |
-| `setup_extras_windows.ps1` | ripgrep, fzf, imagemagick, glow, PowerToys, Brave |
-
-### Notes
-
-- Symlinks are created with `New-Item -ItemType SymbolicLink`, which requires Administrator privileges — run the install command from an elevated Command Prompt (or an admin Run dialog/shortcut). `powershell -ExecutionPolicy Bypass -File ...` does **not** self-elevate; it only bypasses the script execution policy, not `#Requires -RunAsAdministrator`.
-- `%USERPROFILE%` in the commands above is `cmd.exe` syntax. It's expanded by Command Prompt before `powershell.exe` ever sees it, so paste these into Command Prompt (or a shortcut's Target field), not directly into an already-open PowerShell window — there it'd need to be `$env:USERPROFILE` instead.
-- If your `.gitconfig` is nested inside the dotfiles repo (e.g. under a `git/` subdirectory), update `$gitconfigSrc` in `setup_git_windows.ps1`.
-- WezTerm config is detected automatically from either `~/.wezterm.lua` or `~/.config/wezterm/wezterm.lua` in the dotfiles repo. Since `wezterm.lua` `require()`s sibling modules (`colors.lua`, `keys.lua`, etc.), the whole `.config/wezterm` directory is symlinked, not just the one file.
-- `.ps1` files in this repo must not contain non-ASCII characters (em dashes, curly quotes) inside string literals — files have no BOM, so Windows PowerShell 5.1 reads them via the system ANSI codepage, and an em dash can get misread as a string-terminating curly quote, breaking the parser.
+---
 
 ## GitHub auth (PAT via direnv)
 
@@ -163,10 +87,6 @@ Cloning during install uses SSH (the key listed under Prerequisites). Day-to-day
    - `~/work/.envrc`: `GITHUB_PAT_ACCOUNT=ltvco.1password.com`, `GITHUB_PAT_REF="op://Employee/Github PAT - LTV/token"`
 3. Remote URLs must be plain `https://github.com/<owner>/<repo>.git` (HTTPS) or `git@github.com:<owner>/<repo>.git` (SSH), with no token embedded, and no `url.*.insteadOf` rules carrying tokens.
 4. Verify: `git ls-remote origin HEAD` inside a repo under `~/personal/` and one under `~/work/`.
-
-### Windows
-
-Windows keeps Git Credential Manager over HTTPS for `notes` and `streaming`, with no direnv or `op`. The PAT setup above is not applied there because it lives in `~/.gitconfig.local`, which the Windows setup doesn't create.
 
 ### Token notes
 

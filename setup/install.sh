@@ -36,30 +36,34 @@ main() {
   ensure_device_type
 
   echo " "
-  echo "${COLOR_GREEN}******** Stage 2 - Prep folders and brew ********${COLOR_RESET}"
+  echo "${COLOR_GREEN}******** Stage 2 - Prep folders${COLOR_RESET}"
   echo "${COLOR_GREEN}- Create folders${COLOR_RESET}"
   source create_folders.sh
   create_folders
 
-  echo "${COLOR_GREEN}- Brew install and update${COLOR_RESET}"
-  source install_and_update_homebrew.sh
-  install_and_update_homebrew
+  if [ "$OS_TYPE" = "mac" ]; then
+    echo "${COLOR_GREEN}- Brew install and update${COLOR_RESET}"
+    source install_and_update_homebrew.sh
+    install_and_update_homebrew
 
-  echo "${COLOR_GREEN}- Brew install packages${COLOR_RESET}"
-  source install_brew_packages.sh
-  install_brew_packages
+    echo "${COLOR_GREEN}- Brew install packages${COLOR_RESET}"
+    source install_brew_packages.sh
+    install_brew_packages
 
-  echo "${COLOR_GREEN}- Brew install Fonts${COLOR_RESET}"
-  source install_brew_fonts.sh
-  install_brew_fonts
+    echo "${COLOR_GREEN}- Brew install Fonts${COLOR_RESET}"
+    source install_brew_fonts.sh
+    install_brew_fonts
 
-  echo "${COLOR_GREEN}- Setup asdf plugins and tool versions${COLOR_RESET}"
-  source setup_asdf.sh
-  setup_asdf
+    echo "${COLOR_GREEN}- Setup asdf plugins and tool versions${COLOR_RESET}"
+    source setup_asdf.sh
+    setup_asdf
 
-  echo "${COLOR_GREEN}- Setup Aegis dev environment${COLOR_RESET}"
-  source setup_aegis_dev.sh
-  setup_aegis_dev
+    echo "${COLOR_GREEN}- Setup Aegis dev environment${COLOR_RESET}"
+    source setup_aegis_dev.sh
+    setup_aegis_dev
+  else
+    echo "${COLOR_GREEN}- homeserver: packages come from the nix config, skipping brew/asdf${COLOR_RESET}"
+  fi
 
   echo " "
   echo "${COLOR_GREEN}******** Stage 3 - Setup Config Repos ********${COLOR_RESET}"
@@ -69,35 +73,41 @@ main() {
     echo "WARNING: SSH key not configured for GitHub. Skipping repo clones."
     echo "Set up SSH keys and re-run to complete Stage 3."
   else
-    echo "${COLOR_GREEN}- Setup SECRETS repo${COLOR_RESET}"
-    source setup_secrets.sh
-    setup_secrets
+    if [ "$OS_TYPE" = "mac" ]; then
+      echo "${COLOR_GREEN}- Setup SECRETS repo${COLOR_RESET}"
+      source setup_secrets.sh
+      setup_secrets
+    fi
 
     echo "${COLOR_GREEN}- Setup DOTFILES repo${COLOR_RESET}"
     source setup_dotfiles.sh
     setup_dotfiles
 
-    echo "${COLOR_GREEN}- Setup NOTES repo${COLOR_RESET}"
-    source setup_notes.sh
-    setup_notes
+    if [ "$OS_TYPE" = "mac" ]; then
+      echo "${COLOR_GREEN}- Setup NOTES repo${COLOR_RESET}"
+      source setup_notes.sh
+      setup_notes
 
-    echo "${COLOR_GREEN}- Setup COLLECTIONS repo${COLOR_RESET}"
-    source setup_api_collections.sh
-    setup_api_collections
+      echo "${COLOR_GREEN}- Setup COLLECTIONS repo${COLOR_RESET}"
+      source setup_api_collections.sh
+      setup_api_collections
+    fi
 
     echo "${COLOR_GREEN}- Symlinking dotfiles with stow${COLOR_RESET}"
     source setup_stow.sh
     setup_stow
   fi
 
-  echo " "
-  echo "${COLOR_GREEN}******** Stage 4 - Configure MAC ********${COLOR_RESET}"
-  echo "${COLOR_GREEN}- Configuring MAC defaults..${COLOR_RESET}"
-  source setup_mac_config.sh
-  setup_mac_config
+  if [ "$OS_TYPE" = "mac" ]; then
+    echo " "
+    echo "${COLOR_GREEN}******** Stage 4 - Configure MAC ********${COLOR_RESET}"
+    echo "${COLOR_GREEN}- Configuring MAC defaults..${COLOR_RESET}"
+    source setup_mac_config.sh
+    setup_mac_config
+  fi
 
   echo "${COLOR_GREEN}******** Stage 5 - Complete Installation ********${COLOR_RESET}"
-  echo "${COLOR_GREEN} - OSX setup completed.${COLOR_RESET}"
+  echo "${COLOR_GREEN} - ${OS_TYPE} setup completed.${COLOR_RESET}"
 }
 
 # Execute main function
