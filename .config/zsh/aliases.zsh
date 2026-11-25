@@ -32,12 +32,6 @@ alias h='history'
 # AWS Profile Switcher
 source "$HOME/personal/scripts/awsp/awsp_alias.zsh"
 
-# Opens a API Terminal
-alias term_api='open -na Ghostty.app --args --title="API Terminal"'
-
-# Opens a DB Terminal
-alias term_db='open -na Ghostty.app --args --title="DB Terminal"'
-
 # GIT ALIASES -----------------------------------------------------------------
 alias gc='git commit'
 alias gco='git checkout'
