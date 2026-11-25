@@ -95,10 +95,6 @@ window_rules:
       - window_process: { equals: 'Telegram' }
       - window_process: { equals: 'Discord' }
 
-  - commands: ['move --workspace i']
-    match:
-      - window_process: { equals: 'Cursor' }
-
   - commands: ['move --workspace a']
     match:
       - window_process: { equals: 'Insomnia' }

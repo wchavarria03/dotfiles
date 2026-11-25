@@ -19,17 +19,11 @@ scripts
 .config/lazysql/history/
 .config/ltv-agent
 
-# Cursor AI chat history (personal conversations)
-.config/cursor/chats/
-
 # Swift Package Manager (machine-specific symlinks and cache)
 .config/swiftpm/
 .config/zsh/.zhistory
 .config/containers/
 .config/uv/
-.gemini/google_accounts.json
-.gemini/oauth_creds.json
-.gemini/tmp/
 
 .cargo/registry/
 .cargo/git/
@@ -63,3 +57,8 @@ nvim-macos-arm64
 !.config/herdr-app/keys.json
 !.config/herdr-app/programs.json
 .config/.android
+
+# gemini and cursor were removed from the configs; local leftovers (credentials,
+# chat history) stay on disk, never tracked
+.gemini/
+.config/cursor/
