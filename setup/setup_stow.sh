@@ -65,7 +65,6 @@ ensure_gitconfig_local_github_auth() {
 # create. Existing files are never overwritten. Requires `op` signed in to both accounts.
 ensure_github_envrc() {
     write_envrc "$HOME/personal/.envrc" "my.1password.com" "op://Private/GitHub PAT - Personal/token" "Personal"
-    write_envrc "$HOME/work/.envrc" "ltvco.1password.com" "op://Employee/Github PAT - LTV/token" "Work"
 
     if command -v direnv > /dev/null; then
         direnv allow "$HOME/personal" "$HOME/work" 2> /dev/null || true

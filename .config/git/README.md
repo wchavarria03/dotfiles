@@ -12,7 +12,7 @@ Stowed to `~/.config/git/`. The main `~/.gitconfig` (symlink to `dotfiles/.gitco
 
 ## How GitHub auth works
 
-1. direnv loads `GITHUB_PAT_ACCOUNT` and `GITHUB_PAT_REF` (a reference only, no `op` call) from the nearest `.envrc`: `~/personal/.envrc` or `~/work/.envrc` (untracked, never commit them). The helper runs `op read --account <account> <ref>` when git asks for credentials: personal from `my.1password.com` (`Private` vault), work from `ltvco.1password.com` (`Employee` vault).
+1. direnv loads `GITHUB_PAT_ACCOUNT` and `GITHUB_PAT_REF` (a reference only, no `op` call) from the nearest `.envrc`: `~/personal/.envrc` or `~/work/.envrc` (untracked, never commit them). The helper runs `op read --account <account> <ref>` when git asks for credentials: personal from `my.1password.com` (`Private` vault); the work file lives in the private secrets repo and is linked to `~/work/.envrc` by its `link.sh`.
 2. Git sees an HTTPS GitHub URL inside `~/personal/` or `~/work/` and runs `git-credential-pat`.
 3. The script prints the username and token and git authenticates.
 
