@@ -33,7 +33,6 @@ export PATH="/usr/local/sbin:$PATH"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-[[ -n $HERDR_ENV ]] || eval "$(op signin)" # herdr panes: skip interactive account picker
 
 source <(fzf --zsh)
 

@@ -161,9 +161,9 @@ Cloning during install uses SSH (the key listed under Prerequisites). Day-to-day
 ### On each machine
 
 1. Run `stow . -t ~/` from the dotfiles repo (`install.sh` does this). `setup_stow.sh` also adds the `includeIf` blocks to `~/.gitconfig.local`, creates the two `.envrc` files if missing, and runs `direnv allow`. Nothing is overwritten.
-2. The `.envrc` files (never commit them) each read their own 1Password account, so `op` must be signed in to both:
-   - `~/personal/.envrc`: `export GITHUB_PAT=$(op read --account my.1password.com "op://Private/GitHub PAT - Personal/token")`
-   - `~/work/.envrc`: `export GITHUB_PAT=$(op read --account ltvco.1password.com "op://Employee/Github PAT - LTV/token")`
+2. The `.envrc` files (never commit them) name their own 1Password account and item; `git-credential-pat` reads the token when git asks, so no terminal start triggers a prompt:
+   - `~/personal/.envrc`: `GITHUB_PAT_ACCOUNT=my.1password.com`, `GITHUB_PAT_REF="op://Private/GitHub PAT - Personal/token"`
+   - `~/work/.envrc`: `GITHUB_PAT_ACCOUNT=ltvco.1password.com`, `GITHUB_PAT_REF="op://Employee/Github PAT - LTV/token"`
 3. Remote URLs must be plain `https://github.com/<owner>/<repo>.git` (HTTPS) or `git@github.com:<owner>/<repo>.git` (SSH), with no token embedded, and no `url.*.insteadOf` rules carrying tokens.
 4. Verify: `git ls-remote origin HEAD` inside a repo under `~/personal/` and one under `~/work/`.
 

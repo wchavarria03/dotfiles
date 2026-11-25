@@ -8,11 +8,11 @@ Stowed to `~/.config/git/`. The main `~/.gitconfig` (symlink to `dotfiles/.gitco
 | `gitconfig.mac.signing` | Commit signing with 1Password SSH (`op-ssh-sign`). macOS only. | `~/.gitconfig.local`, added by `setup/setup_stow.sh` |
 | `gitconfig.personal` | GitHub credential helper for repos under `~/personal/`. Resets the helper list first so `osxkeychain` can't serve a stale credential. | `includeIf "gitdir:~/personal/"` in `~/.gitconfig.local`, added by `setup/setup_stow.sh` (macOS only) |
 | `gitconfig.work` | Same helper for repos under `~/work/`. Separate file so each tree can diverge later. | `includeIf "gitdir:~/work/"` in `~/.gitconfig.local`, added by `setup/setup_stow.sh` (macOS only) |
-| `git-credential-pat` | Credential helper script. Answers `get` with `$GITHUB_PAT`; ignores `store`/`erase`. | `gitconfig.personal` |
+| `git-credential-pat` | Credential helper script. Answers `get` with a token read from 1Password only at that moment (or `$GITHUB_PAT` if already set); ignores `store`/`erase`. | `gitconfig.personal` |
 
 ## How GitHub auth works
 
-1. direnv loads `GITHUB_PAT` from the nearest `.envrc`: `~/personal/.envrc` or `~/work/.envrc` (untracked, never commit them). Both read 1Password with `op read --account <account> ...`: personal from `my.1password.com` (`Private` vault), work from `ltvco.1password.com` (`Employee` vault).
+1. direnv loads `GITHUB_PAT_ACCOUNT` and `GITHUB_PAT_REF` (a reference only, no `op` call) from the nearest `.envrc`: `~/personal/.envrc` or `~/work/.envrc` (untracked, never commit them). The helper runs `op read --account <account> <ref>` when git asks for credentials: personal from `my.1password.com` (`Private` vault), work from `ltvco.1password.com` (`Employee` vault).
 2. Git sees an HTTPS GitHub URL inside `~/personal/` or `~/work/` and runs `git-credential-pat`.
 3. The script prints the username and token and git authenticates.
 
