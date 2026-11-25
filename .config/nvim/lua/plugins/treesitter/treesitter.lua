@@ -13,7 +13,6 @@ function M.setup()
     local parsers = {
         'bash',
         'beancount',
-        'cairo',
         'css',
         'csv',
         'diff',
@@ -47,7 +46,6 @@ function M.setup()
         'regex',
         'rst',
         'scss',
-        'solidity',
         'terraform',
         'toml',
         'tsx',

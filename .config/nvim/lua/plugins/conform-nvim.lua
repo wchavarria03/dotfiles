@@ -22,7 +22,6 @@ function M.setup()
             ['markdown.mdx'] = { 'prettier' },
             python = { 'isort', 'black', 'ruff' },
             scss = { 'stylelint' },
-            solidity = { 'prettierd' },
             terraform = { 'terraform_fmt' },
             toml = { 'taplo' },
             typescript = { 'prettierd', 'prettier', stop_after_first = true },

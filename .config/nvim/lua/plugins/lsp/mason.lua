@@ -27,7 +27,7 @@ function M.setup()
             -- Infrastructure & DevOps
             'dockerls', -- Docker
             'docker_compose_language_service', -- Docker Compose
-            'yamlls', -- cairo
+            'yamlls',
 
             -- Documentation
             'marksman', -- Markdown
@@ -36,14 +36,12 @@ function M.setup()
             'taplo', -- TOML
 
             -- Specialized
-            'solidity_ls', -- Solidity
 
             'biome', -- biome (javascript/typescript)
             -- 'pyright', -- pyright (python)
             'basedpyright',
             'golangci_lint_ls', -- biome (javascript/typescript) and golangci-lint
             'terraformls', -- terraform
-            'cairo_ls', -- cairo
 
             'beancount',
 
